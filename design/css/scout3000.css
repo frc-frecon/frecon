@@ -1,6 +1,7 @@
 .main-container {
 	padding-top: 53px;
 }
-.notes {
-	width: 400px;
+.input-group > .notes {
+	width: 350px;
+	height: 350px;
 }
