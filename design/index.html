@@ -19,8 +19,8 @@
 			<![endif]-->
 	</head>
 	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<div class="container">
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
@@ -39,10 +39,21 @@
 				</div><!--/.nav-collapse -->
 			</div>
 		</div>
-		<div class="main-container container">
-			<div class="">
-			<h1>Scout 3000</h1>
-			<hr>
+		<div class="main-container container-fluid">
+			<div class="row">
+				<div class="col-md-8">
+					<section>
+						<h1>Scout 3000</h1>
+						<hr />
+					</section>
+				</div>
+				<div class="col-md-4">
+					<h1>Notes</h1>
+					<hr />
+					<div class="input-group">
+						<textarea class="form-control notes"></textarea>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
