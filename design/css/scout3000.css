@@ -1,24 +1,30 @@
 .main-container {
 	padding-top: 53px;
 }
+
 .input-group > .notes {
 	width: 350px;
 	height: 350px;
 }
+
 .scouting-container {
 	height: 100%;
 }
+
 .scouting-container > .scouting-part {
 	width: 100%;
 	height: 100%;
 }
+
 .scouting-part-a {
 	background-color: red;
 
 }
+
 .scouting-part-b {
 	background-color: blue;
 }
+
 .sidenav {
 	margin-top:30px;
 	padding-top:10px;
@@ -36,37 +42,45 @@
 	-moz-background-clip: padding;
 	background-clip: padding-box;
 }
+
 .sidenav > li > a {
 	color: #333333;
 	padding: 10px 20px;
 }
+
 .sidenav .nav > li > a {
 	padding: 5px;
 	padding-left: 30px;
 	color: #333333;
 }
+
 .sidenav.nav > .active > a,
 .sidenav.nav > .active:hover > a,
 .sidenav.nav > .active:focus > a {
 	color: #ffffff;
 	background-color: #0081c2;
 }
+
 .sidenav.nav .nav > .active > a,
 .sidenav.nav .nav > .active:hover > a,
 .sidenav.nav .nav > .active:focus > a {
 	color: #ffffff;
 	background-color: #0081c2;
 }
+
 .sidenav.nav > li > .nav {
 	display:none;
 }
+
 .sidenav.nav > .active > .nav {
 	display:block;
 }
+
 .sidebar-section {
 	padding-top:50px;
 	margin-top:-50px;
 }
+
 .demo { /*because it's difficult to see the functionality of the designs without height of the page contents*/
 	height:500px;
 }
