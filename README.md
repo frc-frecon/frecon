@@ -2,7 +2,7 @@
 
 ## How to get started
 
-It's highly reccomended that you use [rvm](http://rvm.io).
+It's highly recommended that you use [rvm](http://rvm.io).
 Just run the command on the front of their website.
 It's much easier than installing ruby via yum.
 
