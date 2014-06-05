@@ -5,3 +5,54 @@
 	width: 350px;
 	height: 350px;
 }
+.sidenav {
+	margin-top:30px;
+	padding-top:10px;
+	padding-bottom:10px;
+	background-color: #ffffff;
+	border: 1px solid #ccc;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+}
+.sidenav > li > a {
+	color: #333333;
+	padding: 10px 20px;
+}
+.sidenav .nav > li > a {
+	padding: 5px;
+	padding-left: 30px;
+	color: #333333;
+}
+.sidenav.nav > .active > a,
+.sidenav.nav > .active:hover > a,
+.sidenav.nav > .active:focus > a {
+	color: #ffffff;
+	background-color: #0081c2;
+}
+.sidenav.nav .nav > .active > a,
+.sidenav.nav .nav > .active:hover > a,
+.sidenav.nav .nav > .active:focus > a {
+	color: #ffffff;
+	background-color: #0081c2;
+}
+.sidenav.nav > li > .nav {
+	display:none;
+}
+.sidenav.nav > .active > .nav {
+	display:block;
+}
+.sidebar-section {
+	padding-top:50px;
+	margin-top:-50px;
+}
+.demo { /*because it's difficult to see the functionality of the designs without height of the page contents*/
+	height:500px;
+}
