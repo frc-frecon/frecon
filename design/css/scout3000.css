@@ -84,3 +84,7 @@
 .demo { /*because it's difficult to see the functionality of the designs without height of the page contents*/
 	height:500px;
 }
+
+.nav-tabs {
+	margin-top: 10px;
+}
