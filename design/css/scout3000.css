@@ -1,5 +1,12 @@
 .main-container {
-	padding-top: 53px;
+	padding-top: 64px;
+}
+
+.back {
+	float:right;
+	position: relative;
+	top: -47px;
+	left: -8px;
 }
 
 .input-group > .notes {
@@ -17,12 +24,12 @@
 }
 
 .scouting-part-a {
-	background-color: red;
+	background-color: #dddddd;
 
 }
 
 .scouting-part-b {
-	background-color: blue;
+	background-color: #ffffff;
 }
 
 .sidenav {
@@ -83,8 +90,4 @@
 
 .demo { /*because it's difficult to see the functionality of the designs without height of the page contents*/
 	height:500px;
-}
-
-.nav-tabs {
-	margin-top: 10px;
 }

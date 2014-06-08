@@ -32,8 +32,8 @@
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#">Test</a></li>
-						<li><a href="#about">Test 2</a></li>
-						<li><a href="#contact">Test 3</a></li>
+						<li><a href="#1">Test 2</a></li>
+						<li><a href="#2">Test 3</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -41,12 +41,22 @@
 		<div class="main-container container-fluid">
 			<div class="row">
 				<div class="col-md-8 scouting-container">
-					<div class="scouting-part scouting-part-a">
-						<h1>Scout 3000</h1>
-						<hr />
+					<div class="scouting-part scouting-part-a" id="1">
+						<div class="container-fluid">
+							<h1>Scout 3000</h1>
+							<hr />
+						</div>
 					</div>
-					<div class="scouting-part scouting-part-b">
-						<h1>Scout 2000</h1>
+					<div class="scouting-part scouting-part-b" id="2">
+						<div class="container-fluid">
+							<span>
+								<h1>Scout 2000</h1>
+								<div class="back">
+									<button type="button" class="btn btn-warning">Back</button>
+								</div>
+							</span>
+							<hr />
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -62,5 +72,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/index.js"></script>
 	</body>
 </html>
