@@ -7,5 +7,4 @@ gem "sinatra"
 gem "thin"
 
 # The database
-gem "data_mapper"
-gem "dm-sqlite-adapter"
+gem "sequel"
