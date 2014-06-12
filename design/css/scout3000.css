@@ -91,3 +91,23 @@
 .demo { /*because it's difficult to see the functionality of the designs without height of the page contents*/
 	height:500px;
 }
+
+.team {
+	border: 5px solid #bbbbbb;
+	background-color: #888888;
+	height: 200px;
+	color: #ffffff;
+}
+
+.lrg-fnt {
+	font-size: 200%;
+}
+
+.team-data {
+	position: relative;
+	bottom: -110px;
+}
+.team-data-text {
+	position: relative;
+	bottom: 10px;
+}
