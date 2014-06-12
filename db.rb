@@ -1,13 +1,14 @@
-DataMapper::Logger.new($stdout, :debug)
+require "logger"
+require "sequel"
 
-DataMapper.setup(:default, 'sqlite:database.db')
+# This variable is global across all files and is accessible by the entire API.
+$db = Sequel.connect("sqlite://database.db", :logger => Logger.new("log/db.log"))
 
-# load models
 Dir.glob("models/*.rb").each do |file|
 	require_relative file
 end
 
-DataMapper.finalize
+# DataMapper.finalize
 
-# Update the DB to match the current schema as defined in the models
-DataMapper.auto_upgrade!
+# # Update the DB to match the current schema as defined in the models
+# DataMapper.auto_upgrade!

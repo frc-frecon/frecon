@@ -1,14 +1,14 @@
-class Match
-	include DataMapper::Resource
+require "sequel"
 
-	property :number,         Integer, key: true
-	property :classification, String
-	property :red_score,      Integer
-	property :blue_score,     Integer
-	# Do we want these or not?
-	# property :created_at, DateTime 
-	# property :updated_at, DateTime
+class Match < Sequel::Model
+	Integer :number
 
-	has n, :records
-	has n, :teams, through: :records
+	String :classification
+	Integer :red_score
+	Integer :blue_score
+
+	DateTime :created_at
+	DateTime :updated_at
+
+	self.set_primary_key(:number)
 end

@@ -1,14 +1,14 @@
-class Record
-	include DataMapper::Resource
+require "sequel"
 
-	property :id,     Serial
-	property :notes,  Text
+class Record < Sequel::Model
+	plugin :enum
+
+	Serial :id
+	Text :notes
+
 	# we wrote down position:string, but I think this works better
-	property :position, Enum[:r1, :r2, :r3, :b1, :b2, :b3]
-	# Do we want these or not?
-	# property :created_at, DateTime 
-	# property :updated_at, DateTime 
+	enum :position, [:r1, :r2, :r3, :b1, :b2, :b3]
 
-	belongs_to :team
-	belongs_to :match
+	DateTime :created_at
+	DateTime :updated_at
 end

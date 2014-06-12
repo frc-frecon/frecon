@@ -7,6 +7,8 @@ GEM
     rack-protection (1.5.3)
       rack
     sequel (4.11.0)
+    sequel_enum (0.0.1)
+      sequel
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -22,5 +24,6 @@ PLATFORMS
 
 DEPENDENCIES
   sequel
+  sequel_enum
   sinatra
   thin

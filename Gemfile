@@ -8,3 +8,4 @@ gem "thin"
 
 # The database
 gem "sequel"
+gem "sequel_enum"

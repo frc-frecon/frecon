@@ -1,12 +1,16 @@
-class Team
-	include DataMapper::Resource
+require "sequel"
 
-	property :number,     Integer, key: true
-	property :name,       String
-	# Do we want these or not?
-	# property :created_at, DateTime 
-	# property :updated_at, DateTime
+class Team < Sequel::Model
+	def methods()
+		self.class_methods +
+			self.instance_methods
+	end
 
-	has n, :records
-	has n, :matches, through: :records
+	Int :number
+	String :name
+
+	DateTime :created_at
+	DateTime :updated_at
+
+	self.set_primary_key(:number)
 end
