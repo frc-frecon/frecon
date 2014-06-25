@@ -93,10 +93,10 @@
 }
 
 .team {
-	border: 3px solid #999999;
-	background-color: #888888;
+	border: 3px solid #e7e7e7;
+	background-color: #f8f8f8;
 	height: 200px;
-	color: #ffffff;
+	color: #333333;
 }
 
 .lrg-fnt {
