@@ -1,16 +1,8 @@
 require "sequel"
 
 class Team < Sequel::Model
-	def methods()
-		self.class_methods +
-			self.instance_methods
+	def before_save
+		@values[:created_at] ||= DateTime.now
+		@values[:updated_at] = DateTime.now
 	end
-
-	Int :number
-	String :name
-
-	DateTime :created_at
-	DateTime :updated_at
-
-	self.set_primary_key(:number)
 end
