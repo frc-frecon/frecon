@@ -30,6 +30,9 @@ $db.create_table :records do
 	Serial :id
 	Text :notes
 
+	foreign_key :match_number, :matches
+	foreign_key :team_number, :teams
+
 	String :position
 
 	DateTime :created_at
