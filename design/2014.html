@@ -77,9 +77,9 @@
 		<img src="./img/2014/field.svg" class="img-responsive">
 	      </div>
 	      <div class="col-md-4">
-		<b>Ball Preloading</b> <!-- Can't decide whether I like select menu or radio buttons instead for this -->
+		<label for="ballPreload">Ball Preloading</label> <!-- decided on select instead because it fits better on smaller screens -->
 		<div class="form-group">
-		  <label class="radio-inline">
+		 <!-- <label class="radio-inline">
 		    <input type="radio">Robot
 		  </label>
 		  <label class="radio-inline">
@@ -93,15 +93,14 @@
 		  </label>
 		  <label class="radio-inline">
 		    <input type="radio">None
-		  </label>
-		  
-		  <!--<select class="form-control" id="ballPreload">
+		  </label>-->
+		  <select class="form-control" id="ballPreload">
 		      <option>Robot</option>
 		      <option>Field</option>
 		      <option>2 Ball</option>
 		      <option>3 Ball</option>
 		      <option>None</option>
-		  </select>-->
+		  </select>
 		</div>
 	      </div>
 	    </div>
@@ -149,6 +148,36 @@
 	      <div class="col-md-6">
 		<div class="input-group">
 		  <span class="input-group-addon">Pass 2</span>
+		  <input type="text" class="form-control addIncDec" disabled="disabled">
+		</div>
+	      </div>
+	    </div>
+	    <label>Truss Throws</label>
+	    <div class="row">
+	      <div class="col-md-6">
+		<div class="input-group">
+		  <span class="input-group-addon">Successful</span>
+		  <input type="text" class="form-control addIncDec" disabled="disabled">
+		</div>
+	      </div>
+	      <div class="col-md-6">
+		<div class="input-group">
+		  <span class="input-group-addon">Failed</span>
+		  <input type="text" class="form-control addIncDec" disabled="disabled">
+		</div>
+	      </div>
+	    </div>
+	    <label>Truss Catches</label>
+	    <div class="row">
+	      <div class="col-md-6">
+		<div class="input-group">
+		  <span class="input-group-addon">Successful</span>
+		  <input type="text" class="form-control addIncDec" disabled="disabled">
+		</div>
+	      </div>
+	      <div class="col-md-6">
+		<div class="input-group">
+		  <span class="input-group-addon">Failed</span>
 		  <input type="text" class="form-control addIncDec" disabled="disabled">
 		</div>
 	      </div>
