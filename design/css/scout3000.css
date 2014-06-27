@@ -24,7 +24,7 @@
 }
 
 .scouting-part-a {
-	background-color: #dddddd;
+	background-color: #f0f0f0;
 
 }
 
@@ -48,6 +48,10 @@
 	-webkit-background-clip: padding-box;
 	-moz-background-clip: padding;
 	background-clip: padding-box;
+}
+
+.sidebar.affix {
+	position:static;
 }
 
 .sidenav > li > a {
@@ -90,4 +94,55 @@
 
 .demo { /*because it's difficult to see the functionality of the designs without height of the page contents*/
 	height:500px;
+}
+
+.team {
+	border: 3px solid #e7e7e7;
+	background-color: #f8f8f8;
+	height: 200px;
+	color: #333333;
+}
+
+.lrg-fnt {
+	font-size: 200%;
+}
+
+.team-data {
+	position: relative;
+	bottom: -110px;
+}
+.team-data-text {
+	position: relative;
+	bottom: 10px;
+}
+@media screen and (min-width: 992px) {
+  .sidebar .nav > .active > ul {
+    display: block;
+  }
+  /* Widen the fixed sidebar */
+  .sidebar.affix,
+  .sidebar.affix-bottom,
+  .sidebar.affix-top {
+    width: 213px;
+  }
+  .sidebar.affix {
+    position: fixed; /* Undo the static from mobile first approach */
+    /*top: 20px;*/
+  }
+  .sidebar.affix-bottom {
+    position: absolute; /* Undo the static from mobile first approach */
+  }
+  .sidebar.affix-bottom .sidenav,
+  .sidebar.affix .sidenav {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  /* Widen the fixed sidebar again */
+  .sidebar.affix-bottom,
+  .sidebar.affix-top,
+  .sidebar.affix {
+    width: 263px;
+  }
 }
