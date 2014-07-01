@@ -1,6 +1,17 @@
 source "https://rubygems.org"
 
+# The server framework
 gem "sinatra"
-gem "thin" #alternate web server
-gem "data_mapper"
-gem "dm-sqlite-adapter"
+
+# The actual server
+gem "thin"
+
+# The console stuff
+gem "pry"
+
+# The database
+gem "sequel"
+gem "sequel_enum"
+
+# Adapters
+gem "sqlite3"

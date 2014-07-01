@@ -1,14 +1,16 @@
-class Match
-	include DataMapper::Resource
+require_relative "extra_data"
+require "sequel"
 
-	property :number,         Integer, key: true
-	property :classification, String
-	property :red_score,      Integer
-	property :blue_score,     Integer
-	# Do we want these or not?
-	# property :created_at, DateTime 
-	# property :updated_at, DateTime
+class Match < Sequel::Model
+	def before_save
+		@values[:created_at] ||= DateTime.now
+		@values[:updated_at] = DateTime.now
+	end
 
-	has n, :records
-	has n, :teams, through: :records
+	def extra_data
+		return ExtraData.where(parent_key: self.id, parent_class: self.class.name)
+	end
+
+	many_to_one :competition
+	one_to_many :records, primary_key: :id
 end

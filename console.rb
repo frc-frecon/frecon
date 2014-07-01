@@ -1,4 +1,11 @@
 require_relative "server"
-require "irb"
 
-IRB.start
+begin
+	require "pry"
+
+	Pry.start
+rescue Exception => e
+	require "irb"
+
+	IRB.start
+end

@@ -1,5 +1,4 @@
 require "sinatra"
-require "data_mapper"
 
 require_relative "db"
 
@@ -8,4 +7,3 @@ Dir.glob("controllers/*.rb").each do |file|
 end
 
 require_relative "routes"
-

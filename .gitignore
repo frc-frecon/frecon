@@ -35,3 +35,4 @@ build/
 
 # database
 database.db
+/log/*.log
