@@ -10,8 +10,4 @@ gem "thin"
 gem "pry"
 
 # The database
-gem "sequel"
-gem "sequel_enum"
-
-# Adapters
-gem "sqlite3"
+gem "mongo"
