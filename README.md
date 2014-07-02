@@ -11,7 +11,6 @@ Gems are ruby packages, and bundle will take care of installing all the other on
 To do that, cd to the project directory and run `bundle install`.
 
 Great! You are pretty much ready to go now.
-Now, `cd` into `database/` and run `sequel -m migrations/ sqlite://database.db`, then `cd` back to the root directory.
 Run `ruby server.rb` to run the server, and access it at localhost:4567.
 If you want an interactive console in the server environment, just run `ruby server.rb`.
 
