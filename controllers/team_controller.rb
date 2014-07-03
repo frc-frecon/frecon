@@ -1,4 +1,3 @@
-require "sequel"
 require "json"
 
 class TeamController
