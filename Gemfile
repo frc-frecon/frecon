@@ -10,4 +10,6 @@ gem "thin"
 gem "pry"
 
 # The database
+# bson_ext improves speed
 gem "mongo"
+gem "bson_ext"
