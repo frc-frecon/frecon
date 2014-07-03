@@ -1,4 +1,4 @@
-class Participation < Sequel::Model
+class Participation
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
