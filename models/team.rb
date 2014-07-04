@@ -2,7 +2,8 @@ class Team
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
-	field :_id, type: Integer
+	field :number, type: Integer
+	field :_id, type: Integer, default: ->{ number }
 
 	field :name, type: String
 	field :location, type: String
@@ -10,5 +11,5 @@ class Team
 	has_many :participations
 	has_many :records
 
-	validates :_id, uniqueness: true
+	validates :_id, :number, uniqueness: true
 end
