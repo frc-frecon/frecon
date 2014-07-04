@@ -2,6 +2,13 @@
 
 ## How to get started
 
+### MongoDB
+
+When using Fedora, you can install MongoDB via `yum install mongodb mongodb-server`.
+Then start the service via `systemctl enable mongod.service`.
+
+### Ruby
+
 It's highly recommended that you use [rvm](http://rvm.io).
 Just run the command on the front of their website.
 It's much easier than installing Ruby via a package manager.
