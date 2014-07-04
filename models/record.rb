@@ -1,6 +1,6 @@
 # Should be moved probably.
 class Position
-	# Mongo compatibility methods.
+	# MongoDB compatibility methods.
 	def self.demongoize(object)
 	end
 
@@ -13,14 +13,17 @@ class Position
 	# Custom methods.
 	attr_reader :alliance, :number
 
-	def initialize(alliance, number)
-		@alliance, @number = alliance, number
+	def initialize(string)
+		@alliance = (string[0] == "r" ? "red" : "blue")
+		@number = string[1].to_i
 	end
 	
 	def is_red?
+		@alliance == "red"
 	end
 
 	def is_blue?
+		@alliance == "blue"
 	end
 
 	alias_method :was_red?, :is_red?
