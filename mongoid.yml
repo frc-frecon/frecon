@@ -1,6 +1,6 @@
 development:
   sessions:
     default:
-      database: database/database
+      database: scouting-project
       hosts:
         - localhost:27017
