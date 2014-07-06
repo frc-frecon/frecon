@@ -11,7 +11,5 @@ gem "pry"
 
 # The database
 # Mongoid is used for models
-# bson_ext improves speed
 gem "mongo"
 gem "mongoid"
-gem "bson_ext"
