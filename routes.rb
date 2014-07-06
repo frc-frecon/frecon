@@ -1,9 +1,9 @@
 get '/teams?.?:format' do
-	TeamController.index params
+	TeamsController.index params
 end
 
 get '/teams/:number?.?:format' do
-	TeamController.show params
+	TeamsController.show params
 end
 
 get '/:mode?' do
