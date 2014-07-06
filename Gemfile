@@ -1,15 +1,13 @@
 source "https://rubygems.org"
 
 # The server framework
-gem "sinatra"
+gem "sinatra", "~> 1.4.5"
 
 # The actual server
-gem "thin"
+gem "thin", "~> 1.6.2"
 
 # The console stuff
-gem "pry"
+gem "pry", "~> 0.10.0"
 
 # The database
-# Mongoid is used for models
-gem "mongo"
-gem "mongoid"
+gem "mongoid", "~> 4.0.0"
