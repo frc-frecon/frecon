@@ -52,11 +52,12 @@ class Match
 	include Mongoid::Timestamps
 
 	field :number, type: MatchNumber
-	field :red_score, type: Integer
+
 	field :blue_score, type: Integer
+	field :red_score, type: Integer
 
 	belongs_to :competition
 	has_many :records
 
-	validates :number, :red_score, :blue_score, presence: true
+	validates :number, :blue_score, :red_score, presence: true
 end

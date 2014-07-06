@@ -2,11 +2,11 @@ class Competition
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
-	field :name, type: String
 	field :location, type: String
+	field :name, type: String
 
-	has_many :participations
 	has_many :matches
+	has_many :participations
 
-	validates :name, :location, presence: true
+	validates :location, :name, presence: true
 end

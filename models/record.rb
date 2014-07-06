@@ -68,8 +68,8 @@ class Record
 	field :notes, type: String
 	field :position, type: Position
 
-	belongs_to :team
 	belongs_to :match
+	belongs_to :team
 
 	validates :position, presence: true
 end

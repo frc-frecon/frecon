@@ -3,12 +3,13 @@ class Team
 	include Mongoid::Timestamps
 
 	field :number, type: Integer
-	field :name, type: String
+
 	field :location, type: String
+	field :name, type: String
 
 	has_many :participations
 	has_many :records
 
-	validates :number, :name, :location, presence: true
+	validates :number, :location, :name, presence: true
 	validates :number, uniqueness: true
 end
