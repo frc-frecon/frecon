@@ -7,4 +7,6 @@ class Competition
 
 	has_many :participations
 	has_many :matches
+
+	validates :name, :location, presence: true
 end

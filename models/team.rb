@@ -9,5 +9,6 @@ class Team
 	has_many :participations
 	has_many :records
 
+	validates :number, :name, :location, presence: true
 	validates :number, uniqueness: true
 end
