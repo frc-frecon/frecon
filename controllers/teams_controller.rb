@@ -1,6 +1,6 @@
 require "json"
 
-class TeamController
+class TeamsController
 	def self.show(params)
 		@team = Team.find_by number: params[:number]
 
