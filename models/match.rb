@@ -19,6 +19,8 @@ class MatchNumber
 		@number = nil
 		@replay = false
 		@replay_number = nil
+
+		match_data = string.match(/(p|q|qf|sf|f)([\d]+)?m([\d]+)(r)?([\d]+)?/i)
 	end
 
 	def replay?
