@@ -71,5 +71,5 @@ class Record
 	belongs_to :match
 	belongs_to :team
 
-	validates :position, presence: true
+	validates :position, :match_id, :team_id, presence: true
 end

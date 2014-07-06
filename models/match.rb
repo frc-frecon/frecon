@@ -59,5 +59,5 @@ class Match
 	belongs_to :competition
 	has_many :records
 
-	validates :number, :blue_score, :red_score, presence: true
+	validates :number, :blue_score, :red_score, :competition_id, presence: true
 end
