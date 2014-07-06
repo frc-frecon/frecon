@@ -11,7 +11,7 @@ class MatchNumber
 	end
 
 	# Custom methods.
-	attr_reader :round, :number
+	attr_reader :number, :round
 
 	def initialize(string)
 		@replay = false
