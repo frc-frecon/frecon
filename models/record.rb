@@ -64,6 +64,8 @@ class Position
 			# Note: if matched at all, match_data[0] is the entire
 			# string that was matched, hence the indices that start
 			# at one.
+
+			raise ArgumentError, "unable to process RegExp" unless match_data
 			
 			@alliance = case match_data[1].downcase
 			            when "b"
@@ -71,7 +73,7 @@ class Position
 			            when "r"
 				            :red
 			            else
-				            raise ArgumentError, "alliance must be in [:blue, :red]"
+				            raise ArgumentError, "alliance character must be in [\"b\", \"r\"]"
 			            end
 
 			position_number = match_data[2].to_i
