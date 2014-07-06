@@ -14,8 +14,11 @@ class MatchNumber
 	attr_reader :number, :round
 
 	def initialize(string)
+		@type = nil
+		@round = nil
+		@number = nil
 		@replay = false
-		@type = :qualification
+		@replay_number = nil
 	end
 
 	def replay?
