@@ -1,5 +1,4 @@
 require "logger"
-require "mongo"
 require "mongoid"
 
 Mongoid.load!("mongoid.yml")
