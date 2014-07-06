@@ -1,13 +1,42 @@
 # Should be moved probably.
 class Position
 	# MongoDB compatibility methods.
+	def mongoize
+		"#{@alliance[0]}#{@number}"
+	end
+
 	def self.demongoize(object)
+		# object will be a string
+		Position.new(object)
 	end
 
+	# Allows passing a String or Hash instead of a Position.
+	# i.e. record.position = "r3"
 	def self.mongoize(object)
+		case object
+		when Position
+			object.mongoize
+		when String
+			Position.new(object).mongoize
+		when Hash
+			Position.new(object[:alliance], object[:number]).mongoize
+		else
+			object
+		end
 	end
 
+	# Used for queries.
 	def self.evolve(object)
+		case object
+		when Position
+			object.mongoize
+		when String
+			Position.new(object).mongoize
+		when Hash
+			Position.new(object[:alliance], object[:number]).mongoize
+		else
+			object
+		end
 	end
 
 	# Custom methods.
@@ -42,7 +71,7 @@ class Position
 			            when "r"
 				            :red
 			            else
-				            :unknown
+				            raise ArgumentError, "alliance must be in [:blue, :red]"
 			            end
 
 			position_number = match_data[2].to_i
@@ -50,7 +79,10 @@ class Position
 			
 			@number = position_number
 		elsif args.length == 2
-			@alliance = [:blue, :red].include?(args[0]) ? args[0] : :unknown
+			raise TypeError, "alliance must be a Symbol or String" unless args[0].is_a?(Symbol) || args[0].is_a?(String)
+			raise ArgumentError, "alliance must be in [:blue, :red]" unless [:blue, :red].include?(args[0])
+			
+			@alliance = args[0].is_a?(String) ? args[0].to_sym : args[0]
 
 			raise TypeError, "second argument must be an Integer" unless args[1].is_a?(Integer)
 			raise ArgumentError, "second argument must be in [1, 2, 3]" unless [1, 2, 3].include?(args[1])
