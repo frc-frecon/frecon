@@ -1,4 +1,4 @@
-# Should be moved probably.
+# TODO: Move to another directory.
 class Position
 
 	# MongoDB compatibility methods.

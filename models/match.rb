@@ -1,4 +1,4 @@
-# Should probably be moved.
+# TODO: Move to another directory.
 class MatchNumber
 
 	# MongoDB compatibility methods.
