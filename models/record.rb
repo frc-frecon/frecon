@@ -67,7 +67,7 @@ class Position
 			# at one.
 
 			raise ArgumentError, "unable to process RegExp" unless match_data
-			
+
 			@alliance = case match_data[1].downcase
 			            when "b"
 				            :blue
@@ -79,17 +79,17 @@ class Position
 
 			position_number = match_data[2].to_i
 			raise ArgumentError, "position number must be in [1, 2, 3]" unless [1, 2, 3].include?(position_number)
-			
+
 			@number = position_number
 		elsif args.length == 2
 			raise TypeError, "alliance must be a Symbol or String" unless args[0].is_a?(Symbol) || args[0].is_a?(String)
 			raise ArgumentError, "alliance must be in [:blue, :red]" unless [:blue, :red].include?(args[0])
-			
+
 			@alliance = args[0].is_a?(String) ? args[0].to_sym : args[0]
 
 			raise TypeError, "second argument must be an Integer" unless args[1].is_a?(Integer)
 			raise ArgumentError, "second argument must be in [1, 2, 3]" unless [1, 2, 3].include?(args[1])
-			
+
 			@number = args[1]
 		else
 			raise ArgumentError, "wrong number of arguments (#{args.length} for [1, 2])"
