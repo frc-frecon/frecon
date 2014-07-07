@@ -1,4 +1,5 @@
 class Team
+
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
@@ -12,4 +13,5 @@ class Team
 
 	validates :number, :location, :name, presence: true
 	validates :number, uniqueness: true
+
 end

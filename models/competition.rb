@@ -1,4 +1,5 @@
 class Competition
+
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
@@ -9,4 +10,5 @@ class Competition
 	has_many :participations
 
 	validates :location, :name, presence: true
+
 end

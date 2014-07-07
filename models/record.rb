@@ -1,5 +1,6 @@
 # Should be moved probably.
 class Position
+
 	# MongoDB compatibility methods.
 	def mongoize
 		"#{@alliance[0]}#{@number}"
@@ -105,9 +106,11 @@ class Position
 
 	alias_method :was_blue?, :is_blue?
 	alias_method :was_red?, :is_red?
+
 end
 
 class Record
+
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
@@ -118,4 +121,5 @@ class Record
 	belongs_to :team
 
 	validates :position, :match_id, :team_id, presence: true
+
 end
