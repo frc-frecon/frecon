@@ -11,7 +11,8 @@ class Team
 	has_many :records
 
 	def self.number(team_number)
-		Team.find_by number: team_number
+		# Team.find_by number: team_number
+		find_by number: team_number
 	end
 
 	validates :number, :location, :name, presence: true
