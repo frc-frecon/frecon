@@ -1,5 +1,4 @@
 class Participation
-
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
@@ -7,5 +6,4 @@ class Participation
 	belongs_to :team
 
 	validates :competition_id, :team_id, presence: true
-
 end

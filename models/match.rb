@@ -1,6 +1,5 @@
 # TODO: Move to another directory.
 class MatchNumber
-
 	# MongoDB compatibility methods.
 	def self.demongoize(object)
 	end
@@ -104,11 +103,9 @@ class MatchNumber
 	def elimination?
 		[:quarterfinal, :semifinal, :final].include? @type
 	end
-
 end
 
 class Match
-
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
@@ -121,5 +118,4 @@ class Match
 	has_many :records
 
 	validates :number, :blue_score, :red_score, :competition_id, presence: true
-
 end

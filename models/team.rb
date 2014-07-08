@@ -1,5 +1,4 @@
 class Team
-
 	include Mongoid::Document
 	include Mongoid::Timestamps
 
@@ -19,7 +18,6 @@ class Team
 
 	validates :number, :location, :name, presence: true
 	validates :number, uniqueness: true
-
 end
 
 # alias_method works by default solely on instance
