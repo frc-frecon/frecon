@@ -68,12 +68,12 @@ class MatchNumber
 		match_data = string.match(/(p|q|qf|sf|f)([\d]+)?m([\d]+)(r)?([\d]+)?/i)
 
 		# Whine if we don't have a match (string is incorrectly formatted)
-		raise ArgumentError, "Must supply a properly-formatted string!" unless match_data
+		raise ArgumentError, "string is improperly formatted" unless match_data
 
 		# Check and set required stuff first, everything else later.
 
 		# Whine if we don't have a match type
-		raise ArgumentError, "Must supply a match type!" unless match_data[1]
+		raise ArgumentError, "match type must be supplied" unless match_data[1]
 
 		# Parse the match type string
 		@type = case match_data[1].downcase
@@ -88,25 +88,53 @@ class MatchNumber
 				when "f"
 					:final
 				else
-					# TODO: Add "unknown" type, replace :practice with :unknown below.
-					:practice
+					raise ArgumentError, "match type must be in [\"p\", \"q\", \"qf\", \"sf\", \"f\"]"
 				end
 
 		# Whine if we don't have a match number
-		raise ArgumentError, "Must supply a match number!" unless match_data[3]
+		raise ArgumentError, "match number must be supplied" unless match_data[3]
 
 		# Parse the match number
 		@number = match_data[3].to_i
+		raise ArgumentError, "match number must be greater than 0" unless @number > 0
 
 		# Parse the round number, if it is present
-		@round = match_data[2].to_i if match_data[2]
+		if match_data[2]
+			@round = match_data[2].to_i
+			raise ArgumentError, "round number must be greater than 0" unless @round > 0
+		end
 
 		# Parse replay match group, store replay number if present.
 		@replay_number = match_data[5].to_i if match_data[4] == "r"
 	end
 
+	def to_s
+		type_string = case @type
+		              when :practice
+			              "p"
+		              when :qualification
+			              "q"
+		              when :quarterfinal
+			              "qf"
+		              when :semifinal
+			              "sf"
+		              when :final
+			              "f"
+		              else
+			              "p"
+		              end
+
+		round_string = (@round ? @round.to_s : "")
+
+		match_number_string = @number.to_s
+
+		replay_string = (replay? ? "r#{@replay_number}" : "")
+
+		type_string + round_string + "m" + @number + replay_string
+	end
+
 	def replay?
-		@replay_number != nil && @replay_number > 0
+		!@replay_number.nil? && @replay_number > 0
 	end
 
 	def practice?
@@ -127,31 +155,6 @@ class MatchNumber
 
 	def final?
 		@type == :final
-	end
-
-	def to_s
-		type_string = case @type
-					  when :practice
-						  "p"
-					  when :qualification
-						  "q"
-					  when :quarterfinal
-						  "qf"
-					  when :semifinal
-						  "sf"
-					  when :final
-						  "f"
-					  else
-						  "p"
-					  end
-
-		round_string = (@round ? @round.to_s : "")
-
-		match_number_string = @number.to_s
-
-		replay_string = (replay? ? "r#{@replay_number}" : "")
-
-		type_string + round_string + "m" + @number + replay_string
 	end
 
 	def elimination?
