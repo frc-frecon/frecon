@@ -1,4 +1,3 @@
-# TODO: Move to another directory.
 class Position
 	# MongoDB compatibility methods.
 	def mongoize

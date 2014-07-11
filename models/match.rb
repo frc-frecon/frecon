@@ -1,4 +1,3 @@
-# TODO: Move to another directory.
 class MatchNumber
 	# MongoDB compatibility methods.
 	def mongoize
@@ -88,7 +87,6 @@ class MatchNumber
 				when "f"
 					:final
 				else
-					# TODO: Add "unknown" type, replace :practice with :unknown below.
 					:practice
 				end
 
