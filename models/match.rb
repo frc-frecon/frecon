@@ -1,4 +1,3 @@
-# TODO: Move to another directory.
 class MatchNumber
 	# MongoDB compatibility methods.
 	def mongoize
@@ -34,7 +33,7 @@ class MatchNumber
 
 	# Custom methods.
 	attr_reader :number, :round
-
+	
 	def initialize(args)
 		if args.is_a?(String)
 			# Match `string' against the regular expression, described below.
