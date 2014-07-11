@@ -120,17 +120,11 @@ class MatchNumber
 			              "sf"
 		              when :final
 			              "f"
-		              else
-			              "p"
 		              end
-
-		round_string = (@round ? @round.to_s : "")
-
-		match_number_string = @number.to_s
-
-		replay_string = (replay? ? "r#{@replay_number}" : "")
-
-		type_string + round_string + "m" + @number + replay_string
+		match_string = "m#{@number}"
+		replay_string = "r#{@replay_number}" if replay?
+		
+		"#{type_string}#{@round}#{match_string}#{replay_string}"
 	end
 
 	def replay?
