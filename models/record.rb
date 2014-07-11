@@ -39,10 +39,6 @@ class Position
 		end
 	end
 
-	def to_s
-		"#{@alliance[0]}#{@number}"
-	end
-
 	# Custom methods.
 	attr_reader :alliance, :number
 
@@ -97,6 +93,10 @@ class Position
 		else
 			raise ArgumentError, "wrong number of arguments (#{args.length} for [1, 2])"
 		end
+	end
+
+	def to_s
+		"#{@alliance[0]}#{@number}"
 	end
 
 	def is_blue?
