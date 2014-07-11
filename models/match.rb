@@ -1,11 +1,15 @@
 class MatchNumber
-	# MongoDB compatibility methods.
-	def mongoize
-		to_s
-	end
+	POSSIBLE_TYPES = [:practice, :qualification, :quarterfinal, :semifinal, :final]
+	ELIMINATION_TYPES = [:quarterfinal, :semifinal, :final]
 
+	attr_reader :number, :round
+
+	# MongoDB compatibility methods.
 	def self.demongoize(object)
-		# object will be a String
+		# `object' should *always* be a string (since MatchNumber#mongoize returns a
+		# String which is what is stored in the database)
+		raise ArgumentError, "`object' must be a String" unless object.is_a?(String)
+
 		MatchNumber.new(object)
 	end
 
@@ -31,17 +35,18 @@ class MatchNumber
 		end
 	end
 
-	# Custom methods.
-	attr_reader :number, :round
-	
+	def mongoize
+		to_s
+	end
+
 	def initialize(args)
 		if args.is_a?(String)
-			# Match `string' against the regular expression, described below.
+			# Match `args' against the regular expression, described below.
 			#
-			# This regular expression matches all values for `string' where the first
-			# group of characters is one of either [ "p", "q", "qf", "sf", "f" ],
-			# which is parsed as the "type" of the match. This is followed by an
-			# "m" and a group of digits, which is parsed as the "number" of the match.
+			# This regular expression matches all values where the first group of
+			# characters is one of either [ "p", "q", "qf", "sf", "f" ], which is
+			# parsed as the "type" of the match. This is followed by an "m" and a
+			# group of digits, which is parsed as the "number" of the match.
 			#
 			# In addition, one can specify a "round number" following the first group
 			# of characters such as in eliminations and finals. Often times, there
@@ -109,7 +114,7 @@ class MatchNumber
 			# replay_number (Integer), optional
 
 			raise TypeError, "type must be a Symbol or String" unless args[:type].is_a?(Symbol) || args[:type].is_a?(String)
-			raise ArgumentError, "type must be in [:practice, :qualification, :quarterfinal, :semifinal, :final]" unless [:practice, :qualification, :quarterfinal, :semifinal, :final].include?(args[:type].to_sym)
+			raise ArgumentError, "type must be in #{POSSIBLE_TYPES.inspect}" unless POSSIBLE_TYPES.include?(args[:type].to_sym)
 
 			@type = args[:type].to_sym
 
@@ -151,7 +156,7 @@ class MatchNumber
 		              end
 		match_string = "m#{@number}"
 		replay_string = "r#{@replay_number}" if replay?
-		
+
 		"#{type_string}#{@round}#{match_string}#{replay_string}"
 	end
 
@@ -180,7 +185,7 @@ class MatchNumber
 	end
 
 	def elimination?
-		[:quarterfinal, :semifinal, :final].include? @type
+		ELIMINATION_TYPES.include?(@type)
 	end
 end
 
