@@ -69,7 +69,7 @@ class Position
 			# string that was matched, hence the indices that start
 			# at one.
 
-			raise ArgumentError, "unable to process RegExp" unless match_data
+			raise ArgumentError, "string is improperly formatted" unless match_data
 
 			@alliance = case match_data[1].downcase
 			            when "b"
