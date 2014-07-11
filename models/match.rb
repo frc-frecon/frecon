@@ -17,7 +17,6 @@ class MatchNumber
 		@type = nil
 		@round = nil
 		@number = nil
-		@replay = false
 		@replay_number = nil
 
 		# Match `string' against the regular expression, described below.
@@ -69,15 +68,14 @@ class MatchNumber
 		# Parse the match number
 		@number = match_data[3].to_i
 
-		# Parse replay match groups
+		# Parse replay match group, store replay number if present.
 		if match_data[4] == "r"
-			@replay = true
 			@replay_number = match_data[5].to_i
 		end
 	end
 
 	def replay?
-		@replay
+		return @replay_number != nil && @replay_number > 0
 	end
 
 	def practice?
