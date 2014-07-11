@@ -1,20 +1,13 @@
 require "logger"
-require "sequel"
+require "mongoid"
 
-# Load the migration extension so we can do stuff with migrations.
-Sequel.extension :migration
+Mongoid.load!("mongoid.yml")
 
-# This variable is global across all files and is accessible by the entire API.
-$db = Sequel.connect("sqlite://database/database.db", :logger => Logger.new("log/db.log"))
+Mongoid.logger.level = Logger::DEBUG
+Mongoid.logger = Logger.new("log/mongoid.log")
 
-# If we have any outstanding migrations that have not been applied yet,
-unless Sequel::Migrator.is_current?($db, "database/migrations")
-	# Print out a warning.
-	warn "Warning: Outstanding migrations present, attempting to run them."
-
-	# Run them.
-	Sequel::Migrator.run($db, "database/migrations")
-end
+Moped.logger.level = Logger::DEBUG
+Moped.logger = Logger.new("log/moped.log")
 
 Dir.glob("models/*.rb").each do |file|
 	require_relative file

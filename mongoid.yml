@@ -1,0 +1,8 @@
+development:
+  sessions:
+    default:
+      database: scouting-project
+      hosts:
+        - localhost:27017
+  options:
+    use_utc: true

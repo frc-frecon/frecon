@@ -1,15 +1,14 @@
-require "sequel"
 require "json"
 
-class TeamController
+class TeamsController
 	def self.show(params)
-		@team = Team.where(number: params[:number]).to_a.last
+		@team = Team.find_by number: params[:number]
 
 		raise Sinatra::NotFound unless @team
 
 		case params[:format]
 		when "json"
-			return @team.values.to_json
+			@team.to_json
 		end
 	end
 
@@ -18,7 +17,7 @@ class TeamController
 
 		case params[:format]
 		when "json"
-			return @teams.to_a.map{|team| team.values}.to_json
+			@teams.to_json
 		end
 	end
 end

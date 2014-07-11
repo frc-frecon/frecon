@@ -1,16 +1,28 @@
-require_relative "extra_data"
-require "sequel"
+class Team
+	include Mongoid::Document
+	include Mongoid::Timestamps
 
-class Team < Sequel::Model
-	def before_save
-		@values[:created_at] ||= DateTime.now
-		@values[:updated_at] = DateTime.now
+	field :number, type: Integer
+
+	field :location, type: String
+	field :name, type: String
+
+	has_many :participations
+	has_many :records
+
+	def self.number(team_number)
+		# Team.find_by number: team_number
+		find_by number: team_number
 	end
 
-	def extra_data
-		return ExtraData.where(parent_key: self.number, parent_class: self.class.name)
-	end
+	validates :number, :location, :name, presence: true
+	validates :number, uniqueness: true
 
-	one_to_many :participations, primary_key: :id
-	one_to_many :records, primary_key: :id
+	# alias_method works by default solely on instance
+	# methods, so change context to the metaclass of
+	# Team and do aliasing there.
+	class << self
+		alias_method :with_number, :number
+		alias_method :that_has_number, :number
+	end
 end

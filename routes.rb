@@ -1,11 +1,11 @@
-get '/teams?.?:format' do
-	TeamController.index params
+get "/teams?.?:format" do
+	TeamsController.index params
 end
 
-get '/teams/:number?.?:format' do
-	TeamController.show params
+get "/teams/:number?.?:format" do
+	TeamsController.show params
 end
 
-get '/:mode?' do
+get "/:mode?" do
 	ScoutController.show params
 end
