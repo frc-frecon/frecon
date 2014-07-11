@@ -2,7 +2,7 @@
 class Position
 	# MongoDB compatibility methods.
 	def mongoize
-		"#{@alliance[0]}#{@number}"
+		return to_s
 	end
 
 	def self.demongoize(object)
@@ -37,6 +37,10 @@ class Position
 		else
 			object
 		end
+	end
+
+	def to_s
+		return "#{@alliance[0]}#{@number}"
 	end
 
 	# Custom methods.
