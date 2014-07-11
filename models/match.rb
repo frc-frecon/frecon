@@ -55,18 +55,22 @@ class MatchNumber
 		raise ArgumentError, "Must supply a match type!" unless match_data[1]
 
 		# Parse the match type string
-		case match_data[1].downcase
-		when "p"
-			@type = :practice
-		when "q"
-			@type = :qualification
-		when "qf"
-			@type = :quarterfinal
-		when "sf"
-			@type = :semifinal
-		when "f"
-			@type = :final
-		end
+		@type = case match_data[1].downcase
+				when "p"
+					:practice
+				when "q"
+					:qualification
+				when "qf"
+					:quarterfinal
+				when "sf"
+					:semifinal
+				when "f"
+					:final
+				else
+					# TODO: Add "unknown" type, replace :practice with :unknown below.
+					:practice
+				end
+
 		# Whine if we don't have a match number
 		raise ArgumentError, "Must supply a match number!" unless match_data[3]
 
