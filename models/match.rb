@@ -110,7 +110,7 @@ class MatchNumber
 			# round (Integer), optional
 			# replay_number (Integer), optional
 
-			raise TypeError, "type must be a Symbol or String" unless args[0].is_a?(Symbol) || args[:type].is_a?(String)
+			raise TypeError, "type must be a Symbol or String" unless args[:type].is_a?(Symbol) || args[:type].is_a?(String)
 			raise ArgumentError, "type must be in [:practice, :qualification, :quarterfinal, :semifinal, :final]" unless [:practice, :qualification, :quarterfinal, :semifinal, :final].include?(args[:type].to_sym)
 
 			@type = args[:type].to_sym
