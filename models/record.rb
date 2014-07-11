@@ -1,11 +1,12 @@
 class Position
-	# MongoDB compatibility methods.
-	def mongoize
-		to_s
-	end
+	attr_reader :alliance, :number
 
+	# MongoDB compatibility methods.
 	def self.demongoize(object)
-		# object will be a String
+		# `object' should *always* be a string (since MatchNumber#mongoize returns a
+		# String which is what is stored in the database)
+		raise ArgumentError, "`object' must be a String" unless object.is_a?(String)
+
 		Position.new(object)
 	end
 
@@ -38,8 +39,9 @@ class Position
 		end
 	end
 
-	# Custom methods.
-	attr_reader :alliance, :number
+	def mongoize
+		to_s
+	end
 
 	def initialize(*args)
 		if args.length == 1
