@@ -82,7 +82,7 @@ class Position
 			@number = position_number
 		elsif args.length == 2
 			raise TypeError, "alliance must be a Symbol or String" unless args[0].is_a?(Symbol) || args[0].is_a?(String)
-			raise ArgumentError, "alliance must be in [:blue, :red]" unless [:blue, :red].include?(args[0])
+			raise ArgumentError, "alliance must be in [:blue, :red]" unless [:blue, :red].include?(args[0].to_sym)
 
 			@alliance = args[0].is_a?(String) ? args[0].to_sym : args[0]
 
