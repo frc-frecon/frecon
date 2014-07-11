@@ -1,13 +1,34 @@
 # TODO: Move to another directory.
 class MatchNumber
 	# MongoDB compatibility methods.
+	def mongoize
+		return to_s
+	end
+
 	def self.demongoize(object)
+		MatchNumber.new(object)
 	end
 
 	def self.mongoize(object)
+		case object
+		when MatchNumber
+			object.mongoize
+		when String
+			MatchNumber.new(object).mongoize
+		else
+			object
+		end
 	end
 
 	def self.evolve(object)
+		case object
+		when MatchNumber
+			object.mongoize
+		when String
+			MatchNumber.new(object).mongoize
+		else
+			object
+		end
 	end
 
 	# Custom methods.
@@ -110,6 +131,31 @@ class MatchNumber
 
 	def final?
 		@type == :final
+	end
+
+	def to_s
+		type_string = case @type
+					  when :practice
+						  "p"
+					  when :qualification
+						  "q"
+					  when :quarterfinal
+						  "qf"
+					  when :semifinal
+						  "sf"
+					  when :final
+						  "f"
+					  else
+						  "p"
+					  end
+
+		round_string = (@round ? @round.to_s : "")
+
+		match_number_string = @number.to_s
+
+		replay_string = (replay? ? "r#{@replay_number}" : "")
+
+		return type_string + round_string + "m" + @number + replay_string
 	end
 
 	def elimination?
