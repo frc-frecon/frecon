@@ -47,7 +47,7 @@ class MatchNumber
 		match_data = string.match(/(p|q|qf|sf|f)([\d]+)?m([\d]+)(r)?([\d]+)?/i)
 
 		# Whine if we don't have a match (string is incorrectly formatted)
-		raise ArgumentError, "Must supply a string that can be parsed! (Formatting is most likely wrong on #{string})" unless match_data
+		raise ArgumentError, "Must supply a properly-formatted string!" unless match_data
 
 		# Check and set required stuff first, everything else later.
 
