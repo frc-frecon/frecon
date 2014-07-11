@@ -99,14 +99,10 @@ class MatchNumber
 		@number = match_data[3].to_i
 
 		# Parse the round number, if it is present
-		if match_data[2]
-			@round = match_data[2].to_i
-		end
+		@round = match_data[2].to_i if match_data[2]
 
 		# Parse replay match group, store replay number if present.
-		if match_data[4] == "r"
-			@replay_number = match_data[5].to_i
-		end
+		@replay_number = match_data[5].to_i if match_data[4] == "r"
 	end
 
 	def replay?
