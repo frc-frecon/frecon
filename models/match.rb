@@ -46,7 +46,13 @@ class MatchNumber
 		# This behavior may change in the future.
 		match_data = string.match(/(p|q|qf|sf|f)([\d]+)?m([\d]+)(r)?([\d]+)?/i)
 
+		# Whine if we don't have a match (string is incorrectly formatted)
+		raise ArgumentError, "Must supply a string that can be parsed! (Formatting is most likely wrong on #{string})" unless match_data
+
 		# Check and set required stuff first, everything else later.
+
+		# Whine if we don't have a match type
+		raise ArgumentError, "Must supply a match type!" unless match_data[1]
 
 		# Parse the match type string
 		case match_data[1].downcase
@@ -61,6 +67,9 @@ class MatchNumber
 		when "f"
 			@type = :final
 		end
+		# Whine if we don't have a match number
+		raise ArgumentError, "Must supply a match number!" unless match_data[3]
+
 		# Parse the match number
 		@number = match_data[3].to_i
 
