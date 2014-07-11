@@ -84,7 +84,7 @@ class Position
 			raise TypeError, "alliance must be a Symbol or String" unless args[0].is_a?(Symbol) || args[0].is_a?(String)
 			raise ArgumentError, "alliance must be in [:blue, :red]" unless [:blue, :red].include?(args[0].to_sym)
 
-			@alliance = args[0].is_a?(String) ? args[0].to_sym : args[0]
+			@alliance = args[0].to_sym
 
 			raise TypeError, "second argument must be an Integer" unless args[1].is_a?(Integer)
 			raise ArgumentError, "second argument must be in [1, 2, 3]" unless [1, 2, 3].include?(args[1])
