@@ -2,7 +2,7 @@
 class MatchNumber
 	# MongoDB compatibility methods.
 	def mongoize
-		return to_s
+		to_s
 	end
 
 	def self.demongoize(object)
@@ -110,7 +110,7 @@ class MatchNumber
 	end
 
 	def replay?
-		return @replay_number != nil && @replay_number > 0
+		@replay_number != nil && @replay_number > 0
 	end
 
 	def practice?
@@ -155,7 +155,7 @@ class MatchNumber
 
 		replay_string = (replay? ? "r#{@replay_number}" : "")
 
-		return type_string + round_string + "m" + @number + replay_string
+		type_string + round_string + "m" + @number + replay_string
 	end
 
 	def elimination?

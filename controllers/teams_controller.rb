@@ -8,7 +8,7 @@ class TeamsController
 
 		case params[:format]
 		when "json"
-			return @team.to_json
+			@team.to_json
 		end
 	end
 
@@ -17,7 +17,7 @@ class TeamsController
 
 		case params[:format]
 		when "json"
-			return @teams.to_json
+			@teams.to_json
 		end
 	end
 end
