@@ -14,8 +14,7 @@ class MatchNumber
 		case object
 		when MatchNumber
 			object.mongoize
-		when String
-		when Hash
+		when String, Hash
 			MatchNumber.new(object).mongoize
 		else
 			object
@@ -26,8 +25,7 @@ class MatchNumber
 		case object
 		when MatchNumber
 			object.mongoize
-		when String
-		when Hash
+		when String, Hash
 			MatchNumber.new(object).mongoize
 		else
 			object
