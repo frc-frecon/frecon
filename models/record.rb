@@ -6,7 +6,7 @@ class Position
 	end
 
 	def self.demongoize(object)
-		# object will be a string
+		# object will be a String
 		Position.new(object)
 	end
 

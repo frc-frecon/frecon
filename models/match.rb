@@ -6,6 +6,7 @@ class MatchNumber
 	end
 
 	def self.demongoize(object)
+		# object will be a String
 		MatchNumber.new(object)
 	end
 
