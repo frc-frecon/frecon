@@ -46,6 +46,8 @@ class MatchNumber
 		# This behavior may change in the future.
 		match_data = string.match(/(p|q|qf|sf|f)([\d]+)?m([\d]+)(r)?([\d]+)?/i)
 
+		# Check and set required stuff first, everything else later.
+
 		# Parse the match type string
 		case match_data[1].downcase
 		when "p"
@@ -59,14 +61,13 @@ class MatchNumber
 		when "f"
 			@type = :final
 		end
+		# Parse the match number
+		@number = match_data[3].to_i
 
 		# Parse the round number, if it is present
 		if match_data[2]
 			@round = match_data[2].to_i
 		end
-
-		# Parse the match number
-		@number = match_data[3].to_i
 
 		# Parse replay match group, store replay number if present.
 		if match_data[4] == "r"
