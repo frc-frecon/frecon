@@ -11,9 +11,8 @@ class Team
 	has_many :records
 
 	def self.number(team_number)
-		raise ArgumentError, "Must supply a team number!" unless team_number.is_a?(Integer)
-
-		return self.where(number: team_number).first
+		# Team.find_by number: team_number
+		find_by number: team_number
 	end
 
 	validates :number, :location, :name, presence: true
