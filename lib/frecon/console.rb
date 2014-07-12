@@ -6,7 +6,7 @@ module FReCon
 			begin
 				require "pry"
 
-				Pry.start
+				FReCon.pry
 			rescue Exception => e
 				require "irb"
 
