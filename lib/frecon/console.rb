@@ -1,11 +1,13 @@
-require_relative "server"
+module FReCon
+	module Console
+		def start
+			require "pry"
 
-begin
-	require "pry"
+			Pry.start
+		rescue Exception => e
+			require "irb"
 
-	Pry.start
-rescue Exception => e
-	require "irb"
-
-	IRB.start
+			IRB.start
+		end
+	end
 end
