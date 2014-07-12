@@ -1,15 +1,17 @@
 module FReCon
 	module Routes
-		get "/teams?.?:format" do
-			TeamsController.index params
-		end
+		def self.included(base)
+			base.get "/teams?.?:format" do
+				FReCon::TeamsController.index params
+			end
 
-		get "/teams/:number?.?:format" do
-			TeamsController.show params
-		end
+			base.get "/teams/:number?.?:format" do
+				FReCon::TeamsController.show params
+			end
 
-		get "/:mode?" do
-			ScoutController.show params
+			base.get "/:mode?" do
+				FReCon::ScoutController.show params
+			end
 		end
 	end
 end

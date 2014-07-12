@@ -2,4 +2,4 @@
 
 require "frecon"
 
-FReCon::Server.start
+FReCon::Server.run!
