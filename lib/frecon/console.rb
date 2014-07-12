@@ -1,6 +1,6 @@
 module FReCon
-	module Console
-		def start
+	class Console
+		def self.start
 			require "pry"
 
 			Pry.start
