@@ -14,5 +14,5 @@ Gem::Specification.new do |s|
 	             "Vincent Mai"]
 
 	s.homepage = "https://github.com/scouting-project/scouting-project"
-	s.files = Dir.glob("lib/**/*.rb") << "lib/mongoid.yml"
+	s.files = Dir.glob("lib/**/*.rb") << "lib/frecon/mongoid.yml"
 end
