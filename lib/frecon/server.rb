@@ -1,9 +1,14 @@
 require "sinatra"
 
-require_relative "db"
+module FReCon
+	module Server
+		# Starts the server.
+		def start
+			Dir.glob("controllers/*.rb").each do |file|
+				require_relative file
+			end
 
-Dir.glob("controllers/*.rb").each do |file|
-	require_relative file
+			require_relative "routes"
+		end
+	end
 end
-
-require_relative "routes"
