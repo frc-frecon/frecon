@@ -1,13 +1,13 @@
 require "logger"
 require "mongoid"
 
-Mongoid.load!("mongoid.yml")
+Mongoid.load!(File.join(File.dirname(__FILE__), "mongoid.yml"))
 
 Mongoid.logger.level = Logger::DEBUG
-Mongoid.logger = Logger.new("log/mongoid.log")
+Mongoid.logger = Logger.new($stdout)
 
 Moped.logger.level = Logger::DEBUG
-Moped.logger = Logger.new("log/moped.log")
+Moped.logger = Logger.new($stdout)
 
 Dir.glob("models/*.rb").each do |file|
 	require_relative file
