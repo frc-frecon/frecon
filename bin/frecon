@@ -2,4 +2,8 @@
 
 require "frecon"
 
-FReCon::Server.run!
+unless ARGV.include?("c") || ARGV.include?("console")
+	FReCon::Server.start
+else
+	FReCon::Console.start
+end
