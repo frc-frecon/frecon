@@ -1,7 +1,7 @@
 require "sinatra"
 require_relative "routes"
 
-Dir.glob("controllers/*.rb").each do |file|
+Dir.glob(File.join(File.dirname(__FILE__), "controllers/*.rb")).each do |file|
 	require_relative file
 end
 
