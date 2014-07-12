@@ -1,13 +1,17 @@
 module FReCon
 	class Console
 		def self.start
-			require "pry"
+			FReCon::Database.setup(FReCon::Server.environment)
+			
+			begin
+				require "pry"
 
-			Pry.start
-		rescue Exception => e
-			require "irb"
+				Pry.start
+			rescue Exception => e
+				require "irb"
 
-			IRB.start
+				IRB.start
+			end
 		end
 	end
 end

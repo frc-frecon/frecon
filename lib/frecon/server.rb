@@ -9,8 +9,9 @@ module FReCon
 	class Server < Sinatra::Base
 		include FReCon::Routes
 
-		class << self
-			alias_method :start, :run!
+		def self.start
+			FReCon::Database.setup(environment)
+			run!
 		end
 	end
 end
