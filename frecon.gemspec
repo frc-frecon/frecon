@@ -8,7 +8,10 @@ Gem::Specification.new do |s|
 	
 	s.authors = ["Sam Craig",
 	             "Kristofer Rye",
-	             "Christopher Cooper"]
+	             "Christopher Cooper",
+	             "Sam Mercier",
+	             "Tiger Huang",
+	             "Vincent Mai"]
 
 	s.homepage = "https://github.com/scouting-project/scouting-project"
 	s.files = Dir.glob("lib/**/*.rb") << "lib/mongoid.yml"
