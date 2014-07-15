@@ -1,4 +1,4 @@
-require_relative "../position.rb"
+require "frecon/position"
 
 module FReCon
 	class Record

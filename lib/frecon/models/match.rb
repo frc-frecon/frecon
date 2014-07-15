@@ -1,4 +1,4 @@
-require_relative "../match_number.rb"
+require "frecon/match_number"
 
 module FReCon
 	class Match
