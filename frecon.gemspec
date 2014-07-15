@@ -16,4 +16,9 @@ Gem::Specification.new do |s|
 	s.homepage = "https://github.com/scouting-project/scouting-project"
 	s.files = Dir.glob("lib/**/*.rb") << "lib/frecon/mongoid.yml" << "bin/frecon"
 	s.executables << "frecon"
+
+	s.add_runtime_dependency "sinatra", ["~> 1.4"]
+	s.add_runtime_dependency "thin", ["~> 1.6"]
+	s.add_runtime_dependency "pry", ["~> 0.10"]
+	s.add_runtime_dependency "mongoid", ["~> 4.0"]
 end
