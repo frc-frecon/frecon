@@ -10,7 +10,7 @@ module FReCon
 				require "pry"
 				
 				FReCon.pry
-			rescue Exception
+			rescue LoadError
 				require "irb"
 
 				IRB.setup nil
