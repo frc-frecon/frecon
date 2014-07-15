@@ -1,6 +1,14 @@
 #! /usr/bin/env ruby
 
-require "frecon"
+begin
+	# Try to load "frecon"
+	require "frecon"
+rescue LoadError => e # If it whines because it can't load it,
+	# Add the "../lib/" directory to the $LOAD_PATH
+	$LOAD_PATH << File.join(File.dirname(__FILE__), "..", "lib")
+
+	retry
+end
 
 unless ARGV.include?("c") || ARGV.include?("console")
 	FReCon::Server.start
