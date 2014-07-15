@@ -3,6 +3,9 @@ module FReCon
 		def self.start
 			FReCon::Database.setup(FReCon::Server.environment)
 
+			# Use pry if it is installed.
+			# Use the context of the FReCon module;
+			# this allows for writing "Team" instead of "FReCon::Team".
 			begin
 				require "pry"
 				
