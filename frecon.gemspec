@@ -15,4 +15,5 @@ Gem::Specification.new do |s|
 
 	s.homepage = "https://github.com/scouting-project/scouting-project"
 	s.files = Dir.glob("lib/**/*.rb") << "lib/frecon/mongoid.yml" << "bin/frecon"
+	s.executables << "frecon"
 end
