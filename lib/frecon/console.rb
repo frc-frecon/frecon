@@ -4,7 +4,6 @@ module FReCon
 			FReCon::Database.setup(FReCon::Server.environment)
 
 			begin
-				raise Exception
 				require "pry"
 				
 				FReCon.pry
