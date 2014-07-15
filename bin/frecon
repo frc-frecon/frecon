@@ -1,13 +1,24 @@
 #! /usr/bin/env ruby
 
+frecon_require_attempt = 0
+
 begin
-	# Try to load "frecon"
+	frecon_require_attempt += 1
+
+	# Try to load the thing.
 	require "frecon"
 rescue LoadError => e # If it whines because it can't load it,
 	# Add the "../lib/" directory to the $LOAD_PATH
 	$LOAD_PATH << File.join(File.dirname(__FILE__), "..", "lib")
 
-	retry
+	# If we've already tried twice to load (the latter after
+	# attempting to fix the LoadError) and we're still hitting this,
+	# it must be something else that is worthy of complaining about.
+	if frecon_require_attempt > 2
+		raise e
+	else
+		retry
+	end
 end
 
 unless ARGV.include?("c") || ARGV.include?("console")
