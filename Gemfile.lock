@@ -1,3 +1,12 @@
+PATH
+  remote: .
+  specs:
+    frecon (0.0.0)
+      mongoid (~> 4.0)
+      pry (~> 0.10)
+      sinatra (~> 1.4)
+      thin (~> 1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,7 +65,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  mongoid (~> 4.0.0)
-  pry (~> 0.10.0)
-  sinatra (~> 1.4.5)
-  thin (~> 1.6.2)
+  frecon!
