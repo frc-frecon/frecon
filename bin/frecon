@@ -1,22 +1,21 @@
 #! /usr/bin/env ruby
 
-# Smartly require "frecon".
+# Allow running `bin/frecon` in project root and having it run.
 begin
 	require "frecon"
 rescue LoadError => e
 	lib_directory = File.join(File.dirname(__FILE__), "..", "lib")
-
-	# Adding the lib_directory did not fix the problem,
-	# so give up on fixing it.
+	
 	if $LOAD_PATH.include?(lib_directory)
+		# Adding the lib_directory did not fix the problem,
+		# so give up on fixing it.
 		raise e
 	else
+		# Add the lib_directory and try loading again.
+		$LOAD_PATH.unshift(lib_directory)
+		
 		retry
 	end
-	
-	# If it whines because it can't load it,
-	# add the "../lib/" directory to the $LOAD_PATH.
-	$LOAD_PATH.unshift(lib_directory)
 end
 
 unless ARGV.include?("c") || ARGV.include?("console")
