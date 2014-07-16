@@ -1,9 +1,6 @@
 require "sinatra"
-require_relative "routes"
-
-Dir.glob(File.join(File.dirname(__FILE__), "controllers/*.rb")).each do |file|
-	require_relative file
-end
+require "frecon/routes"
+require "frecon/controllers"
 
 module FReCon
 	class Server < Sinatra::Base

@@ -18,8 +18,8 @@ Gems are Ruby packages, and bundle will take care of installing all the other on
 To do that, cd to the project directory and run `bundle install`.
 
 Great! You are pretty much ready to go now.
-Run `ruby -Ilib bin/frecon` to run the server, and access it at localhost:4567.
-If you want an interactive console in the server environment, just run `ruby -Ilib bin/frecon console`.
+Run `bin/frecon` to run the server, and access it at localhost:4567.
+If you want an interactive console in the server environment, just run `bin/frecon console`.
 
 Get to work!
 
