@@ -7,7 +7,6 @@ module FReCon
 		field :name, type: String
 
 		has_many :matches
-		has_many :participations
 
 		validates :location, :name, presence: true
 	end
