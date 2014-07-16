@@ -9,8 +9,8 @@ module FReCon
 		field :position, type: Position
 
 		belongs_to :match
-		belongs_to :team
+		belongs_to :participation
 
-		validates :position, :match_id, :team_id, presence: true
+		validates :position, :match_id, :participation_id, presence: true
 	end
 end
