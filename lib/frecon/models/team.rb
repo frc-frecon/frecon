@@ -15,6 +15,21 @@ module FReCon
 			find_by number: team_number
 		end
 
+		def self.name_good?(name)
+			false unless name.is_a?(String)
+			true
+		end
+
+		def self.location_good?(location)
+			false unless location.is_a?(String)
+			true
+		end
+
+		def self.number_good?(number)
+			false unless number.is_a?(Integer)
+			true
+		end
+
 		def to_h
 			{"name" => @name,
 			 "location" => @location,
