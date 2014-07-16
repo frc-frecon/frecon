@@ -7,7 +7,7 @@ module FReCon
 
 		field :location, type: String
 		field :name, type: String
-		
+
 		has_many :records
 
 		def self.number(team_number)

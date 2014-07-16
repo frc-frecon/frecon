@@ -7,12 +7,12 @@ module FReCon
 
 		field :number, type: MatchNumber
 
-		field :blue_score, type: Integer
-		field :red_score, type: Integer
+		field :blue_score, type: Integer, default: 0
+		field :red_score, type: Integer, default: 0
 
 		belongs_to :competition
 		has_many :records
 
-		validates :number, :blue_score, :red_score, :competition_id, presence: true
+		validates :number, :competition_id, presence: true
 	end
 end
