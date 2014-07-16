@@ -3,20 +3,45 @@ require "json"
 module FReCon
 	class TeamsController
 		def self.create(request, params)
+			# Rewind the request body (an IO object)
+			# in case someone else has already played
+			# through it.
 			request.body.rewind
-			post_data = JSON.parse(request.body.read)
 
+			begin
+				# Parse the POST data as a JSON hash
+				# (because that's what it is)
+				post_data = JSON.parse(request.body.read)
+			rescue JSON::ParserError => e
+				# If we have malformed JSON (JSON::ParserError is raised),
+				# escape out of the function
+				return JSON.generate({status: 422, errors: [ "Malformed JSON!" ]})
+			end
+
+			# Set up a baseline response hash to get filled
+			# with errors and filth when bad stuff happens.
 			response_hash = {status: 201, errors: []}
 
-			response_hash[:status] = 400 if (!post_data["number"] ||
-											 !post_data["location"] ||
-											 !post_data["name"])
+			# If anything isn't what it's supposed to be, set the status to be
+			# 422 (Unprocessable Entity) because the JSON isn't clear to set up
+			# a new Team object
+			response_hash[:status] = 422 if (!post_data["number"] ||
+			                                 !post_data["number"].is_a?(Integer) ||
+			                                 !post_data["location"] ||
+			                                 !post_data["location"].is_a?(String) ||
+			                                 !post_data["name"] ||
+			                                 !post_data["name"].is_a?(String))
 
-			response_hash[:errors] << "Must supply a team number as an Integer!" unless post_data["number"] && post_data["number"].is_a?(Integer)
-			response_hash[:errors] << "Must supply a team location as a String!" unless post_data["location"] && post_data["location"].is_a?(String)
-			response_hash[:errors] << "Must supply a team name as a String!" unless post_data["name"] && post_data["name"].is_a?(String)
+			# Add errors to describe why something didn't work.
+			response_hash[:errors] << "Must supply a team number as an Integer!" unless
+				post_data["number"] && post_data["number"].is_a?(Integer)
+			response_hash[:errors] << "Must supply a team location as a String!" unless
+				post_data["location"] && post_data["location"].is_a?(String)
+			response_hash[:errors] << "Must supply a team name as a String!" unless
+				post_data["name"] && post_data["name"].is_a?(String)
 
-			if response_hash[:status] == 201
+			# If the response status is in the correct range,
+			if (200..299).include?(response_hash[:status])
 				@team = Team.create(number: post_data["number"], location: post_data["location"], name: post_data["name"])
 
 				JSON.generate(@team)

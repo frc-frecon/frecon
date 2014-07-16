@@ -15,6 +15,12 @@ module FReCon
 			find_by number: team_number
 		end
 
+		def to_h
+			{"name" => @name,
+			 "location" => @location,
+			 "number" => @number}
+		end
+
 		validates :number, :location, :name, presence: true
 		validates :number, uniqueness: true
 
@@ -25,5 +31,6 @@ module FReCon
 			alias_method :with_number, :number
 			alias_method :that_has_number, :number
 		end
+
 	end
 end
