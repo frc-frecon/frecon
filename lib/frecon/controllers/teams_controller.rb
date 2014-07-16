@@ -25,12 +25,9 @@ module FReCon
 			# If anything isn't what it's supposed to be, set the status to be
 			# 422 (Unprocessable Entity) because the JSON isn't clear to set up
 			# a new Team object
-			response_hash[:status] = 422 if (!post_data["number"] ||
-			                                 !post_data["number"].is_a?(Integer) ||
-			                                 !post_data["location"] ||
-			                                 !post_data["location"].is_a?(String) ||
-			                                 !post_data["name"] ||
-			                                 !post_data["name"].is_a?(String))
+			response_hash[:status] = 422 if (!FReCon::Team.number_good?(post_data["number"]) ||
+											 !FReCon::Team.location_good?(post_data["location"]) ||
+			                                 !FReCon::Team.name_good?(post_data["name"]))
 
 			# Add errors to describe why something didn't work.
 			response_hash[:errors] << "Must supply a team number as an Integer!" unless
