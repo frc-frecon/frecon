@@ -25,6 +25,10 @@ module FReCon
 				FReCon::TeamsController.records params
 			end
 
+			base.get "/teams/:number/matches?/:competition_id?" do
+				FReCon::TeamsController.matches params
+			end
+
 			base.post "/competitions/create" do
 				FReCon::CompetitionsController.create request, params
 			end

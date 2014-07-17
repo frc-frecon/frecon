@@ -97,5 +97,21 @@ module FReCon
 				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
 			end
 		end
+
+		def self.matches(params)
+			@team = Team.find_by number: params[:number]
+
+			if @team
+				if params[:competition_id]
+					@matches = @team.matches.where competition_id: params[:competition_id]
+				else
+					@matches = @team.matches
+				end
+
+				@matches.to_json
+			else
+				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+			end
+		end
 	end
 end
