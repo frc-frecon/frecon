@@ -1,3 +1,5 @@
+require "frecon/controllers"
+
 module FReCon
 	module Routes
 		def self.included(base)
