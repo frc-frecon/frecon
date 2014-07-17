@@ -12,10 +12,6 @@ module FReCon
 			base.get "/teams?.?:format" do
 				FReCon::TeamsController.index params
 			end
-
-			base.get "/:mode?" do
-				FReCon::ScoutController.show params
-			end
 		end
 	end
 end
