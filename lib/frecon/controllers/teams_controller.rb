@@ -35,7 +35,7 @@ module FReCon
 		end
 
 		def self.update(request, params)
-			return [400, "Must supply a team number!"]
+			return [400, "Must supply a team number!"] unless params[:number]
 
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
