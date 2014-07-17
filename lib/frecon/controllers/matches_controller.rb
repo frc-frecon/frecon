@@ -15,7 +15,7 @@ module FReCon
 				# escape out of the function
 				return [400, FReCon::ErrorFormatter.format(e.message)]
 			end
-			
+
 			@match = FReCon::Match.new
 			@match.attributes = post_data
 
@@ -86,6 +86,16 @@ module FReCon
 			@matches = Match.all
 
 			@matches.to_json
+		end
+
+		def self.competition(params)
+			@match = Match.find params[:id]
+
+			if @match
+				@match.competition.to_json
+			else
+				[404, FReCon::ErrorFormatter.format("Could not find match of id #{params[:id]}!")]
+			end
 		end
 
 		def self.records(params)

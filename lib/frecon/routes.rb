@@ -77,6 +77,10 @@ module FReCon
 				FReCon::MatchesController.records params
 			end
 
+			base.get "/matches/:id/competition" do
+				FReCon::MatchesController.competition params
+			end
+
 			base.post "/records/create" do
 				FReCon::RecordsController.create request, params
 			end
