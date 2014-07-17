@@ -3,7 +3,7 @@ require "json"
 require "frecon/error_formatter.rb"
 
 module FReCon
-	class TeamsController
+	class CompetitionsController
 		def self.create(request, params)
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
@@ -20,19 +20,19 @@ module FReCon
 				return [400, FReCon::ErrorFormatter.format(e.message)]
 			end
 			
-			@team = FReCon::Team.new
-			@team.attributes = post_data
+			@competition = FReCon::Competition.new
+			@competition.attributes = post_data
 
-			if @team.save
+			if @competition.save
 				# Use to_json for now; we can filter it later.
-				[201, @team.to_json]
+				[201, @competition.to_json]
 			else
-				[422, FReCon::ErrorFormatter.format(@team.errors.full_messages)]
+				[422, FReCon::ErrorFormatter.format(@competition.errors.full_messages)]
 			end
 		end
 
 		def self.update(request, params)
-			return [400, "Must supply a team number!"] unless params[:number]
+			return [400, "Must supply a competition id!"] unless params[:id]
 
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
@@ -49,47 +49,47 @@ module FReCon
 				return [422, FReCon::ErrorFormatter.format(e.message)]
 			end
 
-			@team = FReCon::Team.find_by number: params[:number]
+			@competition = FReCon::Competition.find params[:id]
 
-			if @team.nil?
-				return [404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+			if @competition.nil?
+				return [404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
 
-			if @team.update_attributes(post_data)
-				@team.to_json
+			if @competition.update_attributes(post_data)
+				@competition.to_json
 			else
-				[422, FReCon::ErrorFormatter.format(@team.errors.full_messages)]
+				[422, FReCon::ErrorFormatter.format(@competition.errors.full_messages)]
 			end
 		end
 
 		def self.delete(params)
-			@team = Team.find_by number: params[:number]
+			@competition = Competition.find params[:id]
 
-			if @team
-				if @team.destroy
+			if @competition
+				if @competition.destroy
 					204
 				else
-					[422, FReCon::ErrorFormatter.format(@team.errors.full_messages)]
+					[422, FReCon::ErrorFormatter.format(@competition.errors.full_messages)]
 				end
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
 		end
 
 		def self.show(params)
-			@team = Team.find_by number: params[:number]
+			@competition = Competition.find params[:id]
 
-			if @team
-				@team.to_json
+			if @competition
+				@competition.to_json
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
 		end
 
 		def self.index(params)
-			@teams = Team.all
+			@competitions = Competition.all
 
-			@teams.to_json
+			@competitions.to_json
 		end
 	end
 end
