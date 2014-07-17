@@ -57,7 +57,7 @@ module FReCon
 			end
 
 			if @team.update_attributes(post_data)
-				[200, @team.to_json]
+				@team.to_json
 			else
 				[422, @team.errors.full_messages]
 			end
@@ -67,7 +67,7 @@ module FReCon
 			@team = Team.find_by number: params[:number]
 
 			if @team
-				[200, @team.to_json]
+				@team.to_json
 			else
 				[404, "Could not find team of number #{params[:number]}!"]
 			end
@@ -76,7 +76,7 @@ module FReCon
 		def self.index(params)
 			@teams = Team.all
 
-			[200, @teams.to_json]
+			@teams.to_json
 		end
 	end
 end
