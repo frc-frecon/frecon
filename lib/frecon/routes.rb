@@ -1,11 +1,11 @@
 module FReCon
 	module Routes
 		def self.included(base)
-			base.post "/team/create" do
+			base.post "/teams/create" do
 				FReCon::TeamsController.create(request, params)
 			end
 
-			base.put "/team/update/:number" do
+			base.put "/teams/update/:number" do
 				FReCon::TeamsController.update(request, params)
 			end
 
