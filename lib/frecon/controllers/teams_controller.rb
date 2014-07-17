@@ -52,14 +52,10 @@ module FReCon
 				return JSON.generate({ status: 422, errors: [ e.message ] })
 			end
 
-			# Set up a baseline response hash to get filled
-			# with errors and filth when bad stuff happens.
-			response_hash = {status: 201, errors: []}
+			@team = FReCon::Team.find_by number: params[:number]
 
-			@team = FReCon::Team.find_by(number: params[:number])
-
-			if !@team
-				response_hash = {status: 422, errors: ["Could not find team #{params[:number]}"]}
+			if @team.nil?
+				return JSON.generate({ status: 422, errors: [ "Could not find team of number #{params[:number]}!" ] })
 			end
 
 			update_properties = post_data.keys.select{|key| ["number", "name", "location"].include?(key)}
