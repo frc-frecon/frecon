@@ -65,6 +65,20 @@ module FReCon
 			end
 		end
 
+		def self.delete(params)
+			@team = Team.find_by number: params[:number]
+
+			if @team
+				if @team.destroy
+					204
+				else
+					[422, FReCon::ErrorFormatter.format(@team.errors.full_messages)]
+				end
+			else
+				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+			end
+		end
+
 		def self.show(params)
 			@team = Team.find_by number: params[:number]
 

@@ -9,7 +9,9 @@ module FReCon
 				FReCon::TeamsController.update(request, params)
 			end
 
-			base.get "/team/:number" do
+			base.delete "/teams/:number" do
+				FReCon::TeamsController.delete params
+			end
 
 			base.get "/teams/:number" do
 				FReCon::TeamsController.show params
