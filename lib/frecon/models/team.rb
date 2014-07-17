@@ -18,8 +18,13 @@ module FReCon
 		end
 
 		# Returns all of the matches that this team has been in.
-		def matches
-			Match.where record: self.records
+		# Optionally, returns the matches that this team has played
+		# in a certain competition.
+		def matches(competition_id = nil)
+			matches = Match.where record: self.records
+			matches = matches.where competition_id: competition_id unless competition_id.nil?
+
+			matches
 		end
 
 		# Returns all of the competitions that this team has been in.
