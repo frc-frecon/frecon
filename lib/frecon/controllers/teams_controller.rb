@@ -87,5 +87,15 @@ module FReCon
 
 			@teams.to_json
 		end
+
+		def self.records(params)
+			@team = Team.find_by number: params[:number]
+
+			if @team
+				@team.records.to_json
+			else
+				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+			end
+		end
 	end
 end
