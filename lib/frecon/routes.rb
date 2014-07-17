@@ -16,6 +16,10 @@ module FReCon
 			base.get "/teams" do
 				FReCon::TeamsController.index params
 			end
+
+			base.get "/dump" do
+				FReCon::DumpController.get params
+			end
 		end
 	end
 end
