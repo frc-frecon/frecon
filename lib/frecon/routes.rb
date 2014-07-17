@@ -5,7 +5,7 @@ module FReCon
 				FReCon::TeamsController.create(request, params)
 			end
 
-			base.put "/teams/update/:number" do
+			base.put "/teams/:number" do
 				FReCon::TeamsController.update(request, params)
 			end
 
