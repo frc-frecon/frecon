@@ -18,12 +18,16 @@ module FReCon
 				return JSON.generate({ status: 422, errors: [ e.message ] })
 			end
 
+			# Even though "location" and "name" are optional,
+			# still set them.  If they are nil, @team.location
+			# and @team.name will be set to nil.
 			@team = FReCon::Team.new
 			@team.number = post_data["number"]
 			@team.location = post_data["location"]
 			@team.name = post_data["name"]
 
 			if @team.save
+				# Use to_json for now; we can filter it later.
 				@team.to_json
 			else
 				JSON.generate({ status: 422, errors: @team.errors.full_messages })
