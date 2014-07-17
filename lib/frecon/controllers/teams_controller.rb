@@ -102,11 +102,9 @@ module FReCon
 			@team = Team.find_by number: params[:number]
 
 			if @team
-				if params[:competition_id]
-					@matches = @team.matches.where competition_id: params[:competition_id]
-				else
-					@matches = @team.matches
-				end
+				@matches = Match.find_by record: @team.records
+
+				@matches = @matches.where competition_id: params[:competition_id] if params[:competition_id]
 
 				@matches.to_json
 			else
