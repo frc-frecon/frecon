@@ -112,6 +112,13 @@ module FReCon
 			@team = Team.find_by number: params[:number]
 
 			if @team
+				# Ensure that the competition ID is valid.
+				if params[:competition_id]
+					@competition = Competition.find params[:competition_id]
+					
+					return [404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:competition_id]}!")] if @competition.nil?
+				end
+
 				@team.matches(params[:competition_id]).to_json
 			else
 				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
