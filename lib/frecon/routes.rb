@@ -60,6 +60,26 @@ module FReCon
 			base.get "/matches" do
 				FReCon::MatchesController.index params
 			end
+
+			base.post "/records/create" do
+				FReCon::RecordsController.create request, params
+			end
+
+			base.put "/records/:id" do
+				FReCon::RecordsController.update request, params
+			end
+
+			base.delete "/records/:id" do
+				FReCon::RecordsController.delete params
+			end
+
+			base.get "/records/:id" do
+				FReCon::RecordsController.show params
+			end
+
+			base.get "/records" do
+				FReCon::RecordsController.index params
+			end
 		end
 	end
 end
