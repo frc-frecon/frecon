@@ -22,9 +22,7 @@ module FReCon
 			# still set them.  If they are nil, @team.location
 			# and @team.name will be set to nil.
 			@team = FReCon::Team.new
-			@team.number = post_data["number"]
-			@team.location = post_data["location"]
-			@team.name = post_data["name"]
+			@team.attributes = post_data
 
 			if @team.save
 				# Use to_json for now; we can filter it later.
