@@ -1,4 +1,4 @@
-require "json"
+require "frecon/error_formatter.rb"
 
 module FReCon
 	class TeamsController
@@ -15,7 +15,7 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function
-				return [400, e.message]
+				return [400, FReCon::ErrorFormatter.format(e.message)]
 			end
 
 			# Even though "location" and "name" are optional,
@@ -28,7 +28,7 @@ module FReCon
 				# Use to_json for now; we can filter it later.
 				[201, @team.to_json]
 			else
-				[422, @team.errors.full_messages]
+				[422, FReCon::ErrorFormatter.format(@team.errors.full_messages)]
 			end
 		end
 
@@ -47,19 +47,19 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function
-				return [422, e.message]
+				return [422, FReCon::ErrorFormatter.format(e.message)]
 			end
 
 			@team = FReCon::Team.find_by number: params[:number]
 
 			if @team.nil?
-				return [404, "Could not find team of number #{params[:number]}!"]
+				return [404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
 			end
 
 			if @team.update_attributes(post_data)
 				@team.to_json
 			else
-				[422, @team.errors.full_messages]
+				[422, FReCon::ErrorFormatter.format(@team.errors.full_messages)]
 			end
 		end
 
@@ -69,7 +69,7 @@ module FReCon
 			if @team
 				@team.to_json
 			else
-				[404, "Could not find team of number #{params[:number]}!"]
+				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
 			end
 		end
 
