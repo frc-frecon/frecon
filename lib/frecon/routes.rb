@@ -96,6 +96,10 @@ module FReCon
 			base.get "/records" do
 				FReCon::RecordsController.index params
 			end
+
+			base.get "/records/:id/competition" do
+				FReCon::RecordsController.competition params
+			end
 		end
 	end
 end
