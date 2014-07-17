@@ -66,11 +66,10 @@ module FReCon
 		def self.show(params)
 			@team = Team.find_by number: params[:number]
 
-			raise Sinatra::NotFound unless @team
-
-			case params[:format]
-			when "json"
-				@team.to_json
+			if @team
+				[200, @team.to_json]
+			else
+				[404, "Could not find team of number #{params[:number]}!"]
 			end
 		end
 
