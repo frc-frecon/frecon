@@ -111,5 +111,15 @@ module FReCon
 				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
 			end
 		end
+
+		def self.competitions(params)
+			@team = Team.find_by number: params[:number]
+
+			if @team
+				@team.competitions.to_json
+			else
+				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+			end
+		end
 	end
 end
