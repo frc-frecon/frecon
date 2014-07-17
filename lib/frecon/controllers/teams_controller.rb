@@ -92,7 +92,17 @@ module FReCon
 			@team = Team.find_by number: params[:number]
 
 			if @team
-				@team.records.to_json
+				if params[:competition_id]
+					@competition = Competition.find params[:competition_id]
+
+					if @competition
+						@team.records.where(match: @competition.matches).to_json
+					else
+						[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:competition_id]}!")]
+					end
+				else
+					@team.records.to_json
+				end
 			else
 				[404, FReCon::ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
 			end

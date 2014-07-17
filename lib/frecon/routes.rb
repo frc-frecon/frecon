@@ -21,7 +21,7 @@ module FReCon
 				FReCon::TeamsController.index params
 			end
 
-			base.get "/teams/:number/records" do
+			base.get "/teams/:number/records/?:competition_id?" do
 				FReCon::TeamsController.records params
 			end
 
