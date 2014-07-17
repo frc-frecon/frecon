@@ -26,7 +26,7 @@ module FReCon
 
 			if @team.save
 				# Use to_json for now; we can filter it later.
-				@team.to_json
+				[201, @team.to_json]
 			else
 				JSON.generate({ status: 422, errors: @team.errors.full_messages })
 			end
