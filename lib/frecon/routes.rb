@@ -45,12 +45,24 @@ module FReCon
 				FReCon::CompetitionsController.delete params
 			end
 
+			base.get "/competitions" do
+				FReCon::CompetitionsController.index params
+			end
+
 			base.get "/competitions/:id" do
 				FReCon::CompetitionsController.show params
 			end
 
-			base.get "/competitions" do
-				FReCon::CompetitionsController.index params
+			base.get "/competitions/:id/teams" do
+				FReCon::CompetitionsController.teams params
+			end
+
+			base.get "/competitions/:id/matches" do
+				FReCon::CompetitionsController.matches params
+			end
+
+			base.get "/competitions/:id/records" do
+				FReCon::CompetitionsController.records params
 			end
 
 			base.post "/matches/create" do

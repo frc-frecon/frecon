@@ -15,7 +15,7 @@ module FReCon
 				# escape out of the function
 				return [400, FReCon::ErrorFormatter.format(e.message)]
 			end
-			
+
 			@competition = FReCon::Competition.new
 			@competition.attributes = post_data
 
@@ -77,6 +77,36 @@ module FReCon
 
 			if @competition
 				@competition.to_json
+			else
+				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+			end
+		end
+
+		def self.teams(params)
+			@competition = Competition.find params[:id]
+
+			if @competition
+				@competition.teams.to_json
+			else
+				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+			end
+		end
+
+		def self.matches(params)
+			@competition = Competition.find params[:id]
+
+			if @competition
+				@competition.matches.to_json
+			else
+				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+			end
+		end
+
+		def self.records(params)
+			@competition = Competition.find params[:id]
+
+			if @competition
+				@competition.records.to_json
 			else
 				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
