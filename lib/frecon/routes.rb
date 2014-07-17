@@ -10,6 +10,8 @@ module FReCon
 			end
 
 			base.get "/team/:number" do
+
+			base.get "/teams/:number" do
 				FReCon::TeamsController.show params
 			end
 
