@@ -15,7 +15,7 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function
-				return JSON.generate({ status: 422, errors: [ e.message ] })
+				return [400, e.message]
 			end
 
 			# Even though "location" and "name" are optional,
@@ -28,12 +28,12 @@ module FReCon
 				# Use to_json for now; we can filter it later.
 				[201, @team.to_json]
 			else
-				JSON.generate({ status: 422, errors: @team.errors.full_messages })
+				[422, @team.errors.full_messages]
 			end
 		end
 
 		def self.update(request, params)
-			raise IncorrectParamError, "Must supply a team number!" unless params[:number]
+			return [400, "Must supply a team number!"]
 
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
@@ -47,19 +47,19 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function
-				return JSON.generate({ status: 422, errors: [ e.message ] })
+				return [422, e.message]
 			end
 
 			@team = FReCon::Team.find_by number: params[:number]
 
 			if @team.nil?
-				return JSON.generate({ status: 422, errors: [ "Could not find team of number #{params[:number]}!" ] })
+				return [404, "Could not find team of number #{params[:number]}!"]
 			end
 
 			if @team.update_attributes(post_data)
-				@team.to_json
+				[200, @team.to_json]
 			else
-				JSON.generate({ status: 422, errors: @team.errors.full_messages })
+				[422, @team.errors.full_messages]
 			end
 		end
 
