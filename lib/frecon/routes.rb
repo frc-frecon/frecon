@@ -100,6 +100,10 @@ module FReCon
 			base.get "/records/:id/competition" do
 				FReCon::RecordsController.competition params
 			end
+
+			base.get "/dump" do
+				FReCon::DumpController.get params
+			end
 		end
 	end
 end
