@@ -49,8 +49,7 @@ module FReCon
 			{"name" => @name, "location" => @location, "number" => @number}
 		end
 
-		validates :number, :location, :name, presence: true
-		validates :number, uniqueness: true
+		validates :number, presence: true, uniqueness: true
 
 		# alias_method works by default solely on instance
 		# methods, so change context to the metaclass of
