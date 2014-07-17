@@ -76,10 +76,7 @@ module FReCon
 		def self.index(params)
 			@teams = Team.all
 
-			case params[:format]
-			when "json"
-				@teams.to_json
-			end
+			[200, @teams.to_json]
 		end
 	end
 end

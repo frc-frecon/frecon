@@ -13,7 +13,7 @@ module FReCon
 				FReCon::TeamsController.show params
 			end
 
-			base.get "/teams?.?:format" do
+			base.get "/teams" do
 				FReCon::TeamsController.index params
 			end
 		end
