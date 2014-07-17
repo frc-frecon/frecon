@@ -1,7 +1,3 @@
-require "json"
-
-require "frecon/error_formatter.rb"
-
 module FReCon
 	class TeamsController
 		def self.create(request, params)

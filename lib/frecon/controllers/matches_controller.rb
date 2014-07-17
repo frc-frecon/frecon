@@ -1,5 +1,5 @@
 module FReCon
-	class CompetitionsController
+	class MatchesController
 		def self.create(request, params)
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
@@ -16,19 +16,19 @@ module FReCon
 				return [400, FReCon::ErrorFormatter.format(e.message)]
 			end
 			
-			@competition = FReCon::Competition.new
-			@competition.attributes = post_data
+			@match = FReCon::Match.new
+			@match.attributes = post_data
 
-			if @competition.save
+			if @match.save
 				# Use to_json for now; we can filter it later.
-				[201, @competition.to_json]
+				[201, @match.to_json]
 			else
-				[422, FReCon::ErrorFormatter.format(@competition.errors.full_messages)]
+				[422, FReCon::ErrorFormatter.format(@match.errors.full_messages)]
 			end
 		end
 
 		def self.update(request, params)
-			return [400, "Must supply a competition id!"] unless params[:id]
+			return [400, "Must supply a match id!"] unless params[:id]
 
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
@@ -45,47 +45,47 @@ module FReCon
 				return [422, FReCon::ErrorFormatter.format(e.message)]
 			end
 
-			@competition = FReCon::Competition.find params[:id]
+			@match = FReCon::Match.find params[:id]
 
-			if @competition.nil?
-				return [404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+			if @match.nil?
+				return [404, FReCon::ErrorFormatter.format("Could not find match of id #{params[:id]}!")]
 			end
 
-			if @competition.update_attributes(post_data)
-				@competition.to_json
+			if @match.update_attributes(post_data)
+				@match.to_json
 			else
-				[422, FReCon::ErrorFormatter.format(@competition.errors.full_messages)]
+				[422, FReCon::ErrorFormatter.format(@match.errors.full_messages)]
 			end
 		end
 
 		def self.delete(params)
-			@competition = Competition.find params[:id]
+			@match = Match.find params[:id]
 
-			if @competition
-				if @competition.destroy
+			if @match
+				if @match.destroy
 					204
 				else
-					[422, FReCon::ErrorFormatter.format(@competition.errors.full_messages)]
+					[422, FReCon::ErrorFormatter.format(@match.errors.full_messages)]
 				end
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+				[404, FReCon::ErrorFormatter.format("Could not find match of id #{params[:id]}!")]
 			end
 		end
 
 		def self.show(params)
-			@competition = Competition.find params[:id]
+			@match = Match.find params[:id]
 
-			if @competition
-				@competition.to_json
+			if @match
+				@match.to_json
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+				[404, FReCon::ErrorFormatter.format("Could not find match of id #{params[:id]}!")]
 			end
 		end
 
 		def self.index(params)
-			@competitions = Competition.all
+			@matches = Match.all
 
-			@competitions.to_json
+			@matches.to_json
 		end
 	end
 end
