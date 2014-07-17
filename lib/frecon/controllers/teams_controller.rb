@@ -49,7 +49,7 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function
-				return JSON.generate({status: 422, errors: [ "Malformed JSON!" ]})
+				return JSON.generate({ status: 422, errors: [ e.message ] })
 			end
 
 			# Set up a baseline response hash to get filled
