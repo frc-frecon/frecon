@@ -9,7 +9,6 @@ module FReCon
 				FReCon::TeamsController.update(request, params)
 			end
 
-
 			base.get "/teams?.?:format" do
 				FReCon::TeamsController.index params
 			end
