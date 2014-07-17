@@ -18,32 +18,15 @@ module FReCon
 				return JSON.generate({ status: 422, errors: [ e.message ] })
 			end
 
-			# Set up a baseline response hash to get filled
-			# with errors and filth when bad stuff happens.
-			response_hash = {status: 201, errors: []}
+			@team = FReCon::Team.new
+			@team.number = post_data["number"]
+			@team.location = post_data["location"]
+			@team.name = post_data["name"]
 
-			# If anything isn't what it's supposed to be, set the status to be
-			# 422 (Unprocessable Entity) because the JSON isn't clear to set up
-			# a new Team object
-			response_hash[:status] = 422 if (!FReCon::Team.number_good?(post_data["number"]) ||
-											 !FReCon::Team.location_good?(post_data["location"]) ||
-			                                 !FReCon::Team.name_good?(post_data["name"]))
-
-			# Add errors to describe why something didn't work.
-			response_hash[:errors] << "Must supply a team number as an Integer!" unless
-				post_data["number"] && post_data["number"].is_a?(Integer)
-			response_hash[:errors] << "Must supply a team location as a String!" unless
-				post_data["location"] && post_data["location"].is_a?(String)
-			response_hash[:errors] << "Must supply a team name as a String!" unless
-				post_data["name"] && post_data["name"].is_a?(String)
-
-			# If the response status is in the correct range,
-			if (200..299).include?(response_hash[:status])
-				@team = FReCon::Team.create(number: post_data["number"], location: post_data["location"], name: post_data["name"])
-
-				return JSON.generate(@team)
+			if @team.save
+				@team.to_json
 			else
-				return JSON.generate(response_hash)
+				JSON.generate({ status: 422, errors: @team.errors.full_messages })
 			end
 		end
 
