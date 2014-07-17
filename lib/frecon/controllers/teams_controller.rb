@@ -1,3 +1,5 @@
+require "json"
+
 require "frecon/error_formatter.rb"
 
 module FReCon
