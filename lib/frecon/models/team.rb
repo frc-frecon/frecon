@@ -17,6 +17,11 @@ module FReCon
 			find_by number: team_number
 		end
 
+		# Returns all of the matches that this team has been in.
+		def matches
+			Match.where record: self.records
+		end
+
 		# alias_method works by default solely on instance
 		# methods, so change context to the metaclass of
 		# Team and do aliasing there.

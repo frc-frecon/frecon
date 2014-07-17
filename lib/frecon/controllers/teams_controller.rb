@@ -102,7 +102,7 @@ module FReCon
 			@team = Team.find_by number: params[:number]
 
 			if @team
-				@matches = Match.find_by record: @team.records
+				@matches = @team.matches
 
 				@matches = @matches.where competition_id: params[:competition_id] if params[:competition_id]
 
