@@ -56,38 +56,11 @@ module FReCon
 				return JSON.generate({ status: 422, errors: [ "Could not find team of number #{params[:number]}!" ] })
 			end
 
-			update_properties = post_data.keys.select{|key| ["number", "name", "location"].include?(key)}
-
-			if update_properties.include?("number")
-				unless FReCon::Team.number_good?(post_data["number"])
-					response_hash[:status] = 422
-					response_hash[:errors] << "Team number is incorrect!"
-				end
-
-				@team.number = post_data["number"]
+			if @team.update_attributes(post_data)
+				@team.to_json
+			else
+				JSON.generate({ status: 422, errors: @team.errors.full_messages })
 			end
-
-			if update_properties.include?("name")
-				unless FReCon::Team.name_good?(post_data["name"])
-					response_hash[:status] = 422
-					response_hash[:errors] << "Team name is incorrect!"
-				end
-
-				@team.name = post_data["name"]
-			end
-
-			if update_properties.include?("location")
-				unless FReCon::Team.location_good?(post_data["location"])
-					response_hash[:status] = 422
-					response_hash[:errors] << "Team location is incorrect!"
-				end
-
-				@team.location = post_data["location"]
-			end
-
-			@team.save
-
-			return JSON.generate(response_hash)
 		end
 
 		def self.show(params)
