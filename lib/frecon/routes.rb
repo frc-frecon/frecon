@@ -102,7 +102,7 @@ module FReCon
 			end
 
 			base.get "/dump" do
-				FReCon::DumpController.get params
+				FReCon::DumpController.full params
 			end
 		end
 	end
