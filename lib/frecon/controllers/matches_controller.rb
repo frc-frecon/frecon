@@ -87,5 +87,15 @@ module FReCon
 
 			@matches.to_json
 		end
+
+		def self.records(params)
+			@match = Match.find params[:id]
+
+			if @match
+				@match.records.to_json
+			else
+				[404, FReCon::ErrorFormatter.format("Could not find match of id #{params[:id]}!")]
+			end
+		end
 	end
 end
