@@ -10,6 +10,8 @@ module FReCon
 
 		has_many :records
 
+		validates :number, presence: true, uniqueness: true
+
 		def self.number(team_number)
 			# Team.find_by number: team_number
 			find_by number: team_number
@@ -48,8 +50,6 @@ module FReCon
 		def to_h
 			{"name" => @name, "location" => @location, "number" => @number}
 		end
-
-		validates :number, presence: true, uniqueness: true
 
 		# alias_method works by default solely on instance
 		# methods, so change context to the metaclass of
