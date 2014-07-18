@@ -21,7 +21,8 @@ module FReCon
 		# Optionally, returns the matches that this team has played
 		# in a certain competition.
 		def matches(competition_id = nil)
-			matches = Match.where record: self.records
+			records = self.records
+			matches = Match.where record_id: records.map { |record| record.id.to_s }
 			matches = matches.where competition_id: competition_id unless competition_id.nil?
 
 			matches
