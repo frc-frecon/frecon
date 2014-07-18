@@ -2,6 +2,7 @@ module FReCon
 	class Team
 		include Mongoid::Document
 		include Mongoid::Timestamps
+		include Mongoid::Attributes::Dynamic
 
 		field :number, type: Integer
 

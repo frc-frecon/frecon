@@ -4,6 +4,7 @@ module FReCon
 	class Record
 		include Mongoid::Document
 		include Mongoid::Timestamps
+		include Mongoid::Attributes::Dynamic
 
 		field :notes, type: String
 		field :position, type: Position

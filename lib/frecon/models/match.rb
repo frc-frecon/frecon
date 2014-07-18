@@ -4,6 +4,7 @@ module FReCon
 	class Match
 		include Mongoid::Document
 		include Mongoid::Timestamps
+		include Mongoid::Attributes::Dynamic
 
 		field :number, type: MatchNumber
 

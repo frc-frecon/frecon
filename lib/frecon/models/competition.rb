@@ -2,6 +2,7 @@ module FReCon
 	class Competition
 		include Mongoid::Document
 		include Mongoid::Timestamps
+		include Mongoid::Attributes::Dynamic
 
 		field :location, type: String
 		field :name, type: String
