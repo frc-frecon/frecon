@@ -8,8 +8,9 @@ module FReCon
 		field :name, type: String
 
 		has_many :matches
-
+		
 		validates :location, :name, presence: true
+		validates :name, uniqueness: true
 
 		def records
 			matches = self.matches
