@@ -11,10 +11,7 @@ module FReCon
 		validates :location, :name, presence: true
 
 		def records
-			self.matches.map{
-				|match|
-				match.records
-			}.flatten.uniq
+			Record.where match: self.matches
 		end
 
 		def teams
