@@ -1,3 +1,6 @@
+require "json"
+require "frecon/models"
+
 module FReCon
 	class MatchesController
 		def self.create(request, params)

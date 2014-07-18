@@ -1,4 +1,5 @@
 require "json"
+require "frecon/models"
 
 module FReCon
 	class DumpController

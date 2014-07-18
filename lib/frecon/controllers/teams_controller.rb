@@ -1,3 +1,6 @@
+require "json"
+require "frecon/models"
+
 module FReCon
 	class TeamsController
 		def self.create(request, params)
@@ -15,7 +18,7 @@ module FReCon
 				# escape out of the function
 				return [400, FReCon::ErrorFormatter.format(e.message)]
 			end
-			
+
 			@team = FReCon::Team.new
 			@team.attributes = post_data
 
@@ -115,7 +118,7 @@ module FReCon
 				# Ensure that the competition ID is valid.
 				if params[:competition_id]
 					@competition = Competition.find params[:competition_id]
-					
+
 					return [404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:competition_id]}!")] if @competition.nil?
 				end
 

@@ -1,3 +1,6 @@
+require "json"
+require "frecon/models"
+
 module FReCon
 	class CompetitionsController
 		def self.create(request, params)

@@ -1,3 +1,6 @@
+require "json"
+require "frecon/models"
+
 module FReCon
 	class RecordsController
 		def self.create(request, params)
@@ -15,7 +18,7 @@ module FReCon
 				# escape out of the function
 				return [400, FReCon::ErrorFormatter.format(e.message)]
 			end
-			
+
 			@record = FReCon::Record.new
 			@record.attributes = post_data
 
