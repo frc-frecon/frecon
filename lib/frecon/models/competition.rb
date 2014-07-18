@@ -11,13 +11,15 @@ module FReCon
 		validates :location, :name, presence: true
 
 		def records
-			Record.where match: self.matches
+			matches = self.matches
+			
+			Record.where match_id: matches.map { |match| match.id.to_s }
 		end
 
 		def teams
 			competition_records = records
 
-			Team.where id: competition_records.map { |record| record.team_id }
+			Team.find competition_records.map { |record| record.team_id.to_s }
 		end
 	end
 end
