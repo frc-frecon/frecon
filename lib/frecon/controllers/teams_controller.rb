@@ -92,7 +92,7 @@ module FReCon
 				better_params[key] = params[key] unless key == "_"
 			end
 
-			@teams = better_params_list.empty? ? Team.all : Team.where(params)
+			@teams = better_params.empty? ? Team.all : Team.where(params)
 
 			@teams.to_json
 		end

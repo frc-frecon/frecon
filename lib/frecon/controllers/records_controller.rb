@@ -127,7 +127,7 @@ module FReCon
 				better_params[key] = params[key] unless key == "_"
 			end
 
-			@records = better_params_list.empty? ? Record.all : Record.where(params)
+			@records = better_params.empty? ? Record.all : Record.where(params)
 
 			@records.to_json
 		end

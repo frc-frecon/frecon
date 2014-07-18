@@ -122,7 +122,7 @@ module FReCon
 				better_params[key] = params[key] unless key == "_"
 			end
 
-			@competitions = better_params_list.empty? ? Competition.all : Competition.where(params)
+			@competitions = better_params.empty? ? Competition.all : Competition.where(params)
 
 			@competitions.to_json
 		end

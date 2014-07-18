@@ -92,7 +92,7 @@ module FReCon
 				better_params[key] = params[key] unless key == "_"
 			end
 
-			@matches = better_params_list.empty? ? Match.all : Match.where(params)
+			@matches = better_params.empty? ? Match.all : Match.where(params)
 
 			@matches.to_json
 		end
