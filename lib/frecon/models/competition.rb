@@ -17,7 +17,7 @@ module FReCon
 		def teams
 			competition_records = records
 
-			Team.find competition_records.map { |record| record.team_id }
+			Team.where id: competition_records.map { |record| record.team_id }
 		end
 	end
 end
