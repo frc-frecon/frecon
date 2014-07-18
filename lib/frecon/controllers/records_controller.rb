@@ -35,22 +35,16 @@ module FReCon
 				competition = Competition.find_by name: post_data["competition_name"]
 				match = competition.matches.find_by number: post_data["match_number"] if competition
 
-				if match && competition
+				if competition
+					# Create the match if necessary.
+					match ||= Match.create(number: post_data["match_number"], competition_id: competition.id.to_s)
+					
 					post_data["match_id"] = match.id.to_s
 
 					post_data["match_number"] = nil
 					post_data["competition_name"] = nil
 				else
-					error_string = "Could not find "
-
-					errors = []
-					errors << "match of number #{post_data['match_number']}" unless match
-					errors << "competition of name #{post_data['competition_name']}" unless competition
-
-					error_string << errors.join(" or ")
-					error_string << "!"
-
-					return [404, FReCon::ErrorFormatter.format(error_string)]
+					return [404, FReCon::ErrorFormatter.format("A current competition is not set.  Please set it.")]
 				end
 			end
 
