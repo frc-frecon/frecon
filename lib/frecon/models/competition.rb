@@ -7,7 +7,7 @@ module FReCon
 		field :location, type: String
 		field :name, type: String
 
-		has_many :matches
+		has_many :matches, dependent: :destroy
 		
 		validates :location, :name, presence: true
 		validates :name, uniqueness: true

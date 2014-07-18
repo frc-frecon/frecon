@@ -12,7 +12,7 @@ module FReCon
 		field :red_score, type: Integer, default: 0
 
 		belongs_to :competition
-		has_many :records
+		has_many :records, dependent: :destroy
 
 		validates :number, :competition_id, presence: true
 	end
