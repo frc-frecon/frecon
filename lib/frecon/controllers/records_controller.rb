@@ -121,11 +121,7 @@ module FReCon
 		end
 
 		def self.index(params)
-			better_params = {}
-
-			params.keys.each do |key|
-				better_params[key] = params[key] unless key == "_"
-			end
+			params.delete("_")
 
 			@records = better_params.empty? ? Record.all : Record.where(params)
 
