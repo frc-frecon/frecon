@@ -19,6 +19,17 @@ module FReCon
 				return [400, FReCon::ErrorFormatter.format(e.message)]
 			end
 
+			# Change special post_data attributes.
+			# Convert team number to team id.
+			if post_data["team_number"]
+				unless (team = Team.number post_data["team_number"]).nil?
+					post_data["team_id"] = team.id.to_s
+					post_data["team_number"] = nil
+				else
+					return [404, FReCon::ErrorFormatter.format("Could not find team of number #{post_data['team_number']}!")]
+				end
+			end
+
 			@record = FReCon::Record.new
 			@record.attributes = post_data
 
