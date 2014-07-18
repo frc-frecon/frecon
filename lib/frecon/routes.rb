@@ -3,7 +3,7 @@ require "frecon/controllers"
 module FReCon
 	module Routes
 		def self.included(base)
-			base.post "/teams/create" do
+			base.post "/teams" do
 				FReCon::TeamsController.create request, params
 			end
 
@@ -35,7 +35,7 @@ module FReCon
 				FReCon::TeamsController.competitions params
 			end
 
-			base.post "/competitions/create" do
+			base.post "/competitions" do
 				FReCon::CompetitionsController.create request, params
 			end
 
@@ -67,7 +67,7 @@ module FReCon
 				FReCon::CompetitionsController.records params
 			end
 
-			base.post "/matches/create" do
+			base.post "/matches" do
 				FReCon::MatchesController.create request, params
 			end
 
@@ -95,7 +95,7 @@ module FReCon
 				FReCon::MatchesController.competition params
 			end
 
-			base.post "/records/create" do
+			base.post "/records" do
 				FReCon::RecordsController.create request, params
 			end
 
