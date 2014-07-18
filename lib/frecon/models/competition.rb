@@ -15,11 +15,9 @@ module FReCon
 		end
 
 		def teams
-			self.records.map{
-				|record|
+			competition_records = records
 
-				record.team.number
-			}.flatten.uniq
+			Team.find competition_records.map { |record| record.team_id }
 		end
 	end
 end
