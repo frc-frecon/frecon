@@ -86,7 +86,7 @@ module FReCon
 		end
 
 		def self.index(params)
-			@records = Record.all
+			@records = params.empty? ? Record.all : Record.where(params)
 
 			@records.to_json
 		end

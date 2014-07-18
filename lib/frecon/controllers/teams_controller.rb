@@ -86,7 +86,7 @@ module FReCon
 		end
 
 		def self.index(params)
-			@teams = Team.all
+			@teams = params.empty? ? Team.all : Team.where(params)
 
 			@teams.to_json
 		end

@@ -116,7 +116,7 @@ module FReCon
 		end
 
 		def self.index(params)
-			@competitions = Competition.all
+			@competitions = params.empty? ? Competition.all : Competition.where(params)
 
 			@competitions.to_json
 		end
