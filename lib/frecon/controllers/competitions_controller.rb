@@ -118,7 +118,7 @@ module FReCon
 		def self.index(params)
 			params.delete("_")
 
-			@competitions = better_params.empty? ? Competition.all : Competition.where(params)
+			@competitions = params.empty? ? Competition.all : Competition.where(params)
 
 			@competitions.to_json
 		end

@@ -123,7 +123,7 @@ module FReCon
 		def self.index(params)
 			params.delete("_")
 
-			@records = better_params.empty? ? Record.all : Record.where(params)
+			@records = params.empty? ? Record.all : Record.where(params)
 
 			@records.to_json
 		end

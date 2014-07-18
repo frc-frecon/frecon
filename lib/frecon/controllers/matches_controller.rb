@@ -88,7 +88,7 @@ module FReCon
 		def self.index(params)
 			params.delete("_")
 
-			@matches = better_params.empty? ? Match.all : Match.where(params)
+			@matches = params.empty? ? Match.all : Match.where(params)
 
 			@matches.to_json
 		end
