@@ -116,7 +116,13 @@ module FReCon
 		end
 
 		def self.index(params)
-			@competitions = params.empty? ? Competition.all : Competition.where(params)
+			better_params = {}
+
+			params.keys.each do |key|
+				better_params[key] = params[key] unless key == "_"
+			end
+
+			@competitions = better_params_list.empty? ? Competition.all : Competition.where(params)
 
 			@competitions.to_json
 		end

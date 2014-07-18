@@ -86,7 +86,13 @@ module FReCon
 		end
 
 		def self.index(params)
-			@teams = params.empty? ? Team.all : Team.where(params)
+			better_params = {}
+
+			params.keys.each do |key|
+				better_params[key] = params[key] unless key == "_"
+			end
+
+			@teams = better_params_list.empty? ? Team.all : Team.where(params)
 
 			@teams.to_json
 		end

@@ -86,7 +86,13 @@ module FReCon
 		end
 
 		def self.index(params)
-			@matches = params.empty? ? Match.all : Match.where(params)
+			better_params = {}
+
+			params.keys.each do |key|
+				better_params[key] = params[key] unless key == "_"
+			end
+
+			@matches = better_params_list.empty? ? Match.all : Match.where(params)
 
 			@matches.to_json
 		end

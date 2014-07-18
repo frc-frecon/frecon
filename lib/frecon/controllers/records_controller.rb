@@ -37,7 +37,7 @@ module FReCon
 
 				if match && competition
 					post_data["match_id"] = match.id.to_s
-					
+
 					post_data["match_number"] = nil
 					post_data["competition_name"] = nil
 				else
@@ -121,7 +121,13 @@ module FReCon
 		end
 
 		def self.index(params)
-			@records = params.empty? ? Record.all : Record.where(params)
+			better_params = {}
+
+			params.keys.each do |key|
+				better_params[key] = params[key] unless key == "_"
+			end
+
+			@records = better_params_list.empty? ? Record.all : Record.where(params)
 
 			@records.to_json
 		end
