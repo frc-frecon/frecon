@@ -24,7 +24,8 @@ module FReCon
 			if post_data["team_number"]
 				unless (team = Team.number post_data["team_number"]).nil?
 					post_data["team_id"] = team.id.to_s
-					post_data["team_number"] = nil
+					
+					post_data.delete("team_number")
 				else
 					return [404, FReCon::ErrorFormatter.format("Could not find team of number #{post_data['team_number']}!")]
 				end
@@ -32,17 +33,17 @@ module FReCon
 
 			# Convert match number and competition name to match id.
 			if post_data["match_number"] && post_data["competition_name"]
-				competition = Competition.find_by name: post_data["competition_name"]
-				match = competition.matches.find_by number: post_data["match_number"] if competition
-
-				if competition
+				unless (competition = Competition.find_by name: post_data["competition_name"]).nil?
+					# Try to set the match to the already existing match.
+					match = competition.matches.find_by number: post_data["match_number"]
+					
 					# Create the match if necessary.
 					match ||= Match.create(number: post_data["match_number"], competition_id: competition.id.to_s)
 					
 					post_data["match_id"] = match.id.to_s
 
-					post_data["match_number"] = nil
-					post_data["competition_name"] = nil
+					post_data.delete("match_number")
+					post_data.delete("competition_name")
 				else
 					return [404, FReCon::ErrorFormatter.format("A current competition is not set.  Please set it.")]
 				end
