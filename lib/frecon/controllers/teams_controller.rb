@@ -2,7 +2,7 @@ require "json"
 require "frecon/models"
 
 module FReCon
-	class TeamsController
+	class TeamsController < Controller
 		def self.create(request, params)
 			post_data = process_request request
 
