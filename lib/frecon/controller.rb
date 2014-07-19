@@ -11,6 +11,11 @@ module FReCon
 			# singularizes the result, and turns it into the class.
 			self.name.gsub(/Controller\Z/, "").singularize.constantize
 		end
+
+		# The 404 error message.
+		def self.could_not_find(value, attribute = "id")
+			"Could not find #{model_name.downcase} of #{attribute} #{value}!"
+		end
 		
 		def self.create(request, params)
 			# Rewind the request body (an IO object)
@@ -39,7 +44,7 @@ module FReCon
 		end
 
 		def self.update(request, params)
-			return [400, "Must supply a #{model_name.downcase}"] unless params[:id]
+			return [400, "Must supply a #{model_name.downcase}!"] unless params[:id]
 
 			request.body.rewind
 
@@ -51,7 +56,7 @@ module FReCon
 
 			@model = model.find params[:id]
 
-			return [404, ErrorFormatter.format("Could not find #{model_name.downcase} of id #{params[:id]}!")] unless @model
+			return [404, ErrorFormatter.format(could_not_find(params[:id]))] unless @model
 
 			if @model.update_attributes(post_data)
 				@model.to_json
@@ -70,7 +75,7 @@ module FReCon
 					[422, ErrorFormatter.format(@model.errors.full_messages)]
 				end
 			else
-				[404, ErrorFormatter.format("Could not find #{model_name.downcase} of id #{params[:id]}!")]
+				[404, ErrorFormatter.format(could_not_find(params[:id]))]
 			end
 		end
 
@@ -80,7 +85,7 @@ module FReCon
 			if @model
 				@model.to_json
 			else
-				[404, ErrorFormatter.format("Could not find #{model_name.downcase} of id #{params[:id]}!")]
+				[404, ErrorFormatter.format(could_not_find(params[:id]))]
 			end
 		end
 
