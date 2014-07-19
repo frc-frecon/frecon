@@ -4,10 +4,10 @@ require "frecon/models"
 module FReCon
 	class DumpController
 		def self.full(params)
-			competitions = FReCon::Competition.all
-			teams = FReCon::Team.all
-			matches = FReCon::Match.all
-			records = FReCon::Record.all
+			competitions = Competition.all
+			teams = Team.all
+			matches = Match.all
+			records = Record.all
 
 			{
 				"competitions" => competitions,
