@@ -4,20 +4,7 @@ require "frecon/models"
 module FReCon
 	class TeamsController
 		def self.create(request, params)
-			# Rewind the request body (an IO object)
-			# in case someone else has already played
-			# through it.
-			request.body.rewind
-
-			begin
-				# Parse the POST data as a JSON hash
-				# (because that's what it is)
-				post_data = JSON.parse(request.body.read)
-			rescue JSON::ParserError => e
-				# If we have malformed JSON (JSON::ParserError is raised),
-				# escape out of the function
-				return [400, ErrorFormatter.format(e.message)]
-			end
+			post_data = process_request request
 
 			@team = Team.new
 			@team.attributes = post_data
@@ -33,25 +20,12 @@ module FReCon
 		def self.update(request, params)
 			return [400, "Must supply a team number!"] unless params[:number]
 
-			# Rewind the request body (an IO object)
-			# in case someone else has already played
-			# through it.
-			request.body.rewind
-
-			begin
-				# Parse the POST data as a JSON hash
-				# (because that's what it is)
-				post_data = JSON.parse(request.body.read)
-			rescue JSON::ParserError => e
-				# If we have malformed JSON (JSON::ParserError is raised),
-				# escape out of the function
-				return [422, ErrorFormatter.format(e.message)]
-			end
+			post_data = process_request request
 
 			@team = Team.find_by number: params[:number]
 
 			if @team.nil?
-				return [404, ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+				return [404, ErrorFormatter.format(could_not_find(params[:number], "number"))]
 			end
 
 			if @team.update_attributes(post_data)
@@ -71,7 +45,7 @@ module FReCon
 					[422, ErrorFormatter.format(@team.errors.full_messages)]
 				end
 			else
-				[404, ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+				[404, ErrorFormatter.format(could_not_find(params[:number], "number"))]
 			end
 		end
 
@@ -81,16 +55,8 @@ module FReCon
 			if @team
 				@team.to_json
 			else
-				[404, ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+				[404, ErrorFormatter.format(could_not_find(params[:number], "number"))]
 			end
-		end
-
-		def self.index(params)
-			params.delete("_")
-
-			@teams = params.empty? ? Team.all : Team.where(params)
-
-			@teams.to_json
 		end
 
 		def self.records(params)
@@ -103,13 +69,13 @@ module FReCon
 					if @competition
 						@team.records.in(match_id: @competition.matches.map { |match| match.id }).to_json
 					else
-						[404, ErrorFormatter.format("Could not find competition of id #{params[:competition_id]}!")]
+						[404, ErrorFormatter.format(could_not_find(params[:competition_id], "id", "competition"))]
 					end
 				else
 					@team.records.to_json
 				end
 			else
-				[404, ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+				[404, ErrorFormatter.format(could_not_find(params[:number], "number"))]
 			end
 		end
 
@@ -121,12 +87,12 @@ module FReCon
 				if params[:competition_id]
 					@competition = Competition.find params[:competition_id]
 
-					return [404, ErrorFormatter.format("Could not find competition of id #{params[:competition_id]}!")] if @competition.nil?
+					return [404, ErrorFormatter.format(could_not_find(params[:competition_id], "id", "competition"))] if @competition.nil?
 				end
 
 				@team.matches(params[:competition_id]).to_json
 			else
-				[404, ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+				[404, ErrorFormatter.format(could_not_find(params[:number], "number"))]
 			end
 		end
 
@@ -136,7 +102,7 @@ module FReCon
 			if @team
 				@team.competitions.to_json
 			else
-				[404, ErrorFormatter.format("Could not find team of number #{params[:number]}!")]
+				[404, ErrorFormatter.format(could_not_find(params[:number], "number"))]
 			end
 		end
 	end
