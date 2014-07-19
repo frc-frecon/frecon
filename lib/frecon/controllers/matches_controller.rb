@@ -9,7 +9,7 @@ module FReCon
 			if @match
 				@match.competition.to_json
 			else
-				[404, ErrorFormatter.format("Could not find match of id #{params[:id]}!")]
+				[404, ErrorFormatter.format(could_not_find(params[:id]))]
 			end
 		end
 
@@ -19,7 +19,7 @@ module FReCon
 			if @match
 				@match.records.to_json
 			else
-				[404, ErrorFormatter.format("Could not find match of id #{params[:id]}!")]
+				[404, ErrorFormatter.format(could_not_find(params[:id]))]
 			end
 		end
 	end
