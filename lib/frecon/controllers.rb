@@ -2,6 +2,8 @@
 require "json"
 require "frecon/error_formatter"
 
+require "frecon/controller"
+
 require "frecon/controllers/competitions_controller"
 require "frecon/controllers/matches_controller"
 require "frecon/controllers/records_controller"
