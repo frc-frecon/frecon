@@ -101,7 +101,7 @@ module FReCon
 					@competition = Competition.find params[:competition_id]
 
 					if @competition
-						@team.records.where(match: @competition.matches).to_json
+						@team.records.in(match_id: @competition.matches.map { |match| match.id }).to_json
 					else
 						[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:competition_id]}!")]
 					end

@@ -11,13 +11,13 @@ module FReCon
 		def records
 			matches = self.matches
 			
-			Record.where match_id: matches.map { |match| match.id }
+			Record.in match_id: matches.map { |match| match.id }
 		end
 
 		def teams
 			competition_records = records
 
-			Team.find competition_records.map { |record| record.team_id.to_s }
+			Team.find competition_records.map { |record| record.team_id }
 		end
 	end
 end

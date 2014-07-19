@@ -19,7 +19,7 @@ module FReCon
 		# in a certain competition.
 		def matches(competition_id = nil)
 			records = self.records
-			matches = Match.where record_id: records.map { |record| record.id }
+			matches = Match.in record_id: records.map { |record| record.id }
 			matches = matches.where competition_id: competition_id unless competition_id.nil?
 
 			matches
@@ -27,7 +27,9 @@ module FReCon
 
 		# Returns all of the competitions that this team has been in.
 		def competitions
-			Competition.where match: matches
+			current_matches = matches
+			
+			Competition.in match_id: current_matches.map { |match| match.id }
 		end
 
 		# alias_method works by default solely on instance
