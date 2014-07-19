@@ -1,9 +1,5 @@
 module FReCon
-	class Team
-		include Mongoid::Document
-		include Mongoid::Timestamps
-		include Mongoid::Attributes::Dynamic
-
+	class Team < Model
 		field :number, type: Integer
 
 		field :location, type: String

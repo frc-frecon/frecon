@@ -1,11 +1,7 @@
 require "frecon/position"
 
 module FReCon
-	class Record
-		include Mongoid::Document
-		include Mongoid::Timestamps
-		include Mongoid::Attributes::Dynamic
-
+	class Record < Model
 		field :notes, type: String
 		field :position, type: Position
 
