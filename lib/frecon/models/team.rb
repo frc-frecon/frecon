@@ -19,7 +19,7 @@ module FReCon
 		# in a certain competition.
 		def matches(competition_id = nil)
 			records = self.records
-			matches = Match.where record_id: records.map { |record| record.id.to_s }
+			matches = Match.where record_id: records.map { |record| record.id }
 			matches = matches.where competition_id: competition_id unless competition_id.nil?
 
 			matches

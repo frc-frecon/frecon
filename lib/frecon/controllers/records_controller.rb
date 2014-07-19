@@ -23,7 +23,7 @@ module FReCon
 			# Convert team number to team id.
 			if post_data["team_number"]
 				unless (team = Team.number post_data["team_number"]).nil?
-					post_data["team_id"] = team.id.to_s
+					post_data["team_id"] = team.id
 					
 					post_data.delete("team_number")
 				else
@@ -38,9 +38,9 @@ module FReCon
 					match = competition.matches.find_by number: post_data["match_number"]
 					
 					# Create the match if necessary.
-					match ||= Match.create(number: post_data["match_number"], competition_id: competition.id.to_s)
+					match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
 					
-					post_data["match_id"] = match.id.to_s
+					post_data["match_id"] = match.id
 
 					post_data.delete("match_number")
 					post_data.delete("competition_name")

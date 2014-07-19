@@ -11,7 +11,7 @@ module FReCon
 		def records
 			matches = self.matches
 			
-			Record.where match_id: matches.map { |match| match.id.to_s }
+			Record.where match_id: matches.map { |match| match.id }
 		end
 
 		def teams
