@@ -13,7 +13,7 @@ module FReCon
 		end
 
 		# The 404 error message.
-		def self.could_not_find(value, attribute = "id")
+		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
 			"Could not find #{model_name.downcase} of #{attribute} #{value}!"
 		end
 
