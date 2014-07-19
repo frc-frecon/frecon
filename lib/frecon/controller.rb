@@ -16,8 +16,9 @@ module FReCon
 		def self.could_not_find(value, attribute = "id")
 			"Could not find #{model_name.downcase} of #{attribute} #{value}!"
 		end
-		
-		def self.create(request, params)
+
+		# Processes a POST/PUT request and returns the post data.
+		def self.process_request(request)
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
 			# through it.
@@ -26,12 +27,16 @@ module FReCon
 			begin
 				# Parse the POST data as a JSON hash
 				# (because that's what it is)
-				post_data = JSON.parse(request.body.read)
+				JSON.parse(request.body.read)
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function.
-				return [400, ErrorFormatter.format(e.message)]
+				[400, ErrorFormatter.format(e.message)]
 			end
+		end
+		
+		def self.create(request, params)
+			post_data = process_request request
 
 			@model = model.new
 			@model.attributes = post_data
@@ -46,13 +51,7 @@ module FReCon
 		def self.update(request, params)
 			return [400, "Must supply a #{model_name.downcase}!"] unless params[:id]
 
-			request.body.rewind
-
-			begin
-				post_data = JSON.parse(request.body.read)
-			rescue JSON::ParserError => e
-				return [422, ErrorFormatter.format(e.message)]
-			end
+			post_data = process_request request
 
 			@model = model.find params[:id]
 
