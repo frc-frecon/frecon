@@ -48,13 +48,7 @@ module FReCon
 		end
 
 		def self.competition(params)
-			@record = Record.find params[:id]
-
-			if @record
-				@record.competition.to_json
-			else
-				[404, ErrorFormatter.format(could_not_find(params[:id]))]
-			end
+			show_attribute params, :competition
 		end
 	end
 end
