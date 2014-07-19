@@ -95,5 +95,15 @@ module FReCon
 
 			@models.to_json
 		end
+
+		def self.show_attribute(params, attribute)
+			@model = model.find params[:id]
+
+			if @model
+				@model.send(attribute).to_json
+			else
+				[404, ErrorFormatter.format(could_not_find(params[:id]))]
+			end
+		end
 	end
 end
