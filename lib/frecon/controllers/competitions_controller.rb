@@ -16,17 +16,17 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function
-				return [400, FReCon::ErrorFormatter.format(e.message)]
+				return [400, ErrorFormatter.format(e.message)]
 			end
 
-			@competition = FReCon::Competition.new
+			@competition = Competition.new
 			@competition.attributes = post_data
 
 			if @competition.save
 				# Use to_json for now; we can filter it later.
 				[201, @competition.to_json]
 			else
-				[422, FReCon::ErrorFormatter.format(@competition.errors.full_messages)]
+				[422, ErrorFormatter.format(@competition.errors.full_messages)]
 			end
 		end
 
@@ -45,19 +45,19 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function
-				return [422, FReCon::ErrorFormatter.format(e.message)]
+				return [422, ErrorFormatter.format(e.message)]
 			end
 
-			@competition = FReCon::Competition.find params[:id]
+			@competition = Competition.find params[:id]
 
 			if @competition.nil?
-				return [404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+				return [404, ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
 
 			if @competition.update_attributes(post_data)
 				@competition.to_json
 			else
-				[422, FReCon::ErrorFormatter.format(@competition.errors.full_messages)]
+				[422, ErrorFormatter.format(@competition.errors.full_messages)]
 			end
 		end
 
@@ -68,10 +68,10 @@ module FReCon
 				if @competition.destroy
 					204
 				else
-					[422, FReCon::ErrorFormatter.format(@competition.errors.full_messages)]
+					[422, ErrorFormatter.format(@competition.errors.full_messages)]
 				end
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+				[404, ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
 		end
 
@@ -81,7 +81,7 @@ module FReCon
 			if @competition
 				@competition.to_json
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+				[404, ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
 		end
 
@@ -91,7 +91,7 @@ module FReCon
 			if @competition
 				@competition.teams.to_json
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+				[404, ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
 		end
 
@@ -101,7 +101,7 @@ module FReCon
 			if @competition
 				@competition.matches.to_json
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+				[404, ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
 		end
 
@@ -111,7 +111,7 @@ module FReCon
 			if @competition
 				@competition.records.to_json
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
+				[404, ErrorFormatter.format("Could not find competition of id #{params[:id]}!")]
 			end
 		end
 
