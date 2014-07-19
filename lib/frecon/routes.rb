@@ -35,64 +35,64 @@ module FReCon
 		end
 		
 		def self.included(base)
-			resource_routes base, "teams", FReCon::TeamsController, [:create, :index]
+			resource_routes base, "teams", TeamsController, [:create, :index]
 
 			base.put "/teams/:number" do
-				FReCon::TeamsController.update request, params
+				TeamsController.update request, params
 			end
 
 			base.delete "/teams/:number" do
-				FReCon::TeamsController.delete params
+				TeamsController.delete params
 			end
 
 			base.get "/teams/:number" do
-				FReCon::TeamsController.show params
+				TeamsController.show params
 			end
 
 			base.get "/teams/:number/records/?:competition_id?" do
-				FReCon::TeamsController.records params
+				TeamsController.records params
 			end
 
 			base.get "/teams/:number/matches/?:competition_id?" do
-				FReCon::TeamsController.matches params
+				TeamsController.matches params
 			end
 
 			base.get "/teams/:number/competitions" do
-				FReCon::TeamsController.competitions params
+				TeamsController.competitions params
 			end
 
-			resource_routes base, "competitions", FReCon::CompetitionsController
+			resource_routes base, "competitions", CompetitionsController
 
 			base.get "/competitions/:id/teams" do
-				FReCon::CompetitionsController.teams params
+				CompetitionsController.teams params
 			end
 
 			base.get "/competitions/:id/matches" do
-				FReCon::CompetitionsController.matches params
+				CompetitionsController.matches params
 			end
 
 			base.get "/competitions/:id/records" do
-				FReCon::CompetitionsController.records params
+				CompetitionsController.records params
 			end
 
-			resource_routes base, "matches", FReCon::MatchesController
+			resource_routes base, "matches", MatchesController
 
 			base.get "/matches/:id/records" do
-				FReCon::MatchesController.records params
+				MatchesController.records params
 			end
 
 			base.get "/matches/:id/competition" do
-				FReCon::MatchesController.competition params
+				MatchesController.competition params
 			end
 
-			resource_routes base, "records", FReCon::RecordsController
+			resource_routes base, "records", RecordsController
 
 			base.get "/records/:id/competition" do
-				FReCon::RecordsController.competition params
+				RecordsController.competition params
 			end
 
 			base.get "/dump" do
-				FReCon::DumpController.full params
+				DumpController.full params
 			end
 		end
 	end
