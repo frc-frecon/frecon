@@ -1,7 +1,7 @@
 module FReCon
 	class Console
 		def self.start
-			FReCon::Database.setup(FReCon::Server.environment)
+			Database.setup(Server.environment)
 
 			# Use pry if it is installed.
 			# Use the context of the FReCon module;
