@@ -16,7 +16,7 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function
-				return [400, FReCon::ErrorFormatter.format(e.message)]
+				return [400, ErrorFormatter.format(e.message)]
 			end
 
 			# Change special post_data attributes.
@@ -27,7 +27,7 @@ module FReCon
 					
 					post_data.delete("team_number")
 				else
-					return [404, FReCon::ErrorFormatter.format("Could not find team of number #{post_data['team_number']}!")]
+					return [404, ErrorFormatter.format("Could not find team of number #{post_data['team_number']}!")]
 				end
 			end
 
@@ -45,18 +45,18 @@ module FReCon
 					post_data.delete("match_number")
 					post_data.delete("competition_name")
 				else
-					return [404, FReCon::ErrorFormatter.format("A current competition is not set.  Please set it.")]
+					return [404, ErrorFormatter.format("A current competition is not set.  Please set it.")]
 				end
 			end
 
-			@record = FReCon::Record.new
+			@record = Record.new
 			@record.attributes = post_data
 
 			if @record.save
 				# Use to_json for now; we can filter it later.
 				[201, @record.to_json]
 			else
-				[422, FReCon::ErrorFormatter.format(@record.errors.full_messages)]
+				[422, ErrorFormatter.format(@record.errors.full_messages)]
 			end
 		end
 
@@ -75,19 +75,19 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function
-				return [422, FReCon::ErrorFormatter.format(e.message)]
+				return [422, ErrorFormatter.format(e.message)]
 			end
 
-			@record = FReCon::Record.find params[:id]
+			@record = Record.find params[:id]
 
 			if @record.nil?
-				return [404, FReCon::ErrorFormatter.format("Could not find record of id #{params[:id]}!")]
+				return [404, ErrorFormatter.format("Could not find record of id #{params[:id]}!")]
 			end
 
 			if @record.update_attributes(post_data)
 				@record.to_json
 			else
-				[422, FReCon::ErrorFormatter.format(@record.errors.full_messages)]
+				[422, ErrorFormatter.format(@record.errors.full_messages)]
 			end
 		end
 
@@ -98,10 +98,10 @@ module FReCon
 				if @record.destroy
 					204
 				else
-					[422, FReCon::ErrorFormatter.format(@record.errors.full_messages)]
+					[422, ErrorFormatter.format(@record.errors.full_messages)]
 				end
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find record of id #{params[:id]}!")]
+				[404, ErrorFormatter.format("Could not find record of id #{params[:id]}!")]
 			end
 		end
 
@@ -111,7 +111,7 @@ module FReCon
 			if @record
 				@record.to_json
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find record of id #{params[:id]}!")]
+				[404, ErrorFormatter.format("Could not find record of id #{params[:id]}!")]
 			end
 		end
 
@@ -129,7 +129,7 @@ module FReCon
 			if @record
 				@record.competition.to_json
 			else
-				[404, FReCon::ErrorFormatter.format("Could not find record of id #{params[:id]}!")]
+				[404, ErrorFormatter.format("Could not find record of id #{params[:id]}!")]
 			end
 		end
 	end
