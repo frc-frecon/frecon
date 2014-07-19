@@ -5,10 +5,10 @@ require "frecon/controllers"
 
 module FReCon
 	class Server < Sinatra::Base
-		include FReCon::Routes
+		include Routes
 
 		configure do
-			FReCon::Database.setup(:development)
+			Database.setup(:development)
 		end
 
 		before do
