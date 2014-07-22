@@ -1,4 +1,4 @@
-lib_directory = File.join(File.dirname(__FILE__), "..", "lib")
+lib_directory = File.join(File.dirname(__FILE__), "lib")
 $LOAD_PATH.unshift(lib_directory) unless $LOAD_PATH.include?(lib_directory)
 
 require "frecon/version"
