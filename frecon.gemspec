@@ -1,7 +1,9 @@
+require "frecon/version"
+
 Gem::Specification.new do |s|
 	s.name = "frecon"
 	s.email = "sammidysam@gmail.com"
-	s.version = "0.0.0"
+	s.version = FReCon::VERSION
 	
 	s.summary = "A JSON API for scouting FRC competitions."
 	s.description = "A JSON API for scouting FRC competitions that manages the database for the user."
