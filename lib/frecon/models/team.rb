@@ -3,6 +3,7 @@ module FReCon
 		field :number, type: Integer
 
 		field :location, type: String
+		field :logo_path, type: String
 		field :name, type: String
 
 		has_many :records, dependent: :destroy
