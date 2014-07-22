@@ -1,22 +1,8 @@
 #! /usr/bin/env ruby
 
-# Allow running `bin/frecon` in project root and having it run.
-begin
-	require "frecon"
-rescue LoadError => e
-	lib_directory = File.join(File.dirname(__FILE__), "..", "lib")
-	
-	if $LOAD_PATH.include?(lib_directory)
-		# Adding the lib_directory did not fix the problem,
-		# so give up on fixing it.
-		raise e
-	else
-		# Add the lib_directory and try loading again.
-		$LOAD_PATH.unshift(lib_directory)
-		
-		retry
-	end
-end
+# Allow running locally.
+lib_directory = File.join(File.dirname(__FILE__), "..", "lib")
+$LOAD_PATH.unshift(lib_directory) unless $LOAD_PATH.include?(lib_directory)
 
 unless ARGV.include?("c") || ARGV.include?("console")
 	FReCon::Server.start
