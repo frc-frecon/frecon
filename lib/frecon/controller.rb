@@ -34,7 +34,7 @@ module FReCon
 				return [400, ErrorFormatter.format(e.message)]
 			end
 
-			return [422, ErrorFormatter.format("Must pass a JSON object!")] if post_data.is_a?(Array)
+			[422, ErrorFormatter.format("Must pass a JSON object!")] if post_data.is_a?(Array)
 		end
 		
 		def self.create(request, params)
