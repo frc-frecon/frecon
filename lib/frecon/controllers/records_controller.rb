@@ -35,8 +35,6 @@ module FReCon
 				else
 					return [422, ErrorFormatter.format("A current competition is not set.  Please set it.")]
 				end
-			else
-				return [422, ErrorFormatter.format("Please enter a match number.")]
 			end
 
 			@record = Record.new
