@@ -19,8 +19,9 @@ module FReCon
 			end
 
 			# Convert match number and competition name to match id.
-			if post_data["match_number"] && post_data["competition_name"]
-				unless (competition = Competition.find_by name: post_data["competition_name"]).nil?
+			if post_data["match_number"]
+				puts "hii"
+				if post_data["competition_name"] && (competition = Competition.find_by name: post_data["competition_name"])
 					# Try to set the match to the already existing match.
 					match = competition.matches.find_by number: post_data["match_number"]
 					
@@ -32,8 +33,10 @@ module FReCon
 					post_data.delete("match_number")
 					post_data.delete("competition_name")
 				else
-					return [404, ErrorFormatter.format("A current competition is not set.  Please set it.")]
+					return [422, ErrorFormatter.format("A current competition is not set.  Please set it.")]
 				end
+			else
+				return [422, ErrorFormatter.format("Please enter a match number.")]
 			end
 
 			@record = Record.new
