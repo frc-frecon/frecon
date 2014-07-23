@@ -20,7 +20,6 @@ module FReCon
 
 			# Convert match number and competition name to match id.
 			if post_data["match_number"]
-				puts "hii"
 				if post_data["competition_name"] && (competition = Competition.find_by name: post_data["competition_name"])
 					# Try to set the match to the already existing match.
 					match = competition.matches.find_by number: post_data["match_number"]
