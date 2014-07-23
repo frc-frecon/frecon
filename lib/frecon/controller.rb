@@ -27,16 +27,19 @@ module FReCon
 			begin
 				# Parse the POST data as a JSON hash
 				# (because that's what it is)
-				JSON.parse(request.body.read)
+				post_data = JSON.parse(request.body.read)
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is raised),
 				# escape out of the function.
-				[400, ErrorFormatter.format(e.message)]
+				return [400, ErrorFormatter.format(e.message)]
 			end
+
+			return [422, ErrorFormatter.format("Must pass a JSON object!")] if post_data.is_a?(Array)
 		end
 		
 		def self.create(request, params)
 			post_data = process_request request
+			return post_data if post_data.is_a?(Array)
 
 			@model = model.new
 			@model.attributes = post_data
@@ -52,6 +55,7 @@ module FReCon
 			return [400, "Must supply a #{model_name.downcase}!"] unless params[:id]
 
 			post_data = process_request request
+			return post_data if post_data.is_a?(Array)
 
 			@model = model.find params[:id]
 

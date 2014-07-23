@@ -5,6 +5,7 @@ module FReCon
 	class RecordsController < Controller
 		def self.create(request, params)
 			post_data = process_request request
+			return post_data if post_data.is_a?(Array)
 
 			# Change special post_data attributes.
 			# Convert team number to team id.

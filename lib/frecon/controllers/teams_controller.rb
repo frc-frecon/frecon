@@ -5,6 +5,7 @@ module FReCon
 	class TeamsController < Controller
 		def self.create(request, params)
 			post_data = process_request request
+			return post_data if post_data.is_a?(Array)
 
 			@team = Team.new
 			@team.attributes = post_data
@@ -21,6 +22,7 @@ module FReCon
 			return [400, "Must supply a team number!"] unless params[:number]
 
 			post_data = process_request request
+			return post_data if post_data.is_a?(Array)
 
 			@team = Team.find_by number: params[:number]
 
