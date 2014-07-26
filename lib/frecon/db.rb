@@ -1,5 +1,6 @@
 require "logger"
 require "mongoid"
+require "frecon/models"
 
 module FReCon
 	class Database
@@ -11,10 +12,6 @@ module FReCon
 
 			Moped.logger.level = Logger::DEBUG
 			Moped.logger = Logger.new($stdout)
-
-			Dir.glob(File.join(File.dirname(__FILE__), "models/*.rb")).each do |file|
-				require_relative file
-			end
 		end
 	end
 end
