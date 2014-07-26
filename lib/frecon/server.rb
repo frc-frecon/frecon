@@ -1,4 +1,5 @@
 require "sinatra/base"
+
 require "frecon/db"
 require "frecon/routes"
 require "frecon/controllers"
