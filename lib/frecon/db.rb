@@ -1,5 +1,6 @@
 require "logger"
 require "mongoid"
+
 require "frecon/models"
 
 module FReCon
