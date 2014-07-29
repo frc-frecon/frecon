@@ -10,6 +10,8 @@ module FReCon
 		field :logo_path, type: String
 		field :name, type: String
 
+		has_many :competitions, through: :participations
+		has_many :participations, dependent: :destroy
 		has_many :records, dependent: :destroy
 
 		validates :number, presence: true, uniqueness: true, numericality: { greater_than: 0 }
@@ -28,13 +30,6 @@ module FReCon
 			matches = matches.where competition_id: competition_id unless competition_id.nil?
 
 			matches
-		end
-
-		# Returns all of the competitions that this team has been in.
-		def competitions
-			current_matches = matches
-			
-			Competition.in match_id: current_matches.map { |match| match.id }
 		end
 
 		# alias_method works by default solely on instance
