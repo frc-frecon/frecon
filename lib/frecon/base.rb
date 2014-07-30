@@ -1,0 +1,1 @@
+require "frecon/base/version"
