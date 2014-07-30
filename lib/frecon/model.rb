@@ -5,4 +5,8 @@ module FReCon
 		include Mongoid::Document
 		include Mongoid::Timestamps
 	end
+
+	class DynamicAttributesModel < Model
+		include Mongoid::Attributes::Dynamic
+	end
 end

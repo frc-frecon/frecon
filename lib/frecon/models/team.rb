@@ -1,9 +1,7 @@
 require "frecon/model"
 
 module FReCon
-	class Team < Model
-		include Mongoid::Attributes::Dynamic
-
+	class Team < DynamicAttributesModel
 		field :number, type: Integer
 
 		field :location, type: String

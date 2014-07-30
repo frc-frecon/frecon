@@ -2,8 +2,7 @@ require "frecon/model"
 require "frecon/match_number"
 
 module FReCon
-	class Match < Model
-		include Mongoid::Attributes::Dynamic
+	class Match < DynamicAttributesModel
 
 		field :number, type: MatchNumber
 

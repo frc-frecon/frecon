@@ -1,9 +1,7 @@
 require "frecon/model"
 
 module FReCon
-	class Competition < Model
-		include Mongoid::Attributes::Dynamic
-
+	class Competition < DynamicAttributesModel
 		field :location, type: String
 		field :name, type: String
 

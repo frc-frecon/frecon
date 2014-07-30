@@ -2,8 +2,7 @@ require "frecon/model"
 require "frecon/position"
 
 module FReCon
-	class Record < Model
-		include Mongoid::Attributes::Dynamic
+	class Record < DynamicAttributesModel
 
 		field :notes, type: String
 		field :position, type: Position
