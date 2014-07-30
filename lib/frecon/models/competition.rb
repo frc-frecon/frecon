@@ -1,20 +1,20 @@
+require "frecon/model"
+
 module FReCon
-	class Competition
-		include Mongoid::Document
-		include Mongoid::Timestamps
+	class Competition < Model
 		include Mongoid::Attributes::Dynamic
-		
+
 		field :location, type: String
 		field :name, type: String
 
 		has_many :matches, dependent: :destroy
-		
+
 		validates :location, :name, presence: true
 		validates :name, uniqueness: true
 
 		def records
 			matches = self.matches
-			
+
 			Record.in match_id: matches.map { |match| match.id }
 		end
 

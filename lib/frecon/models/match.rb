@@ -1,11 +1,10 @@
+require "frecon/model"
 require "frecon/match_number"
 
 module FReCon
-	class Match
-		include Mongoid::Document
-		include Mongoid::Timestamps
+	class Match < Model
 		include Mongoid::Attributes::Dynamic
-		
+
 		field :number, type: MatchNumber
 
 		field :blue_score, type: Integer, default: 0

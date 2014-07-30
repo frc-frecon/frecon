@@ -1,9 +1,9 @@
+require "frecon/model"
+
 module FReCon
-	class Team
-		include Mongoid::Document
-		include Mongoid::Timestamps
+	class Team < Model
 		include Mongoid::Attributes::Dynamic
-		
+
 		field :number, type: Integer
 
 		field :location, type: String
@@ -33,7 +33,7 @@ module FReCon
 		# Returns all of the competitions that this team has been in.
 		def competitions
 			current_matches = matches
-			
+
 			Competition.in match_id: current_matches.map { |match| match.id }
 		end
 
