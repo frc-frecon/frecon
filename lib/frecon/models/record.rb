@@ -3,7 +3,6 @@ require "frecon/position"
 
 module FReCon
 	class Record < DynamicAttributesModel
-
 		field :notes, type: String
 		field :position, type: Position
 
