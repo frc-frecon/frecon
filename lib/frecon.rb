@@ -1,4 +1,4 @@
-require "frecon/db"
+require "frecon/database"
 require "frecon/server"
 require "frecon/console"
 
