@@ -1,3 +1,5 @@
+require "frecon/base"
+
 module FReCon
 	class Position
 		attr_reader :alliance, :number
@@ -88,7 +90,7 @@ module FReCon
 
 				@alliance = args[0].to_sym
 
-				raise TypeError, "second argument must be an Integer" unless args[1].is_a?(Integer)
+				raise TypeError, "second argument must be an Integer" unless args[1].is_an?(Integer)
 				raise ArgumentError, "second argument must be in [1, 2, 3]" unless [1, 2, 3].include?(args[1])
 
 				@number = args[1]
