@@ -2,8 +2,12 @@ require "mongoid"
 
 module FReCon
 	class Model
-		include Mongoid::Document
-		include Mongoid::Timestamps
-		include Mongoid::Attributes::Dynamic
+		def self.inherited(child)
+			child.class_eval do
+				include Mongoid::Document
+				include Mongoid::Timestamps
+				include Mongoid::Attributes::Dynamic		
+			end
+		end
 	end
 end
