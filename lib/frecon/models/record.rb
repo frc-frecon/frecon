@@ -2,7 +2,7 @@ require "frecon/model"
 require "frecon/position"
 
 module FReCon
-	class Record < DynamicAttributesModel
+	class Record < Model
 		field :notes, type: String
 		field :position, type: Position
 

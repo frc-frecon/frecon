@@ -1,7 +1,7 @@
 require "frecon/model"
 
 module FReCon
-	class Team < DynamicAttributesModel
+	class Team < Model
 		field :number, type: Integer
 
 		field :location, type: String

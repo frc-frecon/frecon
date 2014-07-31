@@ -1,7 +1,7 @@
 require "frecon/model"
 
 module FReCon
-	class Competition < DynamicAttributesModel
+	class Competition < Model
 		field :location, type: String
 		field :name, type: String
 

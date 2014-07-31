@@ -2,7 +2,7 @@ require "frecon/model"
 require "frecon/match_number"
 
 module FReCon
-	class Match < DynamicAttributesModel
+	class Match < Model
 		field :number, type: MatchNumber
 
 		field :blue_score, type: Integer, default: 0
