@@ -1,3 +1,5 @@
+require "frecon/model"
+
 module FReCon
 	class Participation < Model
 		belongs_to :competition
