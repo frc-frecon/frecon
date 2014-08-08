@@ -1,9 +1,7 @@
+require "frecon/model"
+
 module FReCon
-	class Competition
-		include Mongoid::Document
-		include Mongoid::Timestamps
-		include Mongoid::Attributes::Dynamic
-		
+	class Competition < Model
 		field :location, type: String
 		field :name, type: String
 
@@ -16,7 +14,7 @@ module FReCon
 
 		def records
 			matches = self.matches
-			
+
 			Record.in match_id: matches.map { |match| match.id }
 		end
 	end

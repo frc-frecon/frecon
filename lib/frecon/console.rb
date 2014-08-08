@@ -1,3 +1,5 @@
+require "frecon/server"
+
 module FReCon
 	class Console
 		def self.start
@@ -8,7 +10,7 @@ module FReCon
 			# this allows for writing "Team" instead of "FReCon::Team".
 			begin
 				require "pry"
-				
+
 				FReCon.pry
 			rescue LoadError
 				require "irb"

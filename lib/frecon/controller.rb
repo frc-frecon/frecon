@@ -1,3 +1,5 @@
+require "frecon/base"
+
 module FReCon
 	class Controller
 		def self.model_name
@@ -5,7 +7,7 @@ module FReCon
 			# the class name, then singularizes the result.
 			self.name.gsub(/FReCon::|Controller\Z/, "").singularize
 		end
-		
+
 		def self.model
 			# Removes the trailing "Controller" from the class name,
 			# singularizes the result, and turns it into the class.
@@ -34,12 +36,12 @@ module FReCon
 				return [400, ErrorFormatter.format(e.message)]
 			end
 
-			post_data.is_a?(Array) ? [422, ErrorFormatter.format("Must pass a JSON object!")] : post_data
+			post_data.is_an?(Array) ? [422, ErrorFormatter.format("Must pass a JSON object!")] : post_data
 		end
-		
+
 		def self.create(request, params)
 			post_data = process_request request
-			return post_data if post_data.is_a?(Array)
+			return post_data if post_data.is_an?(Array)
 
 			@model = model.new
 			@model.attributes = post_data
@@ -55,7 +57,7 @@ module FReCon
 			return [400, "Must supply a #{model_name.downcase}!"] unless params[:id]
 
 			post_data = process_request request
-			return post_data if post_data.is_a?(Array)
+			return post_data if post_data.is_an?(Array)
 
 			@model = model.find params[:id]
 

@@ -1,16 +1,16 @@
 lib_directory = File.expand_path(File.join(File.dirname(__FILE__), "lib"))
 $LOAD_PATH.unshift(lib_directory) unless $LOAD_PATH.include?(lib_directory)
 
-require "frecon/version"
+require "frecon/base/version"
 
 Gem::Specification.new do |s|
 	s.name = "frecon"
 	s.email = "sammidysam@gmail.com"
 	s.version = FReCon::VERSION
-	
+
 	s.summary = "A JSON API for scouting FRC competitions."
 	s.description = "A JSON API for scouting FRC competitions that manages the database for the user."
-	
+
 	s.authors = ["Sam Craig",
 	             "Kristofer Rye",
 	             "Christopher Cooper",

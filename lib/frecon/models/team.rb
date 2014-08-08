@@ -1,9 +1,7 @@
+require "frecon/model"
+
 module FReCon
-	class Team
-		include Mongoid::Document
-		include Mongoid::Timestamps
-		include Mongoid::Attributes::Dynamic
-		
+	class Team < Model
 		field :number, type: Integer
 
 		field :location, type: String
@@ -31,7 +29,7 @@ module FReCon
 
 			matches
 		end
-
+		
 		# alias_method works by default solely on instance
 		# methods, so change context to the metaclass of
 		# Team and do aliasing there.

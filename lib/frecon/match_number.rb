@@ -1,3 +1,5 @@
+require "frecon/base"
+
 module FReCon
 	class MatchNumber
 		POSSIBLE_TYPES = [:practice, :qualification, :quarterfinal, :semifinal, :final]
@@ -119,20 +121,20 @@ module FReCon
 
 				@type = args[:type].to_sym
 
-				raise TypeError, "match number must be an Integer" unless args[:number].is_a?(Integer)
+				raise TypeError, "match number must be an Integer" unless args[:number].is_an?(Integer)
 				raise ArgumentError, "match number must be greater than 0" unless args[:number] > 0
 
 				@number = args[:number]
 
 				if args[:round]
-					raise TypeError, "round number must be an Integer" unless args[:round].is_a?(Integer)
+					raise TypeError, "round number must be an Integer" unless args[:round].is_an?(Integer)
 					raise ArgumentError, "round number must be greater than 0" unless args[:round] > 0
 
 					@round = args[:round]
 				end
 
 				if args[:replay_number]
-					raise TypeError, "replay number must be an Integer" unless args[:replay_number].is_a?(Integer)
+					raise TypeError, "replay number must be an Integer" unless args[:replay_number].is_an?(Integer)
 					raise ArgumentError, "replay number must be greater than 0" unless args[:replay_number] > 0
 
 					@replay_number = args[:replay_number]
