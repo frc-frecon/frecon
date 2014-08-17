@@ -7,7 +7,6 @@ module FReCon
 
 		has_many :matches, dependent: :destroy
 		has_many :participations, dependent: :destroy
-		has_many :teams, through: :participations
 		
 		validates :location, :name, presence: true
 		validates :name, uniqueness: true
@@ -15,7 +14,11 @@ module FReCon
 		def records
 			matches = self.matches
 
-			Record.in match_id: matches.map { |match| match.id }
+			Record.in match_id: matches.map(&:id)
+		end
+
+		def teams
+			Team.in id: participations.map(&:team_id)
 		end
 	end
 end

@@ -7,8 +7,7 @@ module FReCon
 		field :location, type: String
 		field :logo_path, type: String
 		field :name, type: String
-
-		has_many :competitions, through: :participations
+		
 		has_many :participations, dependent: :destroy
 		has_many :records, dependent: :destroy
 
@@ -19,12 +18,15 @@ module FReCon
 			find_by number: team_number
 		end
 
+		def competitions
+			Competition.in id: participations.map(&:competition_id)
+		end
+
 		# Returns all of the matches that this team has been in.
 		# Optionally, returns the matches that this team has played
 		# in a certain competition.
 		def matches(competition_id = nil)
-			records = self.records
-			matches = Match.in record_id: records.map { |record| record.id }
+			matches = Match.in record_id: self.records.map(&:id)
 			matches = matches.where competition_id: competition_id unless competition_id.nil?
 
 			matches
