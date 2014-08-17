@@ -6,5 +6,6 @@ module FReCon
 		belongs_to :team
 
 		validates :competition_id, :team_id, presence: true
+		validates :team_id, uniqueness: { scope: :competition_id }
 	end
 end
