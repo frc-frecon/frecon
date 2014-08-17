@@ -5,15 +5,7 @@ module FReCon
 			return post_data if post_data.is_an?(Array)
 			
 			# Convert team number to team_id.
-			if post_data["team_number"] && !post_data["team_id"]
-				unless (team = Team.number post_data["team_number"]).nil?
-					post_data["team_id"] = team.id
-
-					post_data.delete("team_number")
-				else
-					return [404, ErrorFormatter.format(could_not_find(post_data["team_number"], "number", "team"))]
-				end
-			end
+			post_data = team_number_to_team_id(post_data)
 
 			@model = model.new
 			@model.attributes = post_data

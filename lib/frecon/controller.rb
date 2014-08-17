@@ -111,5 +111,19 @@ module FReCon
 				[404, ErrorFormatter.format(could_not_find(params[:id]))]
 			end
 		end
+
+		def self.team_number_to_team_id(post_data)
+			if post_data["team_number"] && !post_data["team_id"]
+				unless (team = Team.number post_data["team_number"]).nil?
+					post_data["team_id"] = team.id
+
+					post_data.delete("team_number")
+
+					post_data
+				else
+					return [404, ErrorFormatter.format(could_not_find(post_data["team_number"], "number", "team"))]
+				end
+			end
+		end
 	end
 end
