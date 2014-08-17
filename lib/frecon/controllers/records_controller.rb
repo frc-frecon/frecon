@@ -10,7 +10,7 @@ module FReCon
 
 			# Change special post_data attributes.
 			# Convert team number to team id.
-			if post_data["team_number"]
+			if post_data["team_number"] && !post_data["team_id"]
 				unless (team = Team.number post_data["team_number"]).nil?
 					post_data["team_id"] = team.id
 
