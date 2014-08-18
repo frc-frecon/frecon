@@ -7,14 +7,10 @@ describe FReCon::Controller do
 		end
 	end
 
-	[:create, :update, :delete, :show, :index].each do |method_name|
+	[:create, :update, :delete, :show, :index, :show_attribute].each do |method_name|
 		it "has a method #{method_name.to_s} <used for response>" do
 			expect(FReCon::Controller.respond_to?(method_name)).to be_true
 		end
-	end
-
-	it "has a method :show_attribute <used for response>" do
-		expect(FReCon::Controller.respond_to?(:show_attribute)).to be_true
 	end
 
 	it "has access to JSON" do
