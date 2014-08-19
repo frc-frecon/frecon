@@ -20,4 +20,22 @@ describe FReCon::Controller do
 	it "has access to Mongoid" do
 		expect(FReCon::Controller.ancestors).to include(Mongoid::Extensions::Object)
 	end
+
+	describe :model_name do
+		it "works on a new class that inherits 'FReCon::Controller' but out of FReCon module" do
+			class TestController < FReCon::Controller
+			end
+
+			expect(TestController.model_name).to eq("Test")
+		end
+
+		it "works on a new class that inherits 'FReCon::Controller' and in FReCon module" do
+			module FReCon
+				class TestController < FReCon::Controller
+				end
+			end
+
+			expect(FReCon::TestController.model_name).to eq("Test")
+		end
+	end
 end
