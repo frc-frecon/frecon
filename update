@@ -1,3 +1,6 @@
+cd ../example-implementation
+git pull
+cd ../frecon
 git pull
 gem build frecon.gemspec
 gem install --local frecon-0.0.0.gem
