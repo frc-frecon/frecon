@@ -7,7 +7,7 @@ describe FReCon::Controller do
 		end
 	end
 
-	[:create, :update, :delete, :show, :index, :show_attribute].each do |method_name|
+	[:create, :update, :delete, :show, :index, :show_attribute, :team_number_to_team_id].each do |method_name|
 		it "has a method #{method_name.to_s} <used for response>" do
 			expect(FReCon::Controller.respond_to?(method_name)).to be_true
 		end
