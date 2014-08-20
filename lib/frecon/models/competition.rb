@@ -7,7 +7,7 @@ module FReCon
 
 		has_many :matches, dependent: :destroy
 		has_many :participations, dependent: :destroy
-		
+
 		validates :location, :name, presence: true
 		validates :name, uniqueness: true
 
