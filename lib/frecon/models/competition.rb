@@ -18,6 +18,8 @@ module FReCon
 		end
 
 		def teams
+			participations = self.participations
+
 			Team.in id: participations.map(&:team_id)
 		end
 	end
