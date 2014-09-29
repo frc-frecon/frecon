@@ -31,8 +31,8 @@ module FReCon
 				# (because that's what it is)
 				post_data = JSON.parse(request.body.read)
 			rescue JSON::ParserError => e
-				# If we have malformed JSON (JSON::ParserError is raised),
-				# escape out of the function.
+				# If we have malformed JSON (JSON::ParserError is
+				# raised), escape out of the function.
 				return [400, ErrorFormatter.format(e.message)]
 			end
 
