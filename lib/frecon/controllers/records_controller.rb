@@ -25,6 +25,17 @@ module FReCon
 
 					post_data.delete("match_number")
 					post_data.delete("competition_name")
+				elsif post_data["competition"] && post_data["competition"]["_id"] && post_data["competition"]["_id"]["$oid"] && (competition = Competition.find_by(id: post_data["competition"]["_id"]["$oid"]))
+					# Try to set the match to the already existing match.
+					match = competition.matches.find_by number: post_data["match_number"]
+
+					# Create the match if necessary.
+					match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
+
+					post_data["match_id"] = match.id
+
+					post_data.delete("match_number")
+					post_data.delete("competition")
 				else
 					return [422, ErrorFormatter.format("A current competition is not set.  Please set it.")]
 				end
