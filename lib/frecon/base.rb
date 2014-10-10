@@ -1,2 +1,2 @@
 require "frecon/base/object"
-require "frecon/base/version"
+require "frecon/base/variables"

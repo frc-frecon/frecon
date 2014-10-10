@@ -9,7 +9,7 @@ module FReCon
 		include Routes
 
 		configure do
-			Database.setup(:development)
+			Database.setup
 		end
 
 		before do
