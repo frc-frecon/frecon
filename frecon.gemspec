@@ -1,7 +1,7 @@
 lib_directory = File.expand_path(File.join(File.dirname(__FILE__), "lib"))
 $LOAD_PATH.unshift(lib_directory) unless $LOAD_PATH.include?(lib_directory)
 
-require "frecon/base/version"
+require "frecon/base/variables"
 
 Gem::Specification.new do |s|
 	s.name = "frecon"
