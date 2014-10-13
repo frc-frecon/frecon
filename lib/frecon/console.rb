@@ -1,3 +1,4 @@
+require "frecon/database"
 require "frecon/server"
 
 module FReCon
