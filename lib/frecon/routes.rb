@@ -91,6 +91,16 @@ module FReCon
 				RecordsController.competition params
 			end
 
+			resource_routes base, "robots", RobotsController
+
+			base.get "/robots/:id/competition" do
+				RobotsController.competition params
+			end
+
+			base.get "/robots/:id/team" do
+				RobotsController.team params
+			end
+
 			resource_routes base, "participations", ParticipationsController
 
 			base.get "/participations/:id/competition" do
