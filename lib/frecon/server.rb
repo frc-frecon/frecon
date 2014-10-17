@@ -16,8 +16,8 @@ module FReCon
 			content_type "application/json"
 		end
 
-		def self.start
-			run!
+		def self.start(environment = ENVIRONMENT)
+			run!(environment)
 		end
 	end
 end

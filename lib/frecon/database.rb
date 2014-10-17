@@ -5,8 +5,8 @@ require "frecon/models"
 
 module FReCon
 	class Database
-		def self.setup()
-			Mongoid.load!(File.join(File.dirname(__FILE__), "mongoid.yml"), ENVIRONMENT)
+		def self.setup(environment = ENVIRONMENT)
+			Mongoid.load!(File.join(File.dirname(__FILE__), "mongoid.yml"), environment)
 
 			Mongoid.logger.level = Logger::DEBUG
 			Mongoid.logger = Logger.new($stdout)
