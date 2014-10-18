@@ -11,6 +11,7 @@ module FReCon
 			# Change special post_data attributes.
 			# Convert team number to team id.
 			post_data = team_number_to_team_id(post_data)
+			return post_data if post_data.is_an?(Array)
 
 			# Convert match number and competition name to match id.
 			if post_data["match_number"] && !post_data["match_id"]
