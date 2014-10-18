@@ -16,10 +16,18 @@ module FReCon
 			if post_data["match_number"] && !post_data["match_id"]
 				if post_data["competition_name"] && (competition = Competition.find_by name: post_data["competition_name"])
 					# Try to set the match to the already existing match.
-					match = competition.matches.find_by number: post_data["match_number"]
+					begin
+						match = competition.matches.find_by number: post_data["match_number"]
+					rescue ArgumentError, TypeError => e
+						return [422, ErrorFormatter.format(e.message)]
+					end
 
 					# Create the match if necessary.
-					match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
+					begin
+						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
+					rescue ArgumentError, TypeError => e
+						return [422, ErrorFormatter.format(e.message)]
+					end
 
 					post_data["match_id"] = match.id
 
@@ -30,7 +38,11 @@ module FReCon
 					match = competition.matches.find_by number: post_data["match_number"]
 
 					# Create the match if necessary.
-					match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
+					begin
+						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
+					rescue ArgumentError, TypeError => e
+						return [422, ErrorFormatter.format(e.message)]
+					end
 
 					post_data["match_id"] = match.id
 
