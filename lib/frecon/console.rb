@@ -3,8 +3,8 @@ require "frecon/server"
 
 module FReCon
 	class Console
-		def self.start(environment = ENVIRONMENT)
-			Database.setup environment
+		def self.start
+			Database.setup
 
 			# Use pry if it is installed.
 			# Use the context of the FReCon module;
