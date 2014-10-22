@@ -8,12 +8,14 @@ module FReCon
 	class Server < Sinatra::Base
 		include Routes
 
-		configure do
-			Database.setup
-		end
-
 		before do
 			content_type "application/json"
+		end
+
+		def self.run!
+			Database.setup(FReCon.environment)
+
+			super
 		end
 
 		def self.start
