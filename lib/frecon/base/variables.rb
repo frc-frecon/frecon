@@ -8,7 +8,6 @@ module FReCon
 	end
 
 	def self.environment=(arg)
-		puts arg
 		@environment_variable = arg
 	end
 end
