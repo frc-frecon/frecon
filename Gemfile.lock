@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frecon (0.0.0)
+    frecon (0.1.1)
       mongoid (~> 4.0)
       sinatra (~> 1.4)
       thin (~> 1.6)
