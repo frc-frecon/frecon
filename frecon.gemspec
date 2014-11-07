@@ -5,7 +5,7 @@ require "frecon/base/variables"
 
 Gem::Specification.new do |s|
 	s.name = "frecon"
-	s.email = "sammidysam@gmail.com"
+	s.email = "frc-frecon@googlegroups.com"
 	s.version = FReCon::VERSION
 
 	s.summary = "A JSON API for scouting FRC competitions."
