@@ -8,6 +8,8 @@ Gem::Specification.new do |s|
 	s.email = "frc-frecon@googlegroups.com"
 	s.version = FReCon::VERSION
 
+	s.licenses = ["MIT"]
+
 	s.summary = "A JSON API for scouting FRC competitions."
 	s.description = "A JSON API for scouting FRC competitions that manages the database for the user."
 
