@@ -1,4 +1,4 @@
-# scouting-project
+# FReCon
 
 ## How to get started
 
