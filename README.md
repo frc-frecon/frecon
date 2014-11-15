@@ -29,3 +29,9 @@ Right now, the project is split up into models and controllers, housed in their 
 When you start the server, all these files are loaded, and the database is updated to make sure it matches what properties are defined in the models.
 When you make a query, the server checks to see what do in `routes.rb`.
 That usually directs it to a controller, which does some logic and may access one or more models before returning the content of the page requested, which is then sent to the client.
+
+## License
+
+FReCon is distributed under the terms of the MIT license.
+You should have received a copy of the MIT license with this program.
+If not, you can find a copy at [opensource.org/licenses/mit](http://opensource.org/licenses/mit).
