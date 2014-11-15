@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # bin/frecon
 #
 # Copyright (C) 2014 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
@@ -6,8 +8,6 @@
 # licensed under the MIT license.  You should have received a copy of the MIT
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
-
-#!/usr/bin/env ruby
 
 # Include rel-path ../lib/ in the $LOAD_PATH if it's not there already.
 lib_directory = File.class_eval('expand_path(join(dirname(__FILE__), "..", "lib"))')
