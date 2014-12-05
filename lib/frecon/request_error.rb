@@ -7,12 +7,23 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+require "json"
+
 class RequestError < StandardError
 	attr_reader :code
 	attr_reader :message
 
 	def initialize(code, message = nil)
 		@code = code
-		@message = message
+		@message = format_error_message(message)
+	end
+
+	def format_error_message(message)
+		case message
+		when String
+			JSON.generate({ errors: [ message ] })
+		when Array
+			JSON.generate({ errors: message })
+		end
 	end
 end
