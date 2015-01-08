@@ -10,12 +10,23 @@
 require "logger"
 require "mongoid"
 
+require "tempfile"
+require "yaml"
+
 require "frecon/models"
 
 module FReCon
 	class Database
-		def self.setup(environment)
-			Mongoid.load!(File.join(File.dirname(__FILE__), "mongoid.yml"), environment)
+		def self.setup(environment, mongoid_hash = nil)
+			if mongoid_hash.is_a?(Hash)
+				mongoid_tempfile = Tempfile.new("FReCon")
+				mongoid_tempfile.write(mongoid_hash.to_yaml)
+				mongoid_tempfile.rewind
+
+				Mongoid.load!(mongoid_tempfile.path, environment)
+			else
+				Mongoid.load!(File.join(File.dirname(__FILE__), "mongoid.yml"), environment)
+			end
 			
 			Mongoid.logger.level = Logger::DEBUG
 			Mongoid.logger = Logger.new($stdout)
