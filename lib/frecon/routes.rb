@@ -11,6 +11,13 @@ require "frecon/controllers"
 
 module FReCon
 	module Routes
+		# verb should be a Symbol.
+		def self.safe_route(base, verb)
+			base.send(verb) do
+				yield
+			end
+		end
+		
 		def self.resource_routes(base, name, controller, methods = [:create, :update, :delete, :show, :index])
 			if methods.include?(:create)
 				base.post "/#{name}" do
