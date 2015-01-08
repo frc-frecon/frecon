@@ -14,7 +14,11 @@ module FReCon
 		# verb should be a Symbol.
 		def self.safe_route(base, verb, url)
 			base.send(verb, url) do
-				yield
+				begin
+					yield
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 		end
 		
