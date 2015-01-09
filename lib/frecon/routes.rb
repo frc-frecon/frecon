@@ -11,45 +11,54 @@ require "frecon/controllers"
 
 module FReCon
 	module Routes
-		# verb should be a Symbol.
-		def self.safe_route(base, verb, url)
-			base.send(verb, url) do
-				begin
-					yield
-				rescue RequestError => e
-					[e.code, e.message]
-				end
-			end
-		end
-		
 		def self.resource_routes(base, name, controller, methods = [:create, :update, :delete, :show, :index])
 			if methods.include?(:create)
-				safe_route(base, :post, "/#{name}") do
-					controller.create request, params
+				base.post "/#{name}" do
+					begin
+						controller.create request, params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 
 			if methods.include?(:update)
-				safe_route(base, :put, "/#{name}/:id") do
-					controller.update request, params
+				base.put "/#{name}/:id" do
+					begin
+						controller.update request, params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 
 			if methods.include?(:delete)
-				safe_route(base, :delete, "/#{name}/:id") do
-					controller.delete params
+				base.delete "/#{name}/:id" do
+					begin
+						controller.delete params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 
 			if methods.include?(:show)
-				safe_route(base, :get, "/#{name}/:id") do
-					controller.show params
+				base.get "/#{name}/:id" do
+					begin
+						controller.show params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 
 			if methods.include?(:index)
-				safe_route(base, :get, "/#{name}") do
-					controller.index params
+				base.get "/#{name}" do
+					begin
+						controller.index params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 		end
@@ -57,82 +66,150 @@ module FReCon
 		def self.included(base)
 			resource_routes base, "teams", TeamsController, [:create, :index]
 
-			safe_route(base, :put, "/teams/:number") do
-				TeamsController.update request, params
+			base.put "/teams/:number" do
+				begin
+					TeamsController.update request, params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :delete, "/teams/:number") do
-				TeamsController.delete params
+			base.delete "/teams/:number" do
+				begin
+					TeamsController.delete params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/teams/:number") do
-				TeamsController.show params
+			base.get "/teams/:number" do
+				begin
+					TeamsController.show params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/teams/:number/records/?:competition_id?") do
-				TeamsController.records params
+			base.get "/teams/:number/records/?:competition_id?" do
+				begin
+					TeamsController.records params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/teams/:number/matches/?:competition_id?") do
-				TeamsController.matches params
+			base.get "/teams/:number/matches/?:competition_id?" do
+				begin
+					TeamsController.matches params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/teams/:number/competitions") do
-				TeamsController.competitions params
+			base.get "/teams/:number/competitions" do
+				begin
+					TeamsController.competitions params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "competitions", CompetitionsController
 
-			safe_route(base, :get, "/competitions/:id/teams") do
-				CompetitionsController.teams params
+			base.get "/competitions/:id/teams" do
+				begin
+					CompetitionsController.teams params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/competitions/:id/matches") do
-				CompetitionsController.matches params
+			base.get "/competitions/:id/matches" do
+				begin
+					CompetitionsController.matches params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/competitions/:id/records") do
-				CompetitionsController.records params
+			base.get "/competitions/:id/records" do
+				begin
+					CompetitionsController.records params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "matches", MatchesController
 
-			safe_route(base, :get, "/matches/:id/records") do
-				MatchesController.records params
+			base.get "/matches/:id/records" do
+				begin
+					MatchesController.records params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/matches/:id/competition") do
-				MatchesController.competition params
+			base.get "/matches/:id/competition" do
+				begin
+					MatchesController.competition params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "records", RecordsController
 
-			safe_route(base, :get, "/records/:id/competition") do
-				RecordsController.competition params
+			base.get "/records/:id/competition" do
+				begin
+					RecordsController.competition params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "robots", RobotsController
 
-			safe_route(base, :get, "/robots/:id/competition") do
-				RobotsController.competition params
+			base.get "/robots/:id/competition" do
+				begin
+					RobotsController.competition params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/robots/:id/team") do
-				RobotsController.team params
+			base.get "/robots/:id/team" do
+				begin
+					RobotsController.team params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "participations", ParticipationsController
 
-			safe_route(base, :get, "/participations/:id/competition") do
-				ParticipationsController.competition params
+			base.get "/participations/:id/competition" do
+				begin
+					ParticipationsController.competition params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/participations/:id/team") do
-				ParticipationsController.team params
+			base.get "/participations/:id/team" do
+				begin
+					ParticipationsController.team params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
-			safe_route(base, :get, "/dump") do
-				DumpController.full params
+			base.get "/dump" do
+				begin
+					DumpController.full params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 		end
 	end
