@@ -1,5 +1,5 @@
 lib_directory = File.expand_path(File.join(File.dirname(__FILE__), "lib"))
-$LOAD_PATH.unshift(lib_directory) unless $LOAD_PATH.include?(lib_directory)
+$LOAD_PATH.unshift(lib_directory) unless $LOAD_PATH.map { |directory| File.expand_path(directory) }.include?(lib_directory)
 
 require "frecon/base/variables"
 
