@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frecon (0.1.3)
+    frecon (0.1.4)
       mongoid (~> 4.0)
       sinatra (~> 1.4)
       thin (~> 1.6)
@@ -24,7 +24,7 @@ GEM
     daemons (1.1.9)
     eventmachine (1.0.4)
     i18n (0.7.0)
-    json (1.8.1)
+    json (1.8.2)
     minitest (5.5.0)
     mongoid (4.0.0)
       activemodel (~> 4.0)
