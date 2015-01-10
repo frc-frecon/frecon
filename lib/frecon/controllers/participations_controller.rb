@@ -11,7 +11,6 @@ module FReCon
 	class ParticipationsController < Controller
 		def self.create(request, params)
 			post_data = process_request request
-			return post_data if post_data.is_an?(Array)
 			
 			# Convert team number to team_id.
 			post_data = team_number_to_team_id(post_data)
@@ -22,7 +21,7 @@ module FReCon
 			if @model.save
 				[201, @model.to_json]
 			else
-				[422, ErrorFormatter.format(@model.errors.full_messages)]
+				raise RequestError.new(422, @model.errors.full_messages)
 			end
 		end
 		

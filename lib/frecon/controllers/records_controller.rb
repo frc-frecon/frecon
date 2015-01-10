@@ -15,12 +15,10 @@ module FReCon
 	class RecordsController < Controller
 		def self.create(request, params)
 			post_data = process_request request
-			return post_data if post_data.is_an?(Array)
 
 			# Change special post_data attributes.
 			# Convert team number to team id.
 			post_data = team_number_to_team_id(post_data)
-			return post_data if post_data.is_an?(Array)
 
 			# Convert match number and competition name to match id.
 			if post_data["match_number"] && !post_data["match_id"]
@@ -29,14 +27,14 @@ module FReCon
 					begin
 						match = competition.matches.find_by number: post_data["match_number"]
 					rescue ArgumentError, TypeError => e
-						return [422, ErrorFormatter.format(e.message)]
+						raise RequestError.new(422, e.message)
 					end
 
 					# Create the match if necessary.
 					begin
 						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
 					rescue ArgumentError, TypeError => e
-						return [422, ErrorFormatter.format(e.message)]
+						raise RequestError.new(422, e.message)
 					end
 
 					post_data["match_id"] = match.id
@@ -51,7 +49,7 @@ module FReCon
 					begin
 						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
 					rescue ArgumentError, TypeError => e
-						return [422, ErrorFormatter.format(e.message)]
+						raise RequestError.new(422, e.message)
 					end
 
 					post_data["match_id"] = match.id
@@ -59,7 +57,7 @@ module FReCon
 					post_data.delete("match_number")
 					post_data.delete("competition")
 				else
-					return [422, ErrorFormatter.format("A current competition is not set.  Please set it.")]
+					raise RequestError.new(422, "A current competition is not set.  Please set it.")
 				end
 			end
 
@@ -70,7 +68,7 @@ module FReCon
 				# Use to_json for now; we can filter it later.
 				[201, @record.to_json]
 			else
-				[422, ErrorFormatter.format(@record.errors.full_messages)]
+				raise RequestError.new(422, @record.errors.full_messages)
 			end
 		end
 

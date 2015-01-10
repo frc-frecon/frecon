@@ -1,4 +1,4 @@
-# lib/frecon/error_formatter.rb
+# lib/frecon/request_error.rb
 #
 # Copyright (C) 2014 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
 #
@@ -9,15 +9,21 @@
 
 require "json"
 
-module FReCon
-	class ErrorFormatter
-		def self.format(message)
-			case message
-			when String
-				JSON.generate({ errors: [ message ] })
-			when Array
-				JSON.generate({ errors: message })
-			end
+class RequestError < StandardError
+	attr_reader :code
+	attr_reader :message
+
+	def initialize(code, message = nil)
+		@code = code
+		@message = format_error_message(message)
+	end
+
+	def format_error_message(message)
+		case message
+		when String
+			JSON.generate({ errors: [ message ] })
+		when Array
+			JSON.generate({ errors: message })
 		end
 	end
 end

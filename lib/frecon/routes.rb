@@ -14,31 +14,51 @@ module FReCon
 		def self.resource_routes(base, name, controller, methods = [:create, :update, :delete, :show, :index])
 			if methods.include?(:create)
 				base.post "/#{name}" do
-					controller.create request, params
+					begin
+						controller.create request, params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 
 			if methods.include?(:update)
 				base.put "/#{name}/:id" do
-					controller.update request, params
+					begin
+						controller.update request, params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 
 			if methods.include?(:delete)
 				base.delete "/#{name}/:id" do
-					controller.delete params
+					begin
+						controller.delete params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 
 			if methods.include?(:show)
 				base.get "/#{name}/:id" do
-					controller.show params
+					begin
+						controller.show params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 
 			if methods.include?(:index)
 				base.get "/#{name}" do
-					controller.index params
+					begin
+						controller.index params
+					rescue RequestError => e
+						[e.code, e.message]
+					end
 				end
 			end
 		end
@@ -47,81 +67,149 @@ module FReCon
 			resource_routes base, "teams", TeamsController, [:create, :index]
 
 			base.put "/teams/:number" do
-				TeamsController.update request, params
+				begin
+					TeamsController.update request, params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.delete "/teams/:number" do
-				TeamsController.delete params
+				begin
+					TeamsController.delete params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/teams/:number" do
-				TeamsController.show params
+				begin
+					TeamsController.show params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/teams/:number/records/?:competition_id?" do
-				TeamsController.records params
+				begin
+					TeamsController.records params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/teams/:number/matches/?:competition_id?" do
-				TeamsController.matches params
+				begin
+					TeamsController.matches params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/teams/:number/competitions" do
-				TeamsController.competitions params
+				begin
+					TeamsController.competitions params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "competitions", CompetitionsController
 
 			base.get "/competitions/:id/teams" do
-				CompetitionsController.teams params
+				begin
+					CompetitionsController.teams params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/competitions/:id/matches" do
-				CompetitionsController.matches params
+				begin
+					CompetitionsController.matches params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/competitions/:id/records" do
-				CompetitionsController.records params
+				begin
+					CompetitionsController.records params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "matches", MatchesController
 
 			base.get "/matches/:id/records" do
-				MatchesController.records params
+				begin
+					MatchesController.records params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/matches/:id/competition" do
-				MatchesController.competition params
+				begin
+					MatchesController.competition params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "records", RecordsController
 
 			base.get "/records/:id/competition" do
-				RecordsController.competition params
+				begin
+					RecordsController.competition params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "robots", RobotsController
 
 			base.get "/robots/:id/competition" do
-				RobotsController.competition params
+				begin
+					RobotsController.competition params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/robots/:id/team" do
-				RobotsController.team params
+				begin
+					RobotsController.team params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			resource_routes base, "participations", ParticipationsController
 
 			base.get "/participations/:id/competition" do
-				ParticipationsController.competition params
+				begin
+					ParticipationsController.competition params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/participations/:id/team" do
-				ParticipationsController.team params
+				begin
+					ParticipationsController.team params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 
 			base.get "/dump" do
-				DumpController.full params
+				begin
+					DumpController.full params
+				rescue RequestError => e
+					[e.code, e.message]
+				end
 			end
 		end
 	end

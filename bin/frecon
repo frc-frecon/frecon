@@ -10,7 +10,7 @@
 # <http://opensource.org/licenses/MIT>.
 
 # Include rel-path ../lib/ in the $LOAD_PATH if it's not there already.
-lib_directory = File.class_eval('expand_path(join(dirname(__FILE__), "..", "lib"))')
+lib_directory = File.join(File.dirname(__FILE__), "..", "lib")
 $LOAD_PATH.unshift(lib_directory) unless $LOAD_PATH.include?(lib_directory)
 
 require "frecon"

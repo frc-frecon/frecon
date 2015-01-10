@@ -8,7 +8,7 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "json"
-require "frecon/error_formatter"
+require "frecon/request_error"
 
 require "frecon/controller"
 
