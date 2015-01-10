@@ -42,15 +42,15 @@ module FReCon
 			rescue JSON::ParserError => e
 				# If we have malformed JSON (JSON::ParserError is
 				# raised), escape out of the function.
-				return [400, ErrorFormatter.format(e.message)]
+				raise RequestError.new(400, e.message)
 			end
 
-			post_data.is_an?(Array) ? [422, ErrorFormatter.format("Must pass a JSON object!")] : post_data
+			raise RequestError.new(422, "Must pass a JSON object!") if post_data.is_an?(Array)
+			post_data
 		end
 
 		def self.create(request, params)
 			post_data = process_request request
-			return post_data if post_data.is_an?(Array)
 
 			@model = model.new
 			@model.attributes = post_data
@@ -58,24 +58,23 @@ module FReCon
 			if @model.save
 				[201, @model.to_json]
 			else
-				[422, ErrorFormatter.format(@model.errors.full_messages)]
+				raise RequestError.new(422, @model.errors.full_messages)
 			end
 		end
 
 		def self.update(request, params)
-			return [400, "Must supply a #{model_name.downcase}!"] unless params[:id]
+			raise RequestError.new(400, "Must supply a #{model_name.downcase}!") unless params[:id]
 
 			post_data = process_request request
-			return post_data if post_data.is_an?(Array)
 
 			@model = model.find params[:id]
 
-			return [404, ErrorFormatter.format(could_not_find(params[:id]))] unless @model
+			raise RequestError.new(404, could_not_find(params[:id])) unless @model
 
 			if @model.update_attributes(post_data)
 				@model.to_json
 			else
-				[422, ErrorFormatter.format(@model.errors.full_messages)]
+				raise RequestError.new(422, @model.errors.full_messages)
 			end
 		end
 
@@ -86,10 +85,10 @@ module FReCon
 				if @model.destroy
 					204
 				else
-					[422, ErrorFormatter.format(@model.errors.full_messages)]
+					raise RequestError.new(422, @model.errors.full_messages)
 				end
 			else
-				[404, ErrorFormatter.format(could_not_find(params[:id]))]
+				raise RequestError.new(404, could_not_find(params[:id]))
 			end
 		end
 
@@ -99,7 +98,7 @@ module FReCon
 			if @model
 				@model.to_json
 			else
-				[404, ErrorFormatter.format(could_not_find(params[:id]))]
+				raise RequestError.new(404, could_not_find(params[:id]))
 			end
 		end
 
@@ -117,7 +116,7 @@ module FReCon
 			if @model
 				@model.send(attribute).to_json
 			else
-				[404, ErrorFormatter.format(could_not_find(params[:id]))]
+				raise RequestError.new(404, could_not_find(params[:id]))
 			end
 		end
 
@@ -130,7 +129,7 @@ module FReCon
 
 					post_data
 				else
-					return [404, ErrorFormatter.format(could_not_find(post_data["team_number"], "number", "team"))]
+					raise RequestError.new(404, could_not_find(post_data["team_number"], "number", "team"))
 				end
 			end
 		end
