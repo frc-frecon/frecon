@@ -1,2 +1,0 @@
-cd ../example-implementation
-rackup -p 4567

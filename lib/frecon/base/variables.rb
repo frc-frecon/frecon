@@ -1,4 +1,4 @@
-# lib/frecon/controllers/matches_controller.rb
+# lib/frecon/base/variables.rb
 #
 # Copyright (C) 2014 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
 #
@@ -7,17 +7,16 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "json"
-require "frecon/models"
-
 module FReCon
-	class MatchesController < Controller
-		def self.competition(params)
-			show_attribute params, :competition
-		end
+	VERSION = "0.1.4"
 
-		def self.records(params)
-			show_attribute params, :records
-		end
+	@environment_variable = :development
+
+	def self.environment
+		@environment_variable
+	end
+
+	def self.environment=(arg)
+		@environment_variable = arg
 	end
 end

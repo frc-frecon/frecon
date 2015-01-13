@@ -1,3 +1,12 @@
+# lib/frecon/model.rb
+#
+# Copyright (C) 2014 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
+#
+# This file is part of FReCon, an API for scouting at FRC Competitions, which is
+# licensed under the MIT license.  You should have received a copy of the MIT
+# license with this program.  If not, please see
+# <http://opensource.org/licenses/MIT>.
+
 require "mongoid"
 
 module FReCon
@@ -6,8 +15,23 @@ module FReCon
 			child.class_eval do
 				include Mongoid::Document
 				include Mongoid::Timestamps
-				include Mongoid::Attributes::Dynamic		
+				include Mongoid::Attributes::Dynamic
+
+				validate :no_invalid_relations
 			end
+		end
+
+		def no_invalid_relations
+			# Get all of the belongs_to fields (ends with "_id" and not "_id" because that is the id).
+			attributes.keys.select { |attribute| attribute.end_with?("_id") && attribute != "_id" }.each do |relation|
+				# Get the model for the belongs_to association.
+				model = "FReCon::".concat(relation.gsub(/_id\Z/, "").capitalize).constantize
+				errors.add(relation.to_sym, "is invalid") if relation_invalid(model, send(relation))
+			end
+		end
+
+		def relation_invalid(class_constant, id)
+			class_constant.find_by(id: id).nil?
 		end
 	end
 end

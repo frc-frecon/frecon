@@ -1,3 +1,12 @@
+# lib/frecon/models/competition.rb
+#
+# Copyright (C) 2014 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
+#
+# This file is part of FReCon, an API for scouting at FRC Competitions, which is
+# licensed under the MIT license.  You should have received a copy of the MIT
+# license with this program.  If not, please see
+# <http://opensource.org/licenses/MIT>.
+
 require "frecon/model"
 
 module FReCon
@@ -7,7 +16,7 @@ module FReCon
 
 		has_many :matches, dependent: :destroy
 		has_many :participations, dependent: :destroy
-		
+
 		validates :location, :name, presence: true
 		validates :name, uniqueness: true
 
@@ -18,6 +27,8 @@ module FReCon
 		end
 
 		def teams
+			participations = self.participations
+
 			Team.in id: participations.map(&:team_id)
 		end
 	end

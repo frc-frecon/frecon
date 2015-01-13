@@ -1,4 +1,4 @@
-# lib/frecon/controllers/matches_controller.rb
+# lib/frecon/request_error.rb
 #
 # Copyright (C) 2014 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
 #
@@ -8,16 +8,22 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "json"
-require "frecon/models"
 
-module FReCon
-	class MatchesController < Controller
-		def self.competition(params)
-			show_attribute params, :competition
-		end
+class RequestError < StandardError
+	attr_reader :code
+	attr_reader :message
 
-		def self.records(params)
-			show_attribute params, :records
+	def initialize(code, message = nil)
+		@code = code
+		@message = format_error_message(message)
+	end
+
+	def format_error_message(message)
+		case message
+		when String
+			JSON.generate({ errors: [ message ] })
+		when Array
+			JSON.generate({ errors: message })
 		end
 	end
 end

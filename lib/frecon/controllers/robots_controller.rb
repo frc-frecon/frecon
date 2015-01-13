@@ -1,4 +1,4 @@
-# lib/frecon/controllers/matches_controller.rb
+# lib/frecon/controllers/robots_controller.rb
 #
 # Copyright (C) 2014 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
 #
@@ -8,16 +8,16 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "json"
-require "frecon/models"
+require "frecon/models/robot"
 
 module FReCon
-	class MatchesController < Controller
+	class RobotsController < Controller
 		def self.competition(params)
 			show_attribute params, :competition
 		end
 
-		def self.records(params)
-			show_attribute params, :records
+		def self.team(params)
+			show_attribute params, :team
 		end
 	end
 end
