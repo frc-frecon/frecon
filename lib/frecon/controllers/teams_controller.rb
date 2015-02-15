@@ -14,12 +14,12 @@ require "frecon/models"
 module FReCon
 	class TeamsController < Controller
 		def self.update(request, params)
-			raise RequestError.new(400, "Must supply a team id or number!") if !params[:id] && !params[:number]
+			raise RequestError.new(400, "Must supply a team id or number!") unless params[:id]
 
 			post_data = process_request request
 
 			@team = find_team params
-			raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number")) if @team.nil?
+			raise RequestError.new(404, could_not_find(params[:id], "id or number")) if @team.nil?
 
 			if @team.update_attributes(post_data)
 				@team.to_json
@@ -38,7 +38,7 @@ module FReCon
 					raise RequestError.new(422, @team.errors.full_messages)
 				end
 			else
-				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
+				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
 			end
 		end
 
@@ -48,7 +48,7 @@ module FReCon
 			if @team
 				@team.to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
+				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
 			end
 		end
 
@@ -68,7 +68,7 @@ module FReCon
 					@team.records.to_json
 				end
 			else
-				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
+				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
 			end
 		end
 
@@ -85,7 +85,7 @@ module FReCon
 
 				@team.matches(params[:competition_id]).to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
+				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
 			end
 		end
 
@@ -95,7 +95,7 @@ module FReCon
 			if @team
 				@team.competitions.to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
+				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
 			end
 		end
 
