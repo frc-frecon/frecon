@@ -10,7 +10,7 @@
 module FReCon
 	class ParticipationsController < Controller
 		def self.create(request, params)
-			create_with_team_number(request, params)
+			super(request, params, team_number_to_team_id(process_request(request)))
 		end
 		
 		def self.competition(params)

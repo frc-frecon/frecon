@@ -62,10 +62,6 @@ module FReCon
 			end
 		end
 
-		def self.create_with_team_number(request, params)
-			create(request, params, team_number_to_team_id(process_request(request)))
-		end
-
 		def self.update(request, params)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase}!") unless params[:id]
 
