@@ -63,7 +63,7 @@ module FReCon
 		end
 
 		def self.update(request, params)
-			raise RequestError.new(400, "Must supply a #{model_name.downcase}!") unless params[:id]
+			raise RequestError.new(400, "Must supply a #{model_name.downcase} id!") unless params[:id]
 
 			post_data = process_request request
 
