@@ -12,6 +12,10 @@ require "frecon/models/robot"
 
 module FReCon
 	class RobotsController < Controller
+		def self.create(request, params)
+			create_with_team_number(request, params)
+		end
+		
 		def self.competition(params)
 			show_attribute params, :competition
 		end

@@ -49,8 +49,8 @@ module FReCon
 			post_data
 		end
 
-		def self.create(request, params)
-			post_data = process_request request
+		def self.create(request, params, post_data = nil)
+			post_data ||= process_request request
 
 			@model = model.new
 			@model.attributes = post_data
@@ -60,6 +60,10 @@ module FReCon
 			else
 				raise RequestError.new(422, @model.errors.full_messages)
 			end
+		end
+
+		def self.create_with_team_number(request, params)
+			create(request, params, team_number_to_team_id(process_request(request)))
 		end
 
 		def self.update(request, params)
