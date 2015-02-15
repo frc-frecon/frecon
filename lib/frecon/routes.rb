@@ -66,7 +66,7 @@ module FReCon
 		def self.included(base)
 			resource_routes base, "teams", TeamsController
 
-			base.get "/teams/:number/records/?:competition_id?" do
+			base.get "/teams/:id/records/?:competition_id?" do
 				begin
 					TeamsController.records params
 				rescue RequestError => e
@@ -74,7 +74,7 @@ module FReCon
 				end
 			end
 
-			base.get "/teams/:number/matches/?:competition_id?" do
+			base.get "/teams/:id/matches/?:competition_id?" do
 				begin
 					TeamsController.matches params
 				rescue RequestError => e
@@ -82,7 +82,7 @@ module FReCon
 				end
 			end
 
-			base.get "/teams/:number/competitions" do
+			base.get "/teams/:id/competitions" do
 				begin
 					TeamsController.competitions params
 				rescue RequestError => e
