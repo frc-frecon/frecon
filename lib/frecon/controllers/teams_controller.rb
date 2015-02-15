@@ -13,27 +13,13 @@ require "frecon/models"
 
 module FReCon
 	class TeamsController < Controller
-		def self.create(request, params)
-			post_data = process_request request
-
-			@team = Team.new
-			@team.attributes = post_data
-
-			if @team.save
-				# Use to_json for now; we can filter it later.
-				[201, @team.to_json]
-			else
-				raise RequestError.new(422, @team.errors.full_messages)
-			end
-		end
-
 		def self.update(request, params)
-			raise RequestError.new(400, "Must supply a team id or number!") unless params[:number]
+			raise RequestError.new(400, "Must supply a team id or number!") if !params[:id] && !params[:number]
 
 			post_data = process_request request
 
 			@team = find_team params
-			raise RequestError.new(404, could_not_find(params[:number], "number")) if @team.nil?
+			raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number")) if @team.nil?
 
 			if @team.update_attributes(post_data)
 				@team.to_json
@@ -52,7 +38,7 @@ module FReCon
 					raise RequestError.new(422, @team.errors.full_messages)
 				end
 			else
-				raise RequestError.new(404, could_not_find(params[:number], "number"))
+				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
 			end
 		end
 
@@ -62,7 +48,7 @@ module FReCon
 			if @team
 				@team.to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:number], "number"))
+				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
 			end
 		end
 
@@ -82,7 +68,7 @@ module FReCon
 					@team.records.to_json
 				end
 			else
-				raise RequestError.new(404, could_not_find(params[:number], "number"))
+				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
 			end
 		end
 
@@ -99,7 +85,7 @@ module FReCon
 
 				@team.matches(params[:competition_id]).to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:number], "number"))
+				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
 			end
 		end
 
@@ -109,13 +95,13 @@ module FReCon
 			if @team
 				@team.competitions.to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:number], "number"))
+				raise RequestError.new(404, could_not_find(params[:id] || params[:number], "id or number"))
 			end
 		end
 
 		# The `number` param will be a number or id.
 		def self.find_team(params)
-			(Team.find_by id: params[:number]) || (Team.find_by number: params[:number])
+			(Team.find_by id: params[:id]) || (Team.find_by number: params[:id])
 		end
 	end
 end

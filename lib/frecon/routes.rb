@@ -64,31 +64,7 @@ module FReCon
 		end
 		
 		def self.included(base)
-			resource_routes base, "teams", TeamsController, [:create, :index]
-
-			base.put "/teams/:number" do
-				begin
-					TeamsController.update request, params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.delete "/teams/:number" do
-				begin
-					TeamsController.delete params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/teams/:number" do
-				begin
-					TeamsController.show params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
+			resource_routes base, "teams", TeamsController
 
 			base.get "/teams/:number/records/?:competition_id?" do
 				begin
