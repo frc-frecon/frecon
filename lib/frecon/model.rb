@@ -21,6 +21,11 @@ module FReCon
 			end
 		end
 
+		def self.descendants
+			# Basically lists all of the models in this database.
+			ObjectSpace.each_object(Class).select { |possibleChild| possibleChild < self }
+		end
+
 		def no_invalid_relations
 			# Get all of the belongs_to fields (ends with "_id" and not "_id" because that is the id).
 			attributes.keys.select { |attribute| attribute.end_with?("_id") && attribute != "_id" }.each do |relation|
