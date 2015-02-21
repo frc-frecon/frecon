@@ -17,48 +17,19 @@ module FReCon
 		def self.find_model(params)
 			(Team.find_by id: params[:id]) || (Team.find_by number: params[:id])
 		end
-		
-		def self.update(request, params)
-			raise RequestError.new(400, "Must supply a team id or number!") unless params[:id]
 
-			post_data = process_json_object_request request
-
-			@team = find_team params
-			raise RequestError.new(404, could_not_find(params[:id], "id or number")) if @team.nil?
-
-			if @team.update_attributes(post_data)
-				@team.to_json
+		# Since Team has a special way of finding itself, we can make
+		# the error message reflect this.
+		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
+			if attribute == "id" && model == "team"
+				"Could not find team of id or number #{value}!"
 			else
-				raise RequestError.new(422, @team.errors.full_messages)
-			end
-		end
-
-		def self.delete(params)
-			@team = find_team params
-
-			if @team
-				if @team.destroy
-					204
-				else
-					raise RequestError.new(422, @team.errors.full_messages)
-				end
-			else
-				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
-			end
-		end
-
-		def self.show(params)
-			@team = find_team params
-
-			if @team
-				@team.to_json
-			else
-				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
+				"Could not find #{model} of #{attribute} #{value}!"
 			end
 		end
 
 		def self.records(params)
-			@team = find_team params
+			@team = find_model params
 
 			if @team
 				if params[:competition_id]
@@ -78,7 +49,7 @@ module FReCon
 		end
 
 		def self.matches(params)
-			@team = find_team params
+			@team = find_model params
 
 			if @team
 				# Ensure that the competition ID is valid.
@@ -95,7 +66,7 @@ module FReCon
 		end
 
 		def self.competitions(params)
-			@team = find_team params
+			@team = find_model params
 
 			if @team
 				@team.competitions.to_json
