@@ -14,7 +14,7 @@ require "frecon/models"
 module FReCon
 	class TeamsController < Controller
 		def self.create(request, params)
-			post_data = process_request request
+			post_data = process_json_object_request request
 
 			@team = Team.new
 			@team.attributes = post_data
@@ -30,7 +30,7 @@ module FReCon
 		def self.update(request, params)
 			raise RequestError.new(400, "Must supply a team id or number!") unless params[:number]
 
-			post_data = process_request request
+			post_data = process_json_object_request request
 
 			@team = find_team params
 			raise RequestError.new(404, could_not_find(params[:number], "number")) if @team.nil?
