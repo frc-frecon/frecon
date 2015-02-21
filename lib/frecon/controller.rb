@@ -49,8 +49,7 @@ module FReCon
 
 			post_data
 		end
-
-		# Performs the creation of the associated model.
+		
 		def self.create(request, params, post_data = nil)
 			post_data ||= process_request request
 
@@ -63,8 +62,7 @@ module FReCon
 				raise RequestError.new(422, @model.errors.full_messages)
 			end
 		end
-
-		# Performs an update of an associated database object.
+		
 		def self.update(request, params)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase}!") unless params[:id]
 
@@ -80,8 +78,7 @@ module FReCon
 				raise RequestError.new(422, @model.errors.full_messages)
 			end
 		end
-
-		# Performs the deletion of an associated database object.
+		
 		def self.delete(params)
 			@model = model.find params[:id]
 
@@ -95,8 +92,7 @@ module FReCon
 				raise RequestError.new(404, could_not_find(params[:id]))
 			end
 		end
-
-		# Fetches the associated database object.
+		
 		def self.show(params)
 			@model = model.find params[:id]
 
@@ -115,8 +111,7 @@ module FReCon
 			# database query (The primary problem is that models don't have
 			# such an '_' attribute to begin with).
 			params.delete("_")
-
-			# If no params are given, return all models, else select by the params.
+			
 			@models = params.empty? ? model.all : model.where(params)
 
 			@models.to_json
