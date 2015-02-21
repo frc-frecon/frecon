@@ -25,7 +25,7 @@ module FReCon
 
 		# The 404 error message.
 		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
-			"Could not find #{model_name.downcase} of #{attribute} #{value}!"
+			"Could not find #{model} of #{attribute} #{value}!"
 		end
 
 		# Processes a POST/PUT request and returns the post data.
