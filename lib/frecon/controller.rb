@@ -46,9 +46,11 @@ module FReCon
 			end
 
 			raise RequestError.new(422, "Must pass a JSON object!") if post_data.is_an?(Array)
+
 			post_data
 		end
 
+		# Performs the creation of the associated model.
 		def self.create(request, params, post_data = nil)
 			post_data ||= process_request request
 
@@ -62,6 +64,7 @@ module FReCon
 			end
 		end
 
+		# Performs an update of an associated database object.
 		def self.update(request, params)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase}!") unless params[:id]
 
@@ -78,6 +81,7 @@ module FReCon
 			end
 		end
 
+		# Performs the deletion of an associated database object.
 		def self.delete(params)
 			@model = model.find params[:id]
 
@@ -92,6 +96,7 @@ module FReCon
 			end
 		end
 
+		# Fetches the associated database object.
 		def self.show(params)
 			@model = model.find params[:id]
 
@@ -103,8 +108,15 @@ module FReCon
 		end
 
 		def self.index(params)
+			# jQuery (used client-side in WeBCa) sometimes includes a '_'
+			# param in AJAX requests to try and get rid of exuberant caching.
+			#
+			# We delete this param because of problems it causes in the
+			# database query (The primary problem is that models don't have
+			# such an '_' attribute to begin with).
 			params.delete("_")
 
+			# If no params are given, return all models, else select by the params.
 			@models = params.empty? ? model.all : model.where(params)
 
 			@models.to_json
