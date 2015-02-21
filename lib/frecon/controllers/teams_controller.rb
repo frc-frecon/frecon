@@ -21,7 +21,7 @@ module FReCon
 		def self.update(request, params)
 			raise RequestError.new(400, "Must supply a team id or number!") unless params[:id]
 
-			post_data = process_request request
+			post_data = process_json_object_request request
 
 			@team = find_team params
 			raise RequestError.new(404, could_not_find(params[:id], "id or number")) if @team.nil?

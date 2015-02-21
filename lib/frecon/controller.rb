@@ -31,11 +31,11 @@ module FReCon
 
 		# The 404 error message.
 		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
-			"Could not find #{model_name.downcase} of #{attribute} #{value}!"
+			"Could not find #{model} of #{attribute} #{value}!"
 		end
 
 		# Processes a POST/PUT request and returns the post data.
-		def self.process_request(request)
+		def self.process_json_object_request(request)
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
 			# through it.
@@ -56,7 +56,7 @@ module FReCon
 		end
 
 		def self.create(request, params, post_data = nil)
-			post_data ||= process_request request
+			post_data ||= process_json_object_request request
 
 			@model = model.new
 			@model.attributes = post_data
@@ -67,11 +67,11 @@ module FReCon
 				raise RequestError.new(422, @model.errors.full_messages)
 			end
 		end
-
-		def self.update(request, params)
+		
+		def self.update(request, params, post_data = nil)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase} id!") unless params[:id]
 
-			post_data = process_request request
+			post_data ||= process_json_object_request request
 
 			@model = find_model params
 
