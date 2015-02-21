@@ -26,4 +26,13 @@ class RequestError < StandardError
 			JSON.generate({ errors: message })
 		end
 	end
+
+	# A Sinatra-compliant return value.
+	def return_value
+		if @message
+			[@code, @message]
+		else
+			@code
+		end
+	end
 end

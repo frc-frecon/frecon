@@ -10,19 +10,7 @@
 module FReCon
 	class ParticipationsController < Controller
 		def self.create(request, params)
-			post_data = process_request request
-			
-			# Convert team number to team_id.
-			post_data = team_number_to_team_id(post_data)
-
-			@model = model.new
-			@model.attributes = post_data
-
-			if @model.save
-				[201, @model.to_json]
-			else
-				raise RequestError.new(422, @model.errors.full_messages)
-			end
+			super(request, params, team_number_to_team_id(process_request(request)))
 		end
 		
 		def self.competition(params)

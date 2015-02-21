@@ -13,17 +13,13 @@ require "frecon/models"
 module FReCon
 	class DumpController
 		def self.full(params)
-			competitions = Competition.all
-			teams = Team.all
-			matches = Match.all
-			records = Record.all
+			dump = {}
 
-			{
-				"competitions" => competitions,
-				"teams" => teams,
-				"matches" => matches,
-				"records" => records
-			}.to_json
+			Model.descendants.each do |child|
+				dump[child.name.gsub(/FReCon::/, "").downcase.pluralize] = child.all
+			end
+
+			dump.to_json
 		end
 	end
 end

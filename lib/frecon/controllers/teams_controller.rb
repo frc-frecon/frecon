@@ -28,11 +28,11 @@ module FReCon
 		end
 
 		def self.update(request, params)
-			raise RequestError.new(400, "Must supply a team number!") unless params[:number]
+			raise RequestError.new(400, "Must supply a team id or number!") unless params[:number]
 
 			post_data = process_request request
 
-			@team = Team.find_by number: params[:number]
+			@team = find_team params
 			raise RequestError.new(404, could_not_find(params[:number], "number")) if @team.nil?
 
 			if @team.update_attributes(post_data)
@@ -43,7 +43,7 @@ module FReCon
 		end
 
 		def self.delete(params)
-			@team = Team.find_by number: params[:number]
+			@team = find_team params
 
 			if @team
 				if @team.destroy
@@ -57,7 +57,7 @@ module FReCon
 		end
 
 		def self.show(params)
-			@team = Team.find_by number: params[:number]
+			@team = find_team params
 
 			if @team
 				@team.to_json
@@ -67,7 +67,7 @@ module FReCon
 		end
 
 		def self.records(params)
-			@team = Team.find_by number: params[:number]
+			@team = find_team params
 
 			if @team
 				if params[:competition_id]
@@ -87,7 +87,7 @@ module FReCon
 		end
 
 		def self.matches(params)
-			@team = Team.find_by number: params[:number]
+			@team = find_team params
 
 			if @team
 				# Ensure that the competition ID is valid.
@@ -104,13 +104,18 @@ module FReCon
 		end
 
 		def self.competitions(params)
-			@team = Team.find_by number: params[:number]
+			@team = find_team params
 
 			if @team
 				@team.competitions.to_json
 			else
 				raise RequestError.new(404, could_not_find(params[:number], "number"))
 			end
+		end
+
+		# The `number` param will be a number or id.
+		def self.find_team(params)
+			(Team.find_by id: params[:number]) || (Team.find_by number: params[:number])
 		end
 	end
 end

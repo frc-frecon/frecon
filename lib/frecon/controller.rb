@@ -49,8 +49,8 @@ module FReCon
 			post_data
 		end
 
-		def self.create(request, params)
-			post_data = process_request request
+		def self.create(request, params, post_data = nil)
+			post_data ||= process_request request
 
 			@model = model.new
 			@model.attributes = post_data

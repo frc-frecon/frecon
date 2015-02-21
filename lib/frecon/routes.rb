@@ -17,7 +17,7 @@ module FReCon
 					begin
 						controller.create request, params
 					rescue RequestError => e
-						[e.code, e.message]
+						e.return_value
 					end
 				end
 			end
@@ -27,7 +27,7 @@ module FReCon
 					begin
 						controller.update request, params
 					rescue RequestError => e
-						[e.code, e.message]
+						e.return_value
 					end
 				end
 			end
@@ -37,7 +37,7 @@ module FReCon
 					begin
 						controller.delete params
 					rescue RequestError => e
-						[e.code, e.message]
+						e.return_value
 					end
 				end
 			end
@@ -47,7 +47,7 @@ module FReCon
 					begin
 						controller.show params
 					rescue RequestError => e
-						[e.code, e.message]
+						e.return_value
 					end
 				end
 			end
@@ -57,7 +57,7 @@ module FReCon
 					begin
 						controller.index params
 					rescue RequestError => e
-						[e.code, e.message]
+						e.return_value
 					end
 				end
 			end
@@ -70,7 +70,7 @@ module FReCon
 				begin
 					TeamsController.update request, params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -78,7 +78,7 @@ module FReCon
 				begin
 					TeamsController.delete params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -86,7 +86,7 @@ module FReCon
 				begin
 					TeamsController.show params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -94,7 +94,7 @@ module FReCon
 				begin
 					TeamsController.records params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -102,7 +102,7 @@ module FReCon
 				begin
 					TeamsController.matches params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -110,7 +110,7 @@ module FReCon
 				begin
 					TeamsController.competitions params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -120,7 +120,7 @@ module FReCon
 				begin
 					CompetitionsController.teams params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -128,7 +128,7 @@ module FReCon
 				begin
 					CompetitionsController.matches params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -136,7 +136,7 @@ module FReCon
 				begin
 					CompetitionsController.records params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -146,7 +146,7 @@ module FReCon
 				begin
 					MatchesController.records params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -154,7 +154,7 @@ module FReCon
 				begin
 					MatchesController.competition params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -164,7 +164,7 @@ module FReCon
 				begin
 					RecordsController.competition params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -174,7 +174,7 @@ module FReCon
 				begin
 					RobotsController.competition params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -182,7 +182,7 @@ module FReCon
 				begin
 					RobotsController.team params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -192,7 +192,7 @@ module FReCon
 				begin
 					ParticipationsController.competition params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -200,7 +200,7 @@ module FReCon
 				begin
 					ParticipationsController.team params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 
@@ -208,7 +208,7 @@ module FReCon
 				begin
 					DumpController.full params
 				rescue RequestError => e
-					[e.code, e.message]
+					e.return_value
 				end
 			end
 		end
