@@ -29,7 +29,7 @@ module FReCon
 		end
 
 		# Processes a POST/PUT request and returns the post data.
-		def self.process_request(request)
+		def self.process_json_object_request(request)
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
 			# through it.
@@ -50,7 +50,7 @@ module FReCon
 		end
 
 		def self.create(request, params, post_data = nil)
-			post_data ||= process_request request
+			post_data ||= process_json_object_request request
 
 			@model = model.new
 			@model.attributes = post_data
@@ -65,7 +65,7 @@ module FReCon
 		def self.update(request, params, post_data = nil)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase}!") unless params[:id]
 
-			post_data ||= process_request request
+			post_data ||= process_json_object_request request
 
 			@model = model.find params[:id]
 
