@@ -23,6 +23,12 @@ module FReCon
 			self.name.gsub(/Controller\Z/, "").singularize.constantize
 		end
 
+		# Some models have to find themselves in special ways,
+		# so this can be overridden with those ways.
+		def self.find_model(params)
+			model.find params[:id]
+		end
+
 		# The 404 error message.
 		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
 			"Could not find #{model_name.downcase} of #{attribute} #{value}!"
@@ -67,7 +73,7 @@ module FReCon
 
 			post_data = process_request request
 
-			@model = model.find params[:id]
+			@model = find_model params
 
 			raise RequestError.new(404, could_not_find(params[:id])) unless @model
 
@@ -79,7 +85,7 @@ module FReCon
 		end
 
 		def self.delete(params)
-			@model = model.find params[:id]
+			@model = find_model params
 
 			if @model
 				if @model.destroy
@@ -93,7 +99,7 @@ module FReCon
 		end
 
 		def self.show(params)
-			@model = model.find params[:id]
+			@model = find_model params
 
 			if @model
 				@model.to_json
@@ -111,7 +117,7 @@ module FReCon
 		end
 
 		def self.show_attribute(params, attribute)
-			@model = model.find params[:id]
+			@model = find_model params
 
 			if @model
 				@model.send(attribute).to_json
