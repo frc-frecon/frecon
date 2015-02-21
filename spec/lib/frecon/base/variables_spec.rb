@@ -29,7 +29,7 @@ describe FReCon do
 		describe "FReCon.environment" do
 			it "returns current environment" do
 				random_environment = SecureRandom.hex(64).to_sym
-				
+
 				FReCon.instance_variable_set(:@environment_variable, random_environment)
 
 				expect(FReCon.environment).to be(random_environment)
@@ -39,7 +39,7 @@ describe FReCon do
 		describe "FReCon.environment=" do
 			it "sets environment variable to new environment variable" do
 				random_environment = SecureRandom.hex(64).to_sym
-				
+
 				FReCon.environment = random_environment
 
 				expect(FReCon.instance_variable_get(:@environment_variable)).to be(random_environment)

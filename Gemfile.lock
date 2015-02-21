@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frecon (0.1.4)
+    frecon (0.2.0)
       mongoid (~> 4.0)
       sinatra (~> 1.4)
       thin (~> 1.6)
@@ -25,9 +25,8 @@ GEM
     coderay (1.1.0)
     connection_pool (2.1.0)
     daemons (1.1.9)
-    database_cleaner (1.4.0)
     diff-lcs (1.2.5)
-    eventmachine (1.0.4)
+    eventmachine (1.0.7)
     ffi (1.9.6)
     formatador (0.2.5)
     guard (2.11.1)
@@ -118,7 +117,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  database_cleaner (~> 1.4)
   frecon!
   guard (~> 2.6)
   guard-rspec (~> 4.2)

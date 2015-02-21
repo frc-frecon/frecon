@@ -4,7 +4,7 @@ require "frecon/controller"
 
 describe FReCon::Controller do
 	[:model_name, :model, :could_not_find, :process_request].each do |method_name|
-		it "has a method #{method_name.to_s}" do
+		it "has a class method #{method_name.to_s}" do
 			expect(FReCon::Controller.respond_to?(method_name)).to be(true)
 		end
 	end
