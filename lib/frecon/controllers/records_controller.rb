@@ -14,7 +14,7 @@ require "frecon/models"
 module FReCon
 	class RecordsController < Controller
 		def self.create(request, params)
-			post_data = process_request request
+			post_data = process_json_object_request request
 
 			# Change special post_data attributes.
 			# Convert team number to team id.
