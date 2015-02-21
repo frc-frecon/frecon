@@ -13,6 +13,11 @@ require "frecon/models"
 
 module FReCon
 	class TeamsController < Controller
+		# The `id` param will be a number or id.
+		def self.find_model(params)
+			(Team.find_by id: params[:id]) || (Team.find_by number: params[:id])
+		end
+		
 		def self.update(request, params)
 			raise RequestError.new(400, "Must supply a team id or number!") unless params[:id]
 
@@ -97,11 +102,6 @@ module FReCon
 			else
 				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
 			end
-		end
-
-		# The `number` param will be a number or id.
-		def self.find_team(params)
-			(Team.find_by id: params[:id]) || (Team.find_by number: params[:id])
 		end
 	end
 end
