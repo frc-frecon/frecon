@@ -40,4 +40,43 @@ describe FReCon::Controller do
 			expect(FReCon::TestController.model_name).to eq("Test")
 		end
 	end
+
+	describe :model do
+		it "does not work on a new class that inherits 'FReCon::Controller' and is in FReCon module but does not have a sibling model that matches the name" do
+			module FReCon
+				class TestController < FReCon::Controller
+				end
+			end
+
+			expect { FReCon::TestController.model }.to raise_error
+		end
+
+		it "works on a new class that inherits 'FReCon::Controller' and is in FReCon module" do
+			module FReCon
+				class Test < FReCon::Model
+				end
+
+				class TestController < FReCon::Controller
+				end
+			end
+
+			expect(FReCon::TestController.model).to eq(FReCon::Test)
+		end
+	end
+
+	describe :could_not_find do
+		it "creates correct string message given varying arguments" do
+			[[SecureRandom.base64], [SecureRandom.base64, SecureRandom.base64], [SecureRandom.base64, SecureRandom.base64, SecureRandom.base64]].each do |arguments|
+				module FReCon
+					class Test < FReCon::Model
+					end
+
+					class TestController < FReCon::Controller
+					end
+				end
+
+				expect(FReCon::TestController.send(:could_not_find, *arguments)).to eq("Could not find #{FReCon::TestController.model_name.downcase} of #{arguments.length >= 2 ? arguments[1] : "id"} #{arguments[0]}!")
+			end
+		end
+	end
 end
