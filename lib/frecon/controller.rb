@@ -139,5 +139,49 @@ module FReCon
 				end
 			end
 		end
+
+		# This supports match_number and competition_name
+		# or match_number and competition (which is a Hash).
+		def self.match_number_and_competition_to_match_id(post_data)
+			if post_data["match_number"] && !post_data["match_id"]
+				if post_data["competition_name"] && (competition = Competition.find_by name: post_data["competition_name"])
+					# Try to set the match to the already existing match.
+					begin
+						match = competition.matches.find_by number: post_data["match_number"]
+					rescue ArgumentError, TypeError => e
+						raise RequestError.new(422, e.message)
+					end
+
+					# Create the match if necessary.
+					begin
+						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
+					rescue ArgumentError, TypeError => e
+						raise RequestError.new(422, e.message)
+					end
+
+					post_data["match_id"] = match.id
+
+					post_data.delete("match_number")
+					post_data.delete("competition_name")
+				elsif post_data["competition"] && post_data["competition"]["_id"] && post_data["competition"]["_id"]["$oid"] && (competition = Competition.find_by(id: post_data["competition"]["_id"]["$oid"]))
+					# Try to set the match to the already existing match.
+					match = competition.matches.find_by number: post_data["match_number"]
+
+					# Create the match if necessary.
+					begin
+						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
+					rescue ArgumentError, TypeError => e
+						raise RequestError.new(422, e.message)
+					end
+
+					post_data["match_id"] = match.id
+
+					post_data.delete("match_number")
+					post_data.delete("competition")
+				else
+					raise RequestError.new(422, "A current competition is not set.  Please set it.")
+				end
+			end
+		end
 	end
 end
