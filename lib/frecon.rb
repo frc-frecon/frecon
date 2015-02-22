@@ -9,9 +9,6 @@
 
 require "frecon/base"
 
-require "frecon/models"
-require "frecon/controllers"
-
 require "frecon/database"
 require "frecon/server"
 require "frecon/console"
