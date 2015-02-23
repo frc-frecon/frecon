@@ -23,6 +23,12 @@ module FReCon
 			self.name.gsub(/Controller\Z/, "").singularize.constantize
 		end
 
+		# Some models have to find themselves in special ways,
+		# so this can be overridden with those ways.
+		def self.find_model(params)
+			model.find params[:id]
+		end
+
 		# The 404 error message.
 		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
 			"Could not find #{model} of #{attribute} #{value}!"
@@ -61,13 +67,13 @@ module FReCon
 				raise RequestError.new(422, @model.errors.full_messages)
 			end
 		end
-
+		
 		def self.update(request, params, post_data = nil)
-			raise RequestError.new(400, "Must supply a #{model_name.downcase}!") unless params[:id]
+			raise RequestError.new(400, "Must supply a #{model_name.downcase} id!") unless params[:id]
 
 			post_data ||= process_json_object_request request
 
-			@model = model.find params[:id]
+			@model = find_model params
 
 			raise RequestError.new(404, could_not_find(params[:id])) unless @model
 
@@ -79,7 +85,7 @@ module FReCon
 		end
 
 		def self.delete(params)
-			@model = model.find params[:id]
+			@model = find_model params
 
 			if @model
 				if @model.destroy
@@ -93,7 +99,7 @@ module FReCon
 		end
 
 		def self.show(params)
-			@model = model.find params[:id]
+			@model = find_model params
 
 			if @model
 				@model.to_json
@@ -111,7 +117,7 @@ module FReCon
 		end
 
 		def self.show_attribute(params, attribute)
-			@model = model.find params[:id]
+			@model = find_model params
 
 			if @model
 				@model.send(attribute).to_json
@@ -130,6 +136,50 @@ module FReCon
 					post_data
 				else
 					raise RequestError.new(404, could_not_find(post_data["team_number"], "number", "team"))
+				end
+			end
+		end
+
+		# This supports match_number and competition_name
+		# or match_number and competition (which is a Hash).
+		def self.match_number_and_competition_to_match_id(post_data)
+			if post_data["match_number"] && !post_data["match_id"]
+				if post_data["competition_name"] && (competition = Competition.find_by name: post_data["competition_name"])
+					# Try to set the match to the already existing match.
+					begin
+						match = competition.matches.find_by number: post_data["match_number"]
+					rescue ArgumentError, TypeError => e
+						raise RequestError.new(422, e.message)
+					end
+
+					# Create the match if necessary.
+					begin
+						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
+					rescue ArgumentError, TypeError => e
+						raise RequestError.new(422, e.message)
+					end
+
+					post_data["match_id"] = match.id
+
+					post_data.delete("match_number")
+					post_data.delete("competition_name")
+				elsif post_data["competition"] && post_data["competition"]["_id"] && post_data["competition"]["_id"]["$oid"] && (competition = Competition.find_by(id: post_data["competition"]["_id"]["$oid"]))
+					# Try to set the match to the already existing match.
+					match = competition.matches.find_by number: post_data["match_number"]
+
+					# Create the match if necessary.
+					begin
+						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
+					rescue ArgumentError, TypeError => e
+						raise RequestError.new(422, e.message)
+					end
+
+					post_data["match_id"] = match.id
+
+					post_data.delete("match_number")
+					post_data.delete("competition")
+				else
+					raise RequestError.new(422, "A current competition is not set.  Please set it.")
 				end
 			end
 		end
