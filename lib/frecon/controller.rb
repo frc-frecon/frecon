@@ -67,7 +67,7 @@ module FReCon
 				raise RequestError.new(422, @model.errors.full_messages)
 			end
 		end
-		
+
 		def self.update(request, params, post_data = nil)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase} id!") unless params[:id]
 
