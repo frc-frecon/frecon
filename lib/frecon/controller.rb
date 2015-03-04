@@ -59,7 +59,7 @@ module FReCon
 					rescue RequestError => e
 						e.return_value
 					end
-				end.to_a
+				end
 
 				results.to_json
 			else
