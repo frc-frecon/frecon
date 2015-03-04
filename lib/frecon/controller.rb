@@ -61,7 +61,7 @@ module FReCon
 					end
 				end
 
-				results.to_json
+				[201, results.to_json]
 			else
 				@model = model.new
 				@model.attributes = post_data
