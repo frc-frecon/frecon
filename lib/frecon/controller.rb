@@ -34,44 +34,61 @@ module FReCon
 			"Could not find #{model} of #{attribute} #{value}!"
 		end
 
-		# Processes a POST/PUT request and returns the post data.
-		def self.process_json_object_request(request)
+		def self.process_json_request(request)
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
 			# through it.
 			request.body.rewind
 
 			begin
-				# Parse the POST data as a JSON hash
-				# (because that's what it is)
 				post_data = JSON.parse(request.body.read)
 			rescue JSON::ParserError => e
-				# If we have malformed JSON (JSON::ParserError is
-				# raised), escape out of the function.
 				raise RequestError.new(400, e.message)
 			end
 
-			raise RequestError.new(422, "Must pass a JSON object!") if post_data.is_an?(Array)
 			post_data
 		end
 
 		def self.create(request, params, post_data = nil)
-			post_data ||= process_json_object_request request
+			post_data ||= process_json_request request
 
-			@model = model.new
-			@model.attributes = post_data
+			if post_data.is_an? Array
+				results = post_data.map do |post_data_item|
+					begin
+						self.create(nil, nil, post_data_item)
+					rescue RequestError => e
+						e.return_value
+					end
+				end
 
-			if @model.save
-				[201, @model.to_json]
+				status_code = 201
+
+				if(results.map do |result|
+					   result.is_an(Array) ? result[0] : 422
+				   end.select do |status_code|
+					   status_code != 201
+				   end.count > 0)
+
+					status_code = 422
+				end
+
+				[status_code, results.to_json]
 			else
-				raise RequestError.new(422, @model.errors.full_messages)
+				@model = model.new
+				@model.attributes = post_data
+
+				if @model.save
+					[201, @model.to_json]
+				else
+					raise RequestError.new(422, @model.errors.full_messages)
+				end
 			end
 		end
 
 		def self.update(request, params, post_data = nil)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase} id!") unless params[:id]
 
-			post_data ||= process_json_object_request request
+			post_data ||= process_json_request request
 
 			@model = find_model params
 
@@ -127,6 +144,8 @@ module FReCon
 		end
 
 		def self.team_number_to_team_id(post_data)
+			return post_data unless post_data.is_a?(Hash)
+
 			if post_data["team_number"] && !post_data["team_id"]
 				unless (team = Team.number post_data["team_number"]).nil?
 					post_data["team_id"] = team.id
@@ -143,6 +162,8 @@ module FReCon
 		# This supports match_number and competition_name
 		# or match_number and competition (which is a Hash).
 		def self.match_number_and_competition_to_match_id(post_data)
+			return post_data unless post_data.is_a?(Hash)
+
 			if post_data["match_number"] && !post_data["match_id"]
 				if post_data["competition_name"] && (competition = Competition.find_by name: post_data["competition_name"])
 					# Try to set the match to the already existing match.
