@@ -14,7 +14,7 @@ require "frecon/models"
 module FReCon
 	class RecordsController < Controller
 		def self.create(request, params)
-			super(request, params, match_number_and_competition_to_match_id(team_number_to_team_id(process_json_object_request(request))))
+			super(request, params, match_number_and_competition_to_match_id(team_number_to_team_id(process_json_request(request))))
 		end
 
 		def self.competition(params)

@@ -34,29 +34,23 @@ module FReCon
 			"Could not find #{model} of #{attribute} #{value}!"
 		end
 
-		# Processes a POST/PUT request and returns the post data.
-		def self.process_json_object_request(request)
+		def self.process_json_request(request)
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
 			# through it.
 			request.body.rewind
 
 			begin
-				# Parse the POST data as a JSON hash
-				# (because that's what it is)
 				post_data = JSON.parse(request.body.read)
 			rescue JSON::ParserError => e
-				# If we have malformed JSON (JSON::ParserError is
-				# raised), escape out of the function.
 				raise RequestError.new(400, e.message)
 			end
 
-			raise RequestError.new(422, "Must pass a JSON object!") if post_data.is_an?(Array)
 			post_data
 		end
 
 		def self.create(request, params, post_data = nil)
-			post_data ||= process_json_object_request request
+			post_data ||= process_json_request request
 
 			@model = model.new
 			@model.attributes = post_data
@@ -71,7 +65,7 @@ module FReCon
 		def self.update(request, params, post_data = nil)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase} id!") unless params[:id]
 
-			post_data ||= process_json_object_request request
+			post_data ||= process_json_request request
 
 			@model = find_model params
 
