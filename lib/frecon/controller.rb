@@ -41,9 +41,9 @@ module FReCon
 			request.body.rewind
 
 			begin
-				post_data = JSON.parse request.body.read
+				post_data = JSON.parse(request.body.read)
 			rescue JSON::ParserError => e
-				raise RequestError.new 400, e.message
+				raise RequestError.new(400, e.message)
 			end
 
 			post_data
@@ -52,13 +52,25 @@ module FReCon
 		def self.create(request, params, post_data = nil)
 			post_data ||= process_json_request request
 
-			@model = model.new
-			@model.attributes = post_data
+			if post_data.is_a? Array
+				results = post_data.map do |post_data_item|
+					begin
+						self.create(nil, nil, post_data_item)
+					rescue RequestError => e
+						e.return_value
+					end
+				end.to_a
 
-			if @model.save
-				[201, @model.to_json]
+				results.to_json
 			else
-				raise RequestError.new(422, @model.errors.full_messages)
+				@model = model.new
+				@model.attributes = post_data
+
+				if @model.save
+					[201, @model.to_json]
+				else
+					raise RequestError.new(422, @model.errors.full_messages)
+				end
 			end
 		end
 
