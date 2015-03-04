@@ -133,6 +133,8 @@ module FReCon
 		end
 
 		def self.team_number_to_team_id(post_data)
+			return post_data unless post_data.is_a?(Hash)
+
 			if post_data["team_number"] && !post_data["team_id"]
 				unless (team = Team.number post_data["team_number"]).nil?
 					post_data["team_id"] = team.id
@@ -149,6 +151,8 @@ module FReCon
 		# This supports match_number and competition_name
 		# or match_number and competition (which is a Hash).
 		def self.match_number_and_competition_to_match_id(post_data)
+			return post_data unless post_data.is_a?(Hash)
+
 			if post_data["match_number"] && !post_data["match_id"]
 				if post_data["competition_name"] && (competition = Competition.find_by name: post_data["competition_name"])
 					# Try to set the match to the already existing match.
