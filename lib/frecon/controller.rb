@@ -61,7 +61,18 @@ module FReCon
 					end
 				end
 
-				[201, results.to_json]
+				status_code = 201
+
+				if(results.map do |result|
+					   result.is_an(Array) ? result[0] : 422
+				   end.select do |status_code|
+					   status_code != 201
+				   end.count > 0)
+
+					status_code = 422
+				end
+
+				[status_code, results.to_json]
 			else
 				@model = model.new
 				@model.attributes = post_data
