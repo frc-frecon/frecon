@@ -52,7 +52,7 @@ module FReCon
 		def self.create(request, params, post_data = nil)
 			post_data ||= process_json_request request
 
-			if post_data.is_a? Array
+			if post_data.is_an? Array
 				results = post_data.map do |post_data_item|
 					begin
 						self.create(nil, nil, post_data_item)
