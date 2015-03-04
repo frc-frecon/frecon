@@ -41,9 +41,9 @@ module FReCon
 			request.body.rewind
 
 			begin
-				post_data = JSON.parse(request.body.read)
+				post_data = JSON.parse request.body.read
 			rescue JSON::ParserError => e
-				raise RequestError.new(400, e.message)
+				raise RequestError.new 400, e.message
 			end
 
 			post_data
