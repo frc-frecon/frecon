@@ -11,26 +11,34 @@ require "json"
 
 class RequestError < StandardError
 	attr_reader :code
-	attr_reader :message
+	attr_reader :body
 
-	def initialize(code, message = nil)
+	def initialize(code, message = nil, context = "No context provided!")
 		@code = code
-		@message = format_error_message(message)
-	end
+		@message = message
+		@context = context
 
-	def format_error_message(message)
-		case message
+		# If @message is a String or an Array,
+		# generate a JSON string for the body and
+		# store it in the @body variable.
+		#
+		# Notice that if @message is nil, neither
+		# of these is tripped, so @body becomes nil.
+		# This means that #return_value will instead
+		# return just @code, which is similar to the
+		# previous behavior.
+		@body = case @message
 		when String
-			JSON.generate({ errors: [ message ] })
+			JSON.generate({ context: @context, errors: [ @message ] })
 		when Array
-			JSON.generate({ errors: message })
+			JSON.generate({ context: @context, errors: @message })
 		end
 	end
 
 	# A Sinatra-compliant return value.
 	def return_value
-		if @message
-			[@code, @message]
+		if @body
+			[@code, @body]
 		else
 			@code
 		end
