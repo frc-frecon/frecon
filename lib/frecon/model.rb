@@ -26,6 +26,10 @@ module FReCon
 			ObjectSpace.each_object(Class).select { |possibleChild| possibleChild < self }
 		end
 
+		def self.controller
+			(self.name.pluralize + "Controller").constantize
+		end
+
 		def no_invalid_relations
 			# Get all of the belongs_to fields (ends with "_id" and not "_id" because that is the id).
 			attributes.keys.select { |attribute| attribute.end_with?("_id") && attribute != "_id" }.each do |relation|
