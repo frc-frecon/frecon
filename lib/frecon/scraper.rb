@@ -11,8 +11,8 @@ module FReCon
 	# The default scraper scrapes other FReCon instances.
 	# To scrape a different source, a descendant scraper should be used.
 	class Scraper
-		def initialize(base_url)
-			@base_url = base_url
+		def initialize(base_uri)
+			@base_uri = base_uri
 		end
 
 		# Reads and imports a data string.
