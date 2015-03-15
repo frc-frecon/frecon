@@ -10,34 +10,32 @@
 require "json"
 
 class RequestError < StandardError
+	attr_reader :return_value
+
 	def initialize(code, message = nil, context = nil)
 		@code = code
 		@message = message
 		@context = context
 
-		# If @message is a String or an Array,
-		# generate a JSON string for the body and
-		# store it in the @body variable.
+		# When @message is a String or an Array,
+		# the return_value is set to a Sinatra-compliant
+		# Array with @code being the first element and the
+		# response body being the stringification of the
+		# JSON stringification of @context and @message.
 		#
-		# Notice that if @message is nil, neither
-		# of these is tripped, so @body becomes nil.
-		# This means that #return_value will instead
-		# return just @code, which is similar to the
-		# previous behavior.
-		@body = case @message
-		when String
-			JSON.generate({ context: @context, errors: [ @message ] })
-		when Array
-			JSON.generate({ context: @context, errors: @message })
-		end
-	end
-
-	# A Sinatra-compliant return value.
-	def return_value
-		if @body
-			[@code, @body]
-		else
-			@code
-		end
+		# If @message is a String, it is first put into an
+		# array.
+		#
+		# If @message is neither a String nor an Array,
+		# @return_value becomes simply @code.
+		@return_value =
+			case @message
+			when String
+				[@code, JSON.generate({ context: @context, errors: [ @message ] })]
+			when Array
+				[@code, JSON.generate({ context: @context, errors: @message })]
+			else
+				@code
+			end
 	end
 end
