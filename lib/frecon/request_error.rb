@@ -10,10 +10,7 @@
 require "json"
 
 class RequestError < StandardError
-	attr_reader :code
-	attr_reader :body
-
-	def initialize(code, message = nil, context = "No context provided!")
+	def initialize(code, message = nil, context = nil)
 		@code = code
 		@message = message
 		@context = context
