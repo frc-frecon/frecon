@@ -6,3 +6,5 @@
 # licensed under the MIT license.  You should have received a copy of the MIT
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
+
+require "frecon/scraper"
