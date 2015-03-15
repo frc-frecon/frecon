@@ -18,7 +18,19 @@ module FReCon
 		# Reads and imports a data string.
 		# Determines what to do with information in the `context` hash.
 		def read(data, context = {})
+			# `data` will be a string, so we need to convert it from JSON.
+			data = JSON.parse(data)
 			
+			# Here we want `context` to tell us what model we are making.
+			if context[:model]
+				context[:model].controller.create nil, nil, data
+			else
+				# Therefore, we must be dealing with a dump.
+				data.each do |key, value|
+					model = ("FReCon::" + key.singularize.capitalize).constantize
+					model.controller.create nil, nil, value
+				end
+			end
 		end
 
 		# If no arguments are passed, will import the whole other database.
@@ -26,7 +38,18 @@ module FReCon
 		# If two arguments are passed, will import the models that match
 		# the query params.
 		def get(model = nil, query = {})
+			# Turns something like "team" into Team.
+			model = ("FReCon::" + model.capitalize).constantize if model.is_a?(String)
 			
+			if !model && query.empty?
+				
+			elsif model && query.empty?
+				
+			else
+				
+			end
+
+			read data, model: model
 		end
 	end
 end
