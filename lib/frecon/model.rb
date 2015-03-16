@@ -17,7 +17,7 @@ module FReCon
 				include Mongoid::Timestamps
 				include Mongoid::Attributes::Dynamic
 
-				validate :no_invalid_relations		
+				validate :no_invalid_relations
 			end
 		end
 
