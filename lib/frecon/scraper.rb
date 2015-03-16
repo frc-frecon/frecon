@@ -20,7 +20,7 @@ module FReCon
 		def read(data, context = {})
 			# `data` will be a string, so we need to convert it from JSON.
 			data = JSON.parse(data)
-			
+
 			# Here we want `context` to tell us what model we are making.
 			if context[:model]
 				context[:model].controller.create nil, nil, data
@@ -40,13 +40,13 @@ module FReCon
 		def get(model = nil, query = {})
 			# Turns something like "team" into Team.
 			model = ("FReCon::" + model.capitalize).constantize if model.is_a?(String)
-			
+
 			if !model && query.empty?
-				
+
 			elsif model && query.empty?
-				
+
 			else
-				
+
 			end
 
 			read data, model: model
