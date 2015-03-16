@@ -13,8 +13,8 @@ module FReCon
 	# The default scraper scrapes other FReCon instances.
 	# To scrape a different source, a descendant scraper should be used.
 	class Scraper
-		def initialize(base_url)
-			@base_url = base_url
+		def initialize(base_uri)
+			@base_uri = base_uri
 		end
 
 		# Reads and imports a data string.
@@ -46,11 +46,11 @@ module FReCon
 			route_name = model.name.gsub(/FReCon::/, "").downcase.pluralize if model
 			
 			if !model && query.empty?
-				data = HTTParty.get(@base_url + "/dump")
+				data = HTTParty.get(@base_uri + "/dump")
 			elsif model && query.empty?
-				data = HTTParty.get(@base_url + "/#{route_name}")
+				data = HTTParty.get(@base_uri + "/#{route_name}")
 			else
-				data = HTTParty.get(@base_url + "/#{route_name}", { query: query })
+				data = HTTParty.get(@base_uri + "/#{route_name}", { query: query })
 			end
 
 			read data, model: model
