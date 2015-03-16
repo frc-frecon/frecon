@@ -64,7 +64,7 @@ module FReCon
 				status_code = 201
 
 				if(results.map do |result|
-					   result.is_an(Array) ? result[0] : 422
+					   result.is_an?(Array) ? result[0] : 422
 				   end.select do |status_code|
 					   status_code != 201
 				   end.count > 0)
