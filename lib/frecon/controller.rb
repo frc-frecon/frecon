@@ -80,7 +80,7 @@ module FReCon
 				if @model.save
 					[201, @model.to_json]
 				else
-					raise RequestError.new(422, @model.errors.full_messages)
+					raise RequestError.new(422, @model.errors.full_messages, {params: params, post_data: post_data})
 				end
 			end
 		end
@@ -97,7 +97,7 @@ module FReCon
 			if @model.update_attributes(post_data)
 				@model.to_json
 			else
-				raise RequestError.new(422, @model.errors.full_messages)
+				raise RequestError.new(422, @model.errors.full_messages, {params: params, post_data: post_data})
 			end
 		end
 
@@ -111,7 +111,7 @@ module FReCon
 					raise RequestError.new(422, @model.errors.full_messages)
 				end
 			else
-				raise RequestError.new(404, could_not_find(params[:id]))
+				raise RequestError.new(404, could_not_find(params[:id]), {params: params})
 			end
 		end
 
@@ -121,7 +121,7 @@ module FReCon
 			if @model
 				@model.to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:id]))
+				raise RequestError.new(404, could_not_find(params[:id]), {params: params})
 			end
 		end
 
@@ -139,7 +139,7 @@ module FReCon
 			if @model
 				@model.send(attribute).to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:id]))
+				raise RequestError.new(404, could_not_find(params[:id]), {params: params, attribute: attribute})
 			end
 		end
 
@@ -154,7 +154,7 @@ module FReCon
 
 					post_data
 				else
-					raise RequestError.new(404, could_not_find(post_data["team_number"], "number", "team"))
+					raise RequestError.new(404, could_not_find(post_data["team_number"], "number", "team"), {post_data: post_data})
 				end
 			end
 		end
@@ -170,14 +170,14 @@ module FReCon
 					begin
 						match = competition.matches.find_by number: post_data["match_number"]
 					rescue ArgumentError, TypeError => e
-						raise RequestError.new(422, e.message)
+						raise RequestError.new(422, e.message, {post_data: post_data})
 					end
 
 					# Create the match if necessary.
 					begin
 						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
 					rescue ArgumentError, TypeError => e
-						raise RequestError.new(422, e.message)
+						raise RequestError.new(422, e.message, {post_data: post_data, competition_id: competition.id})
 					end
 
 					post_data["match_id"] = match.id
@@ -194,7 +194,7 @@ module FReCon
 					begin
 						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
 					rescue ArgumentError, TypeError => e
-						raise RequestError.new(422, e.message)
+						raise RequestError.new(422, e.message, {post_data: post_data, competition_id: competition.id})
 					end
 
 					post_data["match_id"] = match.id
@@ -204,7 +204,7 @@ module FReCon
 
 					post_data
 				else
-					raise RequestError.new(422, "A current competition is not set.  Please set it.")
+					raise RequestError.new(422, "A current competition is not set.  Please set it.", {post_data: post_data})
 				end
 			end
 		end
