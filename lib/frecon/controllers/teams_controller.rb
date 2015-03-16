@@ -38,13 +38,13 @@ module FReCon
 					if @competition
 						@team.records.in(match_id: @competition.matches.map { |match| match.id }).to_json
 					else
-						raise RequestError.new(404, could_not_find(params[:competition_id], "id", "competition"))
+						raise RequestError.new(404, could_not_find(params[:competition_id], "id", "competition"), {params: params, team: @team})
 					end
 				else
 					@team.records.to_json
 				end
 			else
-				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
+				raise RequestError.new(404, could_not_find(params[:id], "id or number"), {params: params})
 			end
 		end
 
@@ -56,12 +56,12 @@ module FReCon
 				if params[:competition_id]
 					@competition = Competition.find params[:competition_id]
 
-					raise RequestError.new(404, could_not_find(params[:competition_id], "id", "competition")) if @competition.nil?
+					raise RequestError.new(404, could_not_find(params[:competition_id], "id", "competition"), {params: params, team: @team}) if @competition.nil?
 				end
 
 				@team.matches(params[:competition_id]).to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
+				raise RequestError.new(404, could_not_find(params[:id], "id or number"), {params: params})
 			end
 		end
 
@@ -71,7 +71,7 @@ module FReCon
 			if @team
 				@team.competitions.to_json
 			else
-				raise RequestError.new(404, could_not_find(params[:id], "id or number"))
+				raise RequestError.new(404, could_not_find(params[:id], "id or number"), {params: params})
 			end
 		end
 	end
