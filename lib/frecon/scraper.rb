@@ -7,6 +7,8 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+require "httparty"
+
 module FReCon
 	# The default scraper scrapes other FReCon instances.
 	# To scrape a different source, a descendant scraper should be used.
@@ -40,13 +42,15 @@ module FReCon
 		def get(model = nil, query = {})
 			# Turns something like "team" into Team.
 			model = ("FReCon::" + model.capitalize).constantize if model.is_a?(String)
+			# The route name for the model branch.
+			route_name = model.name.gsub(/FReCon::/, "").downcase.pluralize if model
 			
 			if !model && query.empty?
-				
+				data = HTTParty.get(@base_url + "/dump")
 			elsif model && query.empty?
-				
+				data = HTTParty.get(@base_url + "/#{route_name}")
 			else
-				
+				data = HTTParty.get(@base_url + "/#{route_name}", { query: query })
 			end
 
 			read data, model: model
