@@ -22,7 +22,7 @@ module FReCon
 		def read(data, context = {})
 			# `data` will be a string, so we need to convert it from JSON.
 			data = JSON.parse(data)
-			
+
 			# Here we want `context` to tell us what model we are making.
 			if context[:model]
 				context[:model].controller.create nil, nil, data
@@ -42,6 +42,7 @@ module FReCon
 		def get(model = nil, query = {})
 			# Turns something like "team" into Team.
 			model = ("FReCon::" + model.capitalize).constantize if model.is_a?(String)
+
 			# The route name for the model branch.
 			route_name = model.name.gsub(/FReCon::/, "").downcase.pluralize if model
 			
