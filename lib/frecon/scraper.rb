@@ -25,13 +25,17 @@ module FReCon
 
 			# Here we want `context` to tell us what model we are making.
 			if context[:model]
-				context[:model].controller.create nil, nil, data
+				context[:model].controller.create(nil, nil, data).first
 			else
 				# Therefore, we must be dealing with a dump.
-				data.each do |key, value|
-					model = ("FReCon::" + key.singularize.capitalize).constantize
-					model.controller.create nil, nil, value
+				statuses = data.map do |key, value|
+					unless value.empty?
+						model = ("FReCon::" + key.singularize.capitalize).constantize
+						model.controller.create(nil, nil, value).first
+					end
 				end
+				statuses.delete(nil)
+				statuses
 			end
 		end
 
