@@ -31,7 +31,8 @@ module FReCon
 				statuses = data.map do |key, value|
 					unless value.empty?
 						model = ("FReCon::" + key.singularize.capitalize).constantize
-						model.controller.create(nil, nil, value).first
+						result = model.controller.create(nil, nil, value)
+						result.first == 201 ? result.first : result
 					end
 				end
 				statuses.delete(nil)
