@@ -29,10 +29,14 @@ module FReCon
 			else
 				# Therefore, we must be dealing with a dump.
 				statuses = data.map do |key, value|
-					unless value.empty?
-						model = ("FReCon::" + key.singularize.capitalize).constantize
-						result = model.controller.create(nil, nil, value)
-						result.first == 201 ? result.first : result
+					begin
+						unless value.empty?
+							model = ("FReCon::" + key.singularize.capitalize).constantize
+							result = model.controller.create(nil, nil, value)
+							result.first == 201 ? result.first : JSON.parse(result.last)
+						end
+					rescue Moped::Errors::OperationFailure => e
+						RequestError.new(422, "A model already exists in your database with the key you are trying to import.\nPerhaps you should clear your database?").return_value
 					end
 				end
 				statuses.delete(nil)
