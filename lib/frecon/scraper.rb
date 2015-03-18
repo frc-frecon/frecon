@@ -25,7 +25,8 @@ module FReCon
 
 			# Here we want `context` to tell us what model we are making.
 			if context[:model]
-				context[:model].controller.create(nil, nil, data).first
+				result = context[:model].controller.create(nil, nil, data)
+				result.first == 201 ? result.first : JSON.parse(result.last)
 			else
 				# Therefore, we must be dealing with a dump.
 				statuses = data.map do |key, value|
@@ -56,14 +57,14 @@ module FReCon
 			route_name = model.name.gsub(/FReCon::/, "").downcase.pluralize if model
 			
 			if !model && query.empty?
-				data = HTTParty.get(@base_uri + "/dump")
+				data = HTTParty.get("http://#{@base_uri}:4567/dump")
 			elsif model && query.empty?
-				data = HTTParty.get(@base_uri + "/#{route_name}")
+				data = HTTParty.get("http://#{@base_uri}:4567/#{route_name}")
 			else
-				data = HTTParty.get(@base_uri + "/#{route_name}", { query: query })
+				data = HTTParty.get("http://#{@base_uri}:4567/#{route_name}", { query: query })
 			end
 
-			read data, model: model
+			read data.body, model: model
 		end
 	end
 end
