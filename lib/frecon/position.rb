@@ -31,6 +31,8 @@ module FReCon
 			when String
 				Position.new(object).mongoize
 			when Hash
+				# Convert keys to symbols if necessary.
+				object = Hash[object.map { |key, value| [key.to_sym, value] }]
 				Position.new(object[:alliance], object[:number]).mongoize
 			else
 				object
@@ -45,6 +47,8 @@ module FReCon
 			when String
 				Position.new(object).mongoize
 			when Hash
+				# Convert keys to symbols if necessary.
+				object = Hash[object.map { |key, value| [key.to_sym, value] }]
 				Position.new(object[:alliance], object[:number]).mongoize
 			else
 				object
