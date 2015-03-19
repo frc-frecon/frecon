@@ -25,6 +25,8 @@ Windows users of FReCon may need to do a bit of fenangling, but we'd love to wor
   - It's highly recommended that you use [rvm][rvm] or install Ruby from source.
     - To use rvm, just follow the instructions on the front of their website.
     - To install from source instead, download the tarball from [the Ruby website][ruby].
+  - If you're using Ruby for the first time, run `gem install bundler` after installing Ruby.
+    - Gems are Ruby's packages; Bundler will handle installing our dependency libraries.
 
 
 ## How to get started
