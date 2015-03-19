@@ -23,6 +23,12 @@ module FReCon
 			# `data` will be a string, so we need to convert it from JSON.
 			data = JSON.parse(data)
 
+			if context[:type] == :single && data.empty?
+				return [404, "Could not find a model with that query."]
+			elsif
+				puts "Just a heads up: you are importing an empty array of data."
+			end
+
 			# Here we want `context` to tell us what model we are making.
 			if context[:model]
 				result = context[:model].controller.create(nil, nil, data)
@@ -57,14 +63,17 @@ module FReCon
 			route_name = model.name.gsub(/FReCon::/, "").downcase.pluralize if model
 			
 			if !model && query.empty?
-				data = HTTParty.get("http://#{@base_uri}:4567/dump")
+				type = :dump
+				data = HTTParty.get("http://#{@base_uri}/dump")
 			elsif model && query.empty?
-				data = HTTParty.get("http://#{@base_uri}:4567/#{route_name}")
+				type = :index
+				data = HTTParty.get("http://#{@base_uri}/#{route_name}")
 			else
-				data = HTTParty.get("http://#{@base_uri}:4567/#{route_name}", { query: query })
+				type = :single
+				data = HTTParty.get("http://#{@base_uri}/#{route_name}", { query: query })
 			end
 
-			read data.body, model: model
+			read data.body, model: model, type: type
 		end
 	end
 end
