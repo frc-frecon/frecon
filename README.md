@@ -18,6 +18,11 @@ You can also interact with FReCon directly from the console&mdash;look for docum
   - On Fedora, you can install MongoDB like `yum install mongodb mongodb-server`, and start it like `service mongod start`.
   - No configuration should be necessary; the packaged version of MongoDB works just fine.
 
+* **Ruby**
+  - It's highly recommended that you use [rvm][rvm] or install Ruby from source.
+    - To use rvm, just follow the instructions on the front of their website.
+    - To install from source instead, download the tarball from [the Ruby website][ruby].
+
 
 ## How to get started
 
@@ -49,3 +54,6 @@ That usually directs it to a controller, which does some logic and may access on
 FReCon is distributed under the terms of the MIT license.
 You should have received a copy of the MIT license with this program.
 If not, you can find a copy at [opensource.org/licenses/mit](http://opensource.org/licenses/mit).
+
+[rvm]: http://rvm.io
+[ruby]: https://www.ruby-lang.org/en/
