@@ -28,6 +28,9 @@ Windows users of FReCon may need to do a bit of fenangling, but we'd love to wor
   - If you're using Ruby for the first time, run `gem install bundler` after installing Ruby.
     - Gems are Ruby's packages; Bundler will handle installing our dependency libraries.
 
+## Installation
+
+To install FReCon, you can either (a) "clone" the Git repository from GitHub, via `git clone https://github.com/frc-frecon/frecon.git`, or (b) install the latest stable version of FReCon from RubyGems via `gem install frecon`.
 
 ## How to get started
 
