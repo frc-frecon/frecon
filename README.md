@@ -1,5 +1,9 @@
 # FReCon
 
+FReCon is an API for scouting at *FIRST* Robotics competitions.
+It is designed to be game-agnostic, that is, as dynamic as possible from year to year.
+We, the developers, have crafted FReCon to be as widely-usable as possible.
+
 ## How to get started
 
 ### MongoDB
