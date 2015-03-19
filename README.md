@@ -31,7 +31,7 @@ Windows users of FReCon may need to do a bit of fenangling, but we'd love to wor
 ## Installation
 
 To install FReCon, you can either (a) "clone" the Git repository from GitHub, via `git clone https://github.com/frc-frecon/frecon.git`, or (b) install the latest stable version of FReCon from RubyGems via `gem install frecon`.
-If you've cloned FReCon, you must cd into the project directory (named "frecon" by default), then run `bundle install` (which handles all of the dependency files).
+If you've cloned FReCon, you must cd into the project directory (named "frecon" by default), then run `bundle install` (which installes all of the dependencies).
 
 ## How to get started
 
