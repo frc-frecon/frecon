@@ -8,12 +8,9 @@ FReCon is built in Ruby, using the Mongoid database backend to interface with Mo
 
 ## System Dependencies
 
-* MongoDB
-  * On Fedora, you can install and start MongoDB through the following commands:<br/><br/>
-    ```sh
-    $ yum install mongodb mongodb-server
-    $ service mongod start
-    ```
+* **MongoDB**
+  * On Fedora, you can install MongoDB like `yum install mongodb mongodb-server`, and start it like `service mongod start`.
+
 
 ## How to get started
 
