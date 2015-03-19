@@ -14,13 +14,6 @@ FReCon is built in Ruby, using the Mongoid database backend to interface with Mo
 
 ## How to get started
 
-<!--
-### MongoDB
-
-When using Fedora, you can install MongoDB via `yum install mongodb mongodb-server`.
-Then start the service via `service mongod start`.
--->
-
 ### Ruby
 
 It's highly recommended that you use [rvm](http://rvm.io).
