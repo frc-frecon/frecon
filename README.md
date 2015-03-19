@@ -18,10 +18,12 @@ $ service mongod start
 
 ## How to get started
 
+<!--
 ### MongoDB
 
 When using Fedora, you can install MongoDB via `yum install mongodb mongodb-server`.
 Then start the service via `service mongod start`.
+-->
 
 ### Ruby
 
