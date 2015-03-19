@@ -6,10 +6,16 @@ We, the developers, have crafted FReCon to be as widely-usable as possible.
 
 FReCon is built in Ruby, using the Mongoid database backend to interface with MongoDB as our system-level database backend.
 
+## Architecture
+
+FReCon is written as a JSON API.
+This means that it returns responses which are quickly parsed in JavaScript via `JSON.parse`.
+
 ## System Dependencies
 
 * **MongoDB**
-  * On Fedora, you can install MongoDB like `yum install mongodb mongodb-server`, and start it like `service mongod start`.
+  - On Fedora, you can install MongoDB like `yum install mongodb mongodb-server`, and start it like `service mongod start`.
+  - No configuration should be necessary; the packaged version of MongoDB works just fine.
 
 
 ## How to get started
