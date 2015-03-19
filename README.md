@@ -10,7 +10,7 @@ FReCon is built in Ruby, using the Mongoid database backend to interface with Mo
 
 FReCon is written as a JSON API.
 This means that it returns responses which are quickly parsed in JavaScript via `JSON.parse`.
-You can also run FReCon from the console&mdash;look for documentation below.
+You can also interact with FReCon directly from the console&mdash;look for documentation below.
 
 ## System Dependencies
 
