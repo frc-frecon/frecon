@@ -12,6 +12,9 @@ FReCon is written as a JSON API.
 This means that it returns responses which are quickly parsed in JavaScript via `JSON.parse`.
 You can also interact with FReCon directly from the console&mdash;look for documentation below.
 
+As it is written in Ruby, FReCon should *run* on Mac OSX/Linux without much trouble.
+Windows users of FReCon may require a bit of fenangling, but we'd love to work with you if you're trying to use FReCon on Windows and need help.
+
 ## System Dependencies
 
 * **MongoDB**
