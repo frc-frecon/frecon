@@ -6,14 +6,15 @@ We, the developers, have crafted FReCon to be as widely-usable as possible.
 
 FReCon is built in Ruby, using the Mongoid database backend to interface with MongoDB as our system-level database backend.
 
-## Architecture
+## Getting Started
 
-FReCon is written as a JSON API.
-This means that it returns responses which are quickly parsed in JavaScript via `JSON.parse`.
-You can also interact with FReCon directly from the console&mdash;look for documentation below.
+```sh
+$ gem install frecon
+```
 
-As it is written in Ruby, FReCon should *run* on Mac OSX/Linux without much trouble.
-Windows users of FReCon may need to do a bit of fenangling, but we'd love to work with you if you're trying to use FReCon on Windows and need help.
+You can install FReCon through RubyGems by running the above command.
+You can also include `gem "frecon"` in your `Gemfile`, if you're writing a derivative Ruby project.
+However, FReCon will not work unless some [System Dependencies](#Getting-Started)
 
 ## System Dependencies
 
@@ -28,12 +29,14 @@ Windows users of FReCon may need to do a bit of fenangling, but we'd love to wor
   - If you're using Ruby for the first time, run `gem install bundler` after installing Ruby.
     - Gems are Ruby's packages; Bundler will handle installing our dependency libraries.
 
-## Installation
+## Architecture
 
-To install FReCon, you can either (a) "clone" the Git repository from GitHub, via `git clone https://github.com/frc-frecon/frecon.git`, or (b) install the latest stable version of FReCon from RubyGems via `gem install frecon`.
-If you've cloned FReCon, you must cd into the project directory (named "frecon" by default), then run `bundle install` (which installes all of the dependencies).
+FReCon is written as a JSON API.
+This means that it returns responses which are quickly parsed in JavaScript via `JSON.parse`.
+You can also interact with FReCon directly from the console&mdash;look for documentation below.
 
-## How to get started
+As it is written in Ruby, FReCon should *run* on Mac OSX/Linux without much trouble.
+Windows users of FReCon may need to do a bit of fenangling, but we'd love to work with you if you're trying to use FReCon on Windows and need help.
 
 ### Ruby
 
