@@ -5,6 +5,8 @@ It is designed to be game-agnostic, that is, as dynamic as possible from year to
 We, the developers, have crafted FReCon to be as widely-usable as possible.
 
 FReCon is built in Ruby, using the Mongoid database backend to interface with MongoDB as our system-level database backend.
+You need to have Ruby installed before you can use FReCon.
+We highly recommend using [rvm][rvm] to achieve this.
 
 ## Getting Started
 
@@ -14,20 +16,13 @@ $ gem install frecon
 
 You can install FReCon through RubyGems by running the above command.
 You can also include `gem "frecon"` in your `Gemfile`, if you're writing a derivative Ruby project.
-However, FReCon will not work unless some [System Dependencies](#Getting-Started)
+However, FReCon will not work unless some [System Dependencies](#system-dependencies) are installed.
 
 ## System Dependencies
 
 * **MongoDB**
   - On Fedora, you can install MongoDB like `yum install mongodb mongodb-server`, and start it like `service mongod start`.
   - No configuration should be necessary; the packaged version of MongoDB works just fine.
-
-* **Ruby**
-  - It's highly recommended that you use [rvm][rvm] or install Ruby from source.
-    - To use rvm, just follow the instructions on the front of their website.
-    - To install from source instead, download the tarball from [the Ruby website][ruby].
-  - If you're using Ruby for the first time, run `gem install bundler` after installing Ruby.
-    - Gems are Ruby's packages; Bundler will handle installing our dependency libraries.
 
 ## Architecture
 
@@ -37,22 +32,6 @@ You can also interact with FReCon directly from the console&mdash;look for docum
 
 As it is written in Ruby, FReCon should *run* on Mac OSX/Linux without much trouble.
 Windows users of FReCon may need to do a bit of fenangling, but we'd love to work with you if you're trying to use FReCon on Windows and need help.
-
-### Ruby
-
-It's highly recommended that you use [rvm](http://rvm.io).
-Just run the command on the front of their website.
-It's much easier than installing Ruby via a package manager.
-
-Once you've done that, run `gem install bundler`.
-Gems are Ruby packages, and bundle will take care of installing all the other ones.
-To do that, cd to the project directory and run `bundle install`.
-
-Great! You are pretty much ready to go now.
-Run `bin/frecon` to run the server, and access it at localhost:4567.
-If you want an interactive console in the server environment, just run `bin/frecon console`.
-
-Get to work!
 
 ## How stuff works
 
