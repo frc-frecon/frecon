@@ -22,6 +22,7 @@ module FReCon
 		end
 
 		def self.run!
+			set :environment, FReCon.environment
 			Database.setup(FReCon.environment)
 
 			super

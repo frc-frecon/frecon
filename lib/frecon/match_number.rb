@@ -125,6 +125,9 @@ module FReCon
 				# round (Integer), optional
 				# replay_number (Integer), optional
 
+				# Convert keys to symbols if needed.
+				args = Hash[args.map { |key, value| [key.to_sym, value] }]
+
 				raise TypeError, "type must be a Symbol or String" unless args[:type].is_a?(Symbol) || args[:type].is_a?(String)
 				raise ArgumentError, "type must be in #{POSSIBLE_TYPES.inspect}" unless POSSIBLE_TYPES.include?(args[:type].to_sym)
 

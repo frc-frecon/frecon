@@ -15,11 +15,23 @@ module FReCon
 		def self.full(params)
 			dump = {}
 
-			Model.descendants.each do |child|
-				dump[child.name.gsub(/FReCon::/, "").downcase.pluralize] = child.all
+			ordered_descendants = Model.descendants.sort_by do |model|
+				id_fields = model.fields.keys.select do |attribute|
+					attribute.ends_with?("_id") && attribute != "_id"
+				end
+
+				[id_fields.count, dump_compliant_name(model)]
+			end
+
+			ordered_descendants.each do |child|
+				dump[dump_compliant_name(child)] = child.all
 			end
 
 			dump.to_json
+		end
+
+		def self.dump_compliant_name(model)
+			model.name.gsub(/FReCon::/, "").downcase.pluralize
 		end
 	end
 end

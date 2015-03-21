@@ -7,8 +7,12 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+require "mongoid"
+
 require "frecon/base"
 
 require "frecon/database"
 require "frecon/server"
 require "frecon/console"
+
+require "frecon/scrapers"
