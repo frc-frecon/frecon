@@ -18,6 +18,15 @@ You can install FReCon through RubyGems by running the above command.
 You can also include `gem "frecon"` in your `Gemfile`, if you're writing a derivative Ruby project.
 However, FReCon will not work unless some [System Dependencies](#system-dependencies) are installed.
 
+## Basic Usage
+
+```sh
+$ frecon
+```
+
+This command starts the FReCon API as its own server on your device.
+
+
 ## System Dependencies
 
 * **MongoDB**
