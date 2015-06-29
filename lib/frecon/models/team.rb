@@ -17,6 +17,8 @@ module FReCon
 		field :logo_path, type: String
 		field :name, type: String
 
+		has_many :robots, dependent: :destroy
+		
 		validates :number, presence: true, uniqueness: true, numericality: { greater_than: 0 }
 
 		def self.number(team_number)
