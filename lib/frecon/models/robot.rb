@@ -16,5 +16,7 @@ module FReCon
 
 		belongs_to :team
 		has_many :participations, dependent: :destroy
+
+		validates :team_id, presence: true
 	end
 end
