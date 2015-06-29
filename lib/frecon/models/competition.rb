@@ -19,17 +19,5 @@ module FReCon
 
 		validates :location, :name, presence: true
 		validates :name, uniqueness: true
-
-		def records
-			matches = self.matches
-
-			Record.in match_id: matches.map(&:id)
-		end
-
-		def teams
-			participations = self.participations
-
-			Team.in id: participations.map(&:team_id)
-		end
 	end
 end
