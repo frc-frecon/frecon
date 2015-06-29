@@ -42,7 +42,7 @@ You can also interact with FReCon directly from the console&mdash;look for docum
 As it is written in Ruby, FReCon should *run* on Mac OSX/Linux without much trouble.
 Windows users of FReCon may need to do a bit of fenangling, but we'd love to work with you if you're trying to use FReCon on Windows and need help.
 
-## How stuff works
+## How Stuff Works
 
 Right now, the project is split up into models and controllers, housed in their respective folders.
 When you start the server, all these files are loaded, and the database is updated to make sure it matches what properties are defined in the models.
