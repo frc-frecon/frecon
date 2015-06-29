@@ -16,8 +16,5 @@ module FReCon
 
 		belongs_to :team
 		has_many :participations, dependent: :destroy
-
-		validates :competition_id, :team_id, presence: true
-		validates :team_id, uniqueness: { scope: :competition_id }
 	end
 end
