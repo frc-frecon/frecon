@@ -14,6 +14,8 @@ module FReCon
 		# This is an optional field we included for organization.
 		field :name, type: String
 
+		belongs_to :team
+		has_many :participations, dependent: :destroy
 
 		validates :competition_id, :team_id, presence: true
 		validates :team_id, uniqueness: { scope: :competition_id }
