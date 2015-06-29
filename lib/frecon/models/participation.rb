@@ -11,10 +11,9 @@ require "frecon/model"
 
 module FReCon
 	class Participation < Model
-		belongs_to :competition
-		belongs_to :team
+		belongs_to :robot
+		has_many :records, dependent: :destroy
 
-		validates :competition_id, :team_id, presence: true
-		validates :team_id, uniqueness: { scope: :competition_id }
+		validates :robot_id, presence: true
 	end
 end
