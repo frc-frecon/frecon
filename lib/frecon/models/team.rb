@@ -16,9 +16,6 @@ module FReCon
 		field :location, type: String
 		field :logo_path, type: String
 		field :name, type: String
-		
-		has_many :participations, dependent: :destroy
-		has_many :records, dependent: :destroy
 
 		validates :number, presence: true, uniqueness: true, numericality: { greater_than: 0 }
 
