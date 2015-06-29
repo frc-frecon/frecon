@@ -27,20 +27,6 @@ module FReCon
 			find_by number: team_number
 		end
 
-		def competitions
-			Competition.in id: participations.map(&:competition_id)
-		end
-
-		# Returns all of the matches that this team has been in.
-		# Optionally, returns the matches that this team has played
-		# in a certain competition.
-		def matches(competition_id = nil)
-			matches = Match.in record_id: self.records.map(&:id)
-			matches = matches.where competition_id: competition_id unless competition_id.nil?
-
-			matches
-		end
-		
 		# alias_method works by default solely on instance
 		# methods, so change context to the metaclass of
 		# Team and do aliasing there.
