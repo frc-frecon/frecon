@@ -12,8 +12,9 @@ require "frecon/model"
 module FReCon
 	class Participation < Model
 		belongs_to :robot
+		belongs_to :competition
 		has_many :records, dependent: :destroy
 
-		validates :robot_id, presence: true
+		validates :robot_id, :competition_id, presence: true
 	end
 end
