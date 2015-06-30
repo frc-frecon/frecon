@@ -43,11 +43,12 @@ It is more convenient than loading FReCon into an existing pry or irb session.
 ## Architecture
 
 FReCon is written as a JSON API.
-This means that it returns responses which are quickly parsed in JavaScript via `JSON.parse`.
-You can also interact with FReCon directly from the console&mdash;look for documentation below.
+This means that it returns responses which can be parsed via `JSON.parse` in JavaScript or the corresponding function in a different language.
+You can also interact with FReCon directly from the console, which is mentioned in the [Quick Usage section](#quick-usage).
 
-As it is written in Ruby, FReCon should *run* on Mac OSX/Linux without much trouble.
+As it is written in Ruby, FReCon *should* run on Mac OSX/Linux without much trouble.
 Windows users of FReCon may need to do a bit of fenangling, but we'd love to work with you if you're trying to use FReCon on Windows and need help.
+As a result of your effort, we could make a tutorial for future users.
 
 ## How Stuff Works
 
