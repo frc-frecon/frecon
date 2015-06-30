@@ -25,6 +25,14 @@ $ frecon
 
 This command starts the FReCon API as its own server on your device.
 
+```sh
+$ frecon console
+$ frecon c
+```
+
+Both of these commands start a FReCon console.
+A FReCon console is simply a [pry](https://github.com/pry/pry) shell that allows you to type `Team` instead of `FReCon::Team` to access that class.
+It is more convenient than loading FReCon into an existing pry or irb session.
 
 ## System Dependencies
 
