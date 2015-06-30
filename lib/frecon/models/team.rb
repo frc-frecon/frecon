@@ -38,6 +38,10 @@ module FReCon
 			Record.in participation_id: participations.map(&:id)
 		end
 
+		def matches
+			Match.in competition_id: competitions.map(&:id)
+		end
+
 		# alias_method works by default solely on instance
 		# methods, so change context to the metaclass of
 		# Team and do aliasing there.
