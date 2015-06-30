@@ -18,5 +18,9 @@ module FReCon
 		has_many :participations, dependent: :destroy
 
 		validates :team_id, presence: true
+
+		def competitions
+			Competition.in id: participations.map(&:competition_id)
+		end
 	end
 end
