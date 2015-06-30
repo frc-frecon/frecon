@@ -19,5 +19,9 @@ module FReCon
 		belongs_to :participation
 
 		validates :position, :match_id, :participation_id, presence: true
+
+		def competition
+			match.competition
+		end
 	end
 end
