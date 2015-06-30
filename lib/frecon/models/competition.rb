@@ -27,5 +27,9 @@ module FReCon
 		def robots
 			Robot.in id: participations.map(&:robot_id)
 		end
+
+		def teams
+			Team.in id: robots.map(&:team_id)
+		end
 	end
 end
