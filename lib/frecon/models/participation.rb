@@ -22,7 +22,7 @@ module FReCon
 		end
 
 		def matches
-			Match.in id: records.map(&:match_id)
+			competition.matches
 		end
 	end
 end
