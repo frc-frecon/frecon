@@ -3,7 +3,7 @@
 FReCon is an API for scouting at *FIRST* Robotics competitions.
 It is designed to be game-agnostic, that is, as dynamic as possible from year to year.
 
-FReCon is built in Ruby, using the Mongoid database backend to interface with MongoDB as our system-level database backend.
+FReCon is built in Ruby, using Sinatra for the foundations of a server and the Mongoid database backend to interface with MongoDB as our system-level database backend.
 You need to have Ruby installed before you can use FReCon.
 We highly recommend using [rvm][rvm] to achieve this.
 
