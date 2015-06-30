@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    frecon (0.3.1)
+    frecon (0.4.0)
       httparty (~> 0.13)
       mongoid (~> 4.0)
       sinatra (~> 1.4)
