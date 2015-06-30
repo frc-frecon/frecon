@@ -18,7 +18,7 @@ module FReCon
 		field :name, type: String
 
 		has_many :robots, dependent: :destroy
-		
+
 		validates :number, presence: true, uniqueness: true, numericality: { greater_than: 0 }
 
 		def self.number(team_number)
@@ -33,6 +33,5 @@ module FReCon
 			alias_method :with_number, :number
 			alias_method :that_has_number, :number
 		end
-
 	end
 end
