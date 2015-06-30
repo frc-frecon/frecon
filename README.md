@@ -50,10 +50,10 @@ As it is written in Ruby, FReCon *should* run on Mac OSX/Linux without much trou
 Windows users of FReCon may need to do a bit of fenangling, but we'd love to work with you if you're trying to use FReCon on Windows and need help.
 As a result of your effort, we could make a tutorial for future users.
 
-## How Stuff Works
+## Implementation
 
-Right now, the project is split up into models and controllers, housed in their respective folders.
-When you start the server, all these files are loaded, and the database is updated to make sure it matches what properties are defined in the models.
+The project is split up into models and controllers, housed in their respective folders.
+When you start the server, all these files are loaded.
 When you make a query, the server checks to see what do in `routes.rb`.
 That usually directs it to a controller, which does some logic and may access one or more models before returning the content of the page requested, which is then sent to the client.
 
