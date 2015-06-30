@@ -17,6 +17,10 @@ module FReCon
 
 		validates :robot_id, :competition_id, presence: true
 
+		def team
+			robot.team
+		end
+
 		def matches
 			Match.in id: records.map(&:match_id)
 		end
