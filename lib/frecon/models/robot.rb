@@ -26,5 +26,9 @@ module FReCon
 		def records
 			Record.in participation_id: participations.map(&:id)
 		end
+
+		def matches
+			Match.in id: records.map(&:match_id).uniq
+		end
 	end
 end
