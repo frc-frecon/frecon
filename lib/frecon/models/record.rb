@@ -27,5 +27,9 @@ module FReCon
 		def robot
 			participation.robot
 		end
+
+		def team
+			participitation.robot.team
+		end
 	end
 end
