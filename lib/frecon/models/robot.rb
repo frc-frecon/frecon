@@ -22,5 +22,9 @@ module FReCon
 		def competitions
 			Competition.in id: participations.map(&:competition_id)
 		end
+
+		def records
+			Record.in participation_id: participations.map(&:id)
+		end
 	end
 end
