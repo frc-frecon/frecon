@@ -23,5 +23,9 @@ module FReCon
 		def competition
 			match.competition
 		end
+
+		def robot
+			participation.robot
+		end
 	end
 end
