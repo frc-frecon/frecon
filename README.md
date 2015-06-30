@@ -14,7 +14,7 @@ $ gem install frecon
 ```
 
 You can install FReCon through RubyGems by running the above command.
-You can also include `gem "frecon"` in your `Gemfile`, if you're writing a derivative Ruby project using Bundler.
+You can also include `gem "frecon"` in your `Gemfile`, if you're writing a Ruby project using Bundler that has FReCon as a dependency.
 However, FReCon will not work unless some [System Dependencies](#system-dependencies) are installed.
 
 ## Basic Usage
