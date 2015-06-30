@@ -26,6 +26,10 @@ module FReCon
 			find_by number: team_number
 		end
 
+		def participations
+			Participation.in robot_id: robots.map(&:id)
+		end
+
 		# alias_method works by default solely on instance
 		# methods, so change context to the metaclass of
 		# Team and do aliasing there.
