@@ -16,5 +16,9 @@ module FReCon
 		has_many :records, dependent: :destroy
 
 		validates :robot_id, :competition_id, presence: true
+
+		def matches
+			Match.in id: records.map(&:match_id)
+		end
 	end
 end
