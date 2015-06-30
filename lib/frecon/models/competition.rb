@@ -23,5 +23,9 @@ module FReCon
 		def records
 			Record.in match_id: matches.map(&:id)
 		end
+
+		def robots
+			Robot.in id: participations.map(&:robot_id)
+		end
 	end
 end
