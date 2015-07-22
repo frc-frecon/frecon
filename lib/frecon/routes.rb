@@ -11,54 +11,44 @@ require "frecon/controllers"
 
 module FReCon
 	module Routes
-		def self.resource_routes(base, name, controller, methods = [:create, :update, :delete, :show, :index])
-			if methods.include?(:create)
-				base.post "/#{name}" do
-					begin
-						controller.create request, params
-					rescue RequestError => e
-						e.return_value
-					end
+		def self.resource_routes(base, name, controller)
+			base.post "/#{name}" do
+				begin
+					controller.create request, params
+				rescue RequestError => e
+					e.return_value
 				end
 			end
 
-			if methods.include?(:update)
-				base.put "/#{name}/:id" do
-					begin
-						controller.update request, params
-					rescue RequestError => e
-						e.return_value
-					end
+			base.put "/#{name}/:id" do
+				begin
+					controller.update request, params
+				rescue RequestError => e
+					e.return_value
 				end
 			end
 
-			if methods.include?(:delete)
-				base.delete "/#{name}/:id" do
-					begin
-						controller.delete params
-					rescue RequestError => e
-						e.return_value
-					end
+			base.delete "/#{name}/:id" do
+				begin
+					controller.delete params
+				rescue RequestError => e
+					e.return_value
 				end
 			end
 
-			if methods.include?(:show)
-				base.get "/#{name}/:id" do
-					begin
-						controller.show params
-					rescue RequestError => e
-						e.return_value
-					end
+			base.get "/#{name}/:id" do
+				begin
+					controller.show params
+				rescue RequestError => e
+					e.return_value
 				end
 			end
 
-			if methods.include?(:index)
-				base.get "/#{name}" do
-					begin
-						controller.index params
-					rescue RequestError => e
-						e.return_value
-					end
+			base.get "/#{name}" do
+				begin
+					controller.index params
+				rescue RequestError => e
+					e.return_value
 				end
 			end
 		end
