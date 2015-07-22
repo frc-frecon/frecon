@@ -8,7 +8,9 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "logger"
+
 require "mongoid"
+require "frecon/mongoid/criteria"
 
 require "tempfile"
 require "yaml"
@@ -27,7 +29,7 @@ module FReCon
 			else
 				Mongoid.load!(File.join(File.dirname(__FILE__), "mongoid.yml"), environment)
 			end
-			
+
 			if environment == :development
 				Mongoid.logger.level = Logger::DEBUG
 				Mongoid.logger = Logger.new($stdout)

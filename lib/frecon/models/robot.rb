@@ -30,5 +30,11 @@ module FReCon
 		def matches
 			Match.in id: records.map(&:match_id).uniq
 		end
+
+		register_routable_relation :team, "team"
+		register_routable_relation :participations, "participations"
+		register_routable_relation :competitions, "competitions"
+		register_routable_relation :records, "records"
+		register_routable_relation :matches, "matches"
 	end
 end

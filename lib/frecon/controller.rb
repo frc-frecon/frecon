@@ -138,25 +138,6 @@ module FReCon
 			@models.to_json
 		end
 
-		def self.show_attribute(params, attribute)
-			@model = find_model params
-
-			if @model
-				result = @model.send(attribute)
-
-				if result.is_a?(Mongoid::Criteria)
-					params.delete("splat")
-					params.delete("captures")
-
-					result.psv_filter(params).to_json
-				else
-					result.to_json
-				end
-			else
-				raise RequestError.new(404, could_not_find(params[:id]), {params: params, attribute: attribute})
-			end
-		end
-
 		def self.team_number_to_team_id(post_data)
 			return post_data unless post_data.is_a?(Hash)
 

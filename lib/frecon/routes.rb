@@ -53,6 +53,35 @@ module FReCon
 			end
 		end
 
+		def self.attribute_routes(base, name, controller)
+			model = controller.model
+
+			model_attribute_methods = model.class_variable_get(:@@attributes)
+
+			model_attribute_methods.each do |model_attribute_method|
+				base.get "/#{name}/:id/#{model_attribute_method[:attribute]}" do
+					begin
+						@model = controller.find_model(params)
+
+						params.delete("id")
+
+						result = @model.method(model_attribute_method[:method]).call
+
+						if result.is_a? Mongoid::Criteria
+							params.delete("splat")
+							params.delete("captures")
+
+							result.psv_filter(params).to_json
+						else
+							result.to_json
+						end
+					rescue RequestError => e
+						e.return_value
+					end
+				end
+			end
+		end
+
 		def self.included(base)
 			resource_routes base, "teams", TeamsController
 			resource_routes base, "competitions", CompetitionsController
@@ -60,6 +89,13 @@ module FReCon
 			resource_routes base, "records", RecordsController
 			resource_routes base, "robots", RobotsController
 			resource_routes base, "participations", ParticipationsController
+
+			attribute_routes base, "teams", TeamsController
+			attribute_routes base, "competitions", CompetitionsController
+			attribute_routes base, "matches", MatchesController
+			attribute_routes base, "records", RecordsController
+			attribute_routes base, "robots", RobotsController
+			attribute_routes base, "participations", ParticipationsController
 
 			base.before do
 				params.delete("_")

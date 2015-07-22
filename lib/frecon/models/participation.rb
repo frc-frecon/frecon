@@ -24,5 +24,11 @@ module FReCon
 		def matches
 			competition.matches
 		end
+
+		register_routable_relation :robot, "robot"
+		register_routable_relation :team, "team"
+		register_routable_relation :competition, "competition"
+		register_routable_relation :matches, "matches"
+		register_routable_relation :records, "records"
 	end
 end
