@@ -61,6 +61,10 @@ module FReCon
 			resource_routes base, "robots", RobotsController
 			resource_routes base, "participations", ParticipationsController
 
+			base.before do
+				params.delete("_")
+			end
+
 			base.get "/dump" do
 				begin
 					DumpController.full params

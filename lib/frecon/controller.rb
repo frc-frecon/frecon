@@ -126,8 +126,6 @@ module FReCon
 		end
 
 		def self.index(params)
-			params.delete("_")
-
 			@models = params.empty? ? model.all : model.where(params)
 
 			@models.to_json
