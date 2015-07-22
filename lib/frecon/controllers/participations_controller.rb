@@ -15,13 +15,5 @@ module FReCon
 		def self.create(request, params, post_data = nil)
 			super(request, params, post_data || team_number_to_team_id(process_json_request(request)))
 		end
-
-		def self.competition(params)
-			show_attribute params, :competition
-		end
-
-		def self.team(params)
-			show_attribute params, :team
-		end
 	end
 end
