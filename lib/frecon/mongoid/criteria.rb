@@ -27,15 +27,11 @@ module Mongoid
 					comparison_hash = {comparison_key => comparison_value}
 				end
 
-				p comparison_hash
-
 				psv_keys.each do |model|
 					model_id = (model.to_s + '_id').to_sym
 					model_class = ("FReCon::" + model.to_s.capitalize).constantize
 
 					comparison_hash = {model_id => model_class.in(comparison_hash).map(&:id)}
-
-					p comparison_hash
 				end
 
 				collection = collection.in(comparison_hash)
