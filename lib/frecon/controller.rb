@@ -137,7 +137,7 @@ module FReCon
 			@model = find_model params
 
 			if @model
-				@model.call(attribute).to_json
+				@model.send(attribute).to_json
 			else
 				raise RequestError.new(404, could_not_find(params[:id]), {params: params, attribute: attribute})
 			end
