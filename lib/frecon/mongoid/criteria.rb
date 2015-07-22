@@ -20,7 +20,12 @@ module Mongoid
 				end.reverse
 
 				comparison_key = psv_keys.shift
-				comparison_hash = {comparison_key => comparison_value}
+
+				if comparison_value.length == 0 || comparison_value == "__nil__"
+					comparison_hash = {comparison_key => nil}
+				else
+					comparison_hash = {comparison_key => comparison_value}
+				end
 
 				p comparison_hash
 
