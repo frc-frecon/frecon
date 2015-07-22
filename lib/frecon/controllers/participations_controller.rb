@@ -7,6 +7,9 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+require "json"
+require "frecon/models/participation"
+
 module FReCon
 	class ParticipationsController < Controller
 		def self.create(request, params, post_data = nil)

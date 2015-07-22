@@ -8,8 +8,7 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "json"
-require "frecon/base"
-require "frecon/models"
+require "frecon/models/record"
 
 module FReCon
 	class RecordsController < Controller

@@ -8,7 +8,7 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "json"
-require "frecon/models"
+require "frecon/models/match"
 
 module FReCon
 	class MatchesController < Controller
