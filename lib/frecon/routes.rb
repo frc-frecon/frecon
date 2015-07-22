@@ -68,6 +68,14 @@ module FReCon
 					e.return_value
 				end
 			end
+
+			base.routes.each do |verb, routes|
+				puts "#{verb}:"
+
+				routes.each do |route|
+					puts "  #{route[0]}"
+				end
+			end
 		end
 	end
 end
