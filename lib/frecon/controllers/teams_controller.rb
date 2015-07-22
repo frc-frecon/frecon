@@ -15,7 +15,9 @@ module FReCon
 	class TeamsController < Controller
 		# The `id` param will be a number or id.
 		def self.find_model(params)
-			(Team.find_by id: params[:id]) || (Team.find_by number: params[:id])
+			id_or_number = params.delete("id")
+
+			(Team.find_by id: id_or_number) || (Team.find_by number: id_or_number)
 		end
 
 		# Since Team has a special way of finding itself, we can make

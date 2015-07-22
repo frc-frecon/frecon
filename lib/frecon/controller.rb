@@ -26,7 +26,7 @@ module FReCon
 		# Some models have to find themselves in special ways,
 		# so this can be overridden with those ways.
 		def self.find_model(params)
-			model.find params[:id]
+			model.find params.delete("id")
 		end
 
 		# The 404 error message.
