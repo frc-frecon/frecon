@@ -109,11 +109,13 @@ module FReCon
 				end
 			end
 
-			base.routes.each do |verb, routes|
-				puts "#{verb}:"
+			if ENV["PRINT_ROUTES"]
+				base.routes.each do |verb, routes|
+					puts "#{verb}:"
 
-				routes.each do |route|
-					puts "  #{route[0]}"
+					routes.each do |route|
+						puts "  #{route[0]}"
+					end
 				end
 			end
 		end
