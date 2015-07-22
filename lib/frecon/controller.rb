@@ -126,7 +126,14 @@ module FReCon
 		end
 
 		def self.index(params)
-			@models = params.empty? ? model.all : model.where(params)
+			if params.empty?
+				@models = model.all
+			else
+				params.delete("splat")
+				params.delete("captures")
+
+				@models = model.all.psv_filter(params)
+			end
 
 			@models.to_json
 		end
@@ -135,7 +142,16 @@ module FReCon
 			@model = find_model params
 
 			if @model
-				@model.send(attribute).to_json
+				result = @model.send(attribute)
+
+				if result.is_a?(Mongoid::Criteria)
+					params.delete("splat")
+					params.delete("captures")
+
+					result.psv_filter(params).to_json
+				else
+					result.to_json
+				end
 			else
 				raise RequestError.new(404, could_not_find(params[:id]), {params: params, attribute: attribute})
 			end
