@@ -62,123 +62,14 @@ module FReCon
 				end
 			end
 		end
-		
+
 		def self.included(base)
 			resource_routes base, "teams", TeamsController
-
-			base.get "/teams/:id/records/?:competition_id?" do
-				begin
-					TeamsController.records params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/teams/:id/matches/?:competition_id?" do
-				begin
-					TeamsController.matches params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/teams/:id/competitions" do
-				begin
-					TeamsController.competitions params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "competitions", CompetitionsController
-
-			base.get "/competitions/:id/teams" do
-				begin
-					CompetitionsController.teams params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/competitions/:id/matches" do
-				begin
-					CompetitionsController.matches params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/competitions/:id/records" do
-				begin
-					CompetitionsController.records params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "matches", MatchesController
-
-			base.get "/matches/:id/records" do
-				begin
-					MatchesController.records params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/matches/:id/competition" do
-				begin
-					MatchesController.competition params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "records", RecordsController
-
-			base.get "/records/:id/competition" do
-				begin
-					RecordsController.competition params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "robots", RobotsController
-
-			base.get "/robots/:id/competition" do
-				begin
-					RobotsController.competition params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/robots/:id/team" do
-				begin
-					RobotsController.team params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "participations", ParticipationsController
-
-			base.get "/participations/:id/competition" do
-				begin
-					ParticipationsController.competition params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/participations/:id/team" do
-				begin
-					ParticipationsController.team params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
 
 			base.get "/dump" do
 				begin
