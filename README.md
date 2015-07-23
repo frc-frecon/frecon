@@ -1,32 +1,59 @@
 # FReCon
 
-## How to get started
+FReCon is an API for scouting at *FIRST* Robotics competitions.
+It is designed to be game-agnostic, that is, as dynamic as possible from year to year.
 
-### MongoDB
+FReCon is built in Ruby, using Sinatra for the foundations of a server and the Mongoid database backend to interface with MongoDB as our system-level database backend.
+You need to have Ruby installed before you can use FReCon.
+We highly recommend using [rvm][rvm] to achieve this.
 
-When using Fedora, you can install MongoDB via `yum install mongodb mongodb-server`.
-Then start the service via `service mongod start`.
+## Getting Started
 
-### Ruby
+```sh
+$ gem install frecon
+```
 
-It's highly recommended that you use [rvm](http://rvm.io).
-Just run the command on the front of their website.
-It's much easier than installing Ruby via a package manager.
+You can install FReCon through RubyGems by running the above command.
+You can also include `gem "frecon"` in your `Gemfile`, if you're writing a Ruby project using Bundler that has FReCon as a dependency.
+However, FReCon will not work unless some [System Dependencies](#system-dependencies) are installed.
 
-Once you've done that, run `gem install bundler`.
-Gems are Ruby packages, and bundle will take care of installing all the other ones.
-To do that, cd to the project directory and run `bundle install`.
+## Basic Usage
 
-Great! You are pretty much ready to go now.
-Run `bin/frecon` to run the server, and access it at localhost:4567.
-If you want an interactive console in the server environment, just run `bin/frecon console`.
+```sh
+$ frecon
+```
 
-Get to work!
+This command starts the FReCon API as its own server on your device.
 
-## How stuff works
+```sh
+$ frecon console
+$ frecon c
+```
 
-Right now, the project is split up into models and controllers, housed in their respective folders.
-When you start the server, all these files are loaded, and the database is updated to make sure it matches what properties are defined in the models.
+Both of these commands start a FReCon console.
+A FReCon console is simply a [pry](https://github.com/pry/pry) shell that allows you to type `Team` instead of `FReCon::Team` to access that class.
+It is more convenient than loading FReCon into an existing pry or irb session.
+
+## System Dependencies
+
+* **MongoDB**
+  - On Fedora, you can install MongoDB with `yum install mongodb mongodb-server`, and start it with `service mongod start`.
+  - No configuration should be necessary; the packaged version of MongoDB works just fine.
+
+## Architecture
+
+FReCon is written as a JSON API.
+This means that it returns responses which can be parsed via `JSON.parse` in JavaScript or the corresponding function in a different language.
+You can also interact with FReCon directly from the console, which is mentioned in the [Quick Usage section](#quick-usage).
+
+As it is written in Ruby, FReCon *should* run on Mac OSX/Linux without much trouble.
+Windows users of FReCon may need to do a bit of fenangling, but we'd love to work with you if you're trying to use FReCon on Windows and need help.
+As a result of your effort, we could make a tutorial for future users.
+
+## Implementation
+
+The project is split up into models and controllers, housed in their respective folders.
+When you start the server, all these files are loaded.
 When you make a query, the server checks to see what do in `routes.rb`.
 That usually directs it to a controller, which does some logic and may access one or more models before returning the content of the page requested, which is then sent to the client.
 
@@ -34,4 +61,12 @@ That usually directs it to a controller, which does some logic and may access on
 
 FReCon is distributed under the terms of the MIT license.
 You should have received a copy of the MIT license with this program.
-If not, you can find a copy at [opensource.org/licenses/mit](http://opensource.org/licenses/mit).
+If not, you can find a copy at [opensource.org/licenses/mit][mit].
+You can also contact us with any licensing concerns or requests for permission at [frc-frecon@googlegroups.com][frc-frecon-mail].
+(Or, if email bounces from there, you may contact Kristofer Rye at [kristofer.rye@gmail.com][kristofer-rye-mail])
+
+[rvm]: http://rvm.io
+[ruby]: https://www.ruby-lang.org/en/
+[mit]: http://opensource.org/license/mit
+[frc-frecon-mail]: mailto:frc-frecon@googlegroups.com
+[kristofer-rye-mail]: mailto:kristofer.rye@gmail.com

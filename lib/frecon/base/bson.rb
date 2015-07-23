@@ -1,4 +1,4 @@
-# lib/frecon/base.rb
+# lib/frecon/base/bson.rb
 #
 # Copyright (C) 2014 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
 #
@@ -7,6 +7,10 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "frecon/base/bson"
-require "frecon/base/object"
-require "frecon/base/variables"
+module BSON
+	class ObjectId
+		def as_json(*args)
+			to_s
+		end
+	end
+end
