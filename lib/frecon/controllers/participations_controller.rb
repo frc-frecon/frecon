@@ -12,8 +12,5 @@ require "frecon/models/participation"
 
 module FReCon
 	class ParticipationsController < Controller
-		def self.create(request, params, post_data = nil)
-			super(request, params, post_data || team_number_to_team_id(process_json_request(request)))
-		end
 	end
 end

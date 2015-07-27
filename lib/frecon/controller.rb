@@ -137,21 +137,5 @@ module FReCon
 
 			@models.to_json
 		end
-
-		def self.team_number_to_team_id(post_data)
-			return post_data unless post_data.is_a?(Hash)
-
-			if post_data["team_number"] && !post_data["team_id"]
-				unless (team = Team.number post_data["team_number"]).nil?
-					post_data["team_id"] = team.id
-
-					post_data.delete("team_number")
-
-					post_data
-				else
-					raise RequestError.new(404, could_not_find(post_data["team_number"], "number", "team"), {post_data: post_data})
-				end
-			end
-		end
 	end
 end
