@@ -2,7 +2,7 @@ require "spec_helper"
 
 require "frecon/base/bson"
 
-describe "BSON::ObjectId" do
+describe BSON::ObjectId do
 	describe "#as_json" do
 		context "with no arguments" do
 			it "returns just the value of a BSON::ObjectId" do
