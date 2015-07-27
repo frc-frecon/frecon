@@ -13,21 +13,5 @@ require "frecon/models/team"
 
 module FReCon
 	class TeamsController < Controller
-		# The `id` param will be a number or id.
-		def self.find_model(params)
-			id_or_number = params.delete("id")
-
-			(Team.find_by id: id_or_number) || (Team.find_by number: id_or_number)
-		end
-
-		# Since Team has a special way of finding itself, we can make
-		# the error message reflect this.
-		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
-			if attribute == "id" && model == "team"
-				"Could not find team of id or number #{value}!"
-			else
-				"Could not find #{model} of #{attribute} #{value}!"
-			end
-		end
 	end
 end
