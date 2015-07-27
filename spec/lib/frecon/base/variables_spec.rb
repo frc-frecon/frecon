@@ -12,6 +12,8 @@ describe FReCon do
 	end
 
 	after :each do
+		# Since we might be changing the instance variables that are set when
+		# we load this file, re-load it to be on the safe side.
 		load "frecon/base/variables.rb"
 	end
 
