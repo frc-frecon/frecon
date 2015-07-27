@@ -24,13 +24,12 @@ describe FReCon do
 	end
 
 	describe ".environment=" do
-		it "sets the environment" do
-			previous_environment = FReCon.environment
-			new_environment = :production
+		it "takes an environment `arg' and sets the environment" do
+			arg = :production
 
-			FReCon.environment=(new_environment)
+			FReCon.environment=(arg)
 
-			expect(FReCon.environment).to eq(new_environment)
+			expect(FReCon.environment).to eq(arg)
 		end
 	end
 end
