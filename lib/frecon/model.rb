@@ -8,6 +8,7 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "mongoid"
+require "frecon/mongoid/criteria"
 
 module FReCon
 	class Model
@@ -18,6 +19,16 @@ module FReCon
 				include Mongoid::Attributes::Dynamic
 
 				validate :no_invalid_relations
+
+				self.class_variable_set(:@@attributes, [])
+
+				def self.register_routable_relation(method, attribute)
+					self.class_variable_get(:@@attributes) << {method: method, type: :relation, attribute: attribute}
+				end
+
+				def self.register_routable_attribute(method, attribute)
+					self.class_variable_get(:@@attributes) << {method: method, type: :attribute, attribute: attribute}
+				end
 			end
 		end
 
