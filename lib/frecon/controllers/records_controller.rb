@@ -8,17 +8,9 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "json"
-require "frecon/base"
-require "frecon/models"
+require "frecon/models/record"
 
 module FReCon
 	class RecordsController < Controller
-		def self.create(request, params, post_data = nil)
-			super(request, params, post_data || match_number_and_competition_to_match_id(team_number_to_team_id(process_json_request(request))))
-		end
-
-		def self.competition(params)
-			show_attribute params, :competition
-		end
 	end
 end

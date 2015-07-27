@@ -16,9 +16,8 @@ module FReCon
 		field :location, type: String
 		field :logo_path, type: String
 		field :name, type: String
-		
-		has_many :participations, dependent: :destroy
-		has_many :records, dependent: :destroy
+
+		has_many :robots, dependent: :destroy
 
 		validates :number, presence: true, uniqueness: true, numericality: { greater_than: 0 }
 
@@ -27,20 +26,28 @@ module FReCon
 			find_by number: team_number
 		end
 
+		def participations
+			Participation.in robot_id: robots.map(&:id)
+		end
+
 		def competitions
 			Competition.in id: participations.map(&:competition_id)
 		end
 
-		# Returns all of the matches that this team has been in.
-		# Optionally, returns the matches that this team has played
-		# in a certain competition.
-		def matches(competition_id = nil)
-			matches = Match.in record_id: self.records.map(&:id)
-			matches = matches.where competition_id: competition_id unless competition_id.nil?
-
-			matches
+		def records
+			Record.in participation_id: participations.map(&:id)
 		end
-		
+
+		def matches
+			Match.in competition_id: competitions.map(&:id)
+		end
+
+		register_routable_relation :robots, "robots"
+		register_routable_relation :participations, "participations"
+		register_routable_relation :competitions, "competitions"
+		register_routable_relation :records, "records"
+		register_routable_relation :matches, "matches"
+
 		# alias_method works by default solely on instance
 		# methods, so change context to the metaclass of
 		# Team and do aliasing there.
@@ -48,6 +55,5 @@ module FReCon
 			alias_method :with_number, :number
 			alias_method :that_has_number, :number
 		end
-
 	end
 end

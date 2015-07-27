@@ -8,7 +8,7 @@
 # <http://opensource.org/licenses/MIT>.
 
 module FReCon
-	VERSION = "0.3.1"
+	VERSION ||= "0.4.0"
 
 	@environment_variable = :development
 

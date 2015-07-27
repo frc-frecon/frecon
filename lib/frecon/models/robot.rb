@@ -14,10 +14,27 @@ module FReCon
 		# This is an optional field we included for organization.
 		field :name, type: String
 
-		belongs_to :competition
 		belongs_to :team
+		has_many :participations, dependent: :destroy
 
-		validates :competition_id, :team_id, presence: true
-		validates :team_id, uniqueness: { scope: :competition_id }
+		validates :team_id, presence: true
+
+		def competitions
+			Competition.in id: participations.map(&:competition_id)
+		end
+
+		def records
+			Record.in participation_id: participations.map(&:id)
+		end
+
+		def matches
+			Match.in id: records.map(&:match_id).uniq
+		end
+
+		register_routable_relation :team, "team"
+		register_routable_relation :participations, "participations"
+		register_routable_relation :competitions, "competitions"
+		register_routable_relation :records, "records"
+		register_routable_relation :matches, "matches"
 	end
 end

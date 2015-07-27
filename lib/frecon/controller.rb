@@ -26,7 +26,7 @@ module FReCon
 		# Some models have to find themselves in special ways,
 		# so this can be overridden with those ways.
 		def self.find_model(params)
-			model.find params[:id]
+			model.find params.delete("id")
 		end
 
 		# The 404 error message.
@@ -48,7 +48,7 @@ module FReCon
 
 			post_data
 		end
-		
+
 		def self.create(request, params, post_data = nil)
 			post_data ||= process_json_request request
 
@@ -100,7 +100,7 @@ module FReCon
 				raise RequestError.new(422, @model.errors.full_messages, {params: params, post_data: post_data})
 			end
 		end
-		
+
 		def self.delete(params)
 			@model = find_model params
 
@@ -114,7 +114,7 @@ module FReCon
 				raise RequestError.new(404, could_not_find(params[:id]), {params: params})
 			end
 		end
-		
+
 		def self.show(params)
 			@model = find_model params
 
@@ -126,93 +126,16 @@ module FReCon
 		end
 
 		def self.index(params)
-			# jQuery (used client-side in WeBCa) sometimes includes a '_'
-			# param in AJAX requests to try and get rid of exuberant caching.
-			#
-			# We delete this param because of problems it causes in the
-			# database query (The primary problem is that models don't have
-			# such an '_' attribute to begin with).
-			params.delete("_")
-			
-			@models = params.empty? ? model.all : model.where(params)
+			if params.empty?
+				@models = model.all
+			else
+				params.delete("splat")
+				params.delete("captures")
+
+				@models = model.all.psv_filter(params)
+			end
 
 			@models.to_json
-		end
-
-		def self.show_attribute(params, attribute)
-			@model = find_model params
-
-			if @model
-				@model.send(attribute).to_json
-			else
-				raise RequestError.new(404, could_not_find(params[:id]), {params: params, attribute: attribute})
-			end
-		end
-
-		def self.team_number_to_team_id(post_data)
-			return post_data unless post_data.is_a?(Hash)
-
-			if post_data["team_number"] && !post_data["team_id"]
-				unless (team = Team.number post_data["team_number"]).nil?
-					post_data["team_id"] = team.id
-
-					post_data.delete("team_number")
-
-					post_data
-				else
-					raise RequestError.new(404, could_not_find(post_data["team_number"], "number", "team"), {post_data: post_data})
-				end
-			end
-		end
-
-		# This supports match_number and competition_name
-		# or match_number and competition (which is a Hash).
-		def self.match_number_and_competition_to_match_id(post_data)
-			return post_data unless post_data.is_a?(Hash)
-
-			if post_data["match_number"] && !post_data["match_id"]
-				if post_data["competition_name"] && (competition = Competition.find_by name: post_data["competition_name"])
-					# Try to set the match to the already existing match.
-					begin
-						match = competition.matches.find_by number: post_data["match_number"]
-					rescue ArgumentError, TypeError => e
-						raise RequestError.new(422, e.message, {post_data: post_data})
-					end
-
-					# Create the match if necessary.
-					begin
-						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
-					rescue ArgumentError, TypeError => e
-						raise RequestError.new(422, e.message, {post_data: post_data, competition_id: competition.id})
-					end
-
-					post_data["match_id"] = match.id
-
-					post_data.delete("match_number")
-					post_data.delete("competition_name")
-
-					post_data
-				elsif post_data["competition"] && post_data["competition"]["_id"] && (competition = Competition.find_by(id: post_data["competition"]["_id"]))
-					# Try to set the match to the already existing match.
-					match = competition.matches.find_by number: post_data["match_number"]
-
-					# Create the match if necessary.
-					begin
-						match ||= Match.create(number: post_data["match_number"], competition_id: competition.id)
-					rescue ArgumentError, TypeError => e
-						raise RequestError.new(422, e.message, {post_data: post_data, competition_id: competition.id})
-					end
-
-					post_data["match_id"] = match.id
-
-					post_data.delete("match_number")
-					post_data.delete("competition")
-
-					post_data
-				else
-					raise RequestError.new(422, "A current competition is not set.  Please set it.", {post_data: post_data})
-				end
-			end
 		end
 	end
 end
