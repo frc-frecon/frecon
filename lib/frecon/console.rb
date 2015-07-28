@@ -16,7 +16,6 @@ module FReCon
 			Database.setup(FReCon.environment)
 
 			require "pry"
-
 			FReCon.pry
 		end
 	end
