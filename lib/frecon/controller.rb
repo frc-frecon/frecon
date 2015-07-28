@@ -8,6 +8,7 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "frecon/base"
+require "frecon/model"
 
 module FReCon
 	class Controller
