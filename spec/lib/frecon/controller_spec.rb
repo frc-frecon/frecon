@@ -60,6 +60,16 @@ describe FReCon::Controller do
 		end
 	end
 
+	describe ".process_json_request" do
+		context "with a valid JSON body" do
+			it "takes an argument and returns its hash"
+		end
+
+		context "with an invalid JSON body" do
+			it "takes an argument and raises a RequestError"
+		end
+	end
+
 	after :all do
 		FReCon.send(:remove_const, :Test)
 		FReCon.send(:remove_const, :TestController)
