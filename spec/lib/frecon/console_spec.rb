@@ -14,7 +14,7 @@ describe FReCon::Console do
 			FReCon::Console.start
 		end
 
-		it "uses pry" do
+		it "starts pry" do
 			allow(FReCon::Console).to receive(:require)
 			allow(FReCon).to receive(:pry)
 
