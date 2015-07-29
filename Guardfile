@@ -1,3 +1,5 @@
+require "frecon"
+
 guard :rspec, cmd: "bundle exec rspec" do
 	# Watch all of the spec files, and, when one is modified,
 	# simply run it.
