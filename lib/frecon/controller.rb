@@ -9,6 +9,7 @@
 
 require "frecon/base"
 require "frecon/model"
+require "frecon/request_error"
 
 module FReCon
 	class Controller
