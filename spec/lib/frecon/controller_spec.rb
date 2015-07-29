@@ -70,6 +70,21 @@ describe FReCon::Controller do
 		end
 	end
 
+	describe ".create" do
+	end
+
+	describe ".update" do
+	end
+
+	describe ".delete" do
+	end
+
+	describe ".show" do
+	end
+
+	describe ".index" do
+	end
+
 	after :all do
 		FReCon.send(:remove_const, :Test)
 		FReCon.send(:remove_const, :TestController)
