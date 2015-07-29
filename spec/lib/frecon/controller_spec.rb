@@ -61,12 +61,53 @@ describe FReCon::Controller do
 	end
 
 	describe ".process_json_request" do
-		context "with a valid JSON body" do
-			it "takes an argument and returns its hash"
+		it "takes an argument" do
+			expect(FReCon::TestController.method(:process_json_request).arity).to eq(1)
 		end
 
-		context "with an invalid JSON body" do
-			it "takes an argument and raises a RequestError"
+		context "with a request containing a valid JSON body" do
+			it "returns its Hash" do
+				hash = {}
+
+				request = double("request")
+
+				allow(request).to receive(:body) do
+					body = double("body")
+
+					allow(body).to receive(:rewind)
+					allow(body).to receive(:read) do
+						JSON.generate({})
+					end
+
+					body
+				end
+
+
+				expect(FReCon::TestController.process_json_request(request)).to eq(hash)
+			end
+		end
+
+		context "with an request containing an invalid JSON body" do
+			it "raises a RequestError" do
+				hash = {}
+
+				request = double("request")
+
+				allow(request).to receive(:body) do
+					body = double("body")
+
+					allow(body).to receive(:rewind)
+					allow(body).to receive(:read) do
+						JSON.generate({}).gsub(/{/, "")
+					end
+
+					body
+				end
+
+				expect do
+					FReCon::TestController.process_json_request(request)
+				end.to raise_error(RequestError)
+			end
 		end
 	end
 
