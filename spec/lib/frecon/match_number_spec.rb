@@ -45,6 +45,33 @@ describe FReCon::MatchNumber do
 		it "takes one argument" do
 			expect(subject.arity).to eq(1)
 		end
+
+		context "with a MatchNumber argument" do
+			it "calls .mongoize on the argument" do
+				argument = FReCon::MatchNumber.new(type: :qualification, number: 2)
+				allow(argument).to receive(:mongoize)
+
+				expect(argument).to receive(:mongoize)
+
+				subject.call(argument)
+			end
+		end
+
+		context "with a String argument" do
+			it "creates a new MatchNumber with the argument, then calls #mongoize on that" do
+				argument = "qm2"
+
+				new_object = double("generated MatchNumber")
+
+				allow(FReCon::MatchNumber).to receive(:new) { new_object }
+				allow(new_object).to receive(:mongoize)
+
+				expect(FReCon::MatchNumber).to receive(:new).with(argument)
+				expect(new_object).to receive(:mongoize)
+
+				subject.call(argument)
+			end
+		end
 	end
 
 	describe ".evolve" do
