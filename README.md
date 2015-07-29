@@ -57,6 +57,24 @@ When you start the server, all these files are loaded.
 When you make a query, the server checks to see what do in `routes.rb`.
 That usually directs it to a controller, which does some logic and may access one or more models before returning the content of the page requested, which is then sent to the client.
 
+## Testing
+
+This project uses Guard and RSpec for testing.
+As you refactor, or wish to check the status of the project, you can start Guard to continuously test your changes and notify you about your test results.
+
+```sh
+$ bundle exec guard
+```
+
+If you prefer to simply run the spec manually, you can run the entire spec manually.
+
+```sh
+$ bundle exec rspec
+```
+
+When you write new features that should be tested, please do add them to the suite.
+Likewise, if you find a feature that isn't tested, please add it to the suite.
+
 ## License
 
 FReCon is distributed under the terms of the MIT license.
