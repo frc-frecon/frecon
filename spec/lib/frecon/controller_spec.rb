@@ -21,7 +21,7 @@ describe FReCon::Controller do
 	end
 
 	describe ".find_model" do
-		it "executes a find on the model class" do
+		it "takes a single params argument and executes a find on the model class" do
 			id = BSON::ObjectId.from_time(Time.now)
 
 			params = {"id" => id}
