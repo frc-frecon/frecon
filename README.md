@@ -87,4 +87,4 @@ You can also contact us with any licensing concerns or requests for permission a
 [ruby]: https://www.ruby-lang.org/en/
 [mit]: http://opensource.org/license/mit
 [frc-frecon-mail]: mailto:frc-frecon@googlegroups.com
-[kristofer-rye-mail]: mailto:kristofer.rye@gmail.com
+[kristofer-rye-mail]: mailto:kristofer.rye+frecon@gmail.com
