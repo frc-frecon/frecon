@@ -112,18 +112,33 @@ describe FReCon::Controller do
 	end
 
 	describe ".create" do
+		it "takes two required arguments and an optional" do
+			expect(FReCon::TestController.method(:create).arity).to eq(-3)
+		end
 	end
 
 	describe ".update" do
+		it "takes two required arguments and an optional" do
+			expect(FReCon::TestController.method(:update).arity).to eq(-3)
+		end
 	end
 
 	describe ".delete" do
+		it "takes one argument" do
+			expect(FReCon::TestController.method(:delete).arity).to eq(1)
+		end
 	end
 
 	describe ".show" do
+		it "takes one argument" do
+			expect(FReCon::TestController.method(:show).arity).to eq(1)
+		end
 	end
 
 	describe ".index" do
+		it "takes one argument" do
+			expect(FReCon::TestController.method(:index).arity).to eq(1)
+		end
 	end
 
 	after :all do
