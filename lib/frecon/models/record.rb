@@ -31,5 +31,11 @@ module FReCon
 		def team
 			participation.robot.team
 		end
+
+		register_routable_relation :match, "match"
+		register_routable_relation :competition, "competition"
+		register_routable_relation :participation, "participation"
+		register_routable_relation :robot, "robot"
+		register_routable_relation :team, "team"
 	end
 end

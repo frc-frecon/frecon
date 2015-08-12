@@ -33,5 +33,11 @@ module FReCon
 		def teams
 			Team.in id: robots.map(&:team_id)
 		end
+
+		register_routable_relation :competition, "competition"
+		register_routable_relation :records, "records"
+		register_routable_relation :participations, "participations"
+		register_routable_relation :robots, "robots"
+		register_routable_relation :teams, "teams"
 	end
 end

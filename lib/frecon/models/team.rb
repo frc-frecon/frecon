@@ -42,6 +42,12 @@ module FReCon
 			Match.in competition_id: competitions.map(&:id)
 		end
 
+		register_routable_relation :robots, "robots"
+		register_routable_relation :participations, "participations"
+		register_routable_relation :competitions, "competitions"
+		register_routable_relation :records, "records"
+		register_routable_relation :matches, "matches"
+
 		# alias_method works by default solely on instance
 		# methods, so change context to the metaclass of
 		# Team and do aliasing there.
