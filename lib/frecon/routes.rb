@@ -11,173 +11,94 @@ require "frecon/controllers"
 
 module FReCon
 	module Routes
-		def self.resource_routes(base, name, controller, methods = [:create, :update, :delete, :show, :index])
-			if methods.include?(:create)
-				base.post "/#{name}" do
-					begin
-						controller.create request, params
-					rescue RequestError => e
-						e.return_value
-					end
+		def self.resource_routes(base, name, controller)
+			base.post "/#{name}" do
+				begin
+					controller.create request, params
+				rescue RequestError => e
+					e.return_value
 				end
 			end
 
-			if methods.include?(:update)
-				base.put "/#{name}/:id" do
-					begin
-						controller.update request, params
-					rescue RequestError => e
-						e.return_value
-					end
+			base.put "/#{name}/:id" do
+				begin
+					controller.update request, params
+				rescue RequestError => e
+					e.return_value
 				end
 			end
 
-			if methods.include?(:delete)
-				base.delete "/#{name}/:id" do
-					begin
-						controller.delete params
-					rescue RequestError => e
-						e.return_value
-					end
+			base.delete "/#{name}/:id" do
+				begin
+					controller.delete params
+				rescue RequestError => e
+					e.return_value
 				end
 			end
 
-			if methods.include?(:show)
-				base.get "/#{name}/:id" do
-					begin
-						controller.show params
-					rescue RequestError => e
-						e.return_value
-					end
+			base.get "/#{name}/:id" do
+				begin
+					controller.show params
+				rescue RequestError => e
+					e.return_value
 				end
 			end
 
-			if methods.include?(:index)
-				base.get "/#{name}" do
+			base.get "/#{name}" do
+				begin
+					controller.index params
+				rescue RequestError => e
+					e.return_value
+				end
+			end
+		end
+
+		def self.attribute_routes(base, name, controller)
+			model = controller.model
+
+			model_attribute_methods = model.class_variable_get(:@@attributes)
+
+			model_attribute_methods.each do |model_attribute_method|
+				base.get "/#{name}/:id/#{model_attribute_method[:attribute]}" do
 					begin
-						controller.index params
+						@model = controller.find_model(params)
+
+						params.delete("id")
+
+						result = @model.method(model_attribute_method[:method]).call
+
+						if result.is_a? Mongoid::Criteria
+							params.delete("splat")
+							params.delete("captures")
+
+							result.psv_filter(params).to_json
+						else
+							result.to_json
+						end
 					rescue RequestError => e
 						e.return_value
 					end
 				end
 			end
 		end
-		
+
 		def self.included(base)
 			resource_routes base, "teams", TeamsController
-
-			base.get "/teams/:id/records/?:competition_id?" do
-				begin
-					TeamsController.records params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/teams/:id/matches/?:competition_id?" do
-				begin
-					TeamsController.matches params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/teams/:id/competitions" do
-				begin
-					TeamsController.competitions params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "competitions", CompetitionsController
-
-			base.get "/competitions/:id/teams" do
-				begin
-					CompetitionsController.teams params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/competitions/:id/matches" do
-				begin
-					CompetitionsController.matches params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/competitions/:id/records" do
-				begin
-					CompetitionsController.records params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "matches", MatchesController
-
-			base.get "/matches/:id/records" do
-				begin
-					MatchesController.records params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/matches/:id/competition" do
-				begin
-					MatchesController.competition params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "records", RecordsController
-
-			base.get "/records/:id/competition" do
-				begin
-					RecordsController.competition params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "robots", RobotsController
-
-			base.get "/robots/:id/competition" do
-				begin
-					RobotsController.competition params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
-			base.get "/robots/:id/team" do
-				begin
-					RobotsController.team params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
-
 			resource_routes base, "participations", ParticipationsController
 
-			base.get "/participations/:id/competition" do
-				begin
-					ParticipationsController.competition params
-				rescue RequestError => e
-					e.return_value
-				end
-			end
+			attribute_routes base, "teams", TeamsController
+			attribute_routes base, "competitions", CompetitionsController
+			attribute_routes base, "matches", MatchesController
+			attribute_routes base, "records", RecordsController
+			attribute_routes base, "robots", RobotsController
+			attribute_routes base, "participations", ParticipationsController
 
-			base.get "/participations/:id/team" do
-				begin
-					ParticipationsController.team params
-				rescue RequestError => e
-					e.return_value
-				end
+			base.before do
+				params.delete("_")
 			end
 
 			base.get "/dump" do
@@ -185,6 +106,16 @@ module FReCon
 					DumpController.full params
 				rescue RequestError => e
 					e.return_value
+				end
+			end
+
+			if ENV["PRINT_ROUTES"]
+				base.routes.each do |verb, routes|
+					puts "#{verb}:"
+
+					routes.each do |route|
+						puts "  #{route[0]}"
+					end
 				end
 			end
 		end

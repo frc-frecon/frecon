@@ -28,4 +28,8 @@ Gem::Specification.new do |s|
 	s.add_runtime_dependency "thin", ["~> 1.6"]
 	s.add_runtime_dependency "mongoid", ["~> 4.0"]
 	s.add_runtime_dependency "httparty", ["~> 0.13"]
+
+	s.add_development_dependency "guard", ["~> 2.6"]
+	s.add_development_dependency "mongoid-rspec", ["~> 2.0"]
+	s.add_development_dependency "guard-rspec", ["~> 4.2"]
 end
