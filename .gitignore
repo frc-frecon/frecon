@@ -4,12 +4,13 @@ coverage/
 spec/reports/
 tmp/
 
-# Documentation cache.
+# Generated documentation.
 doc/
 
-# Bundler files.
+# Bundler data.
 .bundle/
 
+# Environment-specific stuff.
 Gemfile.lock
 .ruby-version
 
