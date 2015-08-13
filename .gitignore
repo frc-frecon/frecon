@@ -1,7 +1,7 @@
+# Compiled .gem files.
 *.gem
-.config
-coverage/
-spec/reports/
+
+# Temporary directory for the execution of guards.
 tmp/
 
 # Generated documentation.
