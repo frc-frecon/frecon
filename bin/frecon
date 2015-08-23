@@ -89,9 +89,11 @@ ARGV.select do |arg|
 	end
 end
 
+configuration = FReCon::Configuration.construct!(argument_configuration: options[:configuration])
+
 case options[:mode]
 when :server
-	FReCon::Server.start(host: options[:host], port: options[:port], environment: options[:environment])
+	FReCon::Server.start(host: configuration["frecon"]["server"]["host"], port: configuration["frecon"]["server"]["port"], environment: configuration["frecon"]["server"]["environment"])
 when :console
-	FReCon::Console.start(environment: options[:environment])
+	FReCon::Console.start(environment: configuration["frecon"]["console"]["environment"])
 end
