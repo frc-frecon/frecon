@@ -7,6 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+require "frecon/base/variables"
 require "frecon/database"
 require "frecon/server"
 
