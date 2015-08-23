@@ -17,6 +17,21 @@ module FReCon
 			end
 		end
 
+		def to_h
+			hsh = {}
+
+			self.each do |key, value|
+				case value
+				when Configuration
+					hsh[key] = value.to_h
+				else
+					hsh[key] = value
+				end
+			end
+
+			hsh
+		end
+
 		def merge(other)
 			case other
 			when Configuration, Hash
