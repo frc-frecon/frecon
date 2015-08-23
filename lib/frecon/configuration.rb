@@ -1,4 +1,4 @@
-# lib/frecon/console.rb
+# lib/frecon/configuration.rb
 #
 # Copyright (C) 2015 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
 #
