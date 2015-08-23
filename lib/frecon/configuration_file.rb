@@ -28,8 +28,18 @@ module FReCon
 			rescue Errno::ENOENT
 				nil
 			end
+		end
 
-			Configuration.new(YAML.load(data))
+		def self.default
+			self.new(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "config", "default.yml")))
+		end
+
+		def self.system
+			self.new(File.join("", "etc", "frecon", "config.yml"))
+		end
+
+		def self.user
+			self.new(File.join(Dir.home, "config", "frecon.yml"))
 		end
 	end
 end
