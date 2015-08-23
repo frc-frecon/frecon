@@ -25,6 +25,8 @@ module FReCon
 			run!
 		end
 
+		protected
+
 		def self.run!
 			set :environment, FReCon.environment
 			Database.setup(FReCon.environment)
