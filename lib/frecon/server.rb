@@ -21,10 +21,8 @@ module FReCon
 			content_type "application/json"
 		end
 
-		def self.start
-			setup!
-
-			run!
+		def self.start(**keyword_arguments)
+			run!(**keyword_arguments)
 		end
 
 		protected
@@ -38,7 +36,9 @@ module FReCon
 			Database.setup(settings.environment)
 		end
 
-		def self.run!
+		def self.run!(**keyword_arguments)
+			setup!(**keyword_arguments)
+
 			super
 		end
 	end
