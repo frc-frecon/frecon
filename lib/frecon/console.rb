@@ -8,13 +8,16 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "frecon/base/variables"
+require "frecon/configuration"
 require "frecon/database"
 require "frecon/server"
 
 module FReCon
 	class Console
-		def self.start(environment: FReCon.environment)
-			Database.setup(environment)
+		def self.start(configuration: Configuration.construct!)
+			environment = configuration["frecon"]["console"]["environment"]
+			mongoid = configuration["frecon"]["database"]["mongoid"]
+			Database.setup(environment: environment, mongoid: mongoid)
 
 			require "pry"
 

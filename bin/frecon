@@ -93,7 +93,7 @@ configuration = FReCon::Configuration.construct!(argument_configuration: options
 
 case options[:mode]
 when :server
-	FReCon::Server.start(host: configuration["frecon"]["server"]["host"], port: configuration["frecon"]["server"]["port"], environment: configuration["frecon"]["server"]["environment"])
+	FReCon::Server.start(configuration: configuration)
 when :console
-	FReCon::Console.start(environment: configuration["frecon"]["console"]["environment"])
+	FReCon::Console.start(configuration: configuration)
 end
