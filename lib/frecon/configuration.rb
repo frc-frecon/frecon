@@ -7,6 +7,8 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+require "frecon/configuration_file"
+
 module FReCon
 	class Configuration < Hash
 		def initialize(data)
