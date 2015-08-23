@@ -13,8 +13,8 @@ require "frecon/server"
 
 module FReCon
 	class Console
-		def self.start
-			Database.setup(FReCon.environment)
+		def self.start(environment: FReCon.environment)
+			Database.setup(environment)
 
 			require "pry"
 
