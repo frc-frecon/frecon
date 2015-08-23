@@ -36,28 +36,43 @@ EOF
 	opts.separator ""
 	opts.separator "Server OPTIONS:"
 
-	opts.on("-o", "--host HOST", "Bind to HOST (default: #{options[:host]})") do |host|
-		options[:host] = host
+	opts.on("-o", "--host HOST", "Bind to HOST (default: #{defaults["frecon"]["server"]["host"]})") do |host|
+		options[:configuration] ||= {}
+		options[:configuration]["frecon"] ||= {}
+		options[:configuration]["frecon"]["server"] ||= {}
+		options[:configuration]["frecon"]["server"]["host"] = host
 	end
 
-	opts.on("-p", "--port PORT", "Bind to port PORT (default: #{options[:port]})") do |port|
-		options[:port] = port
+	opts.on("-p", "--port PORT", "Bind to port PORT (default: #{defaults["frecon"]["server"]["port"]})") do |port|
+		options[:configuration] ||= {}
+		options[:configuration]["frecon"] ||= {}
+		options[:configuration]["frecon"]["server"] ||= {}
+		options[:configuration]["frecon"]["server"]["port"] = port
 	end
 
 	opts.separator ""
 	opts.separator "General OPTIONS:"
 
-	opts.on("-E", "--env ENVIRONMENT", "Run in the ENVIRONMENT environment (default: #{options[:environment]})") do |environment|
-		options[:environment] = environment
+	server_environment = defaults["frecon"]["server"]["environment"]
+	console_environment = defaults["frecon"]["console"]["environment"]
+	default_environment_string = server_environment == console_environment ? server_environment : "server: #{server_environment}, console: #{console_environment}"
+
+	opts.on("-E", "--env ENVIRONMENT", "Run in the ENVIRONMENT environment (default: #{default_environment_string})") do |environment|
+		options[:configuration] ||= {}
+		options[:configuration]["frecon"] ||= {}
+		options[:configuration]["frecon"]["server"] ||= {}
+		options[:configuration]["frecon"]["server"]["environment"] = environment
+		options[:configuration]["frecon"]["console"] ||= {}
+		options[:configuration]["frecon"]["console"]["environment"] = environment
 	end
 
-	opts.on("-v", "--verbose", "Run more verbosely.") do
-		options[:output_level] = :verbose
-	end
+	# opts.on("-v", "--verbose", "Run more verbosely.") do
+	# 	options[:output_level] = :verbose
+	# end
 
-	opts.on("-d", "--debug", "Print debugging messages.") do
-		options[:output_level] = :debug
-	end
+	# opts.on("-d", "--debug", "Print debugging messages.") do
+	# 	options[:output_level] = :debug
+	# end
 
 	opts.on("-h", "--help", "Print this usage message.") do
 		puts opts
