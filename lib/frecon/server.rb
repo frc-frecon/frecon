@@ -21,15 +21,15 @@ module FReCon
 			content_type "application/json"
 		end
 
+		def self.start
+			run!
+		end
+
 		def self.run!
 			set :environment, FReCon.environment
 			Database.setup(FReCon.environment)
 
 			super
-		end
-
-		def self.start
-			run!
 		end
 	end
 end
