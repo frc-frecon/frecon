@@ -39,12 +39,12 @@ EOF
 		options[:port] = port
 	end
 
+	opts.separator ""
+	opts.separator "General OPTIONS:"
+
 	opts.on("-E", "--env ENVIRONMENT", "Run in the ENVIRONMENT environment (default: #{options[:environment]})") do |environment|
 		options[:environment] = environment
 	end
-
-	opts.separator ""
-	opts.separator "General OPTIONS:"
 
 	opts.on("-v", "--verbose", "Run more verbosely.") do
 		options[:output_level] = :verbose
@@ -73,5 +73,5 @@ case options[:mode]
 when :server
 	FReCon::Server.start(host: options[:host], port: options[:port], environment: options[:environment])
 when :console
-	FReCon::Console.start
+	FReCon::Console.start(environment: options[:environment])
 end
