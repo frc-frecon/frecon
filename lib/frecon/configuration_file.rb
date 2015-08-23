@@ -19,8 +19,14 @@ module FReCon
 		end
 
 		def read
-			data = open(@filename, "rb") do |io|
-				io.read
+			begin
+				data = open(@filename, "rb") do |io|
+					io.read
+				end
+
+				Configuration.new(YAML.load(data))
+			rescue Errno::ENOENT
+				nil
 			end
 
 			Configuration.new(YAML.load(data))
