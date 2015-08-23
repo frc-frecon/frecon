@@ -22,6 +22,8 @@ module FReCon
 		end
 
 		def self.start
+			setup!
+
 			run!
 		end
 
@@ -37,8 +39,6 @@ module FReCon
 		end
 
 		def self.run!
-			self.setup!
-
 			super
 		end
 	end
