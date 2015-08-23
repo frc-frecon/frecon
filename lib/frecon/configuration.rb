@@ -10,10 +10,6 @@
 module FReCon
 	class Configuration < Hash
 		def initialize(data)
-			if data.keys == ["frecon"]
-				data = data["frecon"]
-			end
-
 			data.each do |key, value|
 				self[key] = value
 			end
