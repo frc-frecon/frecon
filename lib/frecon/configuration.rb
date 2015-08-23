@@ -14,5 +14,22 @@ module FReCon
 				self[key] = value
 			end
 		end
+
+		def merge(other)
+			case other
+			when Configuration, Hash
+				other.each do |key, value|
+					case value
+					when Configuration, Hash
+						me = Configuration.new(self[key] || {})
+						me.merge(Configuration.new(value))
+						self[key] = me
+					else
+						self[key] = value
+					end
+				end
+			when nil
+			end
+		end
 	end
 end
