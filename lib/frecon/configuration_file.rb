@@ -1,4 +1,4 @@
-# lib/frecon/configuration.rb
+# lib/frecon/configuration_file.rb
 #
 # Copyright (C) 2015 Christopher Cooper, Sam Craig, Tiger Huang, Vincent Mai, Sam Mercier, and Kristofer Rye
 #
@@ -7,16 +7,23 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+require "yaml"
+require "frecon/configuration"
+
 module FReCon
-	class Configuration < Hash
-		def initialize(data)
-			if data.keys == ["frecon"]
-				data = data["frecon"]
+	class ConfigurationFile
+		attr_accessor :filename
+
+		def initialize(filename)
+			@filename = filename
+		end
+
+		def read
+			data = open(@filename, "rb") do |io|
+				io.read
 			end
 
-			data.each do |key, value|
-				self[key] = value
-			end
+			Configuration.new(YAML.load(data))
 		end
 	end
 end

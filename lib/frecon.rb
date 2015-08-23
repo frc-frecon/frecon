@@ -11,6 +11,8 @@ require "mongoid"
 
 require "frecon/base"
 
+require "frecon/configuration"
+require "frecon/configuration_file"
 require "frecon/database"
 require "frecon/server"
 require "frecon/console"
