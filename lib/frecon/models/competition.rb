@@ -21,15 +21,21 @@ module FReCon
 		validates :name, uniqueness: true
 
 		def records
-			matches = self.matches
-
 			Record.in match_id: matches.map(&:id)
 		end
 
-		def teams
-			participations = self.participations
-
-			Team.in id: participations.map(&:team_id)
+		def robots
+			Robot.in id: participations.map(&:robot_id)
 		end
+
+		def teams
+			Team.in id: robots.map(&:team_id)
+		end
+
+		register_routable_relation :matches, "matches"
+		register_routable_relation :participations, "participations"
+		register_routable_relation :records, "records"
+		register_routable_relation :robots, "robots"
+		register_routable_relation :teams, "teams"
 	end
 end

@@ -16,12 +16,26 @@ module FReCon
 		field :position, type: Position
 
 		belongs_to :match
-		belongs_to :team
+		belongs_to :participation
 
-		validates :position, :match_id, :team_id, presence: true
+		validates :position, :match_id, :participation_id, presence: true
 
 		def competition
-			self.match.competition
+			match.competition
 		end
+
+		def robot
+			participation.robot
+		end
+
+		def team
+			participation.robot.team
+		end
+
+		register_routable_relation :match, "match"
+		register_routable_relation :competition, "competition"
+		register_routable_relation :participation, "participation"
+		register_routable_relation :robot, "robot"
+		register_routable_relation :team, "team"
 	end
 end
