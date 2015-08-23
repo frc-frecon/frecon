@@ -31,5 +31,20 @@ module FReCon
 			when nil
 			end
 		end
+
+		def self.construct!(default_configuration: ConfigurationFile.default.read,
+		                    system_configuration: ConfigurationFile.system.read,
+		                    user_configuration: ConfigurationFile.user.read,
+		                    argument_configuration: nil)
+
+			configuration_hierarchy = [default_configuration, system_configuration, user_configuration, argument_configuration]
+
+			configuration = Configuration.new({})
+			configuration_hierarchy.each do |other_configuration|
+				configuration.merge(other_configuration)
+			end
+
+			configuration
+		end
 	end
 end
