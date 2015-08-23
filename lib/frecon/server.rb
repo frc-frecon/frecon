@@ -28,11 +28,16 @@ module FReCon
 		protected
 
 		def self.setup!(server: %w[thin HTTP webrick], host: "localhost", port: 4567, environment: FReCon.environment)
+			set :server, server
+			set :bind, host
+			set :port, port
+			set :environment, environment
+
+			Database.setup(settings.environment)
 		end
 
 		def self.run!
-			set :environment, FReCon.environment
-			Database.setup(FReCon.environment)
+			self.setup!
 
 			super
 		end
