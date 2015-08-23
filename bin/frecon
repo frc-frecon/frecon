@@ -17,7 +17,12 @@ require "frecon"
 
 require "optparse"
 
-options = { mode: :server, output_level: :normal, host: "0.0.0.0", port: 4400, environment: FReCon.environment }
+options = {
+	mode: :server,
+	configuration: {}
+}
+
+defaults = FReCon::ConfigurationFile.default.read
 
 optparse = OptionParser.new do |opts|
 	opts.banner = <<EOF
