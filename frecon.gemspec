@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 	             "Vincent Mai"]
 
 	s.homepage = "https://github.com/frc-frecon/frecon"
-	s.files = Dir.glob("lib/**/*.rb") << "lib/frecon/mongoid.yml" << "bin/frecon"
+	s.files = Dir.glob("lib/**/*.rb") << "lib/frecon/mongoid.yml" << Dir.glob("config/**/*") << "bin/frecon"
 	s.executables << "frecon"
 
 	s.add_runtime_dependency "sinatra", ["~> 1.4"]
