@@ -39,7 +39,7 @@ module FReCon
 		end
 
 		def self.user
-			self.new(File.join(Dir.home, "config", "frecon.yml"))
+			self.new(File.join(Dir.home, ".config", "frecon.yml"))
 		end
 	end
 end
