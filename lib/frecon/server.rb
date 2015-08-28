@@ -9,6 +9,8 @@
 
 require "sinatra/base"
 
+require "frecon/base/variables"
+require "frecon/configuration"
 require "frecon/database"
 require "frecon/routes"
 require "frecon/controllers"
@@ -21,15 +23,27 @@ module FReCon
 			content_type "application/json"
 		end
 
-		def self.run!
-			set :environment, FReCon.environment
-			Database.setup(FReCon.environment)
-
-			super
+		def self.start(**keyword_arguments)
+			run!(**keyword_arguments)
 		end
 
-		def self.start
-			run!
+		protected
+
+		def self.setup!(configuration: Configuration.construct!)
+			set :server, %w[thin HTTP webrick]
+			set :bind, configuration["frecon"]["server"]["host"]
+			set :port, configuration["frecon"]["server"]["port"]
+			set :environment, configuration["frecon"]["server"]["environment"]
+
+			mongoid = configuration["frecon"]["database"]["mongoid"]
+
+			Database.setup(environment: environment, mongoid: mongoid)
+		end
+
+		def self.run!(**keyword_arguments)
+			setup!(**keyword_arguments)
+
+			super
 		end
 	end
 end

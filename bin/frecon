@@ -15,8 +15,85 @@ $LOAD_PATH.unshift(lib_directory) unless $LOAD_PATH.map { |directory| File.expan
 
 require "frecon"
 
-unless ARGV.include?("c") || ARGV.include?("console")
-	FReCon::Server.start
-else
-	FReCon::Console.start
+require "optparse"
+
+options = {
+	mode: :server,
+	configuration: {}
+}
+
+defaults = FReCon::ConfigurationFile.default.read
+
+optparse = OptionParser.new do |opts|
+	opts.banner = <<EOF
+Usage: #{$0} [OPTIONS] [MODE]
+
+If MODE is not present, FReCon starts the Server.  If MODE is present, starts
+with "c", and contains any of the letters of the word "console" in order, FReCon
+instead starts the Console.
+EOF
+
+	opts.separator ""
+	opts.separator "Server OPTIONS:"
+
+	opts.on("-o", "--host HOST", "Bind to HOST (default: #{defaults["frecon"]["server"]["host"]})") do |host|
+		options[:configuration] ||= {}
+		options[:configuration]["frecon"] ||= {}
+		options[:configuration]["frecon"]["server"] ||= {}
+		options[:configuration]["frecon"]["server"]["host"] = host
+	end
+
+	opts.on("-p", "--port PORT", "Bind to port PORT (default: #{defaults["frecon"]["server"]["port"]})") do |port|
+		options[:configuration] ||= {}
+		options[:configuration]["frecon"] ||= {}
+		options[:configuration]["frecon"]["server"] ||= {}
+		options[:configuration]["frecon"]["server"]["port"] = port
+	end
+
+	opts.separator ""
+	opts.separator "General OPTIONS:"
+
+	server_environment = defaults["frecon"]["server"]["environment"]
+	console_environment = defaults["frecon"]["console"]["environment"]
+	default_environment_string = server_environment == console_environment ? server_environment : "server: #{server_environment}, console: #{console_environment}"
+
+	opts.on("-E", "--env ENVIRONMENT", "Run in the ENVIRONMENT environment (default: #{default_environment_string})") do |environment|
+		options[:configuration] ||= {}
+		options[:configuration]["frecon"] ||= {}
+		options[:configuration]["frecon"]["server"] ||= {}
+		options[:configuration]["frecon"]["server"]["environment"] = environment
+		options[:configuration]["frecon"]["console"] ||= {}
+		options[:configuration]["frecon"]["console"]["environment"] = environment
+	end
+
+	# opts.on("-v", "--verbose", "Run more verbosely.") do
+	# 	options[:output_level] = :verbose
+	# end
+
+	# opts.on("-d", "--debug", "Print debugging messages.") do
+	# 	options[:output_level] = :debug
+	# end
+
+	opts.on("-h", "--help", "Print this usage message.") do
+		puts opts
+		exit
+	end
+end
+
+optparse.parse!
+
+ARGV.select do |arg|
+	case arg
+	when /^co?n?s?o?l?e?$/i
+		options[:mode] = :console
+	end
+end
+
+configuration = FReCon::Configuration.construct!(argument_configuration: options[:configuration])
+
+case options[:mode]
+when :server
+	FReCon::Server.start(configuration: configuration)
+when :console
+	FReCon::Console.start(configuration: configuration)
 end

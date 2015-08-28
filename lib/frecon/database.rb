@@ -19,10 +19,11 @@ require "frecon/models"
 
 module FReCon
 	class Database
-		def self.setup(environment, mongoid_hash = nil)
-			if mongoid_hash.is_a?(Hash)
+		def self.setup(environment: FReCon.environment, mongoid: nil)
+			if mongoid.is_a?(Hash)
 				mongoid_tempfile = Tempfile.new("FReCon")
-				mongoid_tempfile.write(mongoid_hash.to_yaml)
+
+				mongoid_tempfile.write(mongoid.to_h.to_yaml)
 				mongoid_tempfile.rewind
 
 				Mongoid.load!(mongoid_tempfile.path, environment)

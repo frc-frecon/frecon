@@ -1,0 +1,32 @@
+frecon:
+  server:
+    host: "localhost"
+    port: 4567
+    environment: "development"
+
+  console:
+    environment: "development"
+
+  database:
+    mongoid:
+      development:
+        sessions:
+          default:
+            database: frecon
+            hosts:
+              - localhost:27017
+
+        options:
+          use_utc: true
+          raise_not_found_error: false
+
+      production:
+        sessions:
+          default:
+            database: frecon
+            hosts:
+              - localhost:27017
+
+        options:
+          use_utc: true
+          raise_not_found_error: false
