@@ -24,6 +24,13 @@ module FReCon
 			content_type "application/json"
 		end
 
+		# Public: Start the Server.
+		#
+		# keyword_arguments - The Hash of arguments to use.
+		#                     :configuration - The Configuration to use when
+		#                                      setting up the server.
+		#
+		# Returns the result of starting the server.
 		def self.start(**keyword_arguments)
 			run!(**keyword_arguments)
 		end
