@@ -97,6 +97,12 @@ module FReCon
 			end
 		end
 
+		# Internal: Determine if a relation is invalid.
+		#
+		# class_constant - The Model Class to test.
+		# id             - The ID to check for extance.
+		#
+		# Returns true if the relation is invalid, false if not.
 		def relation_invalid(class_constant, id)
 			class_constant.find_by(id: id).nil?
 		end
