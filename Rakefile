@@ -1,9 +1,7 @@
-require "rdoc/task"
+require "yard"
 
 namespace :docs do
-	RDoc::Task.new rdoc: :generate, clobber_rdoc: :clean, rerdoc: :regenerate do |rdoc|
-		rdoc.main = "README.md"
-		rdoc.rdoc_dir = "doc"
-		rdoc.rdoc_files.include("README.md", "lib/", "bin/")
+	YARD::Rake::YardocTask.new do |task|
+		task.files = ['lib/**/*.rb', 'bin/**/*']
 	end
 end

@@ -5,6 +5,7 @@
 tmp/
 
 # Generated documentation.
+.yardoc/
 doc/
 
 # Bundler data.

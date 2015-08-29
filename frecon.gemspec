@@ -34,4 +34,6 @@ Gem::Specification.new do |s|
 	s.add_runtime_dependency "thin", ["~> 1.6"]
 	s.add_runtime_dependency "mongoid", ["~> 4.0"]
 	s.add_runtime_dependency "httparty", ["~> 0.13"]
+
+	s.add_development_dependency "yard", ["~> 0.8"]
 end
