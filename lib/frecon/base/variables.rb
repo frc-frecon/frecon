@@ -14,6 +14,7 @@ module FReCon
 
 	@environment_variable = :development
 
+	# Public: Returns the current environment.
 	def self.environment
 		@environment_variable
 	end
