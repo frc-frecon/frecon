@@ -11,6 +11,8 @@ require "mongoid"
 require "frecon/mongoid/criteria"
 
 module FReCon
+	# Public: A base class designed to assist with creating MongoDB Models
+	# elsewhere in the project.
 	class Model
 		def self.inherited(child)
 			child.class_eval do
