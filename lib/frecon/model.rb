@@ -75,7 +75,7 @@ module FReCon
 		#
 		# Returns all of the descendants for the Model class.
 		def self.descendants
-			ObjectSpace.each_object(Class).select { |possibleChild| possibleChild < self }
+			ObjectSpace.each_object(Class).select { |possible_child| possible_child < self }
 		end
 
 		def self.controller
