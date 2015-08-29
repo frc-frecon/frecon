@@ -14,6 +14,12 @@ module FReCon
 	# Public: A base class designed to assist with creating MongoDB Models
 	# elsewhere in the project.
 	class Model
+		# Public: Bootstraps inheritors of this class as working
+		# Models, also providing class methods for them to use.
+		#
+		# child - The class that is inheriting this class.
+		#
+		# Returns the result of bootstrapping the child.
 		def self.inherited(child)
 			child.class_eval do
 				include Mongoid::Document
