@@ -21,6 +21,12 @@ module FReCon
 			end
 		end
 
+		# Public: Convert self to a Hash.
+		#
+		# Recursively converts instances of Configuration within self
+		# to hashes by calling this method.
+		#
+		# Returns a Hash representing self.
 		def to_h
 			hash = {}
 
