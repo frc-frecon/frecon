@@ -9,7 +9,7 @@
 
 # Public: The FReCon API module.
 module FReCon
-	VERSION ||= "0.5.1"
+	VERSION = "0.5.1"
 
 	@environment_variable = :development
 
