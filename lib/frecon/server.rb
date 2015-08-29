@@ -55,6 +55,11 @@ module FReCon
 			Database.setup(environment: environment, mongoid: mongoid)
 		end
 
+		# Internal: Set up the server and start it.
+		#
+		# keyword_arguments - The Hash of arguments to use.
+		#                     :configuration - The Configuration to use when
+		#                                      setting up the server.
 		def self.run!(**keyword_arguments)
 			setup!(**keyword_arguments)
 
