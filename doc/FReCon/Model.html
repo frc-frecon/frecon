@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class FReCon::Model - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    <div id="includes-section" class="nav-section">
+  <h3>Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Mongoid::Document</span>
+  
+  
+  
+    <li><span class="include">Mongoid::Timestamps</span>
+  
+  
+  
+    <li><span class="include">Mongoid::Attributes::Dynamic</span>
+  
+  
+  </ul>
+</div>
+
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-controller">::controller</a>
+    
+    <li ><a href="#method-c-descendants">::descendants</a>
+    
+    <li ><a href="#method-c-inherited">::inherited</a>
+    
+    <li ><a href="#method-c-register_routable_attribute">::register_routable_attribute</a>
+    
+    <li ><a href="#method-c-register_routable_relation">::register_routable_relation</a>
+    
+    <li ><a href="#method-i-no_invalid_relations">#no_invalid_relations</a>
+    
+    <li ><a href="#method-i-relation_invalid">#relation_invalid</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-FReCon::Model">
+  <h1 id="class-FReCon::Model" class="class">
+    class FReCon::Model
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-controller" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">controller</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="controller-source">
+            <pre><span class="ruby-comment"># File lib/frecon/model.rb, line 40</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">controller</span>
+    (<span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">pluralize</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;Controller&quot;</span>).<span class="ruby-identifier">constantize</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-descendants" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">descendants</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="descendants-source">
+            <pre><span class="ruby-comment"># File lib/frecon/model.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">descendants</span>
+    <span class="ruby-comment"># Basically lists all of the models in this database.</span>
+    <span class="ruby-constant">ObjectSpace</span>.<span class="ruby-identifier">each_object</span>(<span class="ruby-constant">Class</span>).<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">possibleChild</span><span class="ruby-operator">|</span> <span class="ruby-identifier">possibleChild</span> <span class="ruby-operator">&lt;</span> <span class="ruby-keyword">self</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-inherited" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inherited</span><span
+            class="method-args">(child)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="inherited-source">
+            <pre><span class="ruby-comment"># File lib/frecon/model.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">inherited</span>(<span class="ruby-identifier">child</span>)
+    <span class="ruby-identifier">child</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword">do</span>
+        <span class="ruby-identifier">include</span> <span class="ruby-constant">Mongoid</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>
+        <span class="ruby-identifier">include</span> <span class="ruby-constant">Mongoid</span><span class="ruby-operator">::</span><span class="ruby-constant">Timestamps</span>
+        <span class="ruby-identifier">include</span> <span class="ruby-constant">Mongoid</span><span class="ruby-operator">::</span><span class="ruby-constant">Attributes</span><span class="ruby-operator">::</span><span class="ruby-constant">Dynamic</span>
+
+        <span class="ruby-identifier">validate</span> <span class="ruby-value">:no_invalid_relations</span>
+
+        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class_variable_set</span>(<span class="ruby-value">:@@attributes</span>, [])
+
+        <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">register_routable_relation</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">attribute</span>)
+            <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class_variable_get</span>(<span class="ruby-value">:@@attributes</span>) <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">method</span><span class="ruby-operator">:</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-value">:relation</span>, <span class="ruby-identifier">attribute</span><span class="ruby-operator">:</span> <span class="ruby-identifier">attribute</span>}
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">register_routable_attribute</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">attribute</span>)
+            <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class_variable_get</span>(<span class="ruby-value">:@@attributes</span>) <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">method</span><span class="ruby-operator">:</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-value">:attribute</span>, <span class="ruby-identifier">attribute</span><span class="ruby-operator">:</span> <span class="ruby-identifier">attribute</span>}
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-register_routable_attribute" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">register_routable_attribute</span><span
+            class="method-args">(method, attribute)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="register_routable_attribute-source">
+            <pre><span class="ruby-comment"># File lib/frecon/model.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">register_routable_attribute</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">attribute</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class_variable_get</span>(<span class="ruby-value">:@@attributes</span>) <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">method</span><span class="ruby-operator">:</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-value">:attribute</span>, <span class="ruby-identifier">attribute</span><span class="ruby-operator">:</span> <span class="ruby-identifier">attribute</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-register_routable_relation" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">register_routable_relation</span><span
+            class="method-args">(method, attribute)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="register_routable_relation-source">
+            <pre><span class="ruby-comment"># File lib/frecon/model.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">register_routable_relation</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">attribute</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">class_variable_get</span>(<span class="ruby-value">:@@attributes</span>) <span class="ruby-operator">&lt;&lt;</span> {<span class="ruby-identifier">method</span><span class="ruby-operator">:</span> <span class="ruby-identifier">method</span>, <span class="ruby-identifier">type</span><span class="ruby-operator">:</span> <span class="ruby-value">:relation</span>, <span class="ruby-identifier">attribute</span><span class="ruby-operator">:</span> <span class="ruby-identifier">attribute</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-no_invalid_relations" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">no_invalid_relations</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="no_invalid_relations-source">
+            <pre><span class="ruby-comment"># File lib/frecon/model.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">no_invalid_relations</span>
+    <span class="ruby-comment"># Get all of the belongs_to fields (ends with &quot;_id&quot; and not &quot;_id&quot; because that is the id).</span>
+    <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">attribute</span><span class="ruby-operator">|</span> <span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-string">&quot;_id&quot;</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">attribute</span> <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;_id&quot;</span> }.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">relation</span><span class="ruby-operator">|</span>
+        <span class="ruby-comment"># Get the model for the belongs_to association.</span>
+        <span class="ruby-identifier">model</span> = <span class="ruby-string">&quot;FReCon::&quot;</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">relation</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/_id\Z/</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">capitalize</span>).<span class="ruby-identifier">constantize</span>
+        <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">relation</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-string">&quot;is invalid&quot;</span>) <span class="ruby-keyword">if</span> <span class="ruby-identifier">relation_invalid</span>(<span class="ruby-identifier">model</span>, <span class="ruby-identifier">send</span>(<span class="ruby-identifier">relation</span>))
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-relation_invalid" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">relation_invalid</span><span
+            class="method-args">(class_constant, id)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="relation_invalid-source">
+            <pre><span class="ruby-comment"># File lib/frecon/model.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">relation_invalid</span>(<span class="ruby-identifier">class_constant</span>, <span class="ruby-identifier">id</span>)
+    <span class="ruby-identifier">class_constant</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-identifier">id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">nil?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class FReCon::Controller - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-could_not_find">::could_not_find</a>
+    
+    <li ><a href="#method-c-create">::create</a>
+    
+    <li ><a href="#method-c-delete">::delete</a>
+    
+    <li ><a href="#method-c-find_model">::find_model</a>
+    
+    <li ><a href="#method-c-index">::index</a>
+    
+    <li ><a href="#method-c-model">::model</a>
+    
+    <li ><a href="#method-c-model_name">::model_name</a>
+    
+    <li ><a href="#method-c-process_json_request">::process_json_request</a>
+    
+    <li ><a href="#method-c-show">::show</a>
+    
+    <li ><a href="#method-c-update">::update</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-FReCon::Controller">
+  <h1 id="class-FReCon::Controller" class="class">
+    class FReCon::Controller
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-could_not_find" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">could_not_find</span><span
+            class="method-args">(value, attribute = "id", model = model_name.downcase)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The 404 error message.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="could_not_find-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 33</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">could_not_find</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">attribute</span> = <span class="ruby-string">&quot;id&quot;</span>, <span class="ruby-identifier">model</span> = <span class="ruby-identifier">model_name</span>.<span class="ruby-identifier">downcase</span>)
+    <span class="ruby-node">&quot;Could not find #{model} of #{attribute} #{value}!&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">(request, params, post_data = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">params</span>, <span class="ruby-identifier">post_data</span> = <span class="ruby-keyword">nil</span>)
+    <span class="ruby-identifier">post_data</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">process_json_request</span> <span class="ruby-identifier">request</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">post_data</span>.<span class="ruby-identifier">is_an?</span> <span class="ruby-constant">Array</span>
+        <span class="ruby-identifier">results</span> = <span class="ruby-identifier">post_data</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">post_data_item</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword">begin</span>
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">post_data_item</span>)
+            <span class="ruby-keyword">rescue</span> <span class="ruby-constant">RequestError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+                <span class="ruby-identifier">e</span>.<span class="ruby-identifier">return_value</span>
+            <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">status_code</span> = <span class="ruby-value">201</span>
+
+        <span class="ruby-keyword">if</span>(<span class="ruby-identifier">results</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">result</span><span class="ruby-operator">|</span>
+               <span class="ruby-identifier">result</span>.<span class="ruby-identifier">is_an?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">result</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">:</span> <span class="ruby-value">422</span>
+           <span class="ruby-keyword">end</span>.<span class="ruby-identifier">select</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">status_code</span><span class="ruby-operator">|</span>
+               <span class="ruby-identifier">status_code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">201</span>
+           <span class="ruby-keyword">end</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+
+            <span class="ruby-identifier">status_code</span> = <span class="ruby-value">422</span>
+        <span class="ruby-keyword">end</span>
+
+        [<span class="ruby-identifier">status_code</span>, <span class="ruby-identifier">results</span>.<span class="ruby-identifier">to_json</span>]
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-ivar">@model</span> = <span class="ruby-identifier">model</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">post_data</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">save</span>
+            [<span class="ruby-value">201</span>, <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">to_json</span>]
+        <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">422</span>, <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">full_messages</span>, {<span class="ruby-identifier">params</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>, <span class="ruby-identifier">post_data</span><span class="ruby-operator">:</span> <span class="ruby-identifier">post_data</span>})
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-delete" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">delete</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="delete-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">params</span>)
+    <span class="ruby-ivar">@model</span> = <span class="ruby-identifier">find_model</span> <span class="ruby-identifier">params</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@model</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">destroy</span>
+            <span class="ruby-value">204</span>
+        <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">422</span>, <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">full_messages</span>)
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>, <span class="ruby-identifier">could_not_find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]), {<span class="ruby-identifier">params</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>})
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-find_model" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">find_model</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Some models have to find themselves in special ways, so this can be
+overridden with those ways.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="find_model-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_model</span>(<span class="ruby-identifier">params</span>)
+    <span class="ruby-identifier">model</span>.<span class="ruby-identifier">find</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;id&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">index</span>(<span class="ruby-identifier">params</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-ivar">@models</span> = <span class="ruby-identifier">model</span>.<span class="ruby-identifier">all</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;splat&quot;</span>)
+        <span class="ruby-identifier">params</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-string">&quot;captures&quot;</span>)
+
+        <span class="ruby-ivar">@models</span> = <span class="ruby-identifier">model</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">psv_filter</span>(<span class="ruby-identifier">params</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-ivar">@models</span>.<span class="ruby-identifier">to_json</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-model" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">model</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="model-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">model</span>
+    <span class="ruby-comment"># Removes the trailing &quot;Controller&quot; from the class name,</span>
+    <span class="ruby-comment"># singularizes the result, and turns it into the class.</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/Controller\Z/</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">singularize</span>.<span class="ruby-identifier">constantize</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-model_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">model_name</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="model_name-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">model_name</span>
+    <span class="ruby-comment"># Removes the namespace &quot;FReCon::&quot; and &quot;Controller&quot; from</span>
+    <span class="ruby-comment"># the class name, then singularizes the result.</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/FReCon::|Controller\Z/</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">singularize</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-process_json_request" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">process_json_request</span><span
+            class="method-args">(request)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="process_json_request-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">process_json_request</span>(<span class="ruby-identifier">request</span>)
+    <span class="ruby-comment"># Rewind the request body (an IO object)</span>
+    <span class="ruby-comment"># in case someone else has already played</span>
+    <span class="ruby-comment"># through it.</span>
+    <span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">rewind</span>
+
+    <span class="ruby-keyword">begin</span>
+        <span class="ruby-identifier">post_data</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">read</span>)
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">JSON</span><span class="ruby-operator">::</span><span class="ruby-constant">ParserError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">400</span>, <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">post_data</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">(params)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 118</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">show</span>(<span class="ruby-identifier">params</span>)
+    <span class="ruby-ivar">@model</span> = <span class="ruby-identifier">find_model</span> <span class="ruby-identifier">params</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@model</span>
+        <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">to_json</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>, <span class="ruby-identifier">could_not_find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]), {<span class="ruby-identifier">params</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>})
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-update" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update</span><span
+            class="method-args">(request, params, post_data = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update-source">
+            <pre><span class="ruby-comment"># File lib/frecon/controller.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">params</span>, <span class="ruby-identifier">post_data</span> = <span class="ruby-keyword">nil</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">400</span>, <span class="ruby-node">&quot;Must supply a #{model_name.downcase} id!&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
+
+    <span class="ruby-identifier">post_data</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">process_json_request</span> <span class="ruby-identifier">request</span>
+
+    <span class="ruby-ivar">@model</span> = <span class="ruby-identifier">find_model</span> <span class="ruby-identifier">params</span>
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">404</span>, <span class="ruby-identifier">could_not_find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@model</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">post_data</span>)
+        <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">to_json</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RequestError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">422</span>, <span class="ruby-ivar">@model</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">full_messages</span>, {<span class="ruby-identifier">params</span><span class="ruby-operator">:</span> <span class="ruby-identifier">params</span>, <span class="ruby-identifier">post_data</span><span class="ruby-operator">:</span> <span class="ruby-identifier">post_data</span>})
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

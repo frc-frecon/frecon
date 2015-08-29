@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class FReCon::MatchNumber - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/darkfish.js"></script>
+
+<link href="../css/fonts.css" rel="stylesheet">
+<link href="../css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-demongoize">::demongoize</a>
+    
+    <li ><a href="#method-c-evolve">::evolve</a>
+    
+    <li ><a href="#method-c-mongoize">::mongoize</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-elimination-3F">#elimination?</a>
+    
+    <li ><a href="#method-i-final-3F">#final?</a>
+    
+    <li ><a href="#method-i-mongoize">#mongoize</a>
+    
+    <li ><a href="#method-i-practice-3F">#practice?</a>
+    
+    <li ><a href="#method-i-qualification-3F">#qualification?</a>
+    
+    <li ><a href="#method-i-quarterfinal-3F">#quarterfinal?</a>
+    
+    <li ><a href="#method-i-replay-3F">#replay?</a>
+    
+    <li ><a href="#method-i-semifinal-3F">#semifinal?</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-FReCon::MatchNumber">
+  <h1 id="class-FReCon::MatchNumber" class="class">
+    class FReCon::MatchNumber
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="ELIMINATION_TYPES">ELIMINATION_TYPES
+        
+        <dd>
+        
+      
+        <dt id="POSSIBLE_TYPES">POSSIBLE_TYPES
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-number" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">number</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-round" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">round</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-demongoize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">demongoize</span><span
+            class="method-args">(object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>MongoDB compatibility methods.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="demongoize-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 20</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">demongoize</span>(<span class="ruby-identifier">object</span>)
+    <span class="ruby-comment"># `object&#39; should *always* be a string (since MatchNumber#mongoize returns a</span>
+    <span class="ruby-comment"># String which is what is stored in the database)</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;`object&#39; must be a String&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+
+    <span class="ruby-constant">MatchNumber</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">object</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-evolve" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">evolve</span><span
+            class="method-args">(object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="evolve-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">evolve</span>(<span class="ruby-identifier">object</span>)
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">object</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">MatchNumber</span>
+        <span class="ruby-identifier">object</span>.<span class="ruby-identifier">mongoize</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>, <span class="ruby-constant">Hash</span>
+        <span class="ruby-constant">MatchNumber</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">object</span>).<span class="ruby-identifier">mongoize</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">object</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-mongoize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mongoize</span><span
+            class="method-args">(object)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mongoize-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">mongoize</span>(<span class="ruby-identifier">object</span>)
+    <span class="ruby-keyword">case</span> <span class="ruby-identifier">object</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">MatchNumber</span>
+        <span class="ruby-identifier">object</span>.<span class="ruby-identifier">mongoize</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-constant">String</span>, <span class="ruby-constant">Hash</span>
+        <span class="ruby-constant">MatchNumber</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">object</span>).<span class="ruby-identifier">mongoize</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">object</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(args)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+        <span class="ruby-comment"># Match `args&#39; against the regular expression, described below.</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># This regular expression matches all values where the first group of</span>
+        <span class="ruby-comment"># characters is one of either [ &quot;p&quot;, &quot;q&quot;, &quot;qf&quot;, &quot;sf&quot;, &quot;f&quot; ], which is</span>
+        <span class="ruby-comment"># parsed as the &quot;type&quot; of the match. This is followed by an &quot;m&quot; and a</span>
+        <span class="ruby-comment"># group of digits, which is parsed as the &quot;number&quot; of the match.</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># In addition, one can specify a &quot;round number&quot; following the first group</span>
+        <span class="ruby-comment"># of characters such as in eliminations and finals. Often times, there</span>
+        <span class="ruby-comment"># are multiple so-called &quot;rounds&quot; in eliminations, and so the system will</span>
+        <span class="ruby-comment"># optionally capture that round.</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># Also, one can specify a &quot;replay number&quot; following the match number.</span>
+        <span class="ruby-comment"># this is done by appending &quot;r&quot; and a group of digits which is the replay</span>
+        <span class="ruby-comment"># number.</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># Below are listed the match groups and what they are:</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># 1: Match type</span>
+        <span class="ruby-comment"># 2: Round number (optional)</span>
+        <span class="ruby-comment"># 3: Match number</span>
+        <span class="ruby-comment"># 4: Replay string (optional)</span>
+        <span class="ruby-comment"># 5: Replay number (required if #4 is supplied)</span>
+        <span class="ruby-comment">#</span>
+        <span class="ruby-comment"># This behavior may change in the future.</span>
+        <span class="ruby-identifier">match_data</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">/(p|q|qf|sf|f)([\d]+)?m([\d]+)(r)?([\d]+)?/i</span>)
+
+        <span class="ruby-comment"># Whine if we don&#39;t have a match (string is incorrectly formatted)</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;string is improperly formatted&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">match_data</span>
+
+        <span class="ruby-comment"># Check and set required stuff first, everything else later.</span>
+
+        <span class="ruby-comment"># Whine if we don&#39;t have a match type</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;match type must be supplied&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">match_data</span>[<span class="ruby-value">1</span>]
+
+        <span class="ruby-comment"># Parse the match type string</span>
+        <span class="ruby-ivar">@type</span> = <span class="ruby-keyword">case</span> <span class="ruby-identifier">match_data</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">downcase</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;p&quot;</span>
+                    <span class="ruby-value">:practice</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;q&quot;</span>
+                    <span class="ruby-value">:qualification</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;qf&quot;</span>
+                    <span class="ruby-value">:quarterfinal</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;sf&quot;</span>
+                    <span class="ruby-value">:semifinal</span>
+                <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;f&quot;</span>
+                    <span class="ruby-value">:final</span>
+                <span class="ruby-keyword">else</span>
+                    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;match type must be in [\&quot;p\&quot;, \&quot;q\&quot;, \&quot;qf\&quot;, \&quot;sf\&quot;, \&quot;f\&quot;]&quot;</span>
+                <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment"># Whine if we don&#39;t have a match number</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;match number must be supplied&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">match_data</span>[<span class="ruby-value">3</span>]
+
+        <span class="ruby-comment"># Parse the match number</span>
+        <span class="ruby-ivar">@number</span> = <span class="ruby-identifier">match_data</span>[<span class="ruby-value">3</span>].<span class="ruby-identifier">to_i</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;match number must be greater than 0&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@number</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+
+        <span class="ruby-comment"># Parse the round number, if it is present</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">match_data</span>[<span class="ruby-value">2</span>]
+            <span class="ruby-ivar">@round</span> = <span class="ruby-identifier">match_data</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">to_i</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;round number must be greater than 0&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@round</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment"># Parse replay match group, store replay number if present.</span>
+        <span class="ruby-ivar">@replay_number</span> = <span class="ruby-identifier">match_data</span>[<span class="ruby-value">5</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">match_data</span>[<span class="ruby-value">4</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;r&quot;</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+        <span class="ruby-comment"># type (Symbol or String)</span>
+        <span class="ruby-comment"># number (Integer)</span>
+        <span class="ruby-comment"># round (Integer), optional</span>
+        <span class="ruby-comment"># replay_number (Integer), optional</span>
+
+        <span class="ruby-comment"># Convert keys to symbols if needed.</span>
+        <span class="ruby-identifier">args</span> = <span class="ruby-constant">Hash</span>[<span class="ruby-identifier">args</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">value</span>] }]
+
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;type must be a Symbol or String&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;type must be in #{POSSIBLE_TYPES.inspect}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-constant">POSSIBLE_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">to_sym</span>)
+
+        <span class="ruby-ivar">@type</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:type</span>].<span class="ruby-identifier">to_sym</span>
+
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;match number must be an Integer&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:number</span>].<span class="ruby-identifier">is_an?</span>(<span class="ruby-constant">Integer</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;match number must be greater than 0&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:number</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+
+        <span class="ruby-ivar">@number</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:number</span>]
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:round</span>]
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;round number must be an Integer&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:round</span>].<span class="ruby-identifier">is_an?</span>(<span class="ruby-constant">Integer</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;round number must be greater than 0&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:round</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+
+            <span class="ruby-ivar">@round</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:round</span>]
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:replay_number</span>]
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;replay number must be an Integer&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:replay_number</span>].<span class="ruby-identifier">is_an?</span>(<span class="ruby-constant">Integer</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-string">&quot;replay number must be greater than 0&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">args</span>[<span class="ruby-value">:replay_number</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+
+            <span class="ruby-ivar">@replay_number</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:replay_number</span>]
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-string">&quot;argument must be a String or Hash&quot;</span>
+    <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-elimination-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">elimination?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="elimination-3F-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 202</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">elimination?</span>
+    <span class="ruby-constant">ELIMINATION_TYPES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@type</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-final-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">final?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="final-3F-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 198</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">final?</span>
+    <span class="ruby-ivar">@type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:final</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mongoize" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mongoize</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="mongoize-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mongoize</span>
+    <span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-practice-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">practice?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="practice-3F-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 182</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">practice?</span>
+    <span class="ruby-ivar">@type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:practice</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-qualification-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">qualification?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="qualification-3F-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 186</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">qualification?</span>
+    <span class="ruby-ivar">@type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:qualification</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-quarterfinal-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">quarterfinal?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="quarterfinal-3F-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">quarterfinal?</span>
+    <span class="ruby-ivar">@type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:quarterfinal</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-replay-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">replay?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="replay-3F-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 178</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">replay?</span>
+    <span class="ruby-operator">!</span><span class="ruby-ivar">@replay_number</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@replay_number</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-semifinal-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">semifinal?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="semifinal-3F-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 194</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">semifinal?</span>
+    <span class="ruby-ivar">@type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:semifinal</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File lib/frecon/match_number.rb, line 159</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+    <span class="ruby-identifier">type_string</span> = <span class="ruby-keyword">case</span> <span class="ruby-ivar">@type</span>
+                  <span class="ruby-keyword">when</span> <span class="ruby-value">:practice</span>
+                      <span class="ruby-string">&quot;p&quot;</span>
+                  <span class="ruby-keyword">when</span> <span class="ruby-value">:qualification</span>
+                      <span class="ruby-string">&quot;q&quot;</span>
+                  <span class="ruby-keyword">when</span> <span class="ruby-value">:quarterfinal</span>
+                      <span class="ruby-string">&quot;qf&quot;</span>
+                  <span class="ruby-keyword">when</span> <span class="ruby-value">:semifinal</span>
+                      <span class="ruby-string">&quot;sf&quot;</span>
+                  <span class="ruby-keyword">when</span> <span class="ruby-value">:final</span>
+                      <span class="ruby-string">&quot;f&quot;</span>
+                  <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">match_string</span> = <span class="ruby-node">&quot;m#{@number}&quot;</span>
+    <span class="ruby-identifier">replay_string</span> = <span class="ruby-node">&quot;r#{@replay_number}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">replay?</span>
+
+    <span class="ruby-node">&quot;#{type_string}#{@round}#{match_string}#{replay_string}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
