@@ -78,7 +78,6 @@ module FReCon
 		                    system_configuration: ConfigurationFile.system.read,
 		                    user_configuration: ConfigurationFile.user.read,
 		                    argument_configuration: nil)
-
 			configuration_hierarchy = [default_configuration, system_configuration, user_configuration, argument_configuration]
 
 			configuration = Configuration.new({})
