@@ -19,6 +19,11 @@ module FReCon
 		@environment_variable
 	end
 
+	# Public: Sets the environment.
+	#
+	# arg - The new environment.
+	#
+	# Returns the result from setting the current environment.
 	def self.environment=(arg)
 		@environment_variable = arg
 	end
