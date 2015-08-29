@@ -37,6 +37,13 @@ module FReCon
 
 		protected
 
+		# Internal: Set up the server.
+		#
+		# Sets the various Thin and Sinatra options, and sets up the database.
+		#
+		# :configuration - The Configuration to use when starting the server.
+		#
+		# Returns the result of setting up the database.
 		def self.setup!(configuration: Configuration.construct!)
 			set :server, %w[thin HTTP webrick]
 			set :bind, configuration["frecon"]["server"]["host"]
