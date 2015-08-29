@@ -10,6 +10,7 @@
 require "frecon/configuration_file"
 
 module FReCon
+	# Public: A wrapper to allow the manipulation of configurations.
 	class Configuration < Hash
 		def initialize(data)
 			data.each do |key, value|
