@@ -9,6 +9,7 @@
 
 require "mongoid"
 
+# Public: An extension for the Mongoid module.
 module Mongoid
 	class Criteria
 		def psv_filter(psv_parameters = {})
