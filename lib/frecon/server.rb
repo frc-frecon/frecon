@@ -16,6 +16,7 @@ require "frecon/routes"
 require "frecon/controllers"
 
 module FReCon
+	# Public: The Sinatra web server.
 	class Server < Sinatra::Base
 		include Routes
 
