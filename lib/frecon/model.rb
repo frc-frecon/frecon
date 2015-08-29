@@ -97,6 +97,8 @@ module FReCon
 			end
 		end
 
+		protected
+
 		# Internal: Determine if a relation is invalid.
 		#
 		# class_constant - The Model Class to test.
