@@ -7,6 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+# Public: An extension for the BSON module.
 module BSON
 	# Public: A monkey-patch for BSON::ObjectId which introduces a #as_json
 	# method.
