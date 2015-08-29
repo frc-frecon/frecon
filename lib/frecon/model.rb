@@ -30,6 +30,23 @@ module FReCon
 
 				self.class_variable_set(:@@attributes, [])
 
+				# Public: Register a method as a routable relation method.
+				#
+				# Models can register relation methods that they have defined
+				# (e.g. team.robots) as routable methods.  The Routes module reads
+				# these routable relations, and generates routes for them.
+				#
+				# method    - A Symbol containing the name of the relation method.
+				# attribute - A String representing the attribute that the Routes
+				#             module should route this method under.
+				#
+				# Examples
+				#
+				#   # (Taken from the Team model)
+				#   register_routable_relation :matches, "matches"
+				#
+				# Returns the result of pushing an object to class's attributes
+				# class variable.
 				def self.register_routable_relation(method, attribute)
 					self.class_variable_get(:@@attributes) << {method: method, type: :relation, attribute: attribute}
 				end
