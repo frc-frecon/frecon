@@ -45,13 +45,16 @@ module FReCon
 		#
 		# Returns the result of setting up the database.
 		def self.setup!(configuration: Configuration.construct!)
+			# Set the Thin and Sinatra options.
 			set :server, %w[thin HTTP webrick]
 			set :bind, configuration["frecon"]["server"]["host"]
 			set :port, configuration["frecon"]["server"]["port"]
 			set :environment, configuration["frecon"]["server"]["environment"]
 
+			# Grab out the mongoid configuration.
 			mongoid = configuration["frecon"]["database"]["mongoid"]
 
+			# Set up the database.
 			Database.setup(environment: environment, mongoid: mongoid)
 		end
 
