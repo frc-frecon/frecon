@@ -37,7 +37,7 @@ module Mongoid
 			collection = self
 
 			psv_parameters.each do |psv_string, comparison_value|
-				psv_keys = psv_string.split(" ").map do |psv_key|
+				psv_keys = psv_string.split(/\W/).map do |psv_key|
 					psv_key.to_sym
 				end.reverse
 
