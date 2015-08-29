@@ -93,7 +93,7 @@ module FReCon
 			end.each do |relation|
 				# Get the model for the belongs_to association.
 				model = "FReCon::".concat(relation.gsub(/_id\Z/, "").capitalize).constantize
-				errors.add(relation.to_sym, "is invalid") if relation_invalid(model, send(relation))
+				errors.add(relation.to_sym, "is invalid") if relation_invalid?(model, send(relation))
 			end
 		end
 
@@ -105,7 +105,7 @@ module FReCon
 		# id             - The ID to check for extance.
 		#
 		# Returns true if the relation is invalid, false if not.
-		def relation_invalid(class_constant, id)
+		def relation_invalid?(class_constant, id)
 			class_constant.find_by(id: id).nil?
 		end
 	end
