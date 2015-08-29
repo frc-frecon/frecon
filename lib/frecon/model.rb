@@ -85,6 +85,7 @@ module FReCon
 			(self.name.pluralize + "Controller").constantize
 		end
 
+		# Public: Validate that no invalid relations exist within this Model
 		def no_invalid_relations
 			# Get all of the belongs_to fields (ends with "_id" and not "_id" because that is the id).
 			attributes.keys.select { |attribute| attribute.end_with?("_id") && attribute != "_id" }.each do |relation|
