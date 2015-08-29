@@ -78,6 +78,9 @@ module FReCon
 			ObjectSpace.each_object(Class).select { |possible_child| possible_child < self }
 		end
 
+		# Public: Converts this Model to its associated Controller.
+		#
+		# Returns the associated Controller if it exists, else nil.
 		def self.controller
 			(self.name.pluralize + "Controller").constantize
 		end
