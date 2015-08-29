@@ -22,10 +22,12 @@ module FReCon
 		# Returns the result of bootstrapping the child.
 		def self.inherited(child)
 			child.class_eval do
+				# Include the various Mongoid modules that we want to use.
 				include Mongoid::Document
 				include Mongoid::Timestamps
 				include Mongoid::Attributes::Dynamic
 
+				# Ensure that no invalid relations exist.
 				validate :no_invalid_relations
 
 				self.class_variable_set(:@@attributes, [])
