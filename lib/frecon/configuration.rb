@@ -42,6 +42,11 @@ module FReCon
 			hash
 		end
 
+		# Public: Merge with another Configuration.
+		#
+		# Sets all key-value pairs within Configuration to the same within self.
+		#
+		# other - A Configuration or Hash to be merged with.
 		def merge(other)
 			case other
 			when Configuration, Hash
