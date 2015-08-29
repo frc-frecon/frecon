@@ -8,6 +8,8 @@
 # <http://opensource.org/licenses/MIT>.
 
 module BSON
+	# Public: A monkey-patch for BSON::ObjectId which introduces a #as_json
+	# method.
 	class ObjectId
 		def as_json(*args)
 			to_s
