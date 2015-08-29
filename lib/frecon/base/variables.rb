@@ -9,7 +9,7 @@
 
 # Public: The FReCon API module.
 module FReCon
-	# Public: The current version of FReCon.
+	# Public: A String representing the current version of FReCon.
 	VERSION = "0.5.1"
 
 	@environment_variable = :development
