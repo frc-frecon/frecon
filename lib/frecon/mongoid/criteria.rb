@@ -14,6 +14,25 @@ module Mongoid
 	# Public: A monkey-patch for the Mongoid::Criteria class which introduces
 	# a #psv_filter method.
 	class Criteria
+		# Public: Filter by given PSV parameters.
+		#
+		# PSV is an introduced system that can be used within query strings to
+		# narrow a query.  Since HTTP query strings can use "+" to act as spaces
+		# within a key-value pair, one can use these pluses to define nested
+		# query parameters when querying the database as in an indexing or
+		# showing request.
+		#
+		# psv_parameters - A Hash of PSV strings to comparison values.
+		#
+		# Examples
+		#
+		#   Record.all.psv_filter({"participation robot team number" => "2503"})
+		#   => #<Mongoid::Criteria ...>
+		#
+		#   Record.all.psv_filter({"team number" => "2503"})
+		#   => #<Mongoid::Criteria ...>
+		#
+		# Returns a filtered version of self.
 		def psv_filter(psv_parameters = {})
 			collection = self
 
