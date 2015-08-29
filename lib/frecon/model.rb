@@ -88,7 +88,9 @@ module FReCon
 		# Public: Validate that no invalid relations exist within this Model
 		def no_invalid_relations
 			# Get all of the belongs_to fields (ends with "_id" and not "_id" because that is the id).
-			attributes.keys.select { |attribute| attribute.end_with?("_id") && attribute != "_id" }.each do |relation|
+			attributes.keys.select do |attribute|
+				attribute.end_with?("_id") && attribute != "_id"
+			end.each do |relation|
 				# Get the model for the belongs_to association.
 				model = "FReCon::".concat(relation.gsub(/_id\Z/, "").capitalize).constantize
 				errors.add(relation.to_sym, "is invalid") if relation_invalid(model, send(relation))
