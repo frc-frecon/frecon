@@ -11,6 +11,8 @@ require "mongoid"
 
 # Public: An extension for the Mongoid module.
 module Mongoid
+	# Public: A monkey-patch for the Mongoid::Criteria class which introduces
+	# a #psv_filter method.
 	class Criteria
 		def psv_filter(psv_parameters = {})
 			collection = self
