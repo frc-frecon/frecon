@@ -51,6 +51,18 @@ module FReCon
 					self.class_variable_get(:@@attributes) << {method: method, type: :relation, attribute: attribute}
 				end
 
+				# Public: Register a method as a routable attribute method.
+				#
+				# Models can register attribute methods that they have defined
+				# (e.g. team.number) as attribute methods.  The Routes module reads
+				# these routable attributes, and generates routes for them.
+				#
+				# method    - A Symbol containing the name of the attribute method.
+				# attribute - A String representing the attribute that the Routes
+				#             module should route this method under.
+				#
+				# Returns the result of pushing an object to class's attributes
+				# class variable.
 				def self.register_routable_attribute(method, attribute)
 					self.class_variable_get(:@@attributes) << {method: method, type: :attribute, attribute: attribute}
 				end
