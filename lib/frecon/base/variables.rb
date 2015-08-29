@@ -7,6 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+# Public: The FReCon API module.
 module FReCon
 	VERSION ||= "0.5.1"
 
