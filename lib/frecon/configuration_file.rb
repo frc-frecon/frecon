@@ -23,6 +23,11 @@ module FReCon
 			@filename = filename
 		end
 
+		# Public: Read from the file and generate a Configuration
+		# from the YAML data therein.
+		#
+		# Returns a Configuration representing the file's data or nil if it didn't
+		# exist.
 		def read
 			begin
 				data = open(@filename, "rb") do |io|
