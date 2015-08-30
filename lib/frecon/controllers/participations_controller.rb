@@ -11,6 +11,7 @@ require "json"
 require "frecon/models/participation"
 
 module FReCon
+	# Public: The Participations controller.
 	class ParticipationsController < Controller
 	end
 end
