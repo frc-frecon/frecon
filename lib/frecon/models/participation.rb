@@ -10,6 +10,7 @@
 require "frecon/model"
 
 module FReCon
+	# Public: The Participation model.
 	class Participation < Model
 		belongs_to :robot
 		belongs_to :competition
