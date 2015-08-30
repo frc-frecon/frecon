@@ -263,6 +263,8 @@ module FReCon
 			@type == :final
 		end
 
+		# Public: Determine if MatchNumber represents a match of any elimination
+		# type.
 		def elimination?
 			ELIMINATION_TYPES.include?(@type)
 		end
