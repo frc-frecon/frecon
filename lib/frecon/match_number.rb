@@ -99,6 +99,9 @@ module FReCon
 			end
 		end
 
+		# Public: Convert to a storable string representation.
+		#
+		# Returns String representing the MatchNumber's data.
 		def mongoize
 			to_s
 		end
