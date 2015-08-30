@@ -12,6 +12,13 @@ require "frecon/base"
 module FReCon
 	# Public: A wrapper to handle converting team positions and storing them.
 	class Position
+		# Public: The alliance part of the position
+		#
+		# Examples
+		#
+		#   position = Position.new('r2')
+		#   position.alliance
+		#   # => :red
 		attr_reader :alliance
 
 		attr_reader :number
