@@ -150,6 +150,9 @@ module FReCon
 			end
 		end
 
+		# Public: Convert to a String.
+		#
+		# Returns String representing the position data.
 		def to_s
 			"#{@alliance[0]}#{@number}"
 		end
