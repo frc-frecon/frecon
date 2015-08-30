@@ -64,7 +64,7 @@ module FReCon
 				#             module should route this method under.
 				#
 				# Returns the result of pushing an object to class's attributes
-				# class variable.
+				#   class variable.
 				def self.register_routable_attribute(method, attribute)
 					self.class_variable_get(:@@attributes) << {method: method, type: :attribute, attribute: attribute}
 				end
