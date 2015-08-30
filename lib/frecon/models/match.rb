@@ -23,6 +23,7 @@ module FReCon
 
 		validates :number, :competition_id, presence: true
 
+		# Public: Get this Match's Participations
 		def participations
 			Participation.in id: records.map(&:participation_id)
 		end
