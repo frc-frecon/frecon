@@ -23,7 +23,6 @@ module FReCon
 		validates :number, presence: true, uniqueness: true, numericality: { greater_than: 0 }
 
 		def self.number(team_number)
-			# Team.find_by number: team_number
 			find_by number: team_number
 		end
 
