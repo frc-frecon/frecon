@@ -152,6 +152,19 @@ module FReCon
 			end
 		end
 
+		# Public: Process a deletion request (HTTP DELETE)
+		#
+		# Processes the JSON request, finds the model, then deletes it.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns 204 if successful.
+		# Raises a RequestError if the request is malformed or if the model can't be
+		#   destroyed
 		def self.delete(params)
 			@model = find_model params
 
