@@ -11,6 +11,7 @@ require "json"
 require "frecon/models"
 
 module FReCon
+	# Public: The Dump controller.
 	class DumpController
 		def self.full(params)
 			dump = {}
