@@ -18,9 +18,10 @@ module FReCon
 		# Public: All of the elimination types for a MatchNumber to have.
 		ELIMINATION_TYPES = [:quarterfinal, :semifinal, :final]
 
-		attr_reader :number, :round
+		attr_reader :number
 
-		# MongoDB compatibility methods.
+		attr_reader :round
+
 		def self.demongoize(object)
 			# `object' should *always* be a string (since MatchNumber#mongoize returns a
 			# String which is what is stored in the database)
