@@ -23,6 +23,7 @@ module FReCon
 			robot.team
 		end
 
+		# Public: Get this Participation's Competition's Matches
 		def matches
 			competition.matches
 		end
