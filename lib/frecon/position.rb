@@ -36,7 +36,7 @@ module FReCon
 		#
 		# Returns Position parsed from object.
 		def self.demongoize(object)
-			# `object' should *always* be a string (since MatchNumber#mongoize returns a
+			# `object' should *always* be a String (since MatchNumber#mongoize returns a
 			# String which is what is stored in the database)
 			raise ArgumentError, "`object' must be a String" unless object.is_a?(String)
 
