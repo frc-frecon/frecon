@@ -243,6 +243,7 @@ module FReCon
 			@type == :practice
 		end
 
+		# Public: Determine if MatchNumber represents a qualification match.
 		def qualification?
 			@type == :qualification
 		end
