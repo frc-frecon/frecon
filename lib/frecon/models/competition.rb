@@ -26,6 +26,7 @@ module FReCon
 			Record.in match_id: matches.map(&:id)
 		end
 
+		# Public: Get this Competition's Participations' Robots
 		def robots
 			Robot.in id: participations.map(&:robot_id)
 		end
