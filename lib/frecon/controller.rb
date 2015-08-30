@@ -73,7 +73,7 @@ module FReCon
 			post_data
 		end
 
-		# Public: Process a creation request.
+		# Public: Process a creation request (HTTP POST)
 		#
 		# If `post_data` is an Array, iterates through the array and calls itself
 		# with each element within.  Otherwise, performs the creation using
