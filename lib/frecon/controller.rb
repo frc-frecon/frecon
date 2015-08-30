@@ -21,6 +21,9 @@ module FReCon
 			self.name.gsub(/FReCon::|Controller\Z/, "").singularize
 		end
 
+		# Public: Converts the class's name to a Model.
+		#
+		# Returns the Model's class.
 		def self.model
 			# Removes the trailing "Controller" from the class name,
 			# singularizes the result, and turns it into the class.
