@@ -10,6 +10,7 @@
 require "frecon/base"
 
 module FReCon
+	# Public: A wrapper to handle converting match numbers and storing them.
 	class MatchNumber
 		POSSIBLE_TYPES = [:practice, :qualification, :quarterfinal, :semifinal, :final]
 		ELIMINATION_TYPES = [:quarterfinal, :semifinal, :final]
