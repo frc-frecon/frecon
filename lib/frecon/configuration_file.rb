@@ -40,6 +40,8 @@ module FReCon
 			end
 		end
 
+		# Public: Create a new ConfigurationFile corresponding to the default
+		# defaults configuration location.
 		def self.default
 			self.new(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "config", "default.yml")))
 		end
