@@ -45,6 +45,11 @@ module FReCon
 		#   # => :quarterfinal
 		attr_reader :type
 
+		# Public: Convert a stored match number to a MatchNumber object.
+		#
+		# object - String representation of a match number (mongoized)
+		#
+		# Returns MatchNumber parsed from object.
 		def self.demongoize(object)
 			# `object' should *always* be a string (since MatchNumber#mongoize returns a
 			# String which is what is stored in the database)
