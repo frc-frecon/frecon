@@ -31,6 +31,7 @@ module FReCon
 			find_by number: team_number
 		end
 
+		# Public: Get this Team's Robots' Participations
 		def participations
 			Participation.in robot_id: robots.map(&:id)
 		end
