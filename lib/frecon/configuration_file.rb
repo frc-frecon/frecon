@@ -16,6 +16,9 @@ module FReCon
 		# Public: The filename for the file.
 		attr_accessor :filename
 
+		# Public: Initialize a ConfigurationFile.
+		#
+		# filename - The name of the file.
 		def initialize(filename)
 			@filename = filename
 		end
