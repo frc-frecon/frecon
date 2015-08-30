@@ -13,6 +13,9 @@ require "frecon/models"
 module FReCon
 	# Public: The Dump controller.
 	class DumpController
+		# Public: Creates a dump.
+		#
+		# Returns a String containing a dump of the database.
 		def self.full(params)
 			dump = {}
 
