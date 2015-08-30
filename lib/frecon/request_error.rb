@@ -15,6 +15,11 @@ class RequestError < StandardError
 	# request handler.
 	attr_reader :return_value
 
+	# Public: Initialize a RequestError.
+	#
+	# code    - An Integer representing the HTTP status code.
+	# message - A String representing the error message.
+	# context - An Object containing any necessary debugging values.
 	def initialize(code, message = nil, context = nil)
 		@code = code
 		@message = message
