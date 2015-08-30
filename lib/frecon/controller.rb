@@ -40,7 +40,6 @@ module FReCon
 			model.find params.delete("id")
 		end
 
-		# The 404 error message.
 		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
 			"Could not find #{model} of #{attribute} #{value}!"
 		end
