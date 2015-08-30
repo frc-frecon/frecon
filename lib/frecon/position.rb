@@ -157,6 +157,7 @@ module FReCon
 			"#{@alliance[0]}#{@number}"
 		end
 
+		# Public: Determine if Position is on blue alliance.
 		def is_blue?
 			@alliance == :blue
 		end
