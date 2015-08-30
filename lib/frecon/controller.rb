@@ -10,6 +10,7 @@
 require "frecon/base"
 
 module FReCon
+	# Public: A base class to represent a controller.
 	class Controller
 		def self.model_name
 			# Removes the namespace "FReCon::" and "Controller" from
