@@ -11,6 +11,7 @@ require "frecon/model"
 require "frecon/position"
 
 module FReCon
+	# Public: The Record model.
 	class Record < Model
 		field :notes, type: String
 		field :position, type: Position
