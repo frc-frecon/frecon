@@ -12,7 +12,10 @@ require "frecon/base"
 module FReCon
 	# Public: A wrapper to handle converting match numbers and storing them.
 	class MatchNumber
+		# Public: All of the possible match types for a MatchNumber to have.
 		POSSIBLE_TYPES = [:practice, :qualification, :quarterfinal, :semifinal, :final]
+
+		# Public: All of the elimination types for a MatchNumber to have.
 		ELIMINATION_TYPES = [:quarterfinal, :semifinal, :final]
 
 		attr_reader :number, :round
