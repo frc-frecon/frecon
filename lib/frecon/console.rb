@@ -13,6 +13,7 @@ require "frecon/database"
 require "frecon/server"
 
 module FReCon
+	# Public: The wrapper system for a pry console.
 	class Console
 		def self.start(configuration: Configuration.construct!)
 			environment = configuration["frecon"]["console"]["environment"]
