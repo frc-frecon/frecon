@@ -51,6 +51,13 @@ module FReCon
 			"Could not find #{model} of #{attribute} #{value}!"
 		end
 
+		# Public: Process a JSON request.
+		#
+		# request - The internal Sinatra request object that is available to
+		#           request handling.
+		#
+		# Returns a Hash corresponding to the request's body.
+		# Raises a RequestError if the JSON parse fails.
 		def self.process_json_request(request)
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
