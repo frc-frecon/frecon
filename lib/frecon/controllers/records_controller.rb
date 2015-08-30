@@ -11,6 +11,7 @@ require "json"
 require "frecon/models/record"
 
 module FReCon
+	# Public: The Records controller.
 	class RecordsController < Controller
 	end
 end
