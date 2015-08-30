@@ -11,6 +11,8 @@ require "json"
 
 # Public: A class representing errors that emanate from request handling.
 class RequestError < StandardError
+	# Public: The Array or Integer representing what can be returned from the
+	# request handler.
 	attr_reader :return_value
 
 	def initialize(code, message = nil, context = nil)
