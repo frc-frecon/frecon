@@ -29,6 +29,12 @@ module FReCon
 		#   position.number
 		#   # => 2
 		attr_reader :number
+
+		# Public: Convert a stored position to a Position object.
+		#
+		# object - String representation of a position (mongoized)
+		#
+		# Returns Position parsed from object.
 		def self.demongoize(object)
 			# `object' should *always* be a string (since MatchNumber#mongoize returns a
 			# String which is what is stored in the database)
