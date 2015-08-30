@@ -30,8 +30,6 @@ module FReCon
 			self.name.gsub(/Controller\Z/, "").singularize.constantize
 		end
 
-		# Some models have to find themselves in special ways,
-		# so this can be overridden with those ways.
 		def self.find_model(params)
 			model.find params.delete("id")
 		end
