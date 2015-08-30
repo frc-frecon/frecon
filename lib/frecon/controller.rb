@@ -123,6 +123,19 @@ module FReCon
 			end
 		end
 
+		# Public: Process an update request (HTTP PUT)
+		#
+		# Processes the JSON request, finds the model, then updates it.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns a String with the JSON representation of the model.
+		# Raises a RequestError if the request is malformed or if the attributes
+		#   can't be updated.
 		def self.update(request, params, post_data = nil)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase} id!") unless params[:id]
 
