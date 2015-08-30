@@ -10,6 +10,7 @@
 require "frecon/model"
 
 module FReCon
+	# Public: The Competition model.
 	class Competition < Model
 		field :location, type: String
 		field :name, type: String
