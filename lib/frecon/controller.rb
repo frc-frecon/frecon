@@ -30,6 +30,12 @@ module FReCon
 			self.name.gsub(/Controller\Z/, "").singularize.constantize
 		end
 
+		# Public: Find a model.
+		#
+		# params - A Hash containing the parameters.  This should contain an
+		#          'id' key, which is deleted and used for the find.
+		#
+		# Returns either the found model value or nil.
 		def self.find_model(params)
 			model.find params.delete("id")
 		end
