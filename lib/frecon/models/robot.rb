@@ -10,6 +10,7 @@
 require "frecon/model"
 
 module FReCon
+	# Public: The Robot model.
 	class Robot < Model
 		# This is an optional field we included for organization.
 		field :name, type: String
