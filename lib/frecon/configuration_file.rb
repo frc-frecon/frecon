@@ -11,6 +11,7 @@ require "yaml"
 require "frecon/configuration"
 
 module FReCon
+	# Public: A class to handle configuration files.
 	class ConfigurationFile
 		attr_accessor :filename
 
