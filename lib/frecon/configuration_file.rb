@@ -52,6 +52,8 @@ module FReCon
 			self.new(File.join("", "etc", "frecon", "config.yml"))
 		end
 
+		# Public: Create a new ConfigurationFile corresponding to the default
+		# user configuration location.
 		def self.user
 			self.new(File.join(Dir.home, ".config", "frecon.yml"))
 		end
