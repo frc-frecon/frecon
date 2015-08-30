@@ -20,6 +20,7 @@ module FReCon
 
 		validates :team_id, presence: true
 
+		# Public: Get this Robot's Participations' Competitions
 		def competitions
 			Competition.in id: participations.map(&:competition_id)
 		end
