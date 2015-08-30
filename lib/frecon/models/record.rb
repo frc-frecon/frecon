@@ -21,6 +21,7 @@ module FReCon
 
 		validates :position, :match_id, :participation_id, presence: true
 
+		# Public: Get this Record's Match's Competition
 		def competition
 			match.competition
 		end
