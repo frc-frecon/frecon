@@ -258,6 +258,7 @@ module FReCon
 			@type == :semifinal
 		end
 
+		# Public: Determine if MatchNumber represents a final match.
 		def final?
 			@type == :final
 		end
