@@ -248,6 +248,7 @@ module FReCon
 			@type == :qualification
 		end
 
+		# Public: Determine if MatchNumber represents a quarterfinal match.
 		def quarterfinal?
 			@type == :quarterfinal
 		end
