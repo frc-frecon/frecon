@@ -203,6 +203,19 @@ module FReCon
 			end
 		end
 
+		# Public: Process an index request (HTTP GET) for all instances of a model.
+		#
+		# Processes the JSON request, and returns a filtered list of all of the
+		# models.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns a String with the JSON representation of the list of models.
+		# Raises a RequestError if the request is malformed.
 		def self.index(params)
 			if params.empty?
 				@models = model.all
