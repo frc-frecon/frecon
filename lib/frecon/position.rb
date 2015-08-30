@@ -21,6 +21,13 @@ module FReCon
 		#   # => :red
 		attr_reader :alliance
 
+		# Public: The slot part of the position.
+		#
+		# Examples
+		#
+		#   position = Position.new('r2')
+		#   position.number
+		#   # => 2
 		attr_reader :number
 		def self.demongoize(object)
 			# `object' should *always* be a string (since MatchNumber#mongoize returns a
