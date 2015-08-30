@@ -43,8 +43,14 @@ module FReCon
 			Position.new(object)
 		end
 
-		# Allows passing a String or Hash instead of a Position.
-		# i.e. record.position = "r3"
+		# Public: Convert a Position object to a storable string representation.
+		#
+		# object - A Position, String, or Hash.  If Position, run #mongoize on it.
+		#          If String, create a new Position object for it, then run
+		#          #mongoize on it. If Hash, convert its keys to symbols, then
+		#          pull out the :alliance and :number keys to generate a Position.
+		#
+		# Returns String containing the mongo-ready value for the representation.
 		def self.mongoize(object)
 			case object
 			when Position
