@@ -21,6 +21,7 @@ module FReCon
 		validates :location, :name, presence: true
 		validates :name, uniqueness: true
 
+		# Public: Get this Competition's Matches' Records
 		def records
 			Record.in match_id: matches.map(&:id)
 		end
