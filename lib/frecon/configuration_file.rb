@@ -13,6 +13,7 @@ require "frecon/configuration"
 module FReCon
 	# Public: A class to handle configuration files.
 	class ConfigurationFile
+		# Public: The filename for the file.
 		attr_accessor :filename
 
 		def initialize(filename)
