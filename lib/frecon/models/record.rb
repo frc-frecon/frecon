@@ -26,6 +26,7 @@ module FReCon
 			match.competition
 		end
 
+		# Public: Get this Record's Participation's Robot
 		def robot
 			participation.robot
 		end
