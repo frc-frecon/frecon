@@ -179,6 +179,20 @@ module FReCon
 			end
 		end
 
+		# Public: Process a show request (HTTP GET) for a specific instance of a
+		# model.
+		#
+		# Processes the JSON request, finds the model, then shows it.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns a String with the JSON representation of the model.
+		# Raises a RequestError if the request is malformed or if the model can't be
+		#   found.
 		def self.show(params)
 			@model = find_model params
 
