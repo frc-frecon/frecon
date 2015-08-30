@@ -10,6 +10,7 @@
 require "frecon/model"
 
 module FReCon
+	# Public: The Team model.
 	class Team < Model
 		field :number, type: Integer
 
