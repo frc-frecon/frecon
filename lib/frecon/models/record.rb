@@ -31,6 +31,7 @@ module FReCon
 			participation.robot
 		end
 
+		# Public: Get this Record's Participation's Robot's Team
 		def team
 			participation.robot.team
 		end
