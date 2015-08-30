@@ -10,6 +10,7 @@
 require "frecon/controllers"
 
 module FReCon
+	# Public: A module containing all of the routes.
 	module Routes
 		def self.resource_routes(base, name, controller)
 			base.post "/#{name}" do
