@@ -46,6 +46,8 @@ module FReCon
 			self.new(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "config", "default.yml")))
 		end
 
+		# Public: Create a new ConfigurationFile corresponding to the default
+		# system configuration location.
 		def self.system
 			self.new(File.join("", "etc", "frecon", "config.yml"))
 		end
