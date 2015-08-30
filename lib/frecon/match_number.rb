@@ -18,6 +18,13 @@ module FReCon
 		# Public: All of the elimination types for a MatchNumber to have.
 		ELIMINATION_TYPES = [:quarterfinal, :semifinal, :final]
 
+		# Public: The numerical part of the match number
+		#
+		# Examples
+		#
+		#   match_number = MatchNumber.new('qm2')
+		#   match_number.number
+		#   # => 2
 		attr_reader :number
 
 		attr_reader :round
