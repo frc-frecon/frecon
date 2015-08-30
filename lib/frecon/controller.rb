@@ -73,6 +73,20 @@ module FReCon
 			post_data
 		end
 
+		# Public: Process a creation request.
+		#
+		# If `post_data` is an Array, iterates through the array and calls itself
+		# with each element within.  Otherwise, performs the creation using
+		# the attribute key-value pairings within the `post_data`.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns an Array, a formatted response that can be passed back through
+		#   Sinatra's request processing.
 		def self.create(request, params, post_data = nil)
 			post_data ||= process_json_request request
 
