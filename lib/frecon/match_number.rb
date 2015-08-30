@@ -27,6 +27,13 @@ module FReCon
 		#   # => 2
 		attr_reader :number
 
+		# Public: The round part of the match number
+		#
+		# Examples
+		#
+		#   match_number = MatchNumber.new('qf1m2r3')
+		#   match_number.round
+		#   # => 2
 		attr_reader :round
 
 		attr_reader :type
