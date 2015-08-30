@@ -11,6 +11,7 @@ require "frecon/model"
 require "frecon/match_number"
 
 module FReCon
+	# Public: The Match model.
 	class Match < Model
 		field :number, type: MatchNumber
 
