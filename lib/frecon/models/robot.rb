@@ -30,6 +30,7 @@ module FReCon
 			Record.in participation_id: participations.map(&:id)
 		end
 
+		# Public: Get this Robot's Participations' Records' Matches
 		def matches
 			Match.in id: records.map(&:match_id).uniq
 		end
