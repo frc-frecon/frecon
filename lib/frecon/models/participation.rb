@@ -18,6 +18,7 @@ module FReCon
 
 		validates :robot_id, :competition_id, presence: true
 
+		# Public: Get this Participation's Robot's Team
 		def team
 			robot.team
 		end
