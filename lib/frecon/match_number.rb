@@ -36,6 +36,13 @@ module FReCon
 		#   # => 2
 		attr_reader :round
 
+		# Public: The type of the match.
+		#
+		# Examples
+		#
+		#   match_number = MatchNumber.new('qf1m2r3')
+		#   match_number.type
+		#   # => :quarterfinal
 		attr_reader :type
 
 		def self.demongoize(object)
