@@ -48,7 +48,7 @@ module FReCon
 				#   register_routable_relation :matches, "matches"
 				#
 				# Returns the result of pushing an object to class's attributes
-				# class variable.
+				#   class variable.
 				def self.register_routable_relation(method, attribute)
 					self.class_variable_get(:@@attributes) << {method: method, type: :relation, attribute: attribute}
 				end
