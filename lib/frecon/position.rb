@@ -12,9 +12,9 @@ require "frecon/base"
 module FReCon
 	# Public: A wrapper to handle converting team positions and storing them.
 	class Position
-		attr_reader :alliance, :number
+		attr_reader :alliance
 
-		# MongoDB compatibility methods.
+		attr_reader :number
 		def self.demongoize(object)
 			# `object' should *always* be a string (since MatchNumber#mongoize returns a
 			# String which is what is stored in the database)
