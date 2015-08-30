@@ -233,6 +233,7 @@ module FReCon
 			"#{type_string}#{@round}#{match_string}#{replay_string}"
 		end
 
+		# Public: Determine if MatchNumber represents a replay.
 		def replay?
 			!@replay_number.nil? && @replay_number > 0
 		end
