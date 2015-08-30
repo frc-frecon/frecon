@@ -40,6 +40,13 @@ module FReCon
 			model.find params.delete("id")
 		end
 
+		# Public: Generate a could-not-find message.
+		#
+		# value     - The value that was tested.
+		# attribute - The attribute that was used for the search.
+		# model     - The model that the search was performed upon.
+		#
+		# Returns a String containing the error message.
 		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
 			"Could not find #{model} of #{attribute} #{value}!"
 		end
