@@ -238,6 +238,7 @@ module FReCon
 			!@replay_number.nil? && @replay_number > 0
 		end
 
+		# Public: Determine if MatchNumber represents a practice match.
 		def practice?
 			@type == :practice
 		end
