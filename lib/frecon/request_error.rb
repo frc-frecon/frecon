@@ -9,6 +9,7 @@
 
 require "json"
 
+# Public: A class representing errors that emanate from request handling.
 class RequestError < StandardError
 	attr_reader :return_value
 
