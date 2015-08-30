@@ -253,6 +253,7 @@ module FReCon
 			@type == :quarterfinal
 		end
 
+		# Public: Determine if MatchNumber represents a semifinal match.
 		def semifinal?
 			@type == :semifinal
 		end
