@@ -55,7 +55,7 @@ module FReCon
 			mongoid = configuration["frecon"]["database"]["mongoid"]
 
 			# Set up the database.
-			Database.setup(environment: environment, mongoid: mongoid)
+			Database.setup(environment, mongoid)
 		end
 
 		# Internal: Set up the server and start it.

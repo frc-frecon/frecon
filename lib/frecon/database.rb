@@ -20,7 +20,7 @@ require "frecon/models"
 module FReCon
 	# Public: A system to set up the database.
 	class Database
-		def self.setup(environment: FReCon.environment, mongoid: nil)
+		def self.setup(environment = FReCon.environment, mongoid = nil)
 			if mongoid.is_a?(Hash)
 				mongoid_tempfile = Tempfile.new("FReCon")
 
