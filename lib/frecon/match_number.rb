@@ -211,6 +211,9 @@ module FReCon
 			end
 		end
 
+		# Public: Convert to a String.
+		#
+		# Returns String representing the match number data.
 		def to_s
 			type_string = case @type
 			              when :practice
