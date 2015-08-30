@@ -22,6 +22,11 @@ module FReCon
 
 		validates :number, presence: true, uniqueness: true, numericality: { greater_than: 0 }
 
+		# Public: Find a team by number.
+		#
+		# team_number - An Integer to be used to compare.
+		#
+		# Returns a Team if one exists with the given number, otherwise nil.
 		def self.number(team_number)
 			find_by number: team_number
 		end
