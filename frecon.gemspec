@@ -23,6 +23,8 @@ Gem::Specification.new do |s|
 	s.homepage = "https://github.com/frc-frecon/frecon"
 
 	s.files = []
+	s.files << "Gemfile"
+	s.files << "Rakefile"
 	s.files << Dir.glob("lib/**/*.rb")
 	s.files << "lib/frecon/mongoid.yml"
 	s.files << Dir.glob("config/**/*")
