@@ -93,6 +93,9 @@ module FReCon
 			end
 		end
 
+		# Public: Bootstrap the routes into inclusors of this module.
+		#
+		# base - The child that included this module (should be a Sinatra App)
 		def self.included(base)
 			resource_routes base, "teams", TeamsController
 			resource_routes base, "competitions", CompetitionsController
