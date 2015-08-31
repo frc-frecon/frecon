@@ -11,6 +11,7 @@ require "frecon/model"
 require "frecon/match_number"
 
 module FReCon
+	# Public: The Match model.
 	class Match < Model
 		field :number, type: MatchNumber
 
@@ -22,14 +23,17 @@ module FReCon
 
 		validates :number, :competition_id, presence: true
 
+		# Public: Get this Match's Participations
 		def participations
 			Participation.in id: records.map(&:participation_id)
 		end
 
+		# Public: Get this Match's Participations' Robots
 		def robots
 			Robot.in id: participations.map(&:robot_id)
 		end
 
+		# Public: Get this Match's Participations' Robots' Teams
 		def teams
 			Team.in id: robots.map(&:team_id)
 		end

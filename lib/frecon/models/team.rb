@@ -10,6 +10,7 @@
 require "frecon/model"
 
 module FReCon
+	# Public: The Team model.
 	class Team < Model
 		field :number, type: Integer
 
@@ -21,23 +22,31 @@ module FReCon
 
 		validates :number, presence: true, uniqueness: true, numericality: { greater_than: 0 }
 
+		# Public: Find a team by number.
+		#
+		# team_number - An Integer to be used to compare.
+		#
+		# Returns a Team if one exists with the given number, otherwise nil.
 		def self.number(team_number)
-			# Team.find_by number: team_number
 			find_by number: team_number
 		end
 
+		# Public: Get this Team's Robots' Participations
 		def participations
 			Participation.in robot_id: robots.map(&:id)
 		end
 
+		# Public: Get this Team's Robots' Participations' Competitions
 		def competitions
 			Competition.in id: participations.map(&:competition_id)
 		end
 
+		# Public: Get this Team's Robots' Participations' Records
 		def records
 			Record.in participation_id: participations.map(&:id)
 		end
 
+		# Public: Get this Team's Robots' Participations' Competitions' Matches
 		def matches
 			Match.in competition_id: competitions.map(&:id)
 		end

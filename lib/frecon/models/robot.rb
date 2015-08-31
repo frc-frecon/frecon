@@ -10,6 +10,7 @@
 require "frecon/model"
 
 module FReCon
+	# Public: The Robot model.
 	class Robot < Model
 		# This is an optional field we included for organization.
 		field :name, type: String
@@ -19,14 +20,17 @@ module FReCon
 
 		validates :team_id, presence: true
 
+		# Public: Get this Robot's Participations' Competitions
 		def competitions
 			Competition.in id: participations.map(&:competition_id)
 		end
 
+		# Public: Get this Robot's Participations' Records
 		def records
 			Record.in participation_id: participations.map(&:id)
 		end
 
+		# Public: Get this Robot's Participations' Records' Matches
 		def matches
 			Match.in id: records.map(&:match_id).uniq
 		end

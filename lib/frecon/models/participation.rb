@@ -10,6 +10,7 @@
 require "frecon/model"
 
 module FReCon
+	# Public: The Participation model.
 	class Participation < Model
 		belongs_to :robot
 		belongs_to :competition
@@ -17,10 +18,12 @@ module FReCon
 
 		validates :robot_id, :competition_id, presence: true
 
+		# Public: Get this Participation's Robot's Team
 		def team
 			robot.team
 		end
 
+		# Public: Get this Participation's Competition's Matches
 		def matches
 			competition.matches
 		end

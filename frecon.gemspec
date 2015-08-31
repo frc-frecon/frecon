@@ -23,6 +23,8 @@ Gem::Specification.new do |s|
 	s.homepage = "https://github.com/frc-frecon/frecon"
 
 	s.files = []
+	s.files << "Gemfile"
+	s.files << "Rakefile"
 	s.files << Dir.glob("lib/**/*.rb")
 	s.files << "lib/frecon/mongoid.yml"
 	s.files << Dir.glob("config/**/*")
@@ -34,4 +36,8 @@ Gem::Specification.new do |s|
 	s.add_runtime_dependency "thin", ["~> 1.6"]
 	s.add_runtime_dependency "mongoid", ["~> 4.0"]
 	s.add_runtime_dependency "httparty", ["~> 0.13"]
+
+	s.add_development_dependency "yard", ["~> 0.8"]
+	s.add_development_dependency "yard-tomdoc", ["~> 0.7"]
+	s.add_development_dependency "yard-mongoid", ["~> 0.0"]
 end

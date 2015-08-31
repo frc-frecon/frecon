@@ -11,6 +11,7 @@ require "frecon/model"
 require "frecon/position"
 
 module FReCon
+	# Public: The Record model.
 	class Record < Model
 		field :notes, type: String
 		field :position, type: Position
@@ -20,14 +21,17 @@ module FReCon
 
 		validates :position, :match_id, :participation_id, presence: true
 
+		# Public: Get this Record's Match's Competition
 		def competition
 			match.competition
 		end
 
+		# Public: Get this Record's Participation's Robot
 		def robot
 			participation.robot
 		end
 
+		# Public: Get this Record's Participation's Robot's Team
 		def team
 			participation.robot.team
 		end

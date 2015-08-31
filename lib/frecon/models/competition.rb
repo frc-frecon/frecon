@@ -10,6 +10,7 @@
 require "frecon/model"
 
 module FReCon
+	# Public: The Competition model.
 	class Competition < Model
 		field :location, type: String
 		field :name, type: String
@@ -20,14 +21,17 @@ module FReCon
 		validates :location, :name, presence: true
 		validates :name, uniqueness: true
 
+		# Public: Get this Competition's Matches' Records
 		def records
 			Record.in match_id: matches.map(&:id)
 		end
 
+		# Public: Get this Competition's Participations' Robots
 		def robots
 			Robot.in id: participations.map(&:robot_id)
 		end
 
+		# Public: Get this Competition's Participations' Robots' Teams
 		def teams
 			Team.in id: robots.map(&:team_id)
 		end

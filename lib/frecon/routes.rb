@@ -10,7 +10,13 @@
 require "frecon/controllers"
 
 module FReCon
+	# Public: A module containing all of the routes.
 	module Routes
+		# Public: Set up basic resource route handlers.
+		#
+		# base       - Sinatra::Application to register the routes under.
+		# name       - String containing the model name.
+		# controller - Controller-like object that contains key methods.
 		def self.resource_routes(base, name, controller)
 			base.post "/#{name}" do
 				begin
@@ -53,6 +59,11 @@ module FReCon
 			end
 		end
 
+		# Public: Set up basic attribute route handlers.
+		#
+		# base       - Sinatra::Application to register the routes under.
+		# name       - String containing the model name.
+		# controller - Controller-like object.
 		def self.attribute_routes(base, name, controller)
 			model = controller.model
 
@@ -82,6 +93,9 @@ module FReCon
 			end
 		end
 
+		# Public: Bootstrap the routes into inclusors of this module.
+		#
+		# base - The child that included this module (should be a Sinatra App)
 		def self.included(base)
 			resource_routes base, "teams", TeamsController
 			resource_routes base, "competitions", CompetitionsController

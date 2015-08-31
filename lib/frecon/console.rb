@@ -13,11 +13,17 @@ require "frecon/database"
 require "frecon/server"
 
 module FReCon
+	# Public: The wrapper system for a pry console.
 	class Console
+		# Public: Starts the FReCon console.
+		#
+		# :configuration - The Configuration to use when starting the console.
+		#
+		# Returns the result of running pry on FReCon.
 		def self.start(configuration: Configuration.construct!)
 			environment = configuration["frecon"]["console"]["environment"]
 			mongoid = configuration["frecon"]["database"]["mongoid"]
-			Database.setup(environment: environment, mongoid: mongoid)
+			Database.setup(environment, mongoid)
 
 			require "pry"
 

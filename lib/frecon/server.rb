@@ -16,6 +16,7 @@ require "frecon/routes"
 require "frecon/controllers"
 
 module FReCon
+	# Public: The Sinatra web server.
 	class Server < Sinatra::Base
 		include Routes
 
@@ -23,23 +24,45 @@ module FReCon
 			content_type "application/json"
 		end
 
+		# Public: Start the Server.
+		#
+		# keyword_arguments - The Hash of arguments to use.
+		#                     :configuration - The Configuration to use when
+		#                                      setting up the server.
+		#
+		# Returns the result of starting the server.
 		def self.start(**keyword_arguments)
 			run!(**keyword_arguments)
 		end
 
 		protected
 
+		# Internal: Set up the server.
+		#
+		# Sets the various Thin and Sinatra options, and sets up the database.
+		#
+		# :configuration - The Configuration to use when starting the server.
+		#
+		# Returns the result of setting up the database.
 		def self.setup!(configuration: Configuration.construct!)
+			# Set the Thin and Sinatra options.
 			set :server, %w[thin HTTP webrick]
 			set :bind, configuration["frecon"]["server"]["host"]
 			set :port, configuration["frecon"]["server"]["port"]
 			set :environment, configuration["frecon"]["server"]["environment"]
 
+			# Grab out the mongoid configuration.
 			mongoid = configuration["frecon"]["database"]["mongoid"]
 
-			Database.setup(environment: environment, mongoid: mongoid)
+			# Set up the database.
+			Database.setup(environment, mongoid)
 		end
 
+		# Internal: Set up the server and start it.
+		#
+		# keyword_arguments - The Hash of arguments to use.
+		#                     :configuration - The Configuration to use when
+		#                                      setting up the server.
 		def self.run!(**keyword_arguments)
 			setup!(**keyword_arguments)
 

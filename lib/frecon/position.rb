@@ -10,20 +10,47 @@
 require "frecon/base"
 
 module FReCon
+	# Public: A wrapper to handle converting team positions and storing them.
 	class Position
-		attr_reader :alliance, :number
+		# Public: The alliance part of the position
+		#
+		# Examples
+		#
+		#   position = Position.new('r2')
+		#   position.alliance
+		#   # => :red
+		attr_reader :alliance
 
-		# MongoDB compatibility methods.
+		# Public: The slot part of the position.
+		#
+		# Examples
+		#
+		#   position = Position.new('r2')
+		#   position.number
+		#   # => 2
+		attr_reader :number
+
+		# Public: Convert a stored position to a Position object.
+		#
+		# object - String representation of a position (mongoized)
+		#
+		# Returns Position parsed from object.
 		def self.demongoize(object)
-			# `object' should *always* be a string (since MatchNumber#mongoize returns a
+			# `object' should *always* be a String (since MatchNumber#mongoize returns a
 			# String which is what is stored in the database)
 			raise ArgumentError, "`object' must be a String" unless object.is_a?(String)
 
 			Position.new(object)
 		end
 
-		# Allows passing a String or Hash instead of a Position.
-		# i.e. record.position = "r3"
+		# Public: Convert a Position object to a storable string representation.
+		#
+		# object - A Position, String, or Hash.  If Position, run #mongoize on it.
+		#          If String, create a new Position object for it, then run
+		#          #mongoize on it. If Hash, convert its keys to symbols, then
+		#          pull out the :alliance and :number keys to generate a Position.
+		#
+		# Returns String containing the mongo-ready value for the representation.
 		def self.mongoize(object)
 			case object
 			when Position
@@ -39,7 +66,15 @@ module FReCon
 			end
 		end
 
-		# Used for queries.
+		# Public: Convert a Position object to a storable string representation for
+		# queries.
+		#
+		# object - A Position, String, or Hash.  If Position, run #mongoize on it.
+		#          If String, create a new Position object for it, then run
+		#          #mongoize on it. If Hash, convert its keys to symbols, then
+		#          pull out the :alliance and :number keys to generate a Position.
+		#
+		# Returns String containing the mongo-ready value for the representation.
 		def self.evolve(object)
 			case object
 			when Position
@@ -55,6 +90,9 @@ module FReCon
 			end
 		end
 
+		# Public: Convert to a storable string representation.
+		#
+		# Returns String representing the Position's data.
 		def mongoize
 			to_s
 		end
@@ -112,14 +150,19 @@ module FReCon
 			end
 		end
 
+		# Public: Convert to a String.
+		#
+		# Returns String representing the position data.
 		def to_s
 			"#{@alliance[0]}#{@number}"
 		end
 
+		# Public: Determine if Position is on blue alliance.
 		def is_blue?
 			@alliance == :blue
 		end
 
+		# Public: Determine if Position is on red alliance.
 		def is_red?
 			@alliance == :red
 		end

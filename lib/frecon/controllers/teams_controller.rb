@@ -8,10 +8,10 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "json"
-require "frecon/base"
 require "frecon/models/team"
 
 module FReCon
+	# Public: The Teams controller.
 	class TeamsController < Controller
 	end
 end

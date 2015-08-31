@@ -11,13 +11,23 @@ require "yaml"
 require "frecon/configuration"
 
 module FReCon
+	# Public: A class to handle configuration files.
 	class ConfigurationFile
+		# Public: The filename for the file.
 		attr_accessor :filename
 
+		# Public: Initialize a ConfigurationFile.
+		#
+		# filename - The name of the file.
 		def initialize(filename)
 			@filename = filename
 		end
 
+		# Public: Read from the file and generate a Configuration
+		# from the YAML data therein.
+		#
+		# Returns a Configuration representing the file's data or nil if it didn't
+		# exist.
 		def read
 			begin
 				data = open(@filename, "rb") do |io|
@@ -30,14 +40,20 @@ module FReCon
 			end
 		end
 
+		# Public: Create a new ConfigurationFile corresponding to the default
+		# defaults configuration location.
 		def self.default
 			self.new(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "config", "default.yml")))
 		end
 
+		# Public: Create a new ConfigurationFile corresponding to the default
+		# system configuration location.
 		def self.system
 			self.new(File.join("", "etc", "frecon", "config.yml"))
 		end
 
+		# Public: Create a new ConfigurationFile corresponding to the default
+		# user configuration location.
 		def self.user
 			self.new(File.join(Dir.home, ".config", "frecon.yml"))
 		end

@@ -11,6 +11,7 @@ require "json"
 require "frecon/models/match"
 
 module FReCon
+	# Public: The Matches controller.
 	class MatchesController < Controller
 	end
 end

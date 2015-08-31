@@ -11,6 +11,7 @@ require "json"
 require "frecon/models/robot"
 
 module FReCon
+	# Public: The Robots controller.
 	class RobotsController < Controller
 	end
 end

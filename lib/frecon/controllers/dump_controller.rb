@@ -11,7 +11,11 @@ require "json"
 require "frecon/models"
 
 module FReCon
+	# Public: The Dump controller.
 	class DumpController
+		# Public: Creates a dump.
+		#
+		# Returns a String containing a dump of the database.
 		def self.full(params)
 			dump = {}
 
@@ -30,6 +34,14 @@ module FReCon
 			dump.to_json
 		end
 
+		# Public: Converts a Model's name to a dump-compliant name.
+		#
+		# Examples
+		#
+		#   DumpController.dump_compliant_name(FReCon::Team)
+		#   # => "teams"
+		#
+		# Returns a dump-compliant string.
 		def self.dump_compliant_name(model)
 			model.name.gsub(/FReCon::/, "").downcase.pluralize
 		end

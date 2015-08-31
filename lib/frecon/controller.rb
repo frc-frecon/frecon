@@ -10,30 +10,54 @@
 require "frecon/base"
 
 module FReCon
+	# Public: A base class to represent a controller.
 	class Controller
+		# Public: Converts the class's name to a Model name.
+		#
+		# Returns a Symbol that is the Model name.
 		def self.model_name
 			# Removes the namespace "FReCon::" and "Controller" from
 			# the class name, then singularizes the result.
 			self.name.gsub(/FReCon::|Controller\Z/, "").singularize
 		end
 
+		# Public: Converts the class's name to a Model.
+		#
+		# Returns the Model's class.
 		def self.model
 			# Removes the trailing "Controller" from the class name,
 			# singularizes the result, and turns it into the class.
 			self.name.gsub(/Controller\Z/, "").singularize.constantize
 		end
 
-		# Some models have to find themselves in special ways,
-		# so this can be overridden with those ways.
+		# Public: Find a model.
+		#
+		# params - A Hash containing the parameters.  This should contain an
+		#          'id' key, which is deleted and used for the find.
+		#
+		# Returns either the found model value or nil.
 		def self.find_model(params)
 			model.find params.delete("id")
 		end
 
-		# The 404 error message.
+		# Public: Generate a could-not-find message.
+		#
+		# value     - The value that was tested.
+		# attribute - The attribute that was used for the search.
+		# model     - The model that the search was performed upon.
+		#
+		# Returns a String containing the error message.
 		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
 			"Could not find #{model} of #{attribute} #{value}!"
 		end
 
+		# Public: Process a JSON request.
+		#
+		# request - The internal Sinatra request object that is available to
+		#           request handling.
+		#
+		# Returns a Hash corresponding to the request's body.
+		# Raises a RequestError if the JSON parse fails.
 		def self.process_json_request(request)
 			# Rewind the request body (an IO object)
 			# in case someone else has already played
@@ -49,6 +73,20 @@ module FReCon
 			post_data
 		end
 
+		# Public: Process a creation request (HTTP POST)
+		#
+		# If `post_data` is an Array, iterates through the array and calls itself
+		# with each element within.  Otherwise, performs the creation using
+		# the attribute key-value pairings within the `post_data`.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns an Array, a formatted response that can be passed back through
+		#   Sinatra's request processing.
 		def self.create(request, params, post_data = nil)
 			post_data ||= process_json_request request
 
@@ -85,6 +123,19 @@ module FReCon
 			end
 		end
 
+		# Public: Process an update request (HTTP PUT)
+		#
+		# Processes the JSON request, finds the model, then updates it.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns a String with the JSON representation of the model.
+		# Raises a RequestError if the request is malformed or if the attributes
+		#   can't be updated.
 		def self.update(request, params, post_data = nil)
 			raise RequestError.new(400, "Must supply a #{model_name.downcase} id!") unless params[:id]
 
@@ -101,6 +152,19 @@ module FReCon
 			end
 		end
 
+		# Public: Process a deletion request (HTTP DELETE)
+		#
+		# Processes the JSON request, finds the model, then deletes it.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns 204 if successful.
+		# Raises a RequestError if the request is malformed or if the model can't be
+		#   destroyed
 		def self.delete(params)
 			@model = find_model params
 
@@ -115,6 +179,20 @@ module FReCon
 			end
 		end
 
+		# Public: Process a show request (HTTP GET) for a specific instance of a
+		# model.
+		#
+		# Processes the JSON request, finds the model, then shows it.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns a String with the JSON representation of the model.
+		# Raises a RequestError if the request is malformed or if the model can't be
+		#   found.
 		def self.show(params)
 			@model = find_model params
 
@@ -125,6 +203,19 @@ module FReCon
 			end
 		end
 
+		# Public: Process an index request (HTTP GET) for all instances of a model.
+		#
+		# Processes the JSON request, and returns a filtered list of all of the
+		# models.
+		#
+		# request   - The internal Sinatra request object that is available to
+		#             request handling.
+		# params    - The internal params Hash that is available to request
+		#             handling.
+		# post_data - The data that was sent in the request body.
+		#
+		# Returns a String with the JSON representation of the list of models.
+		# Raises a RequestError if the request is malformed.
 		def self.index(params)
 			if params.empty?
 				@models = model.all

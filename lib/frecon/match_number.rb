@@ -10,13 +10,46 @@
 require "frecon/base"
 
 module FReCon
+	# Public: A wrapper to handle converting match numbers and storing them.
 	class MatchNumber
+		# Public: All of the possible match types for a MatchNumber to have.
 		POSSIBLE_TYPES = [:practice, :qualification, :quarterfinal, :semifinal, :final]
+
+		# Public: All of the elimination types for a MatchNumber to have.
 		ELIMINATION_TYPES = [:quarterfinal, :semifinal, :final]
 
-		attr_reader :number, :round
+		# Public: The numerical part of the match number
+		#
+		# Examples
+		#
+		#   match_number = MatchNumber.new('qm2')
+		#   match_number.number
+		#   # => 2
+		attr_reader :number
 
-		# MongoDB compatibility methods.
+		# Public: The round part of the match number
+		#
+		# Examples
+		#
+		#   match_number = MatchNumber.new('qf1m2r3')
+		#   match_number.round
+		#   # => 2
+		attr_reader :round
+
+		# Public: The type of the match.
+		#
+		# Examples
+		#
+		#   match_number = MatchNumber.new('qf1m2r3')
+		#   match_number.type
+		#   # => :quarterfinal
+		attr_reader :type
+
+		# Public: Convert a stored match number to a MatchNumber object.
+		#
+		# object - String representation of a match number (mongoized)
+		#
+		# Returns MatchNumber parsed from object.
 		def self.demongoize(object)
 			# `object' should *always* be a string (since MatchNumber#mongoize returns a
 			# String which is what is stored in the database)
@@ -25,6 +58,15 @@ module FReCon
 			MatchNumber.new(object)
 		end
 
+		# Public: Convert a MatchNumber object to a storable string representation.
+		#
+		# object - A MatchNumber, String, or Hash. If MatchNumber, run #mongoize on
+		#          it.  If String, create a new MatchNumber object for it, then run
+		#          #mongoize on it. If Hash, convert its keys to symbols, then
+		#          pull out the :alliance and :number keys to generate a
+		#          MatchNumber.
+		#
+		# Returns String containing the mongo-ready value for the representation.
 		def self.mongoize(object)
 			case object
 			when MatchNumber
@@ -36,6 +78,16 @@ module FReCon
 			end
 		end
 
+		# Public: Convert a MatchNumber object to a storable string representation
+		# for queries.
+		#
+		# object - A MatchNumber, String, or Hash. If MatchNumber, run #mongoize on
+		#          it.  If String, create a new MatchNumber object for it, then run
+		#          #mongoize on it. If Hash, convert its keys to symbols, then
+		#          pull out the :alliance and :number keys to generate a
+		#          MatchNumber.
+		#
+		# Returns String containing the mongo-ready value for the representation.
 		def self.evolve(object)
 			case object
 			when MatchNumber
@@ -47,6 +99,9 @@ module FReCon
 			end
 		end
 
+		# Public: Convert to a storable string representation.
+		#
+		# Returns String representing the MatchNumber's data.
 		def mongoize
 			to_s
 		end
@@ -156,6 +211,9 @@ module FReCon
 			end
 		end
 
+		# Public: Convert to a String.
+		#
+		# Returns String representing the match number data.
 		def to_s
 			type_string = case @type
 			              when :practice
@@ -175,30 +233,38 @@ module FReCon
 			"#{type_string}#{@round}#{match_string}#{replay_string}"
 		end
 
+		# Public: Determine if MatchNumber represents a replay.
 		def replay?
 			!@replay_number.nil? && @replay_number > 0
 		end
 
+		# Public: Determine if MatchNumber represents a practice match.
 		def practice?
 			@type == :practice
 		end
 
+		# Public: Determine if MatchNumber represents a qualification match.
 		def qualification?
 			@type == :qualification
 		end
 
+		# Public: Determine if MatchNumber represents a quarterfinal match.
 		def quarterfinal?
 			@type == :quarterfinal
 		end
 
+		# Public: Determine if MatchNumber represents a semifinal match.
 		def semifinal?
 			@type == :semifinal
 		end
 
+		# Public: Determine if MatchNumber represents a final match.
 		def final?
 			@type == :final
 		end
 
+		# Public: Determine if MatchNumber represents a match of any elimination
+		# type.
 		def elimination?
 			ELIMINATION_TYPES.include?(@type)
 		end

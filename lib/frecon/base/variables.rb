@@ -7,15 +7,23 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+# Public: The FReCon API module.
 module FReCon
-	VERSION ||= "0.5.1"
+	# Public: A String representing the current version of FReCon.
+	VERSION = "0.5.2"
 
 	@environment_variable = :development
 
+	# Public: Returns the current environment.
 	def self.environment
 		@environment_variable
 	end
 
+	# Public: Sets the environment.
+	#
+	# arg - The new environment.
+	#
+	# Returns the result from setting the current environment.
 	def self.environment=(arg)
 		@environment_variable = arg
 	end

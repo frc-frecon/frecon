@@ -11,6 +11,7 @@ require "json"
 require "frecon/models/competition"
 
 module FReCon
+	# Public: The Competitions controller.
 	class CompetitionsController < Controller
 	end
 end
