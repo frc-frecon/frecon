@@ -59,6 +59,11 @@ module FReCon
 			end
 		end
 
+		# Public: Set up basic attribute route handlers.
+		#
+		# base       - Sinatra::Application to register the routes under.
+		# name       - String containing the model name.
+		# controller - Controller-like object.
 		def self.attribute_routes(base, name, controller)
 			model = controller.model
 
