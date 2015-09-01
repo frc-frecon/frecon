@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 	s.licenses = ["MIT"]
 
 	s.summary = "A JSON API for scouting FRC competitions."
-	s.description = "A JSON API for scouting FRC competitions that manages the database for the user."
+	s.description = "A JSON API in Sinatra for scouting FRC competitions, and that manages the database using Mongoid."
 
 	s.authors = ["Sam Craig",
 	             "Kristofer Rye",
