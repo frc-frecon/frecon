@@ -1,4 +1,4 @@
-# FReCon [![Stories in Ready](https://badge.waffle.io/frc-frecon/frecon.png?label=ready&title=Ready)](https://waffle.io/frc-frecon/frecon)
+# FReCon [![Stories in Ready](https://badge.waffle.io/frc-frecon/frecon.png?label=ready&title=Ready)](https://waffle.io/frc-frecon/frecon) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/frc-frecon/frecon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 FReCon is an API for scouting at *FIRST* Robotics competitions.
 It is designed to be game-agnostic, that is, as dynamic as possible from year to year.
