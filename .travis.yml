@@ -7,4 +7,10 @@ rvm:
 services:
   - mongodb
 
+install:
+  - script/setup
+
+script:
+  - script/cibuild
+
 cache: bundler
