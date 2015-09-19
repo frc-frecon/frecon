@@ -57,5 +57,12 @@ module FReCon
 		def self.user
 			self.new(File.join(Dir.home, ".config", "frecon.yml"))
 		end
+
+		protected
+
+		# Public: Returns the User's config home directory.
+		def self.config_directory
+			ENV['XDG_CONFIG_HOME'] || File.join(Dir.home, '.config')
+		end
 	end
 end
