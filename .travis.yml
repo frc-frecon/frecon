@@ -13,4 +13,5 @@ install:
 script:
   - script/cibuild
 
-cache: bundler
+cache:
+  bundler: true
