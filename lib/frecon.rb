@@ -18,8 +18,6 @@ require "frecon/models"
 require "frecon/scraper"
 require "frecon/scrapers"
 
-require "frecon/configuration"
-require "frecon/configuration_file"
 require "frecon/match_number"
 require "frecon/position"
 require "frecon/request_error"
