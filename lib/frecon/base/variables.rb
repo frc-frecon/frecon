@@ -12,19 +12,4 @@ module FReCon
 	# Public: A String representing the current version of FReCon.
 	VERSION = "1.2.0"
 
-	@environment_variable = :development
-
-	# Public: Returns the current environment.
-	def self.environment
-		@environment_variable
-	end
-
-	# Public: Sets the environment.
-	#
-	# arg - The new environment.
-	#
-	# Returns the result from setting the current environment.
-	def self.environment=(arg)
-		@environment_variable = arg
-	end
 end
