@@ -17,8 +17,8 @@ module FReCon
 		# Public: Starts the FReCon console.
 		#
 		# Returns the result of running pry on FReCon.
-			Database.setup(environment, mongoid)
 		def self.start
+			Database.setup!
 
 			require "pry"
 
