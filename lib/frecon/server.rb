@@ -10,7 +10,6 @@
 require "sinatra/base"
 
 require "frecon/base/variables"
-require "frecon/configuration"
 require "frecon/database"
 require "frecon/routes"
 require "frecon/controllers"
@@ -26,45 +25,32 @@ module FReCon
 
 		# Public: Start the Server.
 		#
-		# keyword_arguments - The Hash of arguments to use.
-		#                     :configuration - The Configuration to use when
-		#                                      setting up the server.
-		#
 		# Returns the result of starting the server.
-		def self.start(**keyword_arguments)
-			run!(**keyword_arguments)
+		def self.start(*arguments)
+			run!(*arguments)
 		end
 
 		protected
 
 		# Internal: Set up the server.
 		#
-		# Sets the various Thin and Sinatra options, and sets up the database.
-		#
-		# :configuration - The Configuration to use when starting the server.
+		# Sets various Thin and Sinatra options, and sets up the database.
 		#
 		# Returns the result of setting up the database.
-		def self.setup!(configuration: Configuration.construct!)
+		def self.setup!
 			# Set the Thin and Sinatra options.
 			set :server, %w[thin HTTP webrick]
-			set :bind, configuration["frecon"]["server"]["host"]
-			set :port, configuration["frecon"]["server"]["port"]
-			set :environment, configuration["frecon"]["server"]["environment"]
-
-			# Grab out the mongoid configuration.
-			mongoid = configuration["frecon"]["database"]["mongoid"]
+			set :bind, FReCon::ENVIRONMENT.server["host"]
+			set :port, FReCon::ENVIRONMENT.server["port"]
+			set :environment, FReCon::ENVIRONMENT.variable.to_s
 
 			# Set up the database.
-			Database.setup(environment, mongoid)
+			Database.setup!
 		end
 
 		# Internal: Set up the server and start it.
-		#
-		# keyword_arguments - The Hash of arguments to use.
-		#                     :configuration - The Configuration to use when
-		#                                      setting up the server.
-		def self.run!(**keyword_arguments)
-			setup!(**keyword_arguments)
+		def self.run!(*arguments)
+			setup!(*arguments)
 
 			super
 		end
