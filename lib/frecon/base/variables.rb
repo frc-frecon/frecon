@@ -7,9 +7,12 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+require "frecon/base/environment"
+
 # Public: The FReCon API module.
 module FReCon
 	# Public: A String representing the current version of FReCon.
 	VERSION = "1.2.0"
 
+	ENVIRONMENT = Environment.new(:development)
 end
