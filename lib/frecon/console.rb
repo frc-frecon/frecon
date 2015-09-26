@@ -8,7 +8,6 @@
 # <http://opensource.org/licenses/MIT>.
 
 require "frecon/base/variables"
-require "frecon/configuration"
 require "frecon/database"
 require "frecon/server"
 
