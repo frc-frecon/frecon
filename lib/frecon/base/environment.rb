@@ -3,18 +3,31 @@ require "yaml"
 module FReCon
 	class Environment
 
+		# Public: The configuration Hash for the server-related configuration.
+		#
+		# Keys will typically include "port", "host", etc.
 		attr_accessor :server
+
+		# Public: The configuration Hash for the console-related configuration.
 		attr_accessor :console
+
+		# Public: The configuration Hash for the database-related configuration.
+		#
+		# Keys will typically include "mongoid", which should be a Hash
+		# representation of a valid mongoid.yml file.
 		attr_accessor :database
 
-		def variable
-			@variable
-		end
+		# Public: Get the configuration variable.
+		#
+		# Returns the value of @variable, which should be one of [:development, :test, :production].
+		attr_reader :variable
 
+		# Public: Validate, then set the configuration variable.
 		def variable=(symbol)
 			@variable = symbol if validate_symbol(symbol)
 		end
 
+		# Public: Initialize an Environment.
 		def initialize(symbol, server: {}, console: {}, database: {})
 			@variable = symbol if validate_symbol(symbol)
 
