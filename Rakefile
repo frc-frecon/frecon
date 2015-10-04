@@ -13,3 +13,9 @@ namespace :docs do
 		task.stats_options = ['--list-undoc']
 	end
 end
+
+require "rspec/core/rake_task"
+
+RSpec::Core::RakeTask.new(:spec)
+
+task default: :spec
