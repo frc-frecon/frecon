@@ -69,4 +69,7 @@ describe FReCon::Environment do
 			expect(subject.send(:default_configuration_filename)).to eq(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "..", "..", "config", "default.yml")))
 		end
 	end
+
+	describe "#system_configuration_filename"
+	describe "#user_configuration_filename"
 end
