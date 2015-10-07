@@ -60,4 +60,13 @@ describe FReCon::Environment do
 		end
 	end
 
+	describe "#default_configuration_filename" do
+		it "takes no arguments and returns a String" do
+			expect(subject.send(:default_configuration_filename)).to be_a(String)
+		end
+
+		it "takes no arguments and returns the path to the defaults configuration file" do
+			expect(subject.send(:default_configuration_filename)).to eq(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "..", "..", "config", "default.yml")))
+		end
+	end
 end
