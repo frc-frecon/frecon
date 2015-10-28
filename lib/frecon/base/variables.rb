@@ -12,7 +12,7 @@ require "frecon/base/environment"
 # Public: The FReCon API module.
 module FReCon
 	# Public: A String representing the current version of FReCon.
-	VERSION = "1.2.0"
+	VERSION = "1.3.0"
 
 	# Public: An Environment representing the system execution environment.
 	ENVIRONMENT = Environment.new(:development)
