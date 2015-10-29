@@ -9,4 +9,5 @@
 
 require "frecon/base/bson"
 require "frecon/base/object"
+require "frecon/base/environment"
 require "frecon/base/variables"

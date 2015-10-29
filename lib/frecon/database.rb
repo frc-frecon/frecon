@@ -9,6 +9,8 @@
 
 require "logger"
 
+require "frecon/base/variables"
+
 require "mongoid"
 require "frecon/mongoid/criteria"
 
@@ -21,25 +23,10 @@ module FReCon
 	# Public: A system to set up the database.
 	class Database
 		# Public: Set up the database.
-		#
-		# environment - Symbol containing environment to start the database in.
-		# mongoid     - Hash containing the configuration for Mongoid. If not
-		#               present, the lib/frecon/mongoid.yml file is given to
-		#               Mongoid.load!.  If present, the Hash is dumped to a
-		#               tempfile which is given to Mongoid.load!.
-		def self.setup(environment = FReCon.environment, mongoid = nil)
-			if mongoid.is_a?(Hash)
-				mongoid_tempfile = Tempfile.new("FReCon")
+		def self.setup!
+			Mongoid.load!(File.join(File.dirname(__FILE__), "mongoid.yml"), FReCon::ENVIRONMENT.variable)
 
-				mongoid_tempfile.write(mongoid.to_h.to_yaml)
-				mongoid_tempfile.rewind
-
-				Mongoid.load!(mongoid_tempfile.path, environment)
-			else
-				Mongoid.load!(File.join(File.dirname(__FILE__), "mongoid.yml"), environment)
-			end
-
-			if environment == :development
+			if FReCon::ENVIRONMENT.console["level"]
 				Mongoid.logger.level = Logger::DEBUG
 				Mongoid.logger = Logger.new($stdout)
 
