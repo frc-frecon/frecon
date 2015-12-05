@@ -4,6 +4,9 @@
 # Temporary directory for the execution of guards.
 tmp/
 
+# Coverage data.
+coverage/
+
 # Generated documentation.
 .yardoc/
 doc/
