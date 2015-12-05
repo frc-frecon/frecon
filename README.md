@@ -1,4 +1,4 @@
-# FReCon [![Gem Version](https://badge.fury.io/rb/frecon.svg)](https://badge.fury.io/rb/frecon) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/frc-frecon/frecon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Build Status](https://travis-ci.org/frc-frecon/frecon.svg)](https://travis-ci.org/frc-frecon/frecon) [![Stories in Ready](https://badge.waffle.io/frc-frecon/frecon.png?label=ready&title=Ready)](https://waffle.io/frc-frecon/frecon)
+# FReCon [![Gem Version](https://badge.fury.io/rb/frecon.svg)](https://badge.fury.io/rb/frecon) [![Build Status](https://travis-ci.org/frc-frecon/frecon.svg)](https://travis-ci.org/frc-frecon/frecon) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/frc-frecon/frecon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)p [![Stories in Ready](https://badge.waffle.io/frc-frecon/frecon.png?label=ready&title=Ready)](https://waffle.io/frc-frecon/frecon)
 
 FReCon is an API for scouting at *FIRST* Robotics competitions.
 It is designed to be game-agnostic, that is, as dynamic as possible from year to year.
