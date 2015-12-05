@@ -3,7 +3,9 @@ require "rspec"
 require "frecon"
 
 # Initialization code for Coveralls.io
-#
-# This should be all that is needed.
 require "coveralls"
 Coveralls.wear!
+
+# Initialization code for CodeClimate
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
