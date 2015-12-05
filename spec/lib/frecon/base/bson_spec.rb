@@ -1,5 +1,7 @@
 require "spec_helper"
 
+require "frecon/base/bson"
+
 describe BSON::ObjectId do
 	subject do
 		BSON::ObjectId.new

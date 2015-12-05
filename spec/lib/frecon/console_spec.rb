@@ -1,5 +1,7 @@
 require "spec_helper"
 
+require "frecon/console"
+
 describe FReCon::Console do
 	describe ".start" do
 		it "takes keyword arguments, starts the database, and calls FReCon.pry" do
