@@ -7,9 +7,9 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "frecon/models/competition"
-require "frecon/models/match"
-require "frecon/models/participation"
-require "frecon/models/record"
-require "frecon/models/robot"
-require "frecon/models/team"
+require 'frecon/models/competition'
+require 'frecon/models/match'
+require 'frecon/models/participation'
+require 'frecon/models/record'
+require 'frecon/models/robot'
+require 'frecon/models/team'

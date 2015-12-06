@@ -7,8 +7,8 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "frecon/model"
-require "frecon/position"
+require 'frecon/model'
+require 'frecon/position'
 
 module FReCon
 	# Public: The Record model.
@@ -36,10 +36,10 @@ module FReCon
 			participation.robot.team
 		end
 
-		register_routable_relation :match, "match"
-		register_routable_relation :competition, "competition"
-		register_routable_relation :participation, "participation"
-		register_routable_relation :robot, "robot"
-		register_routable_relation :team, "team"
+		register_routable_relation :match, 'match'
+		register_routable_relation :competition, 'competition'
+		register_routable_relation :participation, 'participation'
+		register_routable_relation :robot, 'robot'
+		register_routable_relation :team, 'team'
 	end
 end

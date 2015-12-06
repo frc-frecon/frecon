@@ -7,22 +7,22 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "mongoid"
+require 'mongoid'
 
-require "frecon/base"
+require 'frecon/base'
 
-require "frecon/controller"
-require "frecon/controllers"
-require "frecon/model"
-require "frecon/models"
-require "frecon/scraper"
-require "frecon/scrapers"
+require 'frecon/controller'
+require 'frecon/controllers'
+require 'frecon/model'
+require 'frecon/models'
+require 'frecon/scraper'
+require 'frecon/scrapers'
 
-require "frecon/match_number"
-require "frecon/position"
-require "frecon/request_error"
-require "frecon/routes"
+require 'frecon/match_number'
+require 'frecon/position'
+require 'frecon/request_error'
+require 'frecon/routes'
 
-require "frecon/database"
-require "frecon/server"
-require "frecon/console"
+require 'frecon/database'
+require 'frecon/server'
+require 'frecon/console'

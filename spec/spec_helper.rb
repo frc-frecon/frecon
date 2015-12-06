@@ -1,9 +1,9 @@
-require "rspec"
+require 'rspec'
 
 # Initialization code for Coveralls.io
-require "coveralls"
+require 'coveralls'
 Coveralls.wear!
 
 # Initialization code for CodeClimate
-require "codeclimate-test-reporter"
+require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start

@@ -7,7 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "frecon/base"
+require 'frecon/base'
 
 module FReCon
 	# Public: A wrapper to handle converting team positions and storing them.
@@ -102,7 +102,7 @@ module FReCon
 				# Match `string' against the regular expression, described below.
 				#
 				# This regular expression matches all values for `string' where
-				# the first letter is either "r" or "b" (case-insensitive due to /i
+				# the first letter is either 'r' or 'b' (case-insensitive due to /i
 				# at the end of the regular expression) and the last one-or-more
 				# characters in the string are digits 0-9. Anything between those two
 				# that is either a letter or an underscore is not retained, but
@@ -110,8 +110,8 @@ module FReCon
 				# will not match.
 				#
 				# You can use any words you like if you have more than just
-				# "r<n>" or "b<n>", for example "red_2" matches just the same
-				# as "r2", or, just for fun, just the same as "royal______2".
+				# 'r<n>' or 'b<n>', for example 'red_2' matches just the same
+				# as 'r2', or, just for fun, just the same as 'royal______2'.
 				#
 				# This behavior may change in the future.
 				match_data = args[0].match(/^([rb])[a-z\_]*([0-9]+)/i)
@@ -120,29 +120,29 @@ module FReCon
 				# string that was matched, hence the indices that start
 				# at one.
 
-				raise ArgumentError, "string is improperly formatted" unless match_data
+				raise ArgumentError, 'string is improperly formatted' unless match_data
 
 				@alliance = case match_data[1].downcase
-				            when "b"
+				            when 'b'
 					            :blue
-				            when "r"
+				            when 'r'
 					            :red
 				            else
-					            raise ArgumentError, "alliance character must be in [\"b\", \"r\"]"
+					            raise ArgumentError, "alliance character must be in ['b', 'r']"
 				            end
 
 				position_number = match_data[2].to_i
-				raise ArgumentError, "position number must be in [1, 2, 3]" unless [1, 2, 3].include?(position_number)
+				raise ArgumentError, 'position number must be in [1, 2, 3]' unless [1, 2, 3].include?(position_number)
 
 				@number = position_number
 			elsif args.length == 2
-				raise TypeError, "alliance must be a Symbol or String" unless args[0].is_a?(Symbol) || args[0].is_a?(String)
-				raise ArgumentError, "alliance must be in [:blue, :red]" unless [:blue, :red].include?(args[0].to_sym)
+				raise TypeError, 'alliance must be a Symbol or String' unless args[0].is_a?(Symbol) || args[0].is_a?(String)
+				raise ArgumentError, 'alliance must be in [:blue, :red]' unless [:blue, :red].include?(args[0].to_sym)
 
 				@alliance = args[0].to_sym
 
-				raise TypeError, "second argument must be an Integer" unless args[1].is_an?(Integer)
-				raise ArgumentError, "second argument must be in [1, 2, 3]" unless [1, 2, 3].include?(args[1])
+				raise TypeError, 'second argument must be an Integer' unless args[1].is_an?(Integer)
+				raise ArgumentError, 'second argument must be in [1, 2, 3]' unless [1, 2, 3].include?(args[1])
 
 				@number = args[1]
 			else

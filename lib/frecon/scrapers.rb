@@ -7,4 +7,4 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "frecon/scraper"
+require 'frecon/scraper'

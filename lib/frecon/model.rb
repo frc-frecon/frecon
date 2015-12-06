@@ -7,8 +7,8 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "mongoid"
-require "frecon/mongoid/criteria"
+require 'mongoid'
+require 'frecon/mongoid/criteria'
 
 module FReCon
 	# Public: A base class designed to assist with creating MongoDB Models
@@ -45,7 +45,7 @@ module FReCon
 				# Examples
 				#
 				#   # (Taken from the Team model)
-				#   register_routable_relation :matches, "matches"
+				#   register_routable_relation :matches, 'matches'
 				#
 				# Returns the result of pushing an object to class's attributes
 				#   class variable.
@@ -82,18 +82,18 @@ module FReCon
 		#
 		# Returns the associated Controller if it exists, else nil.
 		def self.controller
-			(self.name.pluralize + "Controller").constantize
+			(self.name.pluralize + 'Controller').constantize
 		end
 
 		# Public: Validate that no invalid relations exist within this Model
 		def no_invalid_relations
-			# Get all of the belongs_to fields (ends with "_id" and not "_id" because that is the id).
+			# Get all of the belongs_to fields (ends with '_id' and not '_id' because that is the id).
 			attributes.keys.select do |attribute|
-				attribute.end_with?("_id") && attribute != "_id"
+				attribute.end_with?('_id') && attribute != '_id'
 			end.each do |relation|
 				# Get the model for the belongs_to association.
-				model = "FReCon::".concat(relation.gsub(/_id\Z/, "").capitalize).constantize
-				errors.add(relation.to_sym, "is invalid") if relation_invalid?(model, send(relation))
+				model = 'FReCon::'.concat(relation.gsub(/_id\Z/, '').capitalize).constantize
+				errors.add(relation.to_sym, 'is invalid') if relation_invalid?(model, send(relation))
 			end
 		end
 

@@ -7,8 +7,8 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "json"
-require "frecon/models"
+require 'json'
+require 'frecon/models'
 
 module FReCon
 	# Public: The Dump controller.
@@ -21,7 +21,7 @@ module FReCon
 
 			ordered_descendants = Model.descendants.sort_by do |model|
 				id_fields = model.fields.keys.select do |attribute|
-					attribute.ends_with?("_id") && attribute != "_id"
+					attribute.ends_with?('_id') && attribute != '_id'
 				end
 
 				[id_fields.count, dump_compliant_name(model)]
@@ -39,11 +39,11 @@ module FReCon
 		# Examples
 		#
 		#   DumpController.dump_compliant_name(FReCon::Team)
-		#   # => "teams"
+		#   # => 'teams'
 		#
 		# Returns a dump-compliant string.
 		def self.dump_compliant_name(model)
-			model.name.gsub(/FReCon::/, "").downcase.pluralize
+			model.name.gsub(/FReCon::/, '').downcase.pluralize
 		end
 	end
 end

@@ -7,9 +7,9 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "frecon/base/variables"
-require "frecon/database"
-require "frecon/server"
+require 'frecon/base/variables'
+require 'frecon/database'
+require 'frecon/server'
 
 module FReCon
 	# Public: The wrapper system for a pry console.
@@ -20,7 +20,7 @@ module FReCon
 		def self.start
 			Database.setup!
 
-			require "pry"
+			require 'pry'
 
 			FReCon.pry
 		end

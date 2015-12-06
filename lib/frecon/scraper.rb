@@ -7,7 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "httparty"
+require 'httparty'
 
 module FReCon
 	# The default scraper scrapes other FReCon instances.
@@ -24,9 +24,9 @@ module FReCon
 			data = JSON.parse(data)
 
 			if context[:type] == :single && data.empty?
-				return [404, "Could not find a model with that query."]
+				return [404, 'Could not find a model with that query.']
 			elsif
-				puts "Just a heads up: you are importing an empty array of data."
+				puts 'Just a heads up: you are importing an empty array of data.'
 			end
 
 			# Here we want `context` to tell us what model we are making.
@@ -38,7 +38,7 @@ module FReCon
 				statuses = data.map do |key, value|
 					begin
 						unless value.empty?
-							model = ("FReCon::" + key.singularize.capitalize).constantize
+							model = ('FReCon::' + key.singularize.capitalize).constantize
 							result = model.controller.create(nil, nil, value)
 							result.first == 201 ? result.first : JSON.parse(result.last)
 						end
@@ -56,12 +56,12 @@ module FReCon
 		# If two arguments are passed, will import the models that match
 		# the query params.
 		def get(model = nil, query = {})
-			# Turns something like "team" into Team.
-			model = ("FReCon::" + model.capitalize).constantize if model.is_a?(String)
+			# Turns something like 'team' into Team.
+			model = ('FReCon::' + model.capitalize).constantize if model.is_a?(String)
 
 			# The route name for the model branch.
-			route_name = model.name.gsub(/FReCon::/, "").downcase.pluralize if model
-			
+			route_name = model.name.gsub(/FReCon::/, '').downcase.pluralize if model
+
 			if !model && query.empty?
 				type = :dump
 				data = HTTParty.get("http://#{@base_uri}/dump")

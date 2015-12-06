@@ -7,8 +7,8 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "json"
-require "frecon/models/record"
+require 'json'
+require 'frecon/models/record'
 
 module FReCon
 	# Public: The Records controller.

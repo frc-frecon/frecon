@@ -1,4 +1,4 @@
-require "yaml"
+require 'yaml'
 
 module FReCon
 
@@ -8,7 +8,7 @@ module FReCon
 
 		# Public: The configuration Hash for the server-related configuration.
 		#
-		# Keys will typically include "port", "host", etc.
+		# Keys will typically include 'port', 'host', etc.
 		attr_accessor :server
 
 		# Public: The configuration Hash for the console-related configuration.
@@ -16,7 +16,7 @@ module FReCon
 
 		# Public: The configuration Hash for the database-related configuration.
 		#
-		# Keys will typically include "mongoid", which should be a Hash
+		# Keys will typically include 'mongoid', which should be a Hash
 		# representation of a valid mongoid.yml file.
 		attr_accessor :database
 
@@ -68,11 +68,11 @@ module FReCon
 			configuration.merge(system || {})
 			configuration.merge(user || {})
 
-			# Grab out the "server", "console", and "database" values from the
+			# Grab out the 'server', 'console', and 'database' values from the
 			# configuration and store those in the appropriate instance variables.
-			@server = configuration["server"] || {}
-			@console = configuration["console"] || {}
-			@database = configuration["database"] || {}
+			@server = configuration['server'] || {}
+			@console = configuration['console'] || {}
+			@database = configuration['database'] || {}
 
 			configuration
 		end
@@ -110,7 +110,7 @@ module FReCon
 
 		# Public: Generate the filename for the defaults configuration file.
 		def default_configuration_filename
-			File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "..", "config", "default.yml"))
+			File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'config', 'default.yml'))
 		end
 
 		# Public: Generate the filename for the system configuration file.
@@ -139,7 +139,7 @@ module FReCon
 		end
 
 		# Public: Validate a value for @variable.
-		# 
+		#
 		# Checks the value for @variable against a list of valid environments.
 		def validate_symbol(symbol)
 			raise ArgumentError, "Environment variable is not one of #{self.valid_environments}" unless
@@ -155,7 +155,7 @@ module FReCon
 
 		# Public: Return a Hash representing the default server settings.
 		def server_defaults
-			{"host" => "localhost", "port" => 4567}
+			{'host' => 'localhost', 'port' => 4567}
 		end
 
 		# Public: Return a Hash representing the default console settings.
