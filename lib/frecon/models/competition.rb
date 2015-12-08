@@ -7,7 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "frecon/model"
+require 'frecon/model'
 
 module FReCon
 	# Public: The Competition model.
@@ -36,10 +36,10 @@ module FReCon
 			Team.in id: robots.map(&:team_id)
 		end
 
-		register_routable_relation :matches, "matches"
-		register_routable_relation :participations, "participations"
-		register_routable_relation :records, "records"
-		register_routable_relation :robots, "robots"
-		register_routable_relation :teams, "teams"
+		register_routable_relation :matches, 'matches'
+		register_routable_relation :participations, 'participations'
+		register_routable_relation :records, 'records'
+		register_routable_relation :robots, 'robots'
+		register_routable_relation :teams, 'teams'
 	end
 end

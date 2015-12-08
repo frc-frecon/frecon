@@ -7,26 +7,26 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "logger"
+require 'logger'
 
-require "frecon/base/variables"
+require 'frecon/base/variables'
 
-require "mongoid"
-require "frecon/mongoid/criteria"
+require 'mongoid'
+require 'frecon/mongoid/criteria'
 
-require "tempfile"
-require "yaml"
+require 'tempfile'
+require 'yaml'
 
-require "frecon/models"
+require 'frecon/models'
 
 module FReCon
 	# Public: A system to set up the database.
 	class Database
 		# Public: Set up the database.
 		def self.setup!
-			Mongoid.load!(File.join(File.dirname(__FILE__), "mongoid.yml"), FReCon::ENVIRONMENT.variable)
+			Mongoid.load!(File.join(File.dirname(__FILE__), 'mongoid.yml'), FReCon::ENVIRONMENT.variable)
 
-			if FReCon::ENVIRONMENT.console["level"]
+			if FReCon::ENVIRONMENT.console['level']
 				Mongoid.logger.level = Logger::DEBUG
 				Mongoid.logger = Logger.new($stdout)
 

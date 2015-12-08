@@ -1,6 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
 
-require "securerandom"
+require 'securerandom'
 
 describe FReCon::Environment do
 
@@ -8,14 +8,14 @@ describe FReCon::Environment do
 		FReCon::Environment.new(:development)
 	end
 
-	describe "#variable" do
-		it "returns the current variable" do
+	describe '#variable' do
+		it 'returns the current variable' do
 			expect(subject.variable).to eq(subject.instance_variable_get(:@variable))
 		end
 	end
 
-	describe "#variable=" do
-		it "takes a symbol and validates it" do
+	describe '#variable=' do
+		it 'takes a symbol and validates it' do
 			symbol = SecureRandom.hex.to_sym
 
 			allow(subject).to receive(:validate_symbol)
@@ -23,7 +23,7 @@ describe FReCon::Environment do
 			subject.variable = symbol
 		end
 
-		it "takes an invalid symbol and yields an error" do
+		it 'takes an invalid symbol and yields an error' do
 			symbol = SecureRandom.hex.to_sym
 
 			expect do
@@ -31,7 +31,7 @@ describe FReCon::Environment do
 			end.to raise_error(ArgumentError)
 		end
 
-		it "takes an invalid symbol and leaves the variable unset" do
+		it 'takes an invalid symbol and leaves the variable unset' do
 			previous_variable = subject.variable
 
 			symbol = SecureRandom.hex.to_sym
@@ -60,16 +60,16 @@ describe FReCon::Environment do
 		end
 	end
 
-	describe "#default_configuration_filename" do
-		it "takes no arguments and returns a String" do
+	describe '#default_configuration_filename' do
+		it 'takes no arguments and returns a String' do
 			expect(subject.send(:default_configuration_filename)).to be_a(String)
 		end
 
-		it "takes no arguments and returns the path to the defaults configuration file" do
-			expect(subject.send(:default_configuration_filename)).to eq(File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "..", "..", "config", "default.yml")))
+		it 'takes no arguments and returns the path to the defaults configuration file' do
+			expect(subject.send(:default_configuration_filename)).to eq(File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', '..', 'config', 'default.yml')))
 		end
 	end
 
-	describe "#system_configuration_filename"
-	describe "#user_configuration_filename"
+	describe '#system_configuration_filename'
+	describe '#user_configuration_filename'
 end

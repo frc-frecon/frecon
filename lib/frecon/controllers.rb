@@ -7,15 +7,15 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "json"
-require "frecon/request_error"
+require 'json'
+require 'frecon/request_error'
 
-require "frecon/controller"
+require 'frecon/controller'
 
-require "frecon/controllers/competitions_controller"
-require "frecon/controllers/dump_controller"
-require "frecon/controllers/matches_controller"
-require "frecon/controllers/participations_controller"
-require "frecon/controllers/records_controller"
-require "frecon/controllers/robots_controller"
-require "frecon/controllers/teams_controller"
+require 'frecon/controllers/competitions_controller'
+require 'frecon/controllers/dump_controller'
+require 'frecon/controllers/matches_controller'
+require 'frecon/controllers/participations_controller'
+require 'frecon/controllers/records_controller'
+require 'frecon/controllers/robots_controller'
+require 'frecon/controllers/teams_controller'

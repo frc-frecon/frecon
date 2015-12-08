@@ -7,7 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "frecon/base"
+require 'frecon/base'
 
 module FReCon
 	# Public: A base class to represent a controller.
@@ -16,18 +16,18 @@ module FReCon
 		#
 		# Returns a Symbol that is the Model name.
 		def self.model_name
-			# Removes the namespace "FReCon::" and "Controller" from
+			# Removes the namespace 'FReCon::' and 'Controller' from
 			# the class name, then singularizes the result.
-			self.name.gsub(/FReCon::|Controller\Z/, "").singularize
+			self.name.gsub(/FReCon::|Controller\Z/, '').singularize
 		end
 
 		# Public: Converts the class's name to a Model.
 		#
 		# Returns the Model's class.
 		def self.model
-			# Removes the trailing "Controller" from the class name,
+			# Removes the trailing 'Controller' from the class name,
 			# singularizes the result, and turns it into the class.
-			self.name.gsub(/Controller\Z/, "").singularize.constantize
+			self.name.gsub(/Controller\Z/, '').singularize.constantize
 		end
 
 		# Public: Find a model.
@@ -37,7 +37,7 @@ module FReCon
 		#
 		# Returns either the found model value or nil.
 		def self.find_model(params)
-			model.find params.delete("id")
+			model.find params.delete('id')
 		end
 
 		# Public: Generate a could-not-find message.
@@ -47,7 +47,7 @@ module FReCon
 		# model     - The model that the search was performed upon.
 		#
 		# Returns a String containing the error message.
-		def self.could_not_find(value, attribute = "id", model = model_name.downcase)
+		def self.could_not_find(value, attribute = 'id', model = model_name.downcase)
 			"Could not find #{model} of #{attribute} #{value}!"
 		end
 
@@ -220,8 +220,8 @@ module FReCon
 			if params.empty?
 				@models = model.all
 			else
-				params.delete("splat")
-				params.delete("captures")
+				params.delete('splat')
+				params.delete('captures')
 
 				@models = model.all.psv_filter(params)
 			end

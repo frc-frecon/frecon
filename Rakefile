@@ -1,4 +1,4 @@
-require "yard"
+require 'yard'
 
 YARD::Config.load_plugin('tomdoc')
 YARD::Config.load_plugin('mongoid')
@@ -14,7 +14,7 @@ namespace :docs do
 	end
 end
 
-require "rspec/core/rake_task"
+require 'rspec/core/rake_task'
 
 RSpec::Core::RakeTask.new(:spec)
 

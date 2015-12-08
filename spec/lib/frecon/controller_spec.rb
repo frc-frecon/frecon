@@ -1,4 +1,6 @@
-require "spec_helper"
+require 'spec_helper'
+
+require 'frecon/controller'
 
 describe FReCon::Controller do
 end

@@ -7,7 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "json"
+require 'json'
 
 # Public: A class representing errors that emanate from request handling.
 class RequestError < StandardError

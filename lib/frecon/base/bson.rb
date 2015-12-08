@@ -7,7 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "mongoid"
+require 'mongoid'
 
 # Public: An extension for the BSON module.
 module BSON

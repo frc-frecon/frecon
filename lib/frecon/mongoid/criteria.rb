@@ -7,7 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "mongoid"
+require 'mongoid'
 
 # Public: An extension for the Mongoid module.
 module Mongoid
@@ -17,7 +17,7 @@ module Mongoid
 		# Public: Filter by given PSV parameters.
 		#
 		# PSV is an introduced system that can be used within query strings to
-		# narrow a query.  Since HTTP query strings can use "+" to act as spaces
+		# narrow a query.  Since HTTP query strings can use '+' to act as spaces
 		# within a key-value pair, one can use these pluses to define nested
 		# query parameters when querying the database as in an indexing or
 		# showing request.
@@ -26,12 +26,12 @@ module Mongoid
 		#
 		# Examples
 		#
-		#   Record.all.psv_filter({"participation robot team number" => "2503"})
+		#   Record.all.psv_filter({'participation robot team number' => '2503'})
 		#   => #<Mongoid::Criteria ...>
 		#
 		#   # Since each instance of Record has a :team shortcut method,
 		#   # we can just filter it like so.
-		#   Record.all.psv_filter({"team number" => "2503"})
+		#   Record.all.psv_filter({'team number' => '2503'})
 		#   => #<Mongoid::Criteria ...>
 		#
 		# Returns a filtered version of self.
@@ -55,20 +55,20 @@ module Mongoid
 
 				# Create a comparison hash to be used to compare <attribute> to
 				# <expected value>.
-				if comparison_value.length == 0 || comparison_value == "__nil__"
+				if comparison_value.length == 0 || comparison_value == '__nil__'
 					comparison_hash = {comparison_key => nil}
 				else
 					comparison_hash = {comparison_key => comparison_value}
 				end
 
 				# Each of the subsequent keys should be a model name.  Generate a string
-				# corresponding to the "<model>" + "_id" for use as the comparison key,
+				# corresponding to the '<model>' + '_id' for use as the comparison key,
 				# and find the model class by generating a constant.
 				#
 				# Then, nest a comparison around the current comparison hash.
 				psv_keys.each do |model|
 					model_id = (model.to_s + '_id').to_sym
-					model_class = ("FReCon::" + model.to_s.capitalize).constantize
+					model_class = ('FReCon::' + model.to_s.capitalize).constantize
 
 					comparison_hash = {model_id => model_class.in(comparison_hash).map(&:id)}
 				end

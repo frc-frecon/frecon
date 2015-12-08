@@ -7,12 +7,12 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "sinatra/base"
+require 'sinatra/base'
 
-require "frecon/base/variables"
-require "frecon/database"
-require "frecon/routes"
-require "frecon/controllers"
+require 'frecon/base/variables'
+require 'frecon/database'
+require 'frecon/routes'
+require 'frecon/controllers'
 
 module FReCon
 	# Public: The Sinatra web server.
@@ -20,7 +20,7 @@ module FReCon
 		include Routes
 
 		before do
-			content_type "application/json"
+			content_type 'application/json'
 		end
 
 		# Public: Start the Server.
@@ -40,8 +40,8 @@ module FReCon
 		def self.setup!
 			# Set the Thin and Sinatra options.
 			set :server, %w[thin HTTP webrick]
-			set :bind, FReCon::ENVIRONMENT.server["host"]
-			set :port, FReCon::ENVIRONMENT.server["port"]
+			set :bind, FReCon::ENVIRONMENT.server['host']
+			set :port, FReCon::ENVIRONMENT.server['port']
 			set :environment, FReCon::ENVIRONMENT.variable.to_s
 
 			# Set up the database.

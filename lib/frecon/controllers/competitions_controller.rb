@@ -7,8 +7,8 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require "json"
-require "frecon/models/competition"
+require 'json'
+require 'frecon/models/competition'
 
 module FReCon
 	# Public: The Competitions controller.
