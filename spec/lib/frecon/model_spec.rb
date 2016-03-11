@@ -19,5 +19,11 @@ describe FReCon::Model do
 
 			FReCon::Model.descendants
 		end
+
+		it 'returns an Array with a count greater than zero' do
+			require 'frecon/models'
+
+			expect(FReCon::Model.descendants.count).not_to be(0)
+		end
 	end
 end
