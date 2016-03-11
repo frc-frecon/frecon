@@ -13,7 +13,7 @@ describe FReCon::Model do
 	end
 
 	describe '.descendants' do
-		it 'returns a list of the descendants' do
+		it 'calls ObjectSpace.each_object to find descendants' do
 			expect(ObjectSpace).to receive(:each_object)
 			allow(ObjectSpace).to receive(:each_object) { [] }
 
