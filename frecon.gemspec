@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
 	s.executables << 'frecon'
 
 	s.add_runtime_dependency 'sinatra', ['~> 1.4']
+	s.add_runtime_dependency 'pry', ['~> 0.10']
 	s.add_runtime_dependency 'thin', ['~> 1.6']
 	s.add_runtime_dependency 'mongoid', ['~> 4.0']
 	s.add_runtime_dependency 'httparty', ['~> 0.13']
