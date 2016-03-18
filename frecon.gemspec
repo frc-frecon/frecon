@@ -50,4 +50,6 @@ Gem::Specification.new do |s|
 	s.add_development_dependency 'coveralls', ['~> 0.8']
 	s.add_development_dependency 'codeclimate', ['~> 0.15']
 	s.add_development_dependency 'codeclimate-test-reporter', ['~> 0.4']
+
+	s.add_development_dependency 'pry-doc', ['~> 0']
 end
