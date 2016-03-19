@@ -19,7 +19,9 @@ module FReCon
 		def self.full(params)
 			dump = {}
 
-			ordered_descendants = Model.descendants.sort_by do |model|
+			ordered_descendants = Model.descendants.select do |model_or_instance|
+				!!model_or_instance.name
+			end.sort_by do |model|
 				id_fields = model.fields.keys.select do |attribute|
 					attribute.ends_with?('_id') && attribute != '_id'
 				end
