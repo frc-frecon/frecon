@@ -33,6 +33,7 @@ Gem::Specification.new do |s|
 	s.executables << 'frecon'
 
 	s.add_runtime_dependency 'sinatra', ['~> 1.4']
+	s.add_runtime_dependency 'pry', ['~> 0.10']
 	s.add_runtime_dependency 'thin', ['~> 1.6']
 	s.add_runtime_dependency 'mongoid', ['~> 4.0']
 	s.add_runtime_dependency 'httparty', ['~> 0.13']
@@ -49,4 +50,6 @@ Gem::Specification.new do |s|
 	s.add_development_dependency 'coveralls', ['~> 0.8']
 	s.add_development_dependency 'codeclimate', ['~> 0.15']
 	s.add_development_dependency 'codeclimate-test-reporter', ['~> 0.4']
+
+	s.add_development_dependency 'pry-doc', ['~> 0']
 end
