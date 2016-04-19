@@ -1,7 +1,7 @@
 # FReCon [![Gem Version](https://badge.fury.io/rb/frecon.svg)](https://badge.fury.io/rb/frecon) [![Build Status](https://travis-ci.org/frc-frecon/frecon.svg)](https://travis-ci.org/frc-frecon/frecon) [![Code Climate](https://codeclimate.com/github/frc-frecon/frecon/badges/gpa.svg)](https://codeclimate.com/github/frc-frecon/frecon) [![Test Coverage](https://codeclimate.com/github/frc-frecon/frecon/badges/coverage.svg)](https://codeclimate.com/github/frc-frecon/frecon/coverage) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/frc-frecon/frecon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Stories in Ready](https://badge.waffle.io/frc-frecon/frecon.png?label=ready&title=Ready)](https://waffle.io/frc-frecon/frecon)
 
 FReCon is an API for scouting at *FIRST* Robotics competitions.
-It is designed to be game-agnostic, that is, as dynamic as possible from year to year.
+It is designed to be season-agnostic, that is, as dynamic as possible from year to year.
 
 FReCon is built in Ruby, using Sinatra for the foundations of a server and the Mongoid database backend to interface with MongoDB as our system-level database backend.
 You need to have Ruby installed before you can use FReCon.
