@@ -5,7 +5,7 @@ It is designed to be season-agnostic, that is, as dynamic as possible from year 
 
 FReCon is built in Ruby, using Sinatra for the foundations of a server and the Mongoid database backend to interface with MongoDB as our system-level database backend.
 You need to have Ruby installed before you can use FReCon.
-We highly recommend using [rvm][rvm] to achieve this.
+We recommend using [rvm][rvm] to achieve this.
 
 ## Getting Started
 
