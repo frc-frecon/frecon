@@ -38,6 +38,7 @@ It is more convenient than loading FReCon into an existing pry or irb session.
 
 * **MongoDB**
   - On Fedora, you can install MongoDB with `dnf install mongodb mongodb-server`, and start it with `service mongod start`.
+  - On OS X, (with [Homebrew](http://brew.sh/)) you can install MongoDB with `brew install mongodb`.
   - No configuration should be necessary; the packaged version of MongoDB works just fine.
 
 ## Architecture
