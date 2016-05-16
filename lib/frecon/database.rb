@@ -22,6 +22,7 @@ require 'frecon/models'
 module FReCon
 	# Public: A system to set up the database.
 	class Database
+
 		# Public: Set up the database.
 		def self.setup!
 			Mongoid.load!(File.join(File.dirname(__FILE__), 'mongoid.yml'), FReCon::ENVIRONMENT.variable)
@@ -34,5 +35,6 @@ module FReCon
 				Moped.logger = Logger.new($stdout)
 			end
 		end
+
 	end
 end
