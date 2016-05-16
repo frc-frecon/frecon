@@ -28,11 +28,11 @@ module FReCon
 			Mongoid.load!(File.join(File.dirname(__FILE__), 'mongoid.yml'), FReCon::ENVIRONMENT.variable)
 
 			if FReCon::ENVIRONMENT.console['level']
-				Mongoid.logger.level = Logger::DEBUG
 				Mongoid.logger = Logger.new($stdout)
+				Mongoid.logger.level = Logger::DEBUG
 
-				Moped.logger.level = Logger::DEBUG
 				Moped.logger = Logger.new($stdout)
+				Moped.logger.level = Logger::DEBUG
 			end
 		end
 
