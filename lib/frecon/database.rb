@@ -27,12 +27,29 @@ module FReCon
 		def self.setup!
 			Mongoid.load!(File.join(File.dirname(__FILE__), 'mongoid.yml'), FReCon::ENVIRONMENT.variable)
 
-			if FReCon::ENVIRONMENT.console['level']
+			level = case (defined_level = FReCon::ENVIRONMENT.console['level'])
+			        when /^d/i
+				        ::Logger::DEBUG
+			        when /^e/i
+				        ::Logger::ERROR
+			        when /^f/i
+				        ::Logger::FATAL
+			        when /^i/i
+				        ::Logger::INFO
+			        when /^u/i
+				        ::Logger::UNKNOWN
+			        when /^w/i
+				        ::Logger::WARN
+			        else
+				        ::Logger::WARN
+			        end
+
+			if !!defined_level
 				Mongoid.logger = Logger.new($stdout)
-				Mongoid.logger.level = Logger::DEBUG
+				Mongoid.logger.level = level
 
 				Moped.logger = Logger.new($stdout)
-				Moped.logger.level = Logger::DEBUG
+				Moped.logger.level = level
 			end
 		end
 
