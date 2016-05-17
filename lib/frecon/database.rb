@@ -27,7 +27,7 @@ module FReCon
 		def self.setup!
 			Mongoid.load!(File.join(File.dirname(__FILE__), 'mongoid.yml'), FReCon::ENVIRONMENT.variable)
 
-			level = case (defined_level = FReCon::ENVIRONMENT.console['level'])
+			level = case (configured_level = FReCon::ENVIRONMENT.console['level'])
 			        when /^d/i
 				        ::Logger::DEBUG
 			        when /^e/i
@@ -44,7 +44,7 @@ module FReCon
 				        ::Logger::WARN
 			        end
 
-			if !!defined_level
+			if !!configured_level
 				Mongoid.logger = Logger.new($stdout)
 				Mongoid.logger.level = level
 
