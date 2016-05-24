@@ -22,17 +22,36 @@ require 'frecon/models'
 module FReCon
 	# Public: A system to set up the database.
 	class Database
+
 		# Public: Set up the database.
 		def self.setup!
 			Mongoid.load!(File.join(File.dirname(__FILE__), 'mongoid.yml'), FReCon::ENVIRONMENT.variable)
 
-			if FReCon::ENVIRONMENT.console['level']
-				Mongoid.logger.level = Logger::DEBUG
-				Mongoid.logger = Logger.new($stdout)
+			level = case (configured_level = FReCon::ENVIRONMENT.console['level'])
+			        when /^d/i
+				        ::Logger::DEBUG
+			        when /^e/i
+				        ::Logger::ERROR
+			        when /^f/i
+				        ::Logger::FATAL
+			        when /^i/i
+				        ::Logger::INFO
+			        when /^u/i
+				        ::Logger::UNKNOWN
+			        when /^w/i
+				        ::Logger::WARN
+			        else
+				        ::Logger::WARN
+			        end
 
-				Moped.logger.level = Logger::DEBUG
+			if !!configured_level
+				Mongoid.logger = Logger.new($stdout)
+				Mongoid.logger.level = level
+
 				Moped.logger = Logger.new($stdout)
+				Moped.logger.level = level
 			end
 		end
+
 	end
 end
