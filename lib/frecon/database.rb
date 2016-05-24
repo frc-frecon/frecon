@@ -47,9 +47,6 @@ module FReCon
 			if !!configured_level
 				Mongoid.logger = Logger.new($stdout)
 				Mongoid.logger.level = level
-
-				Moped.logger = Logger.new($stdout)
-				Moped.logger.level = level
 			end
 		end
 
