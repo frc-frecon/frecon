@@ -8,5 +8,9 @@
 # <http://opensource.org/licenses/MIT>.
 
 class Object
+
+	# Alias #is_a? to #is_an?. This allows us to write more
+	# proper-English-y code.
 	alias_method :is_an?, :is_a?
+
 end

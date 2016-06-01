@@ -11,6 +11,7 @@ require 'mongoid'
 
 # Public: An extension for the BSON module.
 module BSON
+
 	# Public: A monkey-patch for the BSON::ObjectId class which introduces an
 	# #as_json method.
 	class ObjectId
@@ -24,4 +25,5 @@ module BSON
 			to_s
 		end
 	end
+
 end
