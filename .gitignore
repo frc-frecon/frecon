@@ -1,6 +1,9 @@
 # Compiled .gem files.
 *.gem
 
+# Patch files
+*.patch
+
 # Temporary directory for the execution of guards.
 tmp/
 
