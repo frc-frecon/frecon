@@ -3,6 +3,7 @@ server:
   port: 5080
 
 console:
+  level: info
 
 database:
   mongoid:
