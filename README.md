@@ -64,7 +64,7 @@ FReCon is distributed under the terms of the MIT license.
 You should have received a copy of the MIT license with this program.
 If not, you can find a copy at [opensource.org/licenses/mit][mit].
 You can also contact us with any licensing concerns or requests for permission at [frc-frecon@googlegroups.com][frc-frecon-mail].
-(Or, if email bounces from there, you may contact Kristofer Rye at [kristofer.rye@gmail.com][kristofer-rye-mail])
+(Or, if email bounces from there, you may contact Kristofer Rye, the primary maintainer of this project, at [kristofer.rye@gmail.com][kristofer-rye-mail])
 
 [rvm]: http://rvm.io
 [ruby]: https://www.ruby-lang.org/en/
