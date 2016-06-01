@@ -38,7 +38,7 @@ It is more convenient than loading FReCon into an existing pry or irb session.
 
 * **MongoDB**
   - On Fedora, you can install MongoDB with `dnf install mongodb mongodb-server`, and start it with `service mongod start`.
-  - On OS X, (with [Homebrew](http://brew.sh/)) you can install MongoDB with `brew install mongodb`.
+  - On OS X, (with [Homebrew][homebrew]) you can install MongoDB with `brew install mongodb`.
   - No configuration should be necessary; the packaged version of MongoDB works just fine.
 
 ## Architecture
@@ -69,5 +69,6 @@ You can also contact us with any licensing concerns or requests for permission a
 [rvm]: http://rvm.io
 [ruby]: https://www.ruby-lang.org/en/
 [mit]: http://opensource.org/license/mit
+[homebrew]: http://brew.sh/
 [frc-frecon-mail]: mailto:frc-frecon@googlegroups.com
 [kristofer-rye-mail]: mailto:kristofer.rye@gmail.com
