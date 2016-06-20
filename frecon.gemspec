@@ -36,7 +36,7 @@ Gem::Specification.new do |s|
 	s.add_runtime_dependency 'pry', ['~> 0.10']
 	s.add_runtime_dependency 'thin', ['~> 1.6']
 	s.add_runtime_dependency 'mongoid', ['~> 5.1']
-	s.add_runtime_dependency 'httparty', ['~> 0.13']
+	s.add_runtime_dependency 'http', ['~> 2.0']
 
 	s.add_development_dependency 'yard', ['~> 0.8']
 	s.add_development_dependency 'yard-tomdoc', ['~> 0.7']
