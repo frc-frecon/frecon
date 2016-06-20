@@ -7,7 +7,7 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require 'httparty'
+require 'http'
 
 module FReCon
 	# The default scraper scrapes other FReCon instances.
@@ -64,13 +64,13 @@ module FReCon
 
 			if !model && query.empty?
 				type = :dump
-				data = HTTParty.get("http://#{@base_uri}/dump")
+				data = HTTP.get("http://#{@base_uri}/dump")
 			elsif model && query.empty?
 				type = :index
-				data = HTTParty.get("http://#{@base_uri}/#{route_name}")
+				data = HTTP.get("http://#{@base_uri}/#{route_name}")
 			else
 				type = :single
-				data = HTTParty.get("http://#{@base_uri}/#{route_name}", { query: query })
+				data = HTTP.get("http://#{@base_uri}/#{route_name}", { query: query })
 			end
 
 			read data.body, model: model, type: type
