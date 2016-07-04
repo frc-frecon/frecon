@@ -7,10 +7,10 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
+require 'json'
+
 require 'frecon/base/bson'
-require 'frecon/base/environment'
 require 'frecon/base/object'
-require 'frecon/base/variables'
 
 module FReCon
 	# Public: A base class to represent a controller.
