@@ -9,6 +9,7 @@
 
 require 'mongoid'
 require 'frecon/mongoid/criteria'
+require 'frecon/base/bson'
 
 module FReCon
 	# Public: A base class designed to assist with creating MongoDB Models
