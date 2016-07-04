@@ -7,22 +7,45 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require 'mongoid'
-
+require 'frecon/base/bson'
+require 'frecon/base/environment'
+require 'frecon/base/object'
+require 'frecon/base/variables'
 require 'frecon/base'
 
+require 'frecon/console'
+
 require 'frecon/controller'
+require 'frecon/controllers/competitions_controller'
+require 'frecon/controllers/dump_controller'
+require 'frecon/controllers/matches_controller'
+require 'frecon/controllers/participations_controller'
+require 'frecon/controllers/records_controller'
+require 'frecon/controllers/robots_controller'
+require 'frecon/controllers/teams_controller'
 require 'frecon/controllers'
+
+require 'frecon/database'
+require 'frecon/match_number'
+
 require 'frecon/model'
+require 'frecon/models/competition'
+require 'frecon/models/match'
+require 'frecon/models/participation'
+require 'frecon/models/record'
+require 'frecon/models/robot'
+require 'frecon/models/team'
 require 'frecon/models'
+
 require 'frecon/scraper'
 require 'frecon/scrapers'
 
-require 'frecon/match_number'
+require 'frecon/mongoid/criteria'
 require 'frecon/position'
 require 'frecon/request_error'
 require 'frecon/routes'
 
-require 'frecon/database'
+require 'frecon/scraper'
+require 'frecon/scrapers'
+
 require 'frecon/server'
-require 'frecon/console'

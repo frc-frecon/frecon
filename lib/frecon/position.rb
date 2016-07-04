@@ -7,7 +7,10 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require 'frecon/base'
+require 'frecon/base/bson'
+require 'frecon/base/environment'
+require 'frecon/base/object'
+require 'frecon/base/variables'
 
 module FReCon
 	# Public: A wrapper to handle converting team positions and storing them.
