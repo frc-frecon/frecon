@@ -9,6 +9,8 @@
 
 require 'json'
 
+require 'frecon/request_error'
+
 require 'frecon/base/bson'
 require 'frecon/base/object'
 
