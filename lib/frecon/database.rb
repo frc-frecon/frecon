@@ -8,15 +8,13 @@
 # <http://opensource.org/licenses/MIT>.
 
 require 'logger'
-
-require 'frecon/base/variables'
-
 require 'mongoid'
-require 'frecon/mongoid/criteria'
-
 require 'tempfile'
 require 'yaml'
 
+require 'frecon/base/bson'
+require 'frecon/mongoid/criteria'
+require 'frecon/base/variables'
 require 'frecon/models'
 
 module FReCon
