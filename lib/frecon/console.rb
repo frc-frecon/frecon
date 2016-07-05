@@ -12,6 +12,7 @@ require 'frecon'
 module FReCon
 	# Public: The wrapper system for a pry console.
 	class Console
+
 		# Public: Starts the FReCon console.
 		#
 		# Returns the result of running pry on FReCon.
@@ -22,5 +23,6 @@ module FReCon
 
 			FReCon.pry
 		end
+
 	end
 end

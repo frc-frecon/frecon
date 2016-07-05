@@ -1,7 +1,6 @@
 require 'yaml'
 
 module FReCon
-
 	# Public: A class to represent the operational constraints for the FReCon
 	# instance.
 	class Environment
@@ -169,5 +168,4 @@ module FReCon
 		end
 
 	end
-
 end

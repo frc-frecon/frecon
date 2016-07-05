@@ -11,10 +11,10 @@ require 'mongoid'
 
 # Public: An extension for the BSON module.
 module BSON
-
 	# Public: A monkey-patch for the BSON::ObjectId class which introduces an
 	# #as_json method.
 	class ObjectId
+
 		# Public: Get produce a JSON representation of this ObjectId.
 		#
 		# Since we don't want to produce a JSON Object for every ID, this method
@@ -24,6 +24,6 @@ module BSON
 		def as_json(*args)
 			to_s
 		end
-	end
 
+	end
 end
