@@ -225,6 +225,7 @@ module FReCon
 			              when :final
 				              'f'
 			              end
+
 			match_string = "m#{@number}"
 			replay_string = "r#{@replay_number}" if replay?
 
