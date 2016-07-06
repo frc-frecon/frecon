@@ -48,6 +48,15 @@ module FReCon
 		#   # => :quarterfinal
 		attr_reader :type
 
+		# Public: The replay number of the match.
+		#
+		# Examples
+		#
+		#   match_number = MatchNumber.new('qf1m2r3')
+		#   match_number.replay_number
+		#   # => 3
+		attr_reader :replay_number
+
 		# Public: Convert a stored match number to a MatchNumber object.
 		#
 		# object - String representation of a match number (mongoized)
