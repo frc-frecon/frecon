@@ -12,7 +12,6 @@ require 'sinatra/base'
 require 'frecon/base/variables'
 require 'frecon/database'
 require 'frecon/routes'
-require 'frecon/controllers'
 
 module FReCon
 	# Public: The Sinatra web server.

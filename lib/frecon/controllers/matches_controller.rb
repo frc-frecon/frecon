@@ -7,8 +7,8 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require 'json'
 require 'frecon/models/match'
+require 'frecon/controller'
 
 module FReCon
 	# Public: The Matches controller.

@@ -7,7 +7,10 @@
 # license with this program.  If not, please see
 # <http://opensource.org/licenses/MIT>.
 
-require 'frecon/base'
+require 'frecon/base/bson'
+require 'frecon/base/environment'
+require 'frecon/base/object'
+require 'frecon/base/variables'
 
 module FReCon
 	# Public: A wrapper to handle converting match numbers and storing them.
@@ -44,6 +47,15 @@ module FReCon
 		#   match_number.type
 		#   # => :quarterfinal
 		attr_reader :type
+
+		# Public: The replay number of the match.
+		#
+		# Examples
+		#
+		#   match_number = MatchNumber.new('qf1m2r3')
+		#   match_number.replay_number
+		#   # => 3
+		attr_reader :replay_number
 
 		# Public: Convert a stored match number to a MatchNumber object.
 		#

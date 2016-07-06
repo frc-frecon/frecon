@@ -1,11 +1,11 @@
 # FReCon [![Gem Version](https://badge.fury.io/rb/frecon.svg)](https://badge.fury.io/rb/frecon) [![Build Status](https://travis-ci.org/frc-frecon/frecon.svg)](https://travis-ci.org/frc-frecon/frecon) [![Code Climate](https://codeclimate.com/github/frc-frecon/frecon/badges/gpa.svg)](https://codeclimate.com/github/frc-frecon/frecon) [![Test Coverage](https://codeclimate.com/github/frc-frecon/frecon/badges/coverage.svg)](https://codeclimate.com/github/frc-frecon/frecon/coverage) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/frc-frecon/frecon?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![Stories in Ready](https://badge.waffle.io/frc-frecon/frecon.png?label=ready&title=Ready)](https://waffle.io/frc-frecon/frecon)
 
 FReCon is an API for scouting at *FIRST* Robotics competitions.
-It is designed to be game-agnostic, that is, as dynamic as possible from year to year.
+It is designed to be season-agnostic, that is, as dynamic as possible from year to year.
 
 FReCon is built in Ruby, using Sinatra for the foundations of a server and the Mongoid database backend to interface with MongoDB as our system-level database backend.
 You need to have Ruby installed before you can use FReCon.
-We highly recommend using [rvm][rvm] to achieve this.
+We recommend using [rvm][rvm] to achieve this.
 
 ## Getting Started
 
@@ -38,6 +38,7 @@ It is more convenient than loading FReCon into an existing pry or irb session.
 
 * **MongoDB**
   - On Fedora, you can install MongoDB with `dnf install mongodb mongodb-server`, and start it with `service mongod start`.
+  - On OS X, (with [Homebrew][homebrew]) you can install MongoDB with `brew install mongodb`.
   - No configuration should be necessary; the packaged version of MongoDB works just fine.
 
 ## Architecture
@@ -63,10 +64,11 @@ FReCon is distributed under the terms of the MIT license.
 You should have received a copy of the MIT license with this program.
 If not, you can find a copy at [opensource.org/licenses/mit][mit].
 You can also contact us with any licensing concerns or requests for permission at [frc-frecon@googlegroups.com][frc-frecon-mail].
-(Or, if email bounces from there, you may contact Kristofer Rye at [kristofer.rye@gmail.com][kristofer-rye-mail])
+(Or, if email bounces from there, you may contact Kristofer Rye, the primary maintainer of this project, at [kristofer.rye@gmail.com][kristofer-rye-mail])
 
 [rvm]: http://rvm.io
 [ruby]: https://www.ruby-lang.org/en/
 [mit]: http://opensource.org/license/mit
+[homebrew]: http://brew.sh/
 [frc-frecon-mail]: mailto:frc-frecon@googlegroups.com
 [kristofer-rye-mail]: mailto:kristofer.rye@gmail.com
