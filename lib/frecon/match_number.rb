@@ -152,9 +152,6 @@ module FReCon
 
 				# Check and set required stuff first, everything else later.
 
-				# Whine if we don't have a match type
-				raise ArgumentError, 'match type must be supplied' unless match_data[1]
-
 				# Parse the match type string
 				@type = case match_data[1].downcase
 				        when 'p'
@@ -167,12 +164,7 @@ module FReCon
 					        :semifinal
 				        when 'f'
 					        :final
-				        else
-					        raise ArgumentError, 'match type must be in [\'p\', \'q\', \'qf\', \'sf\', \'f\']'
 				        end
-
-				# Whine if we don't have a match number
-				raise ArgumentError, 'match number must be supplied' unless match_data[3]
 
 				# Parse the match number
 				@number = match_data[3].to_i
