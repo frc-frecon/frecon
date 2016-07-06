@@ -63,8 +63,6 @@ describe FReCon::MatchNumber do
 						                :semifinal
 					                when 'f'
 						                :final
-					                else
-						                raise '???????????????????????????'
 					                end
 
 					expect(subject.type).to eq(expected_type)
@@ -102,8 +100,6 @@ describe FReCon::MatchNumber do
 						                :practice
 					                when 'q'
 						                :qualification
-					                else
-						                raise '???????????????????????????'
 					                end
 
 					expect(subject.type).to eq(expected_type)
