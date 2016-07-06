@@ -150,8 +150,6 @@ module FReCon
 				# Whine if we don't have a match (string is incorrectly formatted)
 				raise ArgumentError, 'string is improperly formatted' unless match_data
 
-				# Check and set required stuff first, everything else later.
-
 				# Parse the match type string
 				@type = case match_data[1].downcase
 				        when 'p'
