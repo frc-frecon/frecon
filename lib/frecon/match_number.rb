@@ -57,17 +57,17 @@ module FReCon
 		#   # => 3
 		attr_reader :replay_number
 
-		# Public: Convert a stored match number to a MatchNumber object.
+		# Public: Convert a stored match number string to a MatchNumber object.
 		#
-		# object - String representation of a match number (mongoized)
+		# string - String representation of a match number (mongoized)
 		#
-		# Returns MatchNumber parsed from object.
-		def self.demongoize(object)
-			# `object' should *always* be a string (since MatchNumber#mongoize returns a
+		# Returns MatchNumber parsed from string.
+		def self.demongoize(string)
+			# `string' should *always* be a string (since MatchNumber#mongoize returns a
 			# String which is what is stored in the database)
-			raise ArgumentError, "`object' must be a String" unless object.is_a?(String)
+			raise ArgumentError, "`string' must be a String" unless string.is_a?(String)
 
-			MatchNumber.new(object)
+			MatchNumber.new(string)
 		end
 
 		# Public: Convert a MatchNumber object to a storable string representation.
