@@ -73,10 +73,8 @@ module FReCon
 		# Public: Convert a MatchNumber object to a storable string representation.
 		#
 		# object - A MatchNumber, String, or Hash. If MatchNumber, run #mongoize on
-		#          it.  If String, create a new MatchNumber object for it, then run
-		#          #mongoize on it. If Hash, convert its keys to symbols, then
-		#          pull out the :alliance and :number keys to generate a
-		#          MatchNumber.
+		#          it.  If String or Hash, create a new MatchNumber object for it,
+		#          then run #mongoize on it.
 		#
 		# Returns String containing the mongo-ready value for the representation.
 		def self.mongoize(object)
@@ -89,14 +87,12 @@ module FReCon
 			end
 		end
 
-		# Public: Convert a MatchNumber object to a storable string representation
-		# for queries.
+		# Public: Convert a MatchNumber object to a queryable string representation
+		# for use when querying.
 		#
 		# object - A MatchNumber, String, or Hash. If MatchNumber, run #mongoize on
-		#          it.  If String, create a new MatchNumber object for it, then run
-		#          #mongoize on it. If Hash, convert its keys to symbols, then
-		#          pull out the :alliance and :number keys to generate a
-		#          MatchNumber.
+		#          it.  If String or Hash, create a new MatchNumber object for it,
+		#          then run #mongoize on it.
 		#
 		# Returns String containing the mongo-ready value for the representation.
 		def self.evolve(object)
