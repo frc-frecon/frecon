@@ -85,6 +85,7 @@ module FReCon
 				object.mongoize
 			when String, Hash
 				MatchNumber.new(object).mongoize
+			else object
 			end
 		end
 
@@ -104,6 +105,7 @@ module FReCon
 				object.mongoize
 			when String, Hash
 				MatchNumber.new(object).mongoize
+			else object
 			end
 		end
 
