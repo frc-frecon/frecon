@@ -14,9 +14,7 @@ describe FReCon::MatchNumber do
 
 	describe '#initialize' do
 		context 'given a String' do
-			subject do
-				FReCon::MatchNumber.new(string)
-			end
+			subject { FReCon::MatchNumber.new(string) }
 
 			let :nonrounded_type do
 				%w.p q..sample
@@ -43,9 +41,7 @@ describe FReCon::MatchNumber do
 			end
 
 			context 'with a rounded type, round, number, and replay_number' do
-				let :string do
-					"#{rounded_type}#{round}m#{number}r#{replay_number}"
-				end
+				let(:string) { "#{rounded_type}#{round}m#{number}r#{replay_number}" }
 
 				it 'does not raise an error' do
 					expect { subject }.not_to raise_error
@@ -82,9 +78,7 @@ describe FReCon::MatchNumber do
 			end
 
 			context 'with a rounded type, round, and number' do
-				let :string do
-					"#{rounded_type}#{round}m#{number}"
-				end
+				let(:string) { "#{rounded_type}#{round}m#{number}" }
 
 				it 'does not raise an error' do
 					expect { subject }.not_to raise_error
@@ -121,9 +115,7 @@ describe FReCon::MatchNumber do
 			end
 
 			context 'with a nonrounded type, number, and replay_number' do
-				let :string do
-					"#{nonrounded_type}m#{number}r#{replay_number}"
-				end
+				let(:string) { "#{nonrounded_type}m#{number}r#{replay_number}" }
 
 				it 'does not raise an error' do
 					expect { subject }.not_to raise_error
@@ -158,9 +150,7 @@ describe FReCon::MatchNumber do
 			end
 
 			context 'with a nonrounded type, and number' do
-				let :string do
-					"#{nonrounded_type}m#{number}"
-				end
+				let(:string) { "#{nonrounded_type}m#{number}" }
 
 				it 'does not raise an error' do
 					expect { subject }.not_to raise_error
