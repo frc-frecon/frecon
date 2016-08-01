@@ -10,7 +10,9 @@
 # Public: The FReCon API module.
 module FReCon
 
+	class Version < String; end
+
 	# Public: A String representing the current version of FReCon.
-	VERSION = '1.4.0'
+	VERSION = Version.new('1.4.0')
 
 end
