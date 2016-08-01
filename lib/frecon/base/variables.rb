@@ -8,11 +8,4 @@
 # <http://opensource.org/licenses/MIT>.
 
 require 'frecon/base/environment'
-
-# Public: The FReCon API module.
-module FReCon
-
-	# Public: A String representing the current version of FReCon.
-	VERSION = '1.4.0'
-
-end
+require 'frecon/base/version'
