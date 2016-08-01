@@ -15,7 +15,4 @@ module FReCon
 	# Public: A String representing the current version of FReCon.
 	VERSION = '1.4.0'
 
-	# Public: An Environment representing the system execution environment.
-	ENVIRONMENT = Environment.new(:development)
-
 end
