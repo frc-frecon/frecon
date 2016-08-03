@@ -12,6 +12,7 @@ require 'frecon/controllers'
 module FReCon
 	# Public: A module containing all of the routes.
 	module Routes
+
 		# Public: Set up basic resource route handlers.
 		#
 		# base       - Sinatra::Application to register the routes under.
@@ -133,5 +134,6 @@ module FReCon
 				end
 			end
 		end
+
 	end
 end

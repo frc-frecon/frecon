@@ -15,6 +15,7 @@ module FReCon
 	# Public: A base class designed to assist with creating MongoDB Models
 	# elsewhere in the project.
 	class Model
+
 		# Public: Bootstraps inheritors of this class as working
 		# Models, also providing class methods for them to use.
 		#
@@ -111,5 +112,6 @@ module FReCon
 		def relation_invalid?(class_constant, id)
 			class_constant.find_by(id: id).nil?
 		end
+
 	end
 end
