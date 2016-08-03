@@ -39,7 +39,7 @@ module FReCon
 		end
 	end
 
-	# Public: A String representing the current version of FReCon.
-	VERSION = Version.new(major: 1, minor: 4, patch: 0)
+	# Public: A Version representing the current version of FReCon.
+	VERSION = Version.new(major: 1, minor: 5, patch: 0)
 
 end
