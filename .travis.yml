@@ -3,6 +3,7 @@ sudo: false
 language: ruby
 rvm:
   - 2.2.5
+  - 2.3.1
 
 install:
   - script/setup
