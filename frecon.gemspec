@@ -38,18 +38,18 @@ Gem::Specification.new do |s|
 	s.add_runtime_dependency 'mongoid', ['~> 5.1']
 	s.add_runtime_dependency 'http', ['~> 2.0']
 
-	s.add_development_dependency 'yard', ['~> 0.8']
+	s.add_development_dependency 'yard', ['~> 0.9']
 	s.add_development_dependency 'yard-tomdoc', ['~> 0.7']
 	s.add_development_dependency 'yard-mongoid', ['~> 0.0']
-	s.add_development_dependency 'rake', ['~> 10.4']
+	s.add_development_dependency 'rake', ['~> 11.2']
 
-	s.add_development_dependency 'rspec', ['~> 3.3']
-	s.add_development_dependency 'guard', ['~> 2.13']
-	s.add_development_dependency 'guard-rspec', ['~> 4.6']
+	s.add_development_dependency 'rspec', ['~> 3.5']
+	s.add_development_dependency 'guard', ['~> 2.14']
+	s.add_development_dependency 'guard-rspec', ['~> 4.7']
 
 	s.add_development_dependency 'coveralls', ['~> 0.8']
-	s.add_development_dependency 'codeclimate', ['~> 0.15']
-	s.add_development_dependency 'codeclimate-test-reporter', ['~> 0.4']
+	s.add_development_dependency 'codeclimate', ['~> 0.35']
+	s.add_development_dependency 'codeclimate-test-reporter', ['~> 0.6']
 
 	s.add_development_dependency 'pry-doc', ['~> 0']
 end
