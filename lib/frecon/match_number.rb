@@ -170,7 +170,7 @@ module FReCon
 			# Parse replay match group, store replay number if present.
 			replay_number = match_data[5].to_i if match_data[4] == 'r'
 
-			MatchNumber.new(type: type, number: number, round: round, replay_number: replay_number)
+			MatchNumber.new(type, number, round, replay_number)
 		end
 
 		def self.from_hash(hash)
@@ -208,7 +208,7 @@ module FReCon
 				replay_number = hash[:replay_number]
 			end
 
-			MatchNumber.new(type: type, number: number, round: round, replay_number: replay_number)
+			MatchNumber.new(type, number, round, replay_number)
 		end
 
 		# Public: Convert to a storable string representation.
@@ -218,7 +218,7 @@ module FReCon
 			to_s
 		end
 
-		def initialize(type:, number:, round: nil, replay_number: nil)
+		def initialize(type, number, round = nil, replay_number = nil)
 			@type, @number, @round, @replay_number = type, number, round, replay_number
 		end
 
