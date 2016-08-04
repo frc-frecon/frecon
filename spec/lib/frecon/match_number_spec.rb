@@ -12,9 +12,9 @@ require 'frecon/match_number'
 
 describe FReCon::MatchNumber do
 
-	describe '#initialize' do
+	describe '.parse' do
 		context 'given a String' do
-			subject { FReCon::MatchNumber.new(string) }
+			subject { FReCon::MatchNumber.parse(string) }
 
 			let :nonrounded_type do
 				%w.p q..sample
@@ -209,7 +209,43 @@ describe FReCon::MatchNumber do
 			end
 		end
 
+	end
+
+	describe '.from_hash' do
 		context 'given a Hash' do
+			subject { FReCon::MatchNumber.from_hash(hash) }
+
+			let :nonrounded_type do
+				[:practice, :qualification].sample
+			end
+
+			let :rounded_type do
+				FReCon::MatchNumber::ELIMINATION_TYPES.sample
+			end
+
+			let :type do
+				[rounded_type, nonrounded_type].sample
+			end
+
+			let :round do
+				rand(32768) + 1 # add 1 to ensure not 0
+			end
+
+			let :number do
+				rand(32768) + 1 # add 1 to ensure not 0
+			end
+
+			let :replay_number do
+				rand(32768) + 1 # add 1 to ensure not 0
+			end
+
+			context 'that contains a type and a number as String keys' do
+				let :hash do
+					{'type' => type, 'number' => number}
+				end
+
+				it 'does not raise an error'
+			end
 		end
 
 	end
