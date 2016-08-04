@@ -47,7 +47,6 @@ Gem::Specification.new do |s|
 	s.add_development_dependency 'guard', ['~> 2.14']
 	s.add_development_dependency 'guard-rspec', ['~> 4.7']
 
-	s.add_development_dependency 'coveralls', ['~> 0.8']
 	s.add_development_dependency 'codeclimate', ['~> 0.35']
 	s.add_development_dependency 'codeclimate-test-reporter', ['~> 0.6']
 
