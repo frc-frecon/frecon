@@ -12,6 +12,7 @@ require 'frecon/model'
 module FReCon
 	# Public: The Team model.
 	class Team < Model
+
 		field :number, type: Integer
 
 		field :location, type: String
@@ -64,5 +65,6 @@ module FReCon
 			alias_method :with_number, :number
 			alias_method :that_has_number, :number
 		end
+
 	end
 end

@@ -12,6 +12,7 @@ require 'frecon/model'
 module FReCon
 	# Public: The Participation model.
 	class Participation < Model
+
 		belongs_to :robot
 		belongs_to :competition
 		has_many :records, dependent: :destroy
@@ -33,5 +34,6 @@ module FReCon
 		register_routable_relation :competition, 'competition'
 		register_routable_relation :matches, 'matches'
 		register_routable_relation :records, 'records'
+
 	end
 end

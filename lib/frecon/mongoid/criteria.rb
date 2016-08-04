@@ -14,6 +14,7 @@ module Mongoid
 	# Public: A monkey-patch for the Mongoid::Criteria class which introduces
 	# a #psv_filter method.
 	class Criteria
+
 		# Public: Filter by given PSV parameters.
 		#
 		# PSV is an introduced system that can be used within query strings to
@@ -80,5 +81,6 @@ module Mongoid
 			# Return the fully-filtered collection.
 			collection
 		end
+
 	end
 end

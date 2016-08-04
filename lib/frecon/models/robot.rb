@@ -12,6 +12,7 @@ require 'frecon/model'
 module FReCon
 	# Public: The Robot model.
 	class Robot < Model
+
 		# This is an optional field we included for organization.
 		field :name, type: String
 
@@ -40,5 +41,6 @@ module FReCon
 		register_routable_relation :competitions, 'competitions'
 		register_routable_relation :records, 'records'
 		register_routable_relation :matches, 'matches'
+
 	end
 end

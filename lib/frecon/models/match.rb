@@ -13,6 +13,7 @@ require 'frecon/match_number'
 module FReCon
 	# Public: The Match model.
 	class Match < Model
+
 		field :number, type: MatchNumber
 
 		field :blue_score, type: Integer, default: 0
@@ -43,5 +44,6 @@ module FReCon
 		register_routable_relation :participations, 'participations'
 		register_routable_relation :robots, 'robots'
 		register_routable_relation :teams, 'teams'
+
 	end
 end
