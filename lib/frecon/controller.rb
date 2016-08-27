@@ -17,6 +17,7 @@ require 'frecon/base/object'
 module FReCon
 	# Public: A base class to represent a controller.
 	class Controller
+
 		# Public: Converts the class's name to a Model name.
 		#
 		# Returns a Symbol that is the Model name.
@@ -233,5 +234,6 @@ module FReCon
 
 			@models.to_json
 		end
+
 	end
 end

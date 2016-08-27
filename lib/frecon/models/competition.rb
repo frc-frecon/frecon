@@ -12,6 +12,7 @@ require 'frecon/model'
 module FReCon
 	# Public: The Competition model.
 	class Competition < Model
+
 		field :location, type: String
 		field :name, type: String
 
@@ -41,5 +42,6 @@ module FReCon
 		register_routable_relation :records, 'records'
 		register_routable_relation :robots, 'robots'
 		register_routable_relation :teams, 'teams'
+
 	end
 end

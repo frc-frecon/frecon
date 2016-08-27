@@ -13,6 +13,7 @@ require 'frecon/position'
 module FReCon
 	# Public: The Record model.
 	class Record < Model
+
 		field :notes, type: String
 		field :position, type: Position
 
@@ -41,5 +42,6 @@ module FReCon
 		register_routable_relation :participation, 'participation'
 		register_routable_relation :robot, 'robot'
 		register_routable_relation :team, 'team'
+
 	end
 end

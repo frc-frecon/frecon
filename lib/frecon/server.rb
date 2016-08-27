@@ -16,6 +16,7 @@ require 'frecon/routes'
 module FReCon
 	# Public: The Sinatra web server.
 	class Server < Sinatra::Base
+
 		include Routes
 
 		before do
@@ -53,5 +54,6 @@ module FReCon
 
 			super
 		end
+
 	end
 end

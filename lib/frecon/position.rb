@@ -15,6 +15,7 @@ require 'frecon/base/variables'
 module FReCon
 	# Public: A wrapper to handle converting team positions and storing them.
 	class Position
+
 		# Public: The alliance part of the position
 		#
 		# Examples
@@ -172,5 +173,6 @@ module FReCon
 
 		alias_method :was_blue?, :is_blue?
 		alias_method :was_red?, :is_red?
+
 	end
 end
