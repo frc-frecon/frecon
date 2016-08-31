@@ -48,7 +48,7 @@ describe FReCon::MatchNumber do
 	end
 
 	let :generic_type_symbol do
-		case rounded_type_string
+		case generic_type_string
 		when 'p'
 			:practice
 		when 'q'
