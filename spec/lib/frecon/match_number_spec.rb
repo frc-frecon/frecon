@@ -244,7 +244,9 @@ describe FReCon::MatchNumber do
 					{'type' => type, 'number' => number}
 				end
 
-				it 'does not raise an error'
+				it 'does not raise an error' do
+					expect { FReCon::MatchNumber.from_hash(hash) }.not_to raise_error
+				end
 			end
 		end
 
