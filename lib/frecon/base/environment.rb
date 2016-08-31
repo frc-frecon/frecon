@@ -168,4 +168,8 @@ module FReCon
 		end
 
 	end
+
+	# Public: An Environment representing the system execution environment.
+	ENVIRONMENT = Environment.new(:development)
+
 end
