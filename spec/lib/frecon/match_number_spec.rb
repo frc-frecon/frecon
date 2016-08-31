@@ -80,6 +80,8 @@ describe FReCon::MatchNumber do
 		'dank memes'
 	end
 
+	# Each of these arrays of atoms represents a case we are testing for;
+	# the presence of each of these tests
 	[[:rounded_type, :round, :number, :replay_number],
 	 [:rounded_type, :round, :number],
 	 [:nonrounded_type, :number],
@@ -294,33 +296,34 @@ describe FReCon::MatchNumber do
 	end
 
 	describe '.parse' do
-		context 'taking a String' do
-			subject { FReCon::MatchNumber.parse(string) }
+		subject { FReCon::MatchNumber.parse(string) }
 
-			context 'with a valid type, and 0 as the number' do
-				let(:type) { [nonrounded_type_string, rounded_type_string].sample }
-				let(:string) { "#{type}m0" }
+		context 'with a valid type, and 0 as the number' do
+			let(:_type) { generic_type_string }
+			let(:_number) { 0 }
+			let(:string) { "#{_type}m#{_number}" }
 
-				it 'raises an ArgumentError, "match number must be greater than 0"' do
-					expect { subject }.to raise_error(ArgumentError, 'match number must be greater than 0')
-				end
+			it 'raises an ArgumentError, "match number must be greater than 0"' do
+				expect { subject }.to raise_error(ArgumentError, 'match number must be greater than 0')
 			end
+		end
 
-			context 'with a valid rounded type, valid number, and 0 as the round number' do
-				let(:type) { [rounded_type_string].sample }
-				let(:string) { "#{type}0m#{number}" }
+		context 'with a valid rounded type, valid number, and 0 as the round number' do
+			let(:_type) { rounded_type_string }
+			let(:_number) { number }
+			let(:_round) { 0 }
+			let(:string) { "#{_type}#{_round}m#{_number}" }
 
-				it 'raises an ArgumentError, "round number must be greater than 0"' do
-					expect { subject }.to raise_error(ArgumentError, 'round number must be greater than 0')
-				end
+			it 'raises an ArgumentError, "round number must be greater than 0"' do
+				expect { subject }.to raise_error(ArgumentError, 'round number must be greater than 0')
 			end
+		end
 
-			context 'that is improperly formatted' do
-				let(:string) { improperly_formatted_string }
+		context 'that is improperly formatted' do
+			let(:string) { improperly_formatted_string }
 
-				it 'raises an ArgumentError, "string is improperly formatted"' do
-					expect { subject }.to raise_error(ArgumentError, 'string is improperly formatted')
-				end
+			it 'raises an ArgumentError, "string is improperly formatted"' do
+				expect { subject }.to raise_error(ArgumentError, 'string is improperly formatted')
 			end
 		end
 	end
