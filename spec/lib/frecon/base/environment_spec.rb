@@ -2,8 +2,9 @@ require 'spec_helper'
 
 require 'securerandom'
 
-describe FReCon::Environment do
+require 'frecon/base/environment'
 
+describe FReCon::Environment do
 	subject do
 		FReCon::Environment.new(:development)
 	end
@@ -20,6 +21,7 @@ describe FReCon::Environment do
 
 			allow(subject).to receive(:validate_symbol)
 			expect(subject).to receive(:validate_symbol).with(symbol)
+
 			subject.variable = symbol
 		end
 
@@ -72,4 +74,14 @@ describe FReCon::Environment do
 
 	describe '#system_configuration_filename'
 	describe '#user_configuration_filename'
+end
+
+describe FReCon do
+	it 'has an environment' do
+		expect(FReCon.const_get(:ENVIRONMENT)).to_not be_nil
+	end
+
+	it 'has an environment which is a FReCon::Environment' do
+		expect(FReCon.const_get(:ENVIRONMENT)).to be_a FReCon::Environment
+	end
 end
