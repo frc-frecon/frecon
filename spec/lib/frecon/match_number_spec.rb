@@ -184,7 +184,7 @@ describe FReCon::MatchNumber do
 							expect(subject).to have_nonrounded_type(_expected_type)
 						end
 					when nil
-						it 'does not parse a type for the match' do
+						it 'parses no type for the match' do
 							expect(subject).not_to have_type
 						end
 					end
@@ -194,7 +194,7 @@ describe FReCon::MatchNumber do
 							expect(subject).to have_round_number(_round)
 						end
 					else
-						it 'does not parse the round number of the match' do
+						it 'parses no round number for the match' do
 							expect(subject).not_to have_round_number
 						end
 					end
@@ -204,7 +204,7 @@ describe FReCon::MatchNumber do
 							expect(subject).to have_number(_number)
 						end
 					else
-						it 'does not parse the number of the match' do
+						it 'parses no number for the match' do
 							expect(subject).not_to have_number
 						end
 					end
@@ -214,7 +214,7 @@ describe FReCon::MatchNumber do
 							expect(subject).to have_replay_number(replay_number)
 						end
 					else
-						it 'does not parse the replay number of the match' do
+						it 'parses no replay number for the match' do
 							expect(subject).not_to have_replay_number
 						end
 					end
@@ -266,7 +266,7 @@ describe FReCon::MatchNumber do
 							expect(subject).to have_round_number(_round)
 						end
 					else
-						it 'does not parse the round number of the match' do
+						it 'parses no round number for the match' do
 							expect(subject).not_to have_round_number
 						end
 					end
@@ -276,7 +276,7 @@ describe FReCon::MatchNumber do
 							expect(subject).to have_number(_number)
 						end
 					else
-						it 'does not parse the number of the match' do
+						it 'parses no number for the match' do
 							expect(subject).not_to have_number
 						end
 					end
@@ -286,7 +286,7 @@ describe FReCon::MatchNumber do
 							expect(subject).to have_replay_number(replay_number)
 						end
 					else
-						it 'does not parse the replay number of the match' do
+						it 'parses no replay number for the match' do
 							expect(subject).not_to have_replay_number
 						end
 					end
