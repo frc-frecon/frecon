@@ -18,12 +18,12 @@ require "frecon"
 require "optparse"
 
 options = {
-	mode: :server,
-	environment: FReCon::ENVIRONMENT
+  mode: :server,
+  environment: FReCon::ENVIRONMENT
 }
 
 optparse = OptionParser.new do |opts|
-	opts.banner = <<EOF
+  opts.banner = <<EOF
 Usage: #{$0} [OPTIONS] [MODE]
 
 If MODE is not present, FReCon starts the Server.  If MODE is present, starts
@@ -31,42 +31,42 @@ with "c", and contains any of the letters of the word "console" in order, FReCon
 instead starts the Console.
 EOF
 
-	opts.separator ""
-	opts.separator "Server OPTIONS:"
+  opts.separator ""
+  opts.separator "Server OPTIONS:"
 
-	opts.on("-o", "--host HOST", "Bind to HOST (default: #{options[:environment].server["host"]})") do |host|
-		options[:environment].server["host"] = host
-	end
+  opts.on("-o", "--host HOST", "Bind to HOST (default: #{options[:environment].server["host"]})") do |host|
+    options[:environment].server["host"] = host
+  end
 
-	opts.on("-p", "--port PORT", "Bind to port PORT (default: #{options[:environment].server["port"]})") do |port|
-		options[:environment].server["port"] = port
-	end
+  opts.on("-p", "--port PORT", "Bind to port PORT (default: #{options[:environment].server["port"]})") do |port|
+    options[:environment].server["port"] = port
+  end
 
-	opts.separator ""
-	opts.separator "General OPTIONS:"
+  opts.separator ""
+  opts.separator "General OPTIONS:"
 
-	opts.on("-E", "--env ENVIRONMENT", "Run in the ENVIRONMENT environment (default: #{options[:environment].variable})") do |environment|
-		options[:environment].variable = environment.to_sym
-	end
+  opts.on("-E", "--env ENVIRONMENT", "Run in the ENVIRONMENT environment (default: #{options[:environment].variable})") do |environment|
+    options[:environment].variable = environment.to_sym
+  end
 
-	opts.on("-h", "--help", "Print this usage message.") do
-		puts opts
-		exit
-	end
+  opts.on("-h", "--help", "Print this usage message.") do
+    puts opts
+    exit
+  end
 end
 
 optparse.parse!
 
 ARGV.select do |arg|
-	case arg
-	when /^co?n?s?o?l?e?$/i
-		options[:mode] = :console
-	end
+  case arg
+  when /^co?n?s?o?l?e?$/i
+    options[:mode] = :console
+  end
 end
 
 case options[:mode]
 when :server
-	FReCon::Server.start
+  FReCon::Server.start
 when :console
-	FReCon::Console.start
+  FReCon::Console.start
 end

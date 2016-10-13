@@ -11,7 +11,7 @@ require 'frecon/models/team'
 require 'frecon/controller'
 
 module FReCon
-	# Public: The Teams controller.
-	class TeamsController < Controller
-	end
+  # Public: The Teams controller.
+  class TeamsController < Controller
+  end
 end

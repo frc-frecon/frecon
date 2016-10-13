@@ -10,19 +10,19 @@
 require 'frecon'
 
 module FReCon
-	# Public: The wrapper system for a pry console.
-	class Console
+  # Public: The wrapper system for a pry console.
+  class Console
 
-		# Public: Starts the FReCon console.
-		#
-		# Returns the result of running pry on FReCon.
-		def self.start
-			Database.setup!
+    # Public: Starts the FReCon console.
+    #
+    # Returns the result of running pry on FReCon.
+    def self.start
+      Database.setup!
 
-			require 'pry'
+      require 'pry'
 
-			FReCon.pry
-		end
+      FReCon.pry
+    end
 
-	end
+  end
 end

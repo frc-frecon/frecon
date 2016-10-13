@@ -11,37 +11,37 @@ require 'frecon/model'
 require 'frecon/position'
 
 module FReCon
-	# Public: The Record model.
-	class Record < Model
+  # Public: The Record model.
+  class Record < Model
 
-		field :notes, type: String
-		field :position, type: Position
+    field :notes, type: String
+    field :position, type: Position
 
-		belongs_to :match
-		belongs_to :participation
+    belongs_to :match
+    belongs_to :participation
 
-		validates :position, :match_id, :participation_id, presence: true
+    validates :position, :match_id, :participation_id, presence: true
 
-		# Public: Get this Record's Match's Competition
-		def competition
-			match.competition
-		end
+    # Public: Get this Record's Match's Competition
+    def competition
+      match.competition
+    end
 
-		# Public: Get this Record's Participation's Robot
-		def robot
-			participation.robot
-		end
+    # Public: Get this Record's Participation's Robot
+    def robot
+      participation.robot
+    end
 
-		# Public: Get this Record's Participation's Robot's Team
-		def team
-			participation.robot.team
-		end
+    # Public: Get this Record's Participation's Robot's Team
+    def team
+      participation.robot.team
+    end
 
-		register_routable_relation :match, 'match'
-		register_routable_relation :competition, 'competition'
-		register_routable_relation :participation, 'participation'
-		register_routable_relation :robot, 'robot'
-		register_routable_relation :team, 'team'
+    register_routable_relation :match, 'match'
+    register_routable_relation :competition, 'competition'
+    register_routable_relation :participation, 'participation'
+    register_routable_relation :robot, 'robot'
+    register_routable_relation :team, 'team'
 
-	end
+  end
 end

@@ -10,37 +10,37 @@
 require 'frecon/model'
 
 module FReCon
-	# Public: The Robot model.
-	class Robot < Model
+  # Public: The Robot model.
+  class Robot < Model
 
-		# This is an optional field we included for organization.
-		field :name, type: String
+    # This is an optional field we included for organization.
+    field :name, type: String
 
-		belongs_to :team
-		has_many :participations, dependent: :destroy
+    belongs_to :team
+    has_many :participations, dependent: :destroy
 
-		validates :team_id, presence: true
+    validates :team_id, presence: true
 
-		# Public: Get this Robot's Participations' Competitions
-		def competitions
-			Competition.in id: participations.map(&:competition_id)
-		end
+    # Public: Get this Robot's Participations' Competitions
+    def competitions
+      Competition.in id: participations.map(&:competition_id)
+    end
 
-		# Public: Get this Robot's Participations' Records
-		def records
-			Record.in participation_id: participations.map(&:id)
-		end
+    # Public: Get this Robot's Participations' Records
+    def records
+      Record.in participation_id: participations.map(&:id)
+    end
 
-		# Public: Get this Robot's Participations' Records' Matches
-		def matches
-			Match.in id: records.map(&:match_id).uniq
-		end
+    # Public: Get this Robot's Participations' Records' Matches
+    def matches
+      Match.in id: records.map(&:match_id).uniq
+    end
 
-		register_routable_relation :team, 'team'
-		register_routable_relation :participations, 'participations'
-		register_routable_relation :competitions, 'competitions'
-		register_routable_relation :records, 'records'
-		register_routable_relation :matches, 'matches'
+    register_routable_relation :team, 'team'
+    register_routable_relation :participations, 'participations'
+    register_routable_relation :competitions, 'competitions'
+    register_routable_relation :records, 'records'
+    register_routable_relation :matches, 'matches'
 
-	end
+  end
 end

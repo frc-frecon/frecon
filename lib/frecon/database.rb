@@ -18,35 +18,35 @@ require 'frecon/base/variables'
 require 'frecon/models'
 
 module FReCon
-	# Public: A system to set up the database.
-	class Database
+  # Public: A system to set up the database.
+  class Database
 
-		# Public: Set up the database.
-		def self.setup!
-			Mongoid.load!(File.join(File.dirname(__FILE__), 'mongoid.yml'), FReCon::ENVIRONMENT.variable)
+    # Public: Set up the database.
+    def self.setup!
+      Mongoid.load!(File.join(File.dirname(__FILE__), 'mongoid.yml'), FReCon::ENVIRONMENT.variable)
 
-			level = case (configured_level = FReCon::ENVIRONMENT.console['level'])
-			        when /^d/i
-				        ::Logger::DEBUG
-			        when /^e/i
-				        ::Logger::ERROR
-			        when /^f/i
-				        ::Logger::FATAL
-			        when /^i/i
-				        ::Logger::INFO
-			        when /^u/i
-				        ::Logger::UNKNOWN
-			        when /^w/i
-				        ::Logger::WARN
-			        else
-				        ::Logger::WARN
-			        end
+      level = case (configured_level = FReCon::ENVIRONMENT.console['level'])
+              when /^d/i
+                ::Logger::DEBUG
+              when /^e/i
+                ::Logger::ERROR
+              when /^f/i
+                ::Logger::FATAL
+              when /^i/i
+                ::Logger::INFO
+              when /^u/i
+                ::Logger::UNKNOWN
+              when /^w/i
+                ::Logger::WARN
+              else
+                ::Logger::WARN
+              end
 
-			if !!configured_level
-				Mongoid.logger = Logger.new($stdout)
-				Mongoid.logger.level = level
-			end
-		end
+      if !!configured_level
+        Mongoid.logger = Logger.new($stdout)
+        Mongoid.logger.level = level
+      end
+    end
 
-	end
+  end
 end

@@ -9,8 +9,8 @@
 
 class Object
 
-	# Alias #is_a? to #is_an?. This allows us to write more
-	# proper-English-y code.
-	alias_method :is_an?, :is_a?
+  # Alias #is_a? to #is_an?. This allows us to write more
+  # proper-English-y code.
+  alias_method :is_an?, :is_a?
 
 end
