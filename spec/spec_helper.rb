@@ -6,8 +6,10 @@ CodeClimate::TestReporter.start
 
 # Set up SimpleCov
 SimpleCov.start do
-	formatter SimpleCov::Formatter::MultiFormatter.new([
-		SimpleCov::Formatter::HTMLFormatter,
-		CodeClimate::TestReporter::Formatter
-	])
+
+  formatter_list = [ SimpleCov::Formatter::HTMLFormatter,
+                     CodeClimate::TestReporter::Formatter ]
+
+  formatter SimpleCov::Formatter::MultiFormatter.new(formatter_list)
+
 end

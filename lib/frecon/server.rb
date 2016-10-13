@@ -14,46 +14,46 @@ require 'frecon/database'
 require 'frecon/routes'
 
 module FReCon
-	# Public: The Sinatra web server.
-	class Server < Sinatra::Base
+  # Public: The Sinatra web server.
+  class Server < Sinatra::Base
 
-		include Routes
+    include Routes
 
-		before do
-			content_type 'application/json'
-		end
+    before do
+      content_type 'application/json'
+    end
 
-		# Public: Start the Server.
-		#
-		# Returns the result of starting the server.
-		def self.start(*arguments)
-			run!(*arguments)
-		end
+    # Public: Start the Server.
+    #
+    # Returns the result of starting the server.
+    def self.start(*arguments)
+      run!(*arguments)
+    end
 
-		protected
+    protected
 
-		# Internal: Set up the server.
-		#
-		# Sets various Thin and Sinatra options, and sets up the database.
-		#
-		# Returns the result of setting up the database.
-		def self.setup!
-			# Set the Thin and Sinatra options.
-			set :server, %w[thin HTTP webrick]
-			set :bind, FReCon::ENVIRONMENT.server['host']
-			set :port, FReCon::ENVIRONMENT.server['port']
-			set :environment, FReCon::ENVIRONMENT.variable.to_s
+    # Internal: Set up the server.
+    #
+    # Sets various Thin and Sinatra options, and sets up the database.
+    #
+    # Returns the result of setting up the database.
+    def self.setup!
+      # Set the Thin and Sinatra options.
+      set :server, %w[thin HTTP webrick]
+      set :bind, FReCon::ENVIRONMENT.server['host']
+      set :port, FReCon::ENVIRONMENT.server['port']
+      set :environment, FReCon::ENVIRONMENT.variable.to_s
 
-			# Set up the database.
-			Database.setup!
-		end
+      # Set up the database.
+      Database.setup!
+    end
 
-		# Internal: Set up the server and start it.
-		def self.run!(*arguments)
-			setup!(*arguments)
+    # Internal: Set up the server and start it.
+    def self.run!(*arguments)
+      setup!(*arguments)
 
-			super
-		end
+      super
+    end
 
-	end
+  end
 end

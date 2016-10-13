@@ -11,7 +11,7 @@ require 'frecon/models/match'
 require 'frecon/controller'
 
 module FReCon
-	# Public: The Matches controller.
-	class MatchesController < Controller
-	end
+  # Public: The Matches controller.
+  class MatchesController < Controller
+  end
 end

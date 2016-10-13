@@ -11,7 +11,7 @@ require 'frecon/models/competition'
 require 'frecon/controller'
 
 module FReCon
-	# Public: The Competitions controller.
-	class CompetitionsController < Controller
-	end
+  # Public: The Competitions controller.
+  class CompetitionsController < Controller
+  end
 end

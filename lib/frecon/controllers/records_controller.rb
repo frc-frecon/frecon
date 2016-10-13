@@ -11,7 +11,7 @@ require 'frecon/models/record'
 require 'frecon/controller'
 
 module FReCon
-	# Public: The Records controller.
-	class RecordsController < Controller
-	end
+  # Public: The Records controller.
+  class RecordsController < Controller
+  end
 end

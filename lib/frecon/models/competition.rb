@@ -10,38 +10,38 @@
 require 'frecon/model'
 
 module FReCon
-	# Public: The Competition model.
-	class Competition < Model
+  # Public: The Competition model.
+  class Competition < Model
 
-		field :location, type: String
-		field :name, type: String
+    field :location, type: String
+    field :name, type: String
 
-		has_many :matches, dependent: :destroy
-		has_many :participations, dependent: :destroy
+    has_many :matches, dependent: :destroy
+    has_many :participations, dependent: :destroy
 
-		validates :location, :name, presence: true
-		validates :name, uniqueness: true
+    validates :location, :name, presence: true
+    validates :name, uniqueness: true
 
-		# Public: Get this Competition's Matches' Records
-		def records
-			Record.in match_id: matches.map(&:id)
-		end
+    # Public: Get this Competition's Matches' Records
+    def records
+      Record.in match_id: matches.map(&:id)
+    end
 
-		# Public: Get this Competition's Participations' Robots
-		def robots
-			Robot.in id: participations.map(&:robot_id)
-		end
+    # Public: Get this Competition's Participations' Robots
+    def robots
+      Robot.in id: participations.map(&:robot_id)
+    end
 
-		# Public: Get this Competition's Participations' Robots' Teams
-		def teams
-			Team.in id: robots.map(&:team_id)
-		end
+    # Public: Get this Competition's Participations' Robots' Teams
+    def teams
+      Team.in id: robots.map(&:team_id)
+    end
 
-		register_routable_relation :matches, 'matches'
-		register_routable_relation :participations, 'participations'
-		register_routable_relation :records, 'records'
-		register_routable_relation :robots, 'robots'
-		register_routable_relation :teams, 'teams'
+    register_routable_relation :matches, 'matches'
+    register_routable_relation :participations, 'participations'
+    register_routable_relation :records, 'records'
+    register_routable_relation :robots, 'robots'
+    register_routable_relation :teams, 'teams'
 
-	end
+  end
 end

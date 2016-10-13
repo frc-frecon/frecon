@@ -11,7 +11,7 @@ require 'frecon/models/participation'
 require 'frecon/controller'
 
 module FReCon
-	# Public: The Participations controller.
-	class ParticipationsController < Controller
-	end
+  # Public: The Participations controller.
+  class ParticipationsController < Controller
+  end
 end

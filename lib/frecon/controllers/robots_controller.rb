@@ -11,7 +11,7 @@ require 'frecon/models/robot'
 require 'frecon/controller'
 
 module FReCon
-	# Public: The Robots controller.
-	class RobotsController < Controller
-	end
+  # Public: The Robots controller.
+  class RobotsController < Controller
+  end
 end
