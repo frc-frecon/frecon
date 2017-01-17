@@ -16,7 +16,7 @@ module FReCon
 		field :location, type: String
 		field :name, type: String
 
-		has_many :matches, dependent: :destroy
+		has_many :associated_matches, class_name: 'Match', dependent: :destroy
 		has_many :participations, dependent: :destroy
 
 		validates :location, :name, presence: true
@@ -24,7 +24,7 @@ module FReCon
 
 		# Public: Get this Competition's Matches' Records
 		def records
-			Record.in match_id: matches.map(&:id)
+			Record.in match_id: associated_matches.map(&:id)
 		end
 
 		# Public: Get this Competition's Participations' Robots
@@ -37,7 +37,7 @@ module FReCon
 			Team.in id: robots.map(&:team_id)
 		end
 
-		register_routable_relation :matches, 'matches'
+		register_routable_relation :associated_matches, 'matches'
 		register_routable_relation :participations, 'participations'
 		register_routable_relation :records, 'records'
 		register_routable_relation :robots, 'robots'
